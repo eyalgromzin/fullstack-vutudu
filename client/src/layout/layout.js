@@ -36,7 +36,7 @@ class Layout extends Component {
   render() {
     return (
       <div>
-        {/* {this.props.loggedIn == false ? <LoginScreen /> : <React.Fragment />} */}
+        {this.props.loggedIn == false ? <LoginScreen /> : <React.Fragment />}
         <div id="mainPage">
           <TopBar />
           <div class="mainContent">

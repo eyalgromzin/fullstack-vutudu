@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { addIdeaToDB } from 'db/dbHandler.js'
 import { NEW_IDEA_SET_TITLE,NEW_IDEA_SET_CONTENT } from 'redux/types'
 import 'commonCss.css'
-import { addItem } from '../../actions/itemActions'
 
 class CreateIdeaCard extends Component {
 constructor(props){
@@ -25,55 +24,47 @@ constructor(props){
 }
 
   handleCreateIdeaClick(event) {
-    // this.error = "";
+    this.error = "";
 
-    const newItem = {
-      name: 'asd'
-    };
+    if(this.props.title == ""){
+      this.isHasError = true;
+      this.error += "missing <Title>, "
+    }
+    if(this.props.content == ""){
+      this.isHasError = true;
+      this.error += "missing <Content>, "
+    }
+    if(this.props.place == ""){
+      this.isHasError = true;
+      this.error += "missing place, "
+    }
+    if(this.props.minTime == ""){
+      this.isHasError = true;
+      this.error += "missing time, "
+    }
+    if(this.props.minNumOfPeople == ""){
+      this.isHasError = true;
+      this.error += "missing minimum Number of people, "
+    }
+    if(this.props.maxNumOfPeople == ""){
+      this.isHasError = true;
+      this.error += "missing maximum number of people, "
+    }
 
-    // Add item via addItem action
-    addItem(newItem);
+    this.error = this.error.substring(0, this.error.length - 2);
 
+    var tags = this.extractTagsFromContent()
 
-    // if(this.props.title == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing <Title>, "
-    // }
-    // if(this.props.content == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing <Content>, "
-    // }
-    // if(this.props.place == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing place, "
-    // }
-    // if(this.props.minTime == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing time, "
-    // }
-    // if(this.props.minNumOfPeople == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing minimum Number of people, "
-    // }
-    // if(this.props.maxNumOfPeople == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing maximum number of people, "
-    // }
+    this.setState({isHasError: true,
+                  error: this.error});
 
-    // this.error = this.error.substring(0, this.error.length - 2);
-
-    // var tags = this.extractTagsFromContent()
-
-    // this.setState({isHasError: true,
-    //               error: this.error});
-
-    // //addIdeaToDB(title, content, place,time,minNumOfPeople,maxNumOfPeople)
-    // addIdeaToDB(this.props.title,
-    //             this.props.content,
-    //             this.props.place,
-    //             this.props.minTime,  //undefined
-    //             this.props.minNumOfPeople,
-    //             this.props.maxNumOfPeople);
+    //addIdeaToDB(title, content, place,time,minNumOfPeople,maxNumOfPeople)
+    addIdeaToDB(this.props.title,
+                this.props.content,
+                this.props.place,
+                this.props.minTime,  //undefined
+                this.props.minNumOfPeople,
+                this.props.maxNumOfPeople);
   }
 
   extractTagsFromContent(){
