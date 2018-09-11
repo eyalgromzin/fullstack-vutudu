@@ -1,0 +1,14 @@
+#ideaLeftArrow{
+    display: inline-block;
+    margin-right: 6px;
+}
+
+#ideaRightArrow{
+    display: inline-block;
+}
+
+#ideaNextPreviousButtons{
+    display: inline-block;
+    margin-right: 10px;
+    width: 120px;
+}
