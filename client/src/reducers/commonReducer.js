@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 
 const initialState = {
   currentPage: 'SHOW_IDEA',
-  loggedIn: true
+  loggedIn: false
 };
 
 export const CHANGE_PAGE_TO_CREATE_IDEA = "CHANGE_PAGE_TO_CREATE_IDEA";
