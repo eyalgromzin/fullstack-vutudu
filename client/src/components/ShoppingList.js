@@ -15,11 +15,13 @@ class ShoppingList extends Component {
   };
 
   render() {
-    const { items } = this.props.item;
+    var i = 5;
+    const items = this.props.items;
     return (
       <Container>
         <ListGroup>
           <TransitionGroup className="shopping-list">
+          {console.log(items)}
             {items.map(({ _id, name }) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
                 <ListGroupItem>
@@ -48,7 +50,7 @@ ShoppingList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  item: state.item
+  items: state.itemReducer.items
 });
 
 export default connect(
