@@ -5,23 +5,26 @@ import './createIdeaCard.css'
 import { connect } from 'react-redux';
 import { NEW_IDEA_SET_TITLE,NEW_IDEA_SET_CONTENT } from 'reducers/types'
 import 'commonCss.css'
-import { addItem } from 'actions/itemActions';
+import { addItem,updateTitle,updateContent } from 'actions/itemActions';
+import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import store from 'store'
 
 class CreateIdeaCard extends Component {
-constructor(props){
-  super(props);
+  constructor(props){
+    super(props);
 
-  this.handleChange = this.handleChange.bind(this);
-  this.handleCreateIdeaClick = this.handleCreateIdeaClick.bind(this);
-  this.extractTagsFromContent= this.extractTagsFromContent.bind(this);
-  this.handleOnTitleChange= this.handleOnTitleChange.bind(this);
-  this.handleOnContentChange= this.handleOnContentChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleCreateIdeaClick = this.handleCreateIdeaClick.bind(this);
+    this.extractTagsFromContent= this.extractTagsFromContent.bind(this);
+    this.handleOnTitleChange= this.handleOnTitleChange.bind(this);
+    this.handleOnContentChange= this.handleOnContentChange.bind(this);
 
-  this.state={
-    error:"",
-    isHasError: false
+    this.state={
+      error:"",
+      isHasError: false
+    }
   }
-}
 
   handleCreateIdeaClick(event) {
 
@@ -30,7 +33,7 @@ constructor(props){
     };
 
     // Add item via addItem action
-    this.props.addItem(newItem);
+    this.props.addItem1(newItem);
 
 
     // this.error = "";
@@ -93,11 +96,14 @@ constructor(props){
   isHasError = false;
 
   handleOnTitleChange(e){
-    this.props.dispatch({type: NEW_IDEA_SET_TITLE, payload: e.target.value});
+    store.dispatch({type: NEW_IDEA_SET_TITLE, payload: e.target.value});  //works
+    // dispatch(e.target.value);
+    // updateTitle(e.target.value);
   }
 
   handleOnContentChange(e){
-    this.props.dispatch({type: NEW_IDEA_SET_CONTENT, payload: e.target.value});
+    // updateContent(e.target.value);
+    store.dispatch({type: NEW_IDEA_SET_CONTENT, payload: e.target.value});
   }
 
   handleChange(event) {
@@ -154,4 +160,30 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,{addItem})(CreateIdeaCard);
+const mapDispatchToProps = dispatch => {
+  return {
+    addItem1: bindActionCreators (addItem, dispatch)
+  }
+}
+
+// const mergeProps = (propsFromState, propsFromDispatch) => (
+//   {
+//     ...propsFromState,
+//     ...propsFromDispatch,
+//     addItem: addItem,
+//   }
+// );
+
+CreateIdeaCard.propTypes = {
+  title: PropTypes.string,
+  content: PropTypes.string,
+  minTime : PropTypes.number,
+  maxTime : PropTypes.number,
+  minNumOfPeople : PropTypes.number,
+  maxNumOfPeople : PropTypes.number,
+  place : PropTypes.string
+};
+
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(CreateIdeaCard);  // ,mergeProps    //,mapDispatchToProps
