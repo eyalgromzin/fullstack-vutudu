@@ -68,7 +68,7 @@ class CreateIdeaCard extends Component {
 
     if(!this.isHasError){
       const newItem = {
-        name: this.props.title,
+        // name: this.props.title,
         title: this.props.title,
         content: this.props.content,
         place: this.props.place,

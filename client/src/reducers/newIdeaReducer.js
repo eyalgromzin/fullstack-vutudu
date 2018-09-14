@@ -10,7 +10,7 @@ import { NEW_IDEA_SET_PLACE } from 'reducers/types'
 const initialState = {
     title: 'idea title',
     content: 'idea content',
-    place: 'here',
+    place: 'work',
     minTime: 0,
     maxTime: 0,
     minNumOfPeople: 0,

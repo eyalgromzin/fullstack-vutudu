@@ -22,7 +22,7 @@ class ShoppingList extends Component {
         <ListGroup>
           <TransitionGroup className="shopping-list">
           {console.log(items)}
-            {items.map(({ _id, name }) => (
+            {items.map(({ _id, title }) => (
               <CSSTransition key={_id} timeout={500} classNames="fade">
                 <ListGroupItem>
                   <Button
@@ -33,7 +33,7 @@ class ShoppingList extends Component {
                   >
                     &times;
                   </Button>
-                  {name}
+                  {title}
                 </ListGroupItem>
               </CSSTransition>
             ))}

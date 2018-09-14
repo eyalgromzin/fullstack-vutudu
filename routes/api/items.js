@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 // @access  Public
 router.post('/', (req, res) => {
   const newItem = new Item({
-    name: req.body.name,
+    // name: req.body.name,
     title: req.body.title,
     content: req.body.content,
     place: req.body.place,
@@ -28,6 +28,9 @@ router.post('/', (req, res) => {
     maxNumOfPeople: req.body.maxNumOfPeople
   });
 
+  //save saves is to the data base
+  //uses mongoose
+  //how does the save works? how can save be added to any object?
   newItem.save().then(item => res.json(item));
 });
 
