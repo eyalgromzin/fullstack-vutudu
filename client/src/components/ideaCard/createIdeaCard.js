@@ -28,15 +28,11 @@ class CreateIdeaCard extends Component {
 
   handleCreateIdeaClick(event) {
 
-    const newItem = {
-      name: "asdasd",
-    };
-
-    // Add item via addItem action
-    this.props.addItem1(newItem);
+    
 
 
-    // this.error = "";
+    this.error = "";
+    this.isHasError = false;
 
     // if(this.props.title == ""){
     //   this.isHasError = true;
@@ -67,10 +63,26 @@ class CreateIdeaCard extends Component {
 
     // var tags = this.extractTagsFromContent()
 
-    // this.setState({isHasError: true,
-    //               error: this.error});
+    this.setState({isHasError: true,
+                  error: this.error});
 
-    // //addIdeaToDB(title, content, place,time,minNumOfPeople,maxNumOfPeople)
+    if(!this.isHasError){
+      const newItem = {
+        name: this.props.title,
+        title: this.props.title,
+        content: this.props.content,
+        place: this.props.place,
+        minTime: this.props.minTime,
+        maxTime: this.props.maxTime,
+        minNumOfPeople: this.props.minNumOfPeople,
+        maxNumOfPeople: this.props.maxNumOfPeople,
+      };
+
+      // Add item via addItem action
+      this.props.addItem1(newItem);
+    }
+
+    //addIdeaToDB(title, content, place,time,minNumOfPeople,maxNumOfPeople)
     // addIdeaToDB(this.props.title,
     //             this.props.content,
     //             this.props.place,
@@ -152,11 +164,11 @@ function mapStateToProps(state) {
   return {
     title: state.newIdeaReducer.title,
     content: state.newIdeaReducer.content,
+    place: state.newIdeaReducer.place,
     minTime: state.newIdeaReducer.minTime,
     maxTime: state.newIdeaReducer.maxTime,
     minNumOfPeople: state.newIdeaReducer.minNumOfPeople,
-    maxNumOfPeople: state.newIdeaReducer.maxNumOfPeople,
-    place: state.newIdeaReducer.place,
+    maxNumOfPeople: state.newIdeaReducer.maxNumOfPeople
   };
 }
 
@@ -177,11 +189,11 @@ const mapDispatchToProps = dispatch => {
 CreateIdeaCard.propTypes = {
   title: PropTypes.string,
   content: PropTypes.string,
+  place : PropTypes.string,
   minTime : PropTypes.number,
   maxTime : PropTypes.number,
   minNumOfPeople : PropTypes.number,
-  maxNumOfPeople : PropTypes.number,
-  place : PropTypes.string
+  maxNumOfPeople : PropTypes.number
 };
 
 

@@ -8,14 +8,14 @@ import { NEW_IDEA_SET_CONTENT } from 'reducers/types'
 import { NEW_IDEA_SET_PLACE } from 'reducers/types'
 
 const initialState = {
-    title: '',
-    content: '',
+    title: 'idea title',
+    content: 'idea content',
+    place: 'here',
     minTime: 0,
     maxTime: 0,
-    minNumOfPeople: '',
-    maxNumOfPeople: '',
-    place: '',
-    tags: [],
+    minNumOfPeople: 0,
+    maxNumOfPeople: 0,
+    tags: []
 };
 
 function reducer(state = initialState, action) {

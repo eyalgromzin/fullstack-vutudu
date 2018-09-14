@@ -49,8 +49,13 @@ function mapStateToProps(state) {
   var x=5;
   x++;
   return {
+    title: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].title,
     content: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].content,
-    title: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].title
+    place: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].place,
+    minTIme: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].minTIme,
+    maxTime: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].maxTime,
+    minNumOfPeople: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].minNumOfPeople,
+    maxNumOfPeople: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].maxNumOfPeople
   };
 }
 
