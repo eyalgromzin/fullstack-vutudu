@@ -49,6 +49,25 @@ router.get('/search/:place/:time/:numOfPeople', (req, res) => {   //
 // @route   GET api/search/:place/:time/:numOfPeople/:more
 // @desc    search for anything
 // @access  Public
+router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {   //
+  Item.find({
+    place: req.params.place,
+    $and:[
+      {minTime: {$lte: req.params.time}},
+      {maxTime: {$gte: req.params.time}}
+    ],
+    $and:[
+      {minNumOfPeople: {$lte: req.params.numOfPeople}},
+      {maxNumOfPeople: {$gte: req.params.numOfPeople}}
+    ]
+    // more: req.params.more
+  })
+  .then(items => res.json(items));
+});
+
+// @route   GET api/search/:place/:time/:numOfPeople/:more
+// @desc    search for anything
+// @access  Public
 router.post('/search/', (req, res) => {
   
   Item.find({     //works
