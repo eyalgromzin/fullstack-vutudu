@@ -18,10 +18,10 @@ class App extends Component {
           
           {/* <AppNavbar /> */}
           <Layout />
-          <Container>
-            <ItemModal />
-            <ShoppingList />
-          </Container>
+          {/* <Container> */}
+            {/* <ItemModal /> */}
+            {/* <ShoppingList /> */}
+          {/* </Container> */}
         </div>
       </Provider>
     );

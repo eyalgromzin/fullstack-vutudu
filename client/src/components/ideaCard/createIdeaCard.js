@@ -13,7 +13,6 @@ import store from 'store'
 class CreateIdeaCard extends Component {
   constructor(props){
     super(props);
-
     this.handleChange = this.handleChange.bind(this);
     this.handleCreateIdeaClick = this.handleCreateIdeaClick.bind(this);
     this.extractTagsFromContent= this.extractTagsFromContent.bind(this);
@@ -26,45 +25,15 @@ class CreateIdeaCard extends Component {
     }
   }
 
+  handleChange(event) {
+    // this.setState({value: event.target.value})
+  }
+
   handleCreateIdeaClick(event) {
-
-    
-
-
     this.error = "";
     this.isHasError = false;
-
-    // if(this.props.title == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing <Title>, "
-    // }
-    // if(this.props.content == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing <Content>, "
-    // }
-    // if(this.props.place == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing place, "
-    // }
-    // if(this.props.minTime == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing time, "
-    // }
-    // if(this.props.minNumOfPeople == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing minimum Number of people, "
-    // }
-    // if(this.props.maxNumOfPeople == ""){
-    //   this.isHasError = true;
-    //   this.error += "missing maximum number of people, "
-    // }
-
-    // this.error = this.error.substring(0, this.error.length - 2);
-
-    // var tags = this.extractTagsFromContent()
-
-    this.setState({isHasError: true,
-                  error: this.error});
+    
+    //add validation for empty fields / wrong
 
     if(!this.isHasError){
       const newItem = {
@@ -76,19 +45,15 @@ class CreateIdeaCard extends Component {
         maxTime: this.props.maxTime,
         minNumOfPeople: this.props.minNumOfPeople,
         maxNumOfPeople: this.props.maxNumOfPeople,
+        likes:0,
+        dislikes:0,
+        hardCount:0,
+        easyCount:0
       };
 
       // Add item via addItem action
       this.props.addItem1(newItem);
     }
-
-    //addIdeaToDB(title, content, place,time,minNumOfPeople,maxNumOfPeople)
-    // addIdeaToDB(this.props.title,
-    //             this.props.content,
-    //             this.props.place,
-    //             this.props.minTime,  //undefined
-    //             this.props.minNumOfPeople,
-    //             this.props.maxNumOfPeople);
   }
 
   extractTagsFromContent(){
@@ -108,18 +73,11 @@ class CreateIdeaCard extends Component {
   isHasError = false;
 
   handleOnTitleChange(e){
-    store.dispatch({type: NEW_IDEA_SET_TITLE, payload: e.target.value});  //works
-    // dispatch(e.target.value);
-    // updateTitle(e.target.value);
+    store.dispatch({type: NEW_IDEA_SET_TITLE, payload: e.target.value});  
   }
 
   handleOnContentChange(e){
-    // updateContent(e.target.value);
     store.dispatch({type: NEW_IDEA_SET_CONTENT, payload: e.target.value});
-  }
-
-  handleChange(event) {
-    // this.setState({value: event.target.value})
   }
 
   render() {
@@ -168,7 +126,7 @@ function mapStateToProps(state) {
     minTime: state.newIdeaReducer.minTime,
     maxTime: state.newIdeaReducer.maxTime,
     minNumOfPeople: state.newIdeaReducer.minNumOfPeople,
-    maxNumOfPeople: state.newIdeaReducer.maxNumOfPeople
+    maxNumOfPeople: state.newIdeaReducer.maxNumOfPeople,
   };
 }
 
@@ -177,14 +135,6 @@ const mapDispatchToProps = dispatch => {
     addItem1: bindActionCreators (addItem, dispatch)
   }
 }
-
-// const mergeProps = (propsFromState, propsFromDispatch) => (
-//   {
-//     ...propsFromState,
-//     ...propsFromDispatch,
-//     addItem: addItem,
-//   }
-// );
 
 CreateIdeaCard.propTypes = {
   title: PropTypes.string,

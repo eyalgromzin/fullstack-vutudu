@@ -44,9 +44,9 @@ import CardCountInfo from '../cardCountInfo/cardCountInfo'
     return (
       <React.Fragment>
         <div id="ideaNextPreviousButtons">
-        <img src={require("images/leftArrow.png")} id="ideaLeftArrow" class="ideaTopButton hoverClickHand" onClick={this.leftArrowClick}/>
+        <i id="ideaLeftArrow" class="leftArrowI ideaTopButton hoverClickHand" onClick={this.leftArrowClick}/> {/*img src={require("images/leftArrow.png")} */}
         <CardCountInfo />
-        <img src={require("images/rightArrow.png")} id="ideaRightArrow" class="ideaTopButton hoverClickHand" onClick={this.rightArrowClick}/>
+        <i id="ideaRightArrow" class="rightArrowI ideaTopButton hoverClickHand" onClick={this.rightArrowClick}/>   {/*src={require("images/rightArrow.png")} */}
         </div>
       </React.Fragment>
     )

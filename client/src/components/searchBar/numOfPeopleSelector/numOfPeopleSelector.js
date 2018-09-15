@@ -1,23 +1,24 @@
 import React, { Component } from 'react'
 import './numOfPeopleSelector.css'
 import '../searchBarCommonStyles.css'
+import {SEARCH_SET_NUM_OF_PEOPLE} from 'reducers/types'
+import { connect } from 'react-redux';
 
-export default class NumOfPeopleSelector extends Component {
+class NumOfPeopleSelector extends Component {
   constructor(){
     super();
   }
 
-  change(){
-        
+  handleChange = (event) => {
+    this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: event.target.value });
   }
 
   render() {
     return (
-       
       <div class="searchBarChooserContainer" > 
         <div class="searchBarChooserData">
           <img src={require("images/people.png")} class="searchBarIcon " />
-            <select id="numOfPeopleChooser" class="" >
+            <select id="numOfPeopleChooser" class="" onChange={this.handleChange}>
               <option value="1" class="timeChooserOption">1</option>
               <option value="2" class="timeChooserOption" selected="selected">2</option>
               <option value="2000" class="timeChooserOption">couple</option>
@@ -33,3 +34,5 @@ export default class NumOfPeopleSelector extends Component {
     )
   }
 }
+
+export default connect()(NumOfPeopleSelector);

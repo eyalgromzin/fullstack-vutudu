@@ -1,6 +1,6 @@
 #ideaLeftArrow{
     display: inline-block;
-    margin-right: 6px;
+    /* margin-right: 6px; */
 }
 
 #ideaRightArrow{
@@ -11,4 +11,26 @@
     display: inline-block;
     margin-right: 10px;
     width: 120px;
+}
+
+.rightArrowI{
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    border: solid black;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 3px;
+    height: 13px;
+    width: 13px;
+}
+
+.leftArrowI{
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    border: solid black;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 3px;
+    height: 13px;
+    width: 13px;
 }

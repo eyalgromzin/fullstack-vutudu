@@ -3,10 +3,9 @@
   }
   
   body{
-    background-image: url('../images/topBackground.jpg');
-    background-repeat: no-repeat;
+    /* background-image: url('../images/topBackground.jpg');
+    background-repeat: no-repeat; */
     background-size: 100% 35%;
-    background-color: beige;
   }
   
   .mainContent{
@@ -17,4 +16,5 @@
       margin:0;
       padding:0;
       height: 100%;
+      background-color: antiquewhite !important; 
   }

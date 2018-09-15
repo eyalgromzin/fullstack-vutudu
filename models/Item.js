@@ -48,7 +48,27 @@ const ItemSchema = new Schema({
     type: Number,
     required: false,
     default: 2,
-  }
+  },
+  likes: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  dislikes: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  easyCount: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
+  hardCount: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
 });
 
 module.exports = Item = mongoose.model('item', ItemSchema);

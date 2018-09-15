@@ -26,6 +26,8 @@ router.post('/', (req, res) => {
     minNumOfPeople: req.body.minNumOfPeople,
     maxNumOfPeople: req.body.maxNumOfPeople
   });
+
+  newItem.save().then(item=> res.json(item));
 });
 
 // @route   GET api/search/:place/:time/:numOfPeople/:more
@@ -69,7 +71,6 @@ router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {   //
 // @desc    search for anything
 // @access  Public
 router.post('/search/', (req, res) => {
-  
   Item.find({     //works
     // place: req.body.place
     // minTime: 30,

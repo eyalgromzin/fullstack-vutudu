@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import './searchButton.css'
 import '../searchBarCommonStyles.css'
+import { searchItems } from 'actions/itemActions'
 import { connect } from 'react-redux'
 import { SAVE_IDEAS } from 'reducers/ideasReducer'
+import { addItem } from 'actions/itemActions';
 
-// var search = searchInDB;
 
 class SearchButton extends Component {
   constructor(props){
@@ -17,17 +18,28 @@ class SearchButton extends Component {
       more: '#productive',      
     }
 
-    this.saveIdeasToRedux = this.saveIdeasToRedux.bind(this);
     this.handleSearchClick = this.handleSearchClick.bind(this);
   }
 
-  saveIdeasToRedux(ideas){
-    this.props.dispatch({ type: "SAVE_IDEAS", 
-                            payload: ideas 
-                          });
-  }
+  // saveIdeasToRedux(ideas){
+  //   // this.props.dispatch({ type: "SAVE_IDEAS", 
+  //   //                         payload: ideas 
+  //   //                       });
+  // }
 
   handleSearchClick(){
+    this.props.searchItems(this.props.place,this.props.time,this.props.numOfPeople);
+
+
+    //suppose to work
+    // const newItem = {
+    //   name: this.state.name
+    // };
+
+    // // Add item via addItem action
+    // this.props.addItem(newItem);
+
+
     //get from redux the search criterias - done by map state to props
     //get from the DB results according to this criteria
     // var results = searchInDB(this.props.place,this.props.time,this.props.numOfPeople,this.props.more);
@@ -36,12 +48,13 @@ class SearchButton extends Component {
     // this.saveIdeasToRedux(results);
 
     //load ideas in the page.
+    
   }
 
   render() {
     return (
       <a>
-      <div class="displayInlineBlock hoverClickHand" id="searchButton"  onClick={this.handleSearchClick}>
+      <div class="displayInlineBlock hoverClickHand" tabindex='3' id="searchButton"  onClick={this.handleSearchClick}>
         search
       </div>
       </a>
@@ -58,4 +71,4 @@ function mapStateToProps(state) {
     };
   }
 
-  export default connect(mapStateToProps)(SearchButton);
+  export default connect(mapStateToProps, {addItem, searchItems})(SearchButton);

@@ -46,8 +46,7 @@ class IdeaCard extends Component {
 }
 
 function mapStateToProps(state) {
-  var x=5;
-  x++;
+  
   return {
     title: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].title,
     content: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].content,

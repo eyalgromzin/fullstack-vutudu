@@ -7,10 +7,10 @@ import SearchButton from './searchButton/searchButton'
 import { connect } from 'react-redux';
 import {SET_PLACE} from 'reducers/types'
 import {SET_TIME} from 'reducers/types'
-import {NEW_IDEA_SET_TIME} from 'reducers/types'
+import {SEARCH_SET_TIME, SEARCH_SET_PLACE} from 'reducers/types'
 
-const searchBarSearch = "SEARCH_BAR_SEARCH";
-const searchBarCreate = "SEARCH_BAR_CREATE";
+// const searchBarSearch = "SEARCH_BAR_SEARCH";
+// const searchBarCreate = "SEARCH_BAR_CREATE";
 
 class SearchBar extends Component {
   constructor(props){
@@ -18,11 +18,11 @@ class SearchBar extends Component {
   }
 
   placeOnChangeEvent = (e) => {
-    this.props.dispatch({type: SET_PLACE, payload: e.target.value});
+    this.props.dispatch({type: SEARCH_SET_PLACE, payload: e.target.value});
   }
 
   timeOnChangeEvent = (e) => {
-    this.props.dispatch({type: SET_TIME, payload: e.target.value});
+    this.props.dispatch({type: SEARCH_SET_TIME, payload: e.target.value});
   }
 
   render() {

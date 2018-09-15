@@ -1,21 +1,10 @@
 import axios from 'axios';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
-import { NEW_IDEA_SET_TITLE,NEW_IDEA_SET_CONTENT } from 'reducers/types'
+import { SAVE_IDEAS } from 'reducers/types'
 import { connect } from 'react-redux';
 
-// export const updateTitle = (title) => dispatch => {
-//   dispatch({
-//     type: NEW_IDEA_SET_TITLE,
-//     payload: title
-//   })
-// }
-
-// export const updateContent = (content) => dispatch => {
-//   dispatch({
-//     type: NEW_IDEA_SET_CONTENT,
-//     payload: content
-//   })
-// }
+// Pass axios to the imported 'axios-debug' function.
+require('axios-debug')(axios);
 
 export const getItems = () => dispatch => {
   dispatch(setItemsLoading());
@@ -34,6 +23,18 @@ export const addItem = item => dispatch => {
       type: ADD_ITEM,
       payload: res.data
     })
+  );
+};
+
+export const searchItems = (place,time,numOfPeople) => dispatch => {
+  axios
+  .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
+  .then(res =>{
+    dispatch({
+      type: SAVE_IDEAS,
+      payload: res.data
+    })
+  }
   );
 };
 
