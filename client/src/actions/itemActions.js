@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING } from './types';
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, ADD_USER } from './types';
 import { SAVE_IDEAS,NO_ITEMS_FOUND } from 'reducers/types'
 import { connect } from 'react-redux';
 
@@ -21,6 +21,15 @@ export const addItem = item => dispatch => {
   axios.post('/api/items', item).then(res =>
     dispatch({
       type: ADD_ITEM,
+      payload: res.data
+    })
+  );
+};
+
+export const addUser = user => dispatch => {
+  axios.post('/api/items/user', user).then(res =>
+    dispatch({
+      type: ADD_USER,
       payload: res.data
     })
   );
