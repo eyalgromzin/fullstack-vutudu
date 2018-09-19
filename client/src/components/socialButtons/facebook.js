@@ -38,6 +38,7 @@ class FacebookButton extends Component {
         fields="name,email,picture"
         onClick={this.componentClicked}
         callback={this.responseFacebook} 
+        isDisabled="false"
         textButton="login with facebook 2"
         icon="fa-facebook"
         />
