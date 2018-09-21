@@ -20,7 +20,7 @@ class NumOfPeopleSelector extends Component {
           <img src={require("images/people.png")} class="searchBarIcon " />
             <select id="numOfPeopleChooser" class="" onChange={this.handleChange}>
               <option value="1" class="timeChooserOption">1</option>
-              <option value="2" class="timeChooserOption" selected="selected">2</option>
+              <option value="2" class="timeChooserOption">2</option>
               <option value="2000" class="timeChooserOption">couple</option>
               <option value="3" class="timeChooserOption">3</option>
               <option value="4" class="timeChooserOption">4</option>

@@ -54,7 +54,7 @@ class SearchButton extends Component {
   render() {
     return (
       <a>
-      <div class="displayInlineBlock hoverClickHand" tabindex='3' id="searchButton"  onClick={this.handleSearchClick}>
+      <div class="displayInlineBlock hoverClickHand" id="searchButton"  onClick={this.handleSearchClick}>
         search
       </div>
       </a>

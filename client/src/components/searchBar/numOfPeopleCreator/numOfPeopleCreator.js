@@ -27,8 +27,8 @@ class NumOfPeopleCreator extends Component {
       <div class="searchBarChooserContainer" > 
         <div class="searchBarChooserData">
           <img src={require("images/people.png")} class="searchBarIcon " />
-            <select id="numOfPeopleChooser" class="" onChange={this.minNumOfPeopleChange}>
-              <option value="1" class="timeChooserOption" selected="selected">0</option>
+            <select id="numOfPeopleChooser" value="" class="" onChange={this.minNumOfPeopleChange}>
+              <option value="1" class="timeChooserOption">0</option>
               <option value="1" class="timeChooserOption">1</option>
               <option value="2" class="timeChooserOption">2</option>
               <option value="2000" class="timeChooserOption">couple</option>
@@ -40,8 +40,8 @@ class NumOfPeopleCreator extends Component {
               <option value="8000" class="timeChooserOption">7+</option>
             </select>
             <span> - </span>
-            <select id="numOfPeopleChooser" class="" onChange={this.maxNumOfPeopleChange}>
-              <option value="1" class="timeChooserOption" selected="selected">0</option>
+            <select id="numOfPeopleChooser" class="" value="" onChange={this.maxNumOfPeopleChange}>
+              <option value="1" class="timeChooserOption">0</option>
               <option value="1" class="timeChooserOption">1</option>
               <option value="2" class="timeChooserOption">2</option>
               <option value="2000" class="timeChooserOption">couple</option>
