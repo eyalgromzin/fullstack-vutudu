@@ -1,11 +1,20 @@
 import React, { Component } from 'react'
+import './userLayout.css'
 
 export default class userLayout extends Component {
+    constructor(){
+        
+    }
+
   render() {
     return (
-      <div>
-        user Layout
-      </div>
+      <React.Fragment>
+        <div id="userLikedIdeas">
+            <div class="horizontalContainer">
+
+            </div>
+        </div>
+      </React.Fragment>
     )
   }
 }

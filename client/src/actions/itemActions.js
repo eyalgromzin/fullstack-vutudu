@@ -67,3 +67,12 @@ export const setItemsLoading = () => {
     type: ITEMS_LOADING
   };
 };
+
+export const saveLikedIdeaToUser = (idea,user) => dispatch => {
+  axios.post(`/api/items/user/liked/${userId}/${ideaId}`, user.id, idea.id).then(res =>
+    dispatch({
+      type: ADD_USER,
+      payload: res.data
+    })
+  );
+};

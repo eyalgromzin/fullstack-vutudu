@@ -6,6 +6,7 @@ import commonReducer from './commonReducer'
 import ideasReducer from './ideasReducer'
 import newIdeaReducer from './newIdeaReducer'
 import itemReducer from './itemReducer'
+import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
   searchReducer: searchReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   commonReducer: commonReducer,
   ideasReducer: ideasReducer,
   newIdeaReducer: newIdeaReducer,
-  itemReducer: itemReducer
+  itemReducer: itemReducer,
+  userReducer: userReducer
 })
  
 export default rootReducer

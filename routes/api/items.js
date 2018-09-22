@@ -115,4 +115,28 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
+
+
+
+/////////////////////// USER API //////////////////////
+
+
+
+
+// @route   GET api/search/:place/:time/:numOfPeople/:more
+// @desc    search for anything
+// @access  Public
+router.post('/user/liked/:userID/:ideaID', (req, res) => {   
+  var query = {'id':req.params.userID};
+  // req.newData.liked = 
+  Item.findOneAndUpdate(query,req.newData,{upsert:true},function(err,doc){
+
+  }
+  //   {
+  //   userID: req.params.userID,
+  //   ideaID: req.params.ideaID,
+  // })
+  .then(items => res.json(items));
+});
+
 module.exports = router;
