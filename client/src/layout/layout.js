@@ -16,6 +16,11 @@ import CreateIdeaBar from '../components/searchBar/createIdeaBar'
 import CreateIdeaCard from '../components/ideaCard/createIdeaCard'
 import LoginScreen from '../components/loginScreen/loginScreen'
 
+import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import createLayout from '../components/createCopmonent/createLayout';
+import searchLayout from '../components/searchLayout/searchLayout';
+import userLayout from '../components/layouts/userLayout/userLayout';
+
 export const showIdeaPage = 'SHOW_IDEAS';
 export const createIdeaPage = 'CREATE_IDEA';
 
@@ -35,25 +40,20 @@ class Layout extends Component {
   
   render() {
     return (
-      <div>
-        {this.props.loggedIn == false ? <LoginScreen /> : <React.Fragment />}
-        <div id="mainPage">
-          <TopBar />
-          <div class="mainContent">
-            {this.props.currentPage == createIdeaPage ? 
-              <React.Fragment>
-                <CreateIdeaBar />
-                <CreateIdeaCard />
-              </React.Fragment>
-              :
-              <React.Fragment>
-                <SearchBar />
-                <IdeaCard/>
-              </React.Fragment> 
-            }
-          </div>
-        </div>
-      </div>
+      <React.Fragment>
+        <Router>
+          <React.Fragment>
+            <div class="mainContent">
+              <TopBar />    
+
+              <Redirect from="/" to="/search" />
+              <Route path="/search" component={searchLayout} />
+              <Route path="/create" component={createLayout} />
+              <Route path="/user" component={userLayout} />
+            </div>
+          </ React.Fragment>
+        </Router>
+      </React.Fragment>
     )
   }
 }

@@ -1,17 +1,23 @@
 import ReactDOM from 'react-dom';
 import FacebookLogin from 'react-facebook-login';
-// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import {CHANGE_LOGGED_IN_STATE, commonReducer} from 'reducers/commonReducer'
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
-export default class facebook6 extends Component {
 
-    responseFacebook = (response) => {
-        console.log(response);
-      }
+class facebook6 extends Component {
 
-      componentClicked = () => {
-          console.log('cliked fb');
-      }
+  responseFacebook = (response) => {
+    if (response.accessToken) {
+      this.props.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: true });
+    } else {
+      console.log('User cancelled login or did not fully authorize.');
+    }
+  }
+
+  componentClicked = () => {
+      console.log('cliked fb');
+  }
 
   render() {
     return (
@@ -27,3 +33,11 @@ export default class facebook6 extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    loggedIn: state.commonReducer.loggedIn
+  };
+}
+
+export default connect(mapStateToProps)(facebook6);

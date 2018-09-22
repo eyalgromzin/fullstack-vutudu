@@ -8,6 +8,8 @@ import CardCountInfo from './cardButtons/cardCountInfo/cardCountInfo'
 import IdeaAttachmentsButton from './cardButtons/ideaAttachmentsButton/ideaAttachmentButton'
 import IdeaPlaceButton from './cardButtons/placeButton/placeButton'
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
+import 'commonCss.css'
 
 
 class IdeaCard extends Component {
@@ -39,6 +41,9 @@ class IdeaCard extends Component {
             </div>
           </div>
           <div id="statusButtons">
+          </div>
+          <div>
+            <Button bsSize="large" class="alignMiddleDiv" id="doneButton"> Done! </Button>
           </div>
       </div>
     )

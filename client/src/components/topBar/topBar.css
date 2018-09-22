@@ -3,13 +3,14 @@
 }
 
 .topBarLogo{
-    height: 60px;
-    width: 60px;
+    height: 64px;
+    width: 64px;
     display: inline-block;
     color: white;
     font-weight: bold;
     margin-right: 15px;
     padding-bottom: 10px;
+    vertical-align: 0px;
 }
 
 .topBarIcon{
@@ -24,6 +25,10 @@
 
 #searchIdeasButton{
     margin-right: 10px;
+}
+
+#userButton{
+    
 }
 
 

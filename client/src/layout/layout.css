@@ -13,8 +13,8 @@
   }
   
   html, body {
-      margin:0;
+      margin:0; 
       padding:0;
       height: 100%;
-      background-color: antiquewhite !important; 
+      background-color: grey !important; 
   }

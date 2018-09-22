@@ -2,15 +2,23 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: white;
-    opacity: 0.9;
+    background-color: grey;
 }
 
 #loginContent{
     width: 40%;
     height: 60%;
     margin: 100px auto;
-    background-color: grey;
+    background-color: white;
+    border: solid;
+    border-width: 0.1px;
+}
+
+#loginScreenMainLogo{
+    color: black;
+    font-size: 90px;
+    font-weight: bold;
+    font-family: fantasy;
 }
 
 #loginButtons{
