@@ -5,37 +5,36 @@ import { LOGIN_USER, SET_LOGGED_IN_USER } from 'reducers/types'
 
 // require('axios-debug')(axios);
 
-export const createUserIfNotExists = user => {
-  var userFromDB = getUser(user);
-  if(userFromDB.length == 0){
-    createUser(user);
-  }
-}
+// export const createUserIfNotExists = user => {
+//   var userFromDB = getUser(user);
+//   if(userFromDB.length == 0){
+//     createUser(user);
+//   }
+// }
 
 //works till the return
-export const getUser = user => dispatch => {
+export const createUserIfNotExists = user => dispatch => {
   console.log('in createUserIfNotExists beginning:' + user)
   var isUserExists = false;
   console.log('sending get request');
   
-  axios.get(`api/user/${user.id}`).then(res => {
+  axios.get(`api/user/${user.id}`).then(res => {  // => dispatch => 
     console.log('in createUserIfNotExists response:' + res.data)
-    return res.data;
-    // if(res.data.length == 0){
-    //   dispatch => {
-    //     console.log('sending post: api/user/create:' + res.data)
-    //     axios.post(`/api/user/create`,user)
-    //     .then(res =>
-    //       {
-    //         console.log('sent post: api/user/create:' + res.data)
-    //         dispatch({
-    //           type: SET_LOGGED_IN_USER,
-    //           payload: res.data
-    //         })
-    //       }
-    //     );
-    //   };
-    // }
+    // return res.data;
+    if(res.data.length == 0){
+      // dispatch => {
+        console.log('sending post: api/user/create:' + res.data)
+
+        axios.post(`/api/user/create`,user)
+        .then(res => {
+          console.log('sent post: api/user/create:' + res.data)
+          dispatch({
+            type: SET_LOGGED_IN_USER,
+            payload: res.data
+          })
+        });
+      // };
+    }
   })
   .catch(error => 
     console.log('error: ' + error));

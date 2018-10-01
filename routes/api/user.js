@@ -12,7 +12,7 @@ const User = require('../../models/user');
 router.get('/:userID', (req, res) => {   //
   try{
     console.log('get request req.params.userID: ' + req.params.userID)
-    Item.find({
+    User.find({
       id: req.params.userID
     })
     .then(user => {
@@ -28,14 +28,16 @@ router.get('/:userID', (req, res) => {   //
 // @desc    Create An Item
 // @access  Public
 //for first log in - upsert
-router.post('/create/', (req, res) => {
+router.post('/create', (req, res) => {
   
   console.log(req.body.firstName);
   console.log(req.body.lastName);
+  console.log(req.body.id);
 
   const newUser = new User({
     firstName: req.body.firstName,     
-    lastName: req.body.lastName
+    lastName: req.body.lastName,
+    id: req.body.id
   })
 
   newUser.save()
