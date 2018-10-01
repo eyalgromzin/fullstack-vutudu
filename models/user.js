@@ -1,5 +1,3 @@
-import { array } from '../client/node_modules/@types/prop-types';
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -7,25 +5,32 @@ const userSchema = new Schema({
     firstName: {
         type: String,
         required: true,
+        default: 'firstName'
     },   
     lastName: {
         type: String,
         required: true,
+        default: 'lastName'
     },    
+    id:{
+        type: String,
+        required: true,
+    },
     liked: {
-        type: array,
+        type: Array,
         required: false,
         default: []
       },
     created: {
-        type: array,
+        type: Array,
         required: false,
         default: []
       },
     done: {
-        type: array,
+        type: Array,
         required: false,
         default: []
       },
-
 });
+
+module.exports = User = mongoose.model('user', userSchema);

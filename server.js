@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const items = require('./routes/api/items');
+const user = require('./routes/api/user');
 
 const app = express();
 
@@ -21,6 +22,7 @@ mongoose
 
 // Use Routes
 app.use('/api/items', items);
+app.use('/api/user', user);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

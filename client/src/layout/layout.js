@@ -41,11 +41,11 @@ class Layout extends Component {
   render() {
     return (
       <React.Fragment>
+        <LoginScreen />
         <Router>
           <React.Fragment>
             <div class="mainContent">
               <TopBar />    
-
               <Redirect from="/" to="/search" />
               <Route path="/search" component={searchLayout} />
               <Route path="/create" component={createLayout} />

@@ -1,15 +1,8 @@
-// import { number } from '../client/node_modules/@types/prop-types';
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema
 const ItemSchema = new Schema({
-  // name: {
-  //   type: String,
-  //   required: true,
-  //   default: 'name',
-  // },
   date: {
     type: Date,
     default: Date.now

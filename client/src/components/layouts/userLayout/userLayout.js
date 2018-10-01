@@ -3,7 +3,7 @@ import './userLayout.css'
 
 export default class userLayout extends Component {
     constructor(){
-        
+        super();
     }
 
   render() {
@@ -11,7 +11,7 @@ export default class userLayout extends Component {
       <React.Fragment>
         <div id="userLikedIdeas">
             <div class="horizontalContainer">
-
+                user layout
             </div>
         </div>
       </React.Fragment>

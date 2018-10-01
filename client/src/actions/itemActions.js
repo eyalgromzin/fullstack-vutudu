@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, ADD_USER } from './types';
-import { SAVE_IDEAS,NO_ITEMS_FOUND } from 'reducers/types'
-import { connect } from 'react-redux';
+import { SAVE_IDEAS,NO_ITEMS_FOUND,UPDATE_CURRENT_IDEA } from 'reducers/types'
+// import { connect } from 'react-redux';
 
 // Pass axios to the imported 'axios-debug' function.
-require('axios-debug')(axios);
+
+// require('axios-debug')(axios);
 
 export const getItems = () => dispatch => {
   dispatch(setItemsLoading());
@@ -36,6 +37,7 @@ export const addUser = user => dispatch => {
 };
 
 export const searchItems = (place,time,numOfPeople) => dispatch => {
+  console.log('using thunk in search items');
   axios
   .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
   .then(res =>{
@@ -68,10 +70,10 @@ export const setItemsLoading = () => {
   };
 };
 
-export const saveLikedIdeaToUser = (idea,user) => dispatch => {
-  axios.post(`/api/items/user/liked/${userId}/${ideaId}`, user.id, idea.id).then(res =>
+export const saveLikedIdeaToUser = () => dispatch => {
+  axios.post(`/api/user`).then(res =>
     dispatch({
-      type: ADD_USER,
+      type: UPDATE_CURRENT_IDEA,
       payload: res.data
     })
   );

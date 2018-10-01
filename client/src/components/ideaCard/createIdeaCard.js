@@ -7,8 +7,9 @@ import { NEW_IDEA_SET_TITLE,NEW_IDEA_SET_CONTENT } from 'reducers/types'
 import 'commonCss.css'
 import { addItem,updateTitle,updateContent } from 'actions/itemActions';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
+import {  Creators } from 'redux';
 import store from 'store'
+import { bindActionCreators } from 'redux';
 
 class CreateIdeaCard extends Component {
   constructor(props){
