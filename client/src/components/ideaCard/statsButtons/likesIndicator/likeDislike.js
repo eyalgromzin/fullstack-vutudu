@@ -2,26 +2,20 @@ import React, { Component } from 'react'
 import './likeDislike.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
-import { LIKE_IDEA, DISLIKE_IDEA } from 'reducers/ideasReducer'
+import { LIKE_IDEA, DISLIKE_IDEA } from 'reducers/types'
+import { likeIdea } from 'actions/ideaActions'
 
 class LikeDislike extends Component {
   constructor(props){
     super(props);
-
-    this.handleLikeClick = this.handleLikeClick.bind(this);
-    this.handleDislikeClick = this.handleDislikeClick.bind(this);
   }
 
-  handleDislikeClick(){
+  handleDislikeClick = () => {
     this.props.dispatch({ type: DISLIKE_IDEA });
   }
 
-  handleLikeClick(){
-    this.props.dispatch({ type: LIKE_IDEA });
-  }
-
-  nothing(){
-
+  handleLikeClick = () => {
+    likeIdea(this.props.userID, this.props.ideaID); 
   }
 
   render() {
@@ -41,6 +35,8 @@ function mapStateToProps(state) {
   return {
     likes: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].likes,
     dislikes: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].dislikes,
+    userID: state.userReducer.loggedInUserID,
+    ideaID: state.ideasReducer.id  
   };
 }
 

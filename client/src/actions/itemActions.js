@@ -1,40 +1,40 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, ADD_USER } from './types';
+// import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, ADD_USER } from './types';
 import { SAVE_IDEAS,NO_ITEMS_FOUND,UPDATE_CURRENT_IDEA } from 'reducers/types'
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 // Pass axios to the imported 'axios-debug' function.
 
 // require('axios-debug')(axios);
 
-export const getItems = () => dispatch => {
-  dispatch(setItemsLoading());
+// export const getItems = () => dispatch => {
+//   dispatch(setItemsLoading());
 
-  axios.get('/api/items').then(res =>
-    dispatch({
-      type: GET_ITEMS,
-      payload: res.data
-    })
-  );
-};
+//   axios.get('/api/items').then(res =>
+//     dispatch({
+//       type: GET_ITEMS,
+//       payload: res.data
+//     })
+//   );
+// };
 
-export const addItem = item => dispatch => {
-  axios.post('/api/items', item).then(res =>
-    dispatch({
-      type: ADD_ITEM,
-      payload: res.data
-    })
-  );
-};
+// export const addItem = item => dispatch => {
+//   axios.post('/api/items', item).then(res =>
+//     dispatch({
+//       type: ADD_ITEM,
+//       payload: res.data
+//     })
+//   );
+// };
 
-export const addUser = user => dispatch => {
-  axios.post('/api/items/user', user).then(res =>
-    dispatch({
-      type: ADD_USER,
-      payload: res.data
-    })
-  );
-};
+// export const addUser = user => dispatch => {
+//   axios.post('/api/items/user', user).then(res =>
+//     dispatch({
+//       type: ADD_USER,
+//       payload: res.data
+//     })
+//   );
+// };
 
 export const searchItems = (place,time,numOfPeople) => dispatch => {
   console.log('using thunk in search items');
@@ -55,26 +55,17 @@ export const searchItems = (place,time,numOfPeople) => dispatch => {
   );
 };
 
-export const deleteItem = id => dispatch => {
-  axios.delete(`/api/items/${id}`).then(res =>
-    dispatch({
-      type: DELETE_ITEM,
-      payload: id
-    })
-  );
-};
+// export const deleteItem = id => dispatch => {
+//   axios.delete(`/api/items/${id}`).then(res =>
+//     dispatch({
+//       type: DELETE_ITEM,
+//       payload: id
+//     })
+//   );
+// };
 
-export const setItemsLoading = () => {
-  return {
-    type: ITEMS_LOADING
-  };
-};
-
-export const saveLikedIdeaToUser = () => dispatch => {
-  axios.post(`/api/user`).then(res =>
-    dispatch({
-      type: UPDATE_CURRENT_IDEA,
-      payload: res.data
-    })
-  );
-};
+// export const setItemsLoading = () => {
+//   return {
+//     type: ITEMS_LOADING
+//   };
+// };

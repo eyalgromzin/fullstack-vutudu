@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './timeIndicator.css'
 import { connect } from 'react-redux';
-import {ADD_TIME, REDUCE_TIME} from 'reducers/ideasReducer'
+import {ADD_TIME, REDUCE_TIME} from 'reducers/types'
 
 
 class TimeIndicator extends Component {

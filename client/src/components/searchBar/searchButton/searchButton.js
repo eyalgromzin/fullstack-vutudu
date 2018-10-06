@@ -4,7 +4,7 @@ import '../searchBarCommonStyles.css'
 import { searchItems } from 'actions/itemActions'
 import { connect } from 'react-redux'
 import { SAVE_IDEAS } from 'reducers/ideasReducer'
-import { addItem } from 'actions/itemActions';
+// import { addItem } from 'actions/itemActions';
 
 
 class SearchButton extends Component {
@@ -71,4 +71,4 @@ function mapStateToProps(state) {
     };
   }
 
-  export default connect(mapStateToProps, {addItem, searchItems})(SearchButton);
+  export default connect(mapStateToProps, {searchItems})(SearchButton);

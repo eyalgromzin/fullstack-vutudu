@@ -1,16 +1,7 @@
 import axios from 'axios';
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, ADD_USER } from './types';
+// import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, ADD_USER } from 'reducers/types'
 import { SAVE_IDEAS,NO_ITEMS_FOUND,UPDATE_CURRENT_IDEA } from 'reducers/types'
 import { LOGIN_USER, SET_LOGGED_IN_USER } from 'reducers/types'
-
-// require('axios-debug')(axios);
-
-// export const createUserIfNotExists = user => {
-//   var userFromDB = getUser(user);
-//   if(userFromDB.length == 0){
-//     createUser(user);
-//   }
-// }
 
 //works till the return
 export const createUserIfNotExists = user => dispatch => {
@@ -28,6 +19,14 @@ export const createUserIfNotExists = user => dispatch => {
         axios.post(`/api/user/create`,user)
         .then(res => {
           console.log('sent post: api/user/create:' + res.data)
+          dispatch({
+            type: SET_LOGGED_IN_USER,
+            payload: res.data
+          })
+          dispatch({
+            type: SET_LOGGED_IN_USER,
+            payload: res.data
+          })
           dispatch({
             type: SET_LOGGED_IN_USER,
             payload: res.data

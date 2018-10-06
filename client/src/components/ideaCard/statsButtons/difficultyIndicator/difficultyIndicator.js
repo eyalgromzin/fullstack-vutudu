@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './difficultyIndicator.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
-import { ADD_DIFFICULTY,REDUCE_DIFFICULTY } from 'reducers/ideasReducer'
+import { ADD_DIFFICULTY,REDUCE_DIFFICULTY } from 'reducers/types'
 
 class DiffictultyIndicator extends Component {
 constructor(props){

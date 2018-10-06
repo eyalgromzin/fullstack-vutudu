@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './nextPreviousButtons.css'
 import '../../ideaCard.css'
-import {CHANGE_CURRENT_IDEA_INDEX} from 'reducers/ideasReducer'
+import {CHANGE_CURRENT_IDEA_INDEX} from 'reducers/types'
 import { connect } from 'react-redux';
 import CardCountInfo from '../cardCountInfo/cardCountInfo'
 

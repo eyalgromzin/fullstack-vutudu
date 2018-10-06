@@ -1,38 +1,41 @@
 import React from 'react';
 import { combineReducers } from "redux";
 import update from "react-addons-update";
-import { USER_SET_LIKED_IDEAS } from 'reducers/types'
-import { USER_SET_CREATED_IDEAS } from 'reducers/types'
-import { USER_SET_DONE_IDEAS } from 'reducers/types'
-import { SET_LOGGED_IN_USER } from 'reducers/types'
+import {  SET_LOGGED_IN_USER_ID, 
+          SET_LOGGED_IN_USER_FIRST_NAME,
+          SET_LOGGED_IN_USER_LAST_NAME,
+          ADD_LIKED_IDEA_TO_USER
+        } from 'reducers/types'
 
 const initialState = {
-    loggedInUser: null
+    loggedInUserID: "",
+    loggedInUserFirstName: "",
+    loggedInUserLastName: "",
+    likedIdeas: []
 };
 
 function reducer(state = initialState, action) {
   switch(action.type) {
-    // case USER_SET_LIKED_IDEAS:
-    //   return {
-    //     ...state,
-    //     likedIdeas: action.payload
-    //   };
-    
-    // case USER_SET_CREATED_IDEAS:
-    //   return {
-    //     ...state,
-    //     createdIdeas: action.payload
-    //     };
-    // case USER_SET_DONE_IDEAS:
-    //     return {
-    //     ...state,
-    //     doneIdeas: action.payload
-    //     };
-    case SET_LOGGED_IN_USER:
+    case SET_LOGGED_IN_USER_ID:
         return {
           ...state,
-          loggedInUser: action.payload
+          loggedInUserID: action.payload
         }
+    case SET_LOGGED_IN_USER_FIRST_NAME:
+      return {
+        ...state,
+        loggedInUserFirstName: action.payload
+      }
+    case SET_LOGGED_IN_USER_LAST_NAME:
+      return {
+        ...state,
+        loggedInUserLastName: action.payload
+      }
+    case ADD_LIKED_IDEA_TO_USER:
+      return {
+        ...state,
+        likedIdeas: [action.payload, ...state.likedIdeas]
+      }
     default:
       return state;
   }

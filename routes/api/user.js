@@ -49,18 +49,14 @@ router.post('/create', (req, res) => {
     });
 });
 
-// // @route   POST api/items
-// // @desc    Create An Item
-// // @access  Public
-// //for first log in - upsert
-// router.post('/createUser/', (req, res) => {
-//   const newUser = new User({
-//     firstName: req.body.firstName,    //id: 
-//     lastName: req.body.lastName
-//   })
-
-//   newUser.save().then(item=> res.json(item));
-// });
+// @route   GET api/search/:place/:time/:numOfPeople/:more
+// @desc    search for anything
+// @access  Public
+router.post('userLiked/:userID/:ideaID', (req, res) => {   //
+  Item.update({ id: req.params.userID },
+    { "$push": { "liked": req.params.userID } })
+  .then(items => res.json(items));
+});
 
 module.exports = router;
 

@@ -42,10 +42,10 @@ const ItemSchema = new Schema({
     required: false,
     default: 2,
   },
-  likes: {
-    type: Number,
+  liked: {
+    type: Array,
     required: false,
-    default: 0,
+    default: [],
   },
   dislikes: {
     type: Number,
