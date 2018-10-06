@@ -24,7 +24,7 @@ router.get('/:userID', (req, res) => {   //
   }
 });
 
-// @route   POST api/items
+// @route   POST api/user/create
 // @desc    Create An Item
 // @access  Public
 //for first log in - upsert
@@ -49,13 +49,15 @@ router.post('/create', (req, res) => {
     });
 });
 
-// @route   GET api/search/:place/:time/:numOfPeople/:more
+// @route   POST api/user/userLiked/
 // @desc    search for anything
 // @access  Public
-router.post('userLiked/:userID/:ideaID', (req, res) => {   //
-  Item.update({ id: req.params.userID },
-    { "$push": { "liked": req.params.userID } })
+router.post('/userLiked', (req, res) => {   //works
+  console.log("updating" + req.body.userID);
+  User.findOneAndUpdate({ id: req.body.userID },
+    { "$push": { "liked": req.body.ideaID } })
   .then(items => res.json(items));
+  console.log("updated " + req.body.userID);
 });
 
 module.exports = router;

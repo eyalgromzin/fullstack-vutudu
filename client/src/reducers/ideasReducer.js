@@ -14,7 +14,7 @@ import { ADD_USER_TO_IDEA_LIKES } from './types'
 const initialState = {
   currentIdeaIndex: 0,
   ideas: ([{
-    id: '222',
+    _id: '222',
     title: 'idea in 7 words',
     content: 'idea description, <br /> including hashtags',
     place: 'place2',
@@ -22,7 +22,7 @@ const initialState = {
     maxTime: 8,
     minNumOfPeople: 4,
     maxNumOfPeople: 6,
-    likes: [],
+    liked: [],
     dislikes: 4,
     hardCount: 5,
     easyCount: 6,

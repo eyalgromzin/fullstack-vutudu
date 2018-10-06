@@ -52,3 +52,5 @@ export const ADD_USER_TO_IDEA_LIKES = "ADD_USER_TO_IDEA_LIKES";
 export const ADD_LIKED_IDEA_TO_USER = "ADD_LIKED_IDEA_TO_USER";
 
 export const SET_LOGGED_IN_USER = "SET_LOGGED_IN_USER";
+
+export const ADD_ITEM = "ADD_ITEM";

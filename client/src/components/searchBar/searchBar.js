@@ -5,9 +5,9 @@ import TimePicker from './timePicker/timePicker'
 import MoreChooser from './moreChooser/moreChooser'
 import SearchButton from './searchButton/searchButton'
 import { connect } from 'react-redux';
-import {SET_PLACE} from 'reducers/types'
-import {SET_TIME} from 'reducers/types'
-import {SEARCH_SET_TIME, SEARCH_SET_PLACE} from 'reducers/types'
+import {SET_TIME, SEARCH_SET_TIME, SEARCH_SET_PLACE, SET_PLACE} from 'reducers/types'
+import './searchBarCommonStyles.css'
+import 'commonCss.css'
 
 // const searchBarSearch = "SEARCH_BAR_SEARCH";
 // const searchBarCreate = "SEARCH_BAR_CREATE";
@@ -28,6 +28,7 @@ class SearchBar extends Component {
   render() {
     return (
       <div id="searchBar">
+        <span class="topBarName" > SEARCH: </span>
         <PlaceSelector onChangeEvent={this.placeOnChangeEvent} />
         <TimePicker onChangeEvent={this.timeOnChangeEvent} />
         <NumOfPeopleSelector />

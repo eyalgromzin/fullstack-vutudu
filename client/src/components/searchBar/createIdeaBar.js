@@ -20,12 +20,13 @@ class CreateIdeaBar extends Component {
   timeOnChangeEvent = (e) => {
     var x;
     x++;
-    this.props.dispatch({type: NEW_IDEA_SET_TIME, payload: e.target.value});
+    this.props.dispatch({type: NEW_IDEA_SET_TIME, payload: Number(e.target.value)});
   }
 
   render() {
     return (
       <div id="searchBar">
+        <span class="topBarName" > CREATE: </span>
         <PlaceSelector onChangeEvent={this.placeOnChangeEvent} />
         <TimePicker onChangeEvent={this.timeOnChangeEvent}/>
         <NumOfPeopleCreator />        

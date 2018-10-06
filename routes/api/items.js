@@ -30,13 +30,15 @@ router.post('/', (req, res) => {
   newItem.save().then(item=> res.json(item));
 });
 
-// @route   POST api/idea/ideaLiked/:ideaID/:userID
+// @route   POST api/items/ideaLiked/
 // @desc    search for anything
 // @access  Public
-router.post('idea/ideaLiked/:ideaID/:userID', (req, res) => {   //
-  Item.update({ id: req.params.userID },
-    { "$push": { "liked": req.params.userID } })
+router.post('/ideaLiked/', (req, res) => {   
+  console.log("updating" + req.body.ideaID);
+  Item.findOneAndUpdate({ _id: req.body.ideaID },
+    { "$push": { "liked": req.body.userID } })
   .then(items => res.json(items));
+  console.log("updated " + req.body.ideaID);
 });
 
 // @route   GET api/search/:place/:time/:numOfPeople/:more

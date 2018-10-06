@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, ADD_USER } from './types';
+import { ADD_ITEM } from 'reducers/types';
 import { SAVE_IDEAS,NO_ITEMS_FOUND,UPDATE_CURRENT_IDEA } from 'reducers/types'
 import { connect } from 'react-redux';
 
@@ -18,14 +18,14 @@ import { connect } from 'react-redux';
 //   );
 // };
 
-// export const addItem = item => dispatch => {
-//   axios.post('/api/items', item).then(res =>
-//     dispatch({
-//       type: ADD_ITEM,
-//       payload: res.data
-//     })
-//   );
-// };
+export const addItem = item => dispatch => {
+  axios.post('/api/items', item).then(res =>
+    dispatch({
+      type: ADD_ITEM,
+      payload: res.data
+    })
+  );
+};
 
 // export const addUser = user => dispatch => {
 //   axios.post('/api/items/user', user).then(res =>
@@ -42,11 +42,13 @@ export const searchItems = (place,time,numOfPeople) => dispatch => {
   .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
   .then(res =>{
     if(res.data.length > 0){
+      console.log('got ideas from db');
       dispatch({
         type: SAVE_IDEAS,
         payload: res.data
       })
     }else{
+      console.log('got 0 items from db');
       dispatch({
         type: NO_ITEMS_FOUND
       })

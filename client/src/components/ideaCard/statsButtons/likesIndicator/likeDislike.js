@@ -11,20 +11,24 @@ class LikeDislike extends Component {
   }
 
   handleDislikeClick = () => {
-    this.props.dispatch({ type: DISLIKE_IDEA });
+    likeIdea(this.props.userID, this.props.ideaID); 
   }
 
   handleLikeClick = () => {
-    likeIdea(this.props.userID, this.props.ideaID); 
+    this.props.likeIdea(this.props.userID, this.props.ideaID); 
   }
 
   render() {
     return (
       <div class="bottomIndicator">
-        <img src={require("images/like.png")} id="likeButton" class="bottomButton hoverClickHand" onClick={this.handleLikeClick}/>
+        <img src={require("images/like.png")} id="likeButton" class="bottomButton hoverClickHand" 
+          onClick={this.handleLikeClick}/>
         {this.props.likes}
-        <img src={require("images/dislike.png")} id="dislikeButton" class="bottomButton hoverClickHand" onClick={this.handleDislikeClick}/>
+        
+        <img src={require("images/dislike.png")} id="dislikeButton" class="bottomButton hoverClickHand" 
+          onClick={this.handleDislikeClick}/>
         {this.props.dislikes}
+        
         <span> ({Math.round((this.props.likes/((this.props.likes + this.props.dislikes) == 0? 1 : (this.props.likes + this.props.dislikes)) * 100))}%)</span>
       </div>
     )
@@ -36,8 +40,8 @@ function mapStateToProps(state) {
     likes: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].likes,
     dislikes: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].dislikes,
     userID: state.userReducer.loggedInUserID,
-    ideaID: state.ideasReducer.id  
+    ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id
   };
 }
 
-export default connect(mapStateToProps)(LikeDislike);
+export default connect(mapStateToProps, {likeIdea})(LikeDislike);

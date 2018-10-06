@@ -5,7 +5,7 @@ import './createIdeaCard.css'
 import { connect } from 'react-redux';
 import { NEW_IDEA_SET_TITLE,NEW_IDEA_SET_CONTENT } from 'reducers/types'
 import 'commonCss.css'
-// import { addItem,updateTitle,updateContent } from 'actions/itemActions';
+import { addItem } from 'actions/itemActions';
 import PropTypes from 'prop-types';
 import {  Creators } from 'redux';
 import store from 'store'
@@ -53,7 +53,7 @@ class CreateIdeaCard extends Component {
       };
 
       // Add item via addItem action
-      // this.props.addItem1(newItem);
+      this.props.addItem1(newItem);
     }
   }
 
@@ -131,11 +131,11 @@ function mapStateToProps(state) {
   };
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     addItem1: bindActionCreators (addItem, dispatch)
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    addItem1: bindActionCreators (addItem, dispatch)
+  }
+}
 
 CreateIdeaCard.propTypes = {
   title: PropTypes.string,
@@ -149,4 +149,4 @@ CreateIdeaCard.propTypes = {
 
 
 
-export default connect(mapStateToProps)(CreateIdeaCard);  // ,mergeProps    //,mapDispatchToProps
+export default connect(mapStateToProps,mapDispatchToProps)(CreateIdeaCard);  // ,mergeProps    //,mapDispatchToProps

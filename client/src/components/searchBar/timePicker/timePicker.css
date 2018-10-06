@@ -4,6 +4,11 @@
     border-top: none;
     border-left: none;
     border-right: none;
+    
+}
+
+#timeChooserImage{
+    margin-bottom: 10%;
 }
 
 .timeChooserOption{
