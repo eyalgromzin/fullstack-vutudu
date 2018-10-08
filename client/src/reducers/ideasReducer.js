@@ -9,7 +9,7 @@ import { SAVE_IDEAS,
   REDUCE_TIME,
   ADD_DIFFICULTY,
   REDUCE_DIFFICULTY } from './types';
-import { ADD_USER_TO_IDEA_LIKES } from './types'
+import { ADD_USER_TO_IDEA_LIKES, ADD_USER_TO_IDEA_DISLIKES } from './types'
 
 //on startup get all ideas
 
@@ -25,7 +25,7 @@ const initialState = {
     minNumOfPeople: 4,
     maxNumOfPeople: 6,
     liked: [],
-    dislikes: 4,
+    disliked: [],
     hardCount: 5,
     easyCount: 6,
   },
@@ -97,6 +97,14 @@ function reducer(state = initialState, action) {
     case ADD_USER_TO_IDEA_LIKES:
       var currentIdea = state.ideas[state.currentIdeaIndex];
       currentIdea.liked = [action.payload,...currentIdea.liked]
+
+      return {
+        ...state,
+        currentIdea
+      };
+    case ADD_USER_TO_IDEA_DISLIKES:
+      var currentIdea = state.ideas[state.currentIdeaIndex];
+      currentIdea.liked = [action.payload,...currentIdea.disliked]
 
       return {
         ...state,

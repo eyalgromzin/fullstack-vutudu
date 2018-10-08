@@ -4,14 +4,16 @@ import update from "react-addons-update";
 import {  SET_LOGGED_IN_USER_ID, 
           SET_LOGGED_IN_USER_FIRST_NAME,
           SET_LOGGED_IN_USER_LAST_NAME,
-          ADD_LIKED_IDEA_TO_USER
+          ADD_LIKED_IDEA_TO_USER,
+          ADD_DISLIKED_IDEA_TO_USER
         } from 'reducers/types'
 
 const initialState = {
     loggedInUserID: "",
     loggedInUserFirstName: "",
     loggedInUserLastName: "",
-    likedIdeas: []
+    likedIdeas: [],
+    dislikedIdeas: []
 };
 
 function reducer(state = initialState, action) {
@@ -35,6 +37,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         likedIdeas: [action.payload, ...state.likedIdeas]
+      }
+    case ADD_DISLIKED_IDEA_TO_USER:
+      return {
+        ...state,
+        dislikedIdeas: [action.payload, ...state.dislikedIdeas]
       }
     default:
       return state;
