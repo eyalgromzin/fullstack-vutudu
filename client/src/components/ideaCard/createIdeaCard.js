@@ -15,7 +15,7 @@ class CreateIdeaCard extends Component {
   constructor(props){
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.handleCreateIdeaClick = this.handleCreateIdeaClick.bind(this);
+    // this.handleCreateIdeaClick = this.handleCreateIdeaClick.bind(this);
     this.extractTagsFromContent= this.extractTagsFromContent.bind(this);
     this.handleOnTitleChange= this.handleOnTitleChange.bind(this);
     this.handleOnContentChange= this.handleOnContentChange.bind(this);
@@ -30,7 +30,7 @@ class CreateIdeaCard extends Component {
     // this.setState({value: event.target.value})
   }
 
-  handleCreateIdeaClick(event) {
+  handleCreateIdeaClick = (event) => {
     this.error = "";
     this.isHasError = false;
     
@@ -46,10 +46,6 @@ class CreateIdeaCard extends Component {
         maxTime: this.props.maxTime,
         minNumOfPeople: this.props.minNumOfPeople,
         maxNumOfPeople: this.props.maxNumOfPeople,
-        likes:0,
-        dislikes:0,
-        hardCount:0,
-        easyCount:0
       };
 
       // Add item via addItem action

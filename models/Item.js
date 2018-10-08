@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const ItemSchema = new Schema({
-  _id:{
-    type: String,
-    required: false
-  },
   date: {
     type: Date,
     default: Date.now
@@ -29,22 +25,18 @@ const ItemSchema = new Schema({
   minTime: {
     type: Number,
     required: false,
-    default: 2,
   },
   maxTime: {
     type: Number,
     required: false,
-    default: 2,
   },
   minNumOfPeople: {
     type: Number,
     required: false,
-    default: 2,
   },
   maxNumOfPeople: {
     type: Number,
     required: false,
-    default: 2,
   },
   liked: {
     type: Array,

@@ -19,12 +19,16 @@ import { connect } from 'react-redux';
 // };
 
 export const addItem = item => dispatch => {
+  console.log('adding item to mongo: ' + item.subject);
+  
   axios.post('/api/items', item).then(res =>
     dispatch({
       type: ADD_ITEM,
       payload: res.data
     })
   );
+
+  console.log('item added');
 };
 
 // export const addUser = user => dispatch => {

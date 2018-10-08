@@ -9,13 +9,10 @@ class NumOfPeopleCreator extends Component {
 
   constructor(props){
     super(props);
-
-    // this.minNumOfPeopleChange = this.minNumOfPeopleChange.bind(this);
-    // this.maxNumOfPeopleChange = this.maxNumOfPeopleChange.bind(this);
   }
 
   minNumOfPeopleChange = (event) => {
-    this.props.dispatch({ type: NEW_IDEA_SET_MIN_PEOPLE, payload: Number(event.target.value) });
+    this.props.dispatch({ type: NEW_IDEA_SET_MIN_PEOPLE, payload: Number(event.target.value) }); //Number()
   }
 
   maxNumOfPeopleChange = (event) => {
@@ -27,21 +24,21 @@ class NumOfPeopleCreator extends Component {
       <div class="searchBarChooserContainer" > 
         <div class="searchBarChooserData">
           <img src={require("images/people.png")} class="searchBarIcon " />
-            <select id="numOfPeopleChooser" value="" class="" onChange={this.minNumOfPeopleChange}>
-              <option value="1" class="timeChooserOption">0</option>
-              <option value="1" class="timeChooserOption">1</option>
-              <option value="2" class="timeChooserOption">2</option>
+            <select id="minNumOfPeopleChooser" class="" onChange={this.minNumOfPeopleChange}>
+              <option value="0" class="timeChooserOption" >0</option>
+              <option value="1" class="timeChooserOption" >1</option>
+              <option value="2" class="timeChooserOption" >2</option>
               <option value="2000" class="timeChooserOption">couple</option>
-              <option value="3" class="timeChooserOption">3</option>
-              <option value="4" class="timeChooserOption">4</option>
-              <option value="5" class="timeChooserOption">5</option>
-              <option value="6" class="timeChooserOption">6</option>
-              <option value="7" class="timeChooserOption">7</option>
-              <option value="8000" class="timeChooserOption">7+</option>
+              <option value="3" class="timeChooserOption" >3</option>
+              <option value="4" class="timeChooserOption" >4</option>
+              <option value="5" class="timeChooserOption" >5</option>
+              <option value="6" class="timeChooserOption" >6</option>
+              <option value="7" class="timeChooserOption" >7</option>
+              <option value="8000" class="timeChooserOption" >7+</option>
             </select>
             <span> - </span>
-            <select id="numOfPeopleChooser" class="" value="" onChange={this.maxNumOfPeopleChange}>
-              <option value="1" class="timeChooserOption">0</option>
+            <select id="maxNumOfPeopleChooser" class="" onChange={this.maxNumOfPeopleChange}>
+              <option value="0" class="timeChooserOption">0</option>
               <option value="1" class="timeChooserOption">1</option>
               <option value="2" class="timeChooserOption">2</option>
               <option value="2000" class="timeChooserOption">couple</option>
@@ -60,8 +57,9 @@ class NumOfPeopleCreator extends Component {
 
 function mapStateToProps(state) {
   return {
-    newIdea: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].likes,
+    minNumOfPeople: state.newIdeaReducer.minNumOfPeople,
+    maxNumOfPeople: state.newIdeaReducer.maxNumOfPeople,
   };
 }
 
-export default connect(mapStateToProps)(NumOfPeopleCreator);
+export default connect()(NumOfPeopleCreator); //mapStateToProps

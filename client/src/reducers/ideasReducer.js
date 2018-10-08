@@ -11,6 +11,8 @@ import { SAVE_IDEAS,
   REDUCE_DIFFICULTY } from './types';
 import { ADD_USER_TO_IDEA_LIKES } from './types'
 
+//on startup get all ideas
+
 const initialState = {
   currentIdeaIndex: 0,
   ideas: ([{
@@ -28,12 +30,7 @@ const initialState = {
     easyCount: 6,
   },
   ])
-  
 };
-
-
-
-
 
 function reducer(state = initialState, action) {
   switch(action.type) {
@@ -99,7 +96,7 @@ function reducer(state = initialState, action) {
       }
     case ADD_USER_TO_IDEA_LIKES:
       var currentIdea = state.ideas[state.currentIdeaIndex];
-      currentIdea.likes = [action.payload,...currentIdea.likes]
+      currentIdea.liked = [action.payload,...currentIdea.liked]
 
       return {
         ...state,

@@ -14,6 +14,8 @@ class CreateIdeaBar extends Component {
   }
 
   placeOnChangeEvent = (e) => {
+    var x;
+    x++;
     this.props.dispatch({type: NEW_IDEA_SET_PLACE, payload: e.target.value});
   }
 
@@ -21,6 +23,7 @@ class CreateIdeaBar extends Component {
     var x;
     x++;
     this.props.dispatch({type: NEW_IDEA_SET_TIME, payload: Number(e.target.value)});
+    
   }
 
   render() {

@@ -11,8 +11,8 @@ const initialState = {
     title: 'idea title',
     content: 'idea content',
     place: 'work',
-    minTime: 0,
-    maxTime: 0,
+    minTime: 5,
+    maxTime: 5,
     minNumOfPeople: 0,
     maxNumOfPeople: 0,
     tags: []
