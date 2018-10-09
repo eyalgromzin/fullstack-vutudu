@@ -14,6 +14,8 @@ const initialState = {
     loggedInUserLastName: "",
     likedIdeas: [],
     dislikedIdeas: [],
+    addedDifficulty: [],
+    reducedDifficulty: [],
 };
 
 function reducer(state = initialState, action) {
@@ -42,6 +44,16 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         dislikedIdeas: [...state.dislikedIdeas, action.payload]
+      }
+    case ADD_HARD_IDEA_TO_USER:
+      return {
+        ...state,
+        likedIdeas: [...state.likedIdeas, action.payload]
+      }
+    case ADD_EASY_IDEA_TO_USER:
+      return {
+        ...state,
+        likedIdeas: [...state.likedIdeas, action.payload]
       }
     default:
       return state;

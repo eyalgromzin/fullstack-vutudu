@@ -71,6 +71,17 @@ router.post('/userDisliked', (req, res) => {   //works
   console.log("updated " + req.body.userID);
 });
 
+// @route   POST api/user/userAddedDifficulty/
+// @desc    search for anything
+// @access  Public
+router.post('/userAddedDifficulty', (req, res) => {   //works
+  console.log("updating" + req.body.userID);
+  User.findOneAndUpdate({ id: req.body.userID },
+    { "$push": { "addedDifficulty": req.body.ideaID } })
+  .then(items => res.json(items));
+  console.log("updated " + req.body.userID);
+});
+
 module.exports = router;
 
 

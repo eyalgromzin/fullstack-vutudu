@@ -13,7 +13,7 @@ constructor(props){
 }
 
   handleAddDifficultyClick(){
-    this.props.dispatch({ type: ADD_DIFFICULTY });
+    updateIdeaData(this.props.userID,this.props.ideaID,'api/items/ideaAddedDifficuly/',)
   }
 
   handleReduceDifficultyClick(){
@@ -25,10 +25,10 @@ constructor(props){
       <div class="bottomIndicator">
         <img src={require("images/difficulty.png")} id="difficultyImage" class="bottomButton"/>
         <img src={require("images/upArrow.png")} id="increaseDifficulty" class="bottomButton hoverClickHand" onClick={this.handleAddDifficultyClick}/>
-        {this.props.hardCount}
+        {this.props.hardCount.length}
         <img src={require("images/downArrow.png")} id="decreaseDifficulty" class="bottomButton hoverClickHand" onClick={this.handleReduceDifficultyClick}/>        
-        {this.props.easyCount}
-        <span> ({Math.round((this.props.hardCount/(this.props.easyCount + this.props.hardCount == 0 ? 1 : this.props.easyCount + this.props.hardCount)) * 100) }%)  </span>
+        {this.props.easyCount.length}
+        <span> ({Math.round((this.props.hardCount.length/(this.props.easyCount.length + this.props.hardCount.length == 0 ? 1 : this.props.easyCount.length + this.props.hardCount.length)) * 100) }%)  </span>
       </div>
     )
   }
@@ -36,8 +36,10 @@ constructor(props){
 
 function mapStateToProps(state) {
   return {
-    hardCount: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].hardCount,
-    easyCount: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].easyCount,
+    hardCount: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedHard,
+    easyCount: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedEasy,
+    userID: state.userReducer.loggedInUserID,
+    ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id
   };
 }
 

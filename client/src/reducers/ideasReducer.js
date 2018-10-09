@@ -24,8 +24,8 @@ const initialState = {
     maxNumOfPeople: 6,
     liked: [],
     disliked: [],
-    hardCount: 5,
-    easyCount: 6,
+    addedHard: [],
+    addedEasy: [],
   },
   ])
 };
