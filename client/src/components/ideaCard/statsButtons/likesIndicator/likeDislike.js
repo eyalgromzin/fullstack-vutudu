@@ -28,7 +28,7 @@ class LikeDislike extends Component {
           onClick={this.handleDislikeClick}/>
         {this.props.dislikes.length}
         
-        <span> ({Math.round((this.props.likes/((this.props.likes + this.props.dislikes) == 0? 1 : (this.props.likes + this.props.dislikes)) * 100))}%)</span>
+        <span> ({Math.round((this.props.likes.length/((this.props.likes.length + this.props.dislikes.length) == 0? 1 : (this.props.likes.length + this.props.dislikes.length)) * 100))}%)</span>
       </div>
     )
   }
