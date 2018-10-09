@@ -41,6 +41,17 @@ router.post('/ideaLiked/', (req, res) => {
   console.log("updated idea" + req.body.ideaID);
 });
 
+// @route   POST api/items/ideaDisliked/
+// @desc    search for anything
+// @access  Public
+router.post('/ideaDisliked/', (req, res) => {   
+  console.log("updating idea" + req.body.ideaID);
+  Item.findOneAndUpdate({ _id: req.body.ideaID },
+    { "$push": { "disliked": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea" + req.body.ideaID);
+});
+
 // @route   GET api/search/:place/:time/:numOfPeople/:more
 // @desc    search for anything
 // @access  Public

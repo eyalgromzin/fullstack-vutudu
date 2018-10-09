@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './likeDislike.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
-import { LIKE_IDEA, DISLIKE_IDEA } from 'reducers/types'
 import { likeIdea, dislikeIdea } from 'actions/ideaActions'
 
 class LikeDislike extends Component {
@@ -27,7 +26,7 @@ class LikeDislike extends Component {
         
         <img src={require("images/dislike.png")} id="dislikeButton" class="bottomButton hoverClickHand" 
           onClick={this.handleDislikeClick}/>
-        {this.props.dislikes == null ? 0 : this.props.dislikes.length}
+        {this.props.dislikes.length}
         
         <span> ({Math.round((this.props.likes/((this.props.likes + this.props.dislikes) == 0? 1 : (this.props.likes + this.props.dislikes)) * 100))}%)</span>
       </div>

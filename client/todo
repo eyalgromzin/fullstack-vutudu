@@ -1,5 +1,5 @@
 - create dislike idea
 
-- create idea button - add to db 
+- create dynamic method for all the idea indication buttons.
 
 - change the like idea to 1 post request instead of 2

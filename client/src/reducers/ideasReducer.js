@@ -3,8 +3,6 @@ import { combineReducers } from "redux";
 import update from "react-addons-update";
 import { SAVE_IDEAS,
   CHANGE_CURRENT_IDEA_INDEX,
-  LIKE_IDEA,
-  DISLIKE_IDEA,
   ADD_TIME,
   REDUCE_TIME,
   ADD_DIFFICULTY,
@@ -17,9 +15,9 @@ const initialState = {
   currentIdeaIndex: 0,
   ideas: ([{
     _id: '222',
-    title: 'idea in 7 words',
-    content: 'idea description, <br /> including hashtags',
-    place: 'place2',
+    title: 'click Search',
+    content: 'to find ideas to what to do',
+    place: 'fill place',
     minTime: 7,
     maxTime: 8,
     minNumOfPeople: 4,
@@ -44,24 +42,6 @@ function reducer(state = initialState, action) {
           ...state,
           currentIdeaIndex: action.payload,
         };
-    case LIKE_IDEA: //if it wont work , try to return a full ideas array with the changed item 
-      var currentIdea = state.ideas[state.currentIdeaIndex];
-      currentIdea.likes = currentIdea.likes + 1;
-      
-      return { 
-        ...state,
-        currentIdea
-      }
-
-    case DISLIKE_IDEA:
-      var currentIdea = state.ideas[state.currentIdeaIndex];
-      currentIdea.dislikes = currentIdea.dislikes + 1;
-    
-    return { 
-      ...state,
-      currentIdea
-    }
-
     case ADD_TIME:
       var currentIdea = state.ideas[state.currentIdeaIndex];
       currentIdea.maxTime = currentIdea.maxTime -1 + 2;
@@ -104,7 +84,7 @@ function reducer(state = initialState, action) {
       };
     case ADD_USER_TO_IDEA_DISLIKES:
       var currentIdea = state.ideas[state.currentIdeaIndex];
-      currentIdea.liked = [action.payload,...currentIdea.disliked]
+      currentIdea.disliked = [action.payload,...currentIdea.disliked]
 
       return {
         ...state,

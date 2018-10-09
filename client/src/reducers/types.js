@@ -39,9 +39,6 @@ export const SET_LOGGED_IN_USER_LAST_NAME = "SET_LOGGED_IN_USER_LAST_NAME";
 
 export const CHANGE_CURRENT_IDEA_INDEX = "CHANGE_CURRENT_IDEA_INDEX";
 
-export const LIKE_IDEA = "LIKE_IDEA";
-export const DISLIKE_IDEA = "DISLIKE_IDEA";
-
 export const ADD_TIME = "ADD_TIME";
 export const REDUCE_TIME = "REDUCE_TIME";
 

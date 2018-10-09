@@ -13,7 +13,7 @@ const initialState = {
     loggedInUserFirstName: "",
     loggedInUserLastName: "",
     likedIdeas: [],
-    dislikedIdeas: []
+    dislikedIdeas: [],
 };
 
 function reducer(state = initialState, action) {
@@ -36,12 +36,12 @@ function reducer(state = initialState, action) {
     case ADD_LIKED_IDEA_TO_USER:
       return {
         ...state,
-        likedIdeas: [action.payload, ...state.likedIdeas]
+        likedIdeas: [...state.likedIdeas, action.payload]
       }
     case ADD_DISLIKED_IDEA_TO_USER:
       return {
         ...state,
-        dislikedIdeas: [action.payload, ...state.dislikedIdeas]
+        dislikedIdeas: [...state.dislikedIdeas, action.payload]
       }
     default:
       return state;

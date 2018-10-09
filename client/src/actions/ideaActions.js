@@ -40,7 +40,7 @@ export const dislikeIdea = (userID,ideaID) => dispatch => {
   axios.post('/api/user/userDisliked/', postObject)
   .then(res =>
     {
-      console.log(`sent post: /api/user/userDisliked/`)
+      console.log(`sent post to: /api/user/userDisliked/`)
       dispatch({
         type: ADD_DISLIKED_IDEA_TO_USER,
         payload: ideaID
@@ -53,7 +53,7 @@ export const dislikeIdea = (userID,ideaID) => dispatch => {
   axios.post('/api/items/ideaDisliked/',ideaPostObject)
   .then(res =>
     {
-      console.log(`sent post to /api/idea/ideaDisliked/`);
+      console.log(`sent post to: /api/idea/ideaDisliked/`);
       dispatch({
         type: ADD_USER_TO_IDEA_DISLIKES,
         payload: ideaID

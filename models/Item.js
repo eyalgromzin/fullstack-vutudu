@@ -43,10 +43,10 @@ const ItemSchema = new Schema({
     required: false,
     default: [],
   },
-  dislikes: {
-    type: Number,
+  disliked: {
+    type: Array,
     required: false,
-    default: 0,
+    default: [],
   },
   easyCount: {
     type: Number,
