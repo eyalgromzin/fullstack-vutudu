@@ -48,15 +48,25 @@ const ItemSchema = new Schema({
     required: false,
     default: [],
   },
-  easyCount: {
-    type: Number,
+  addedEasy: {
+    type: Array,
     required: false,
-    default: 0,
+    default: [],
   },
-  hardCount: {
-    type: Number,
+  addedHard: {
+    type: Array,
     required: false,
-    default: 0,
+    default: [],
+  },
+  addedShort: {
+    type: Array,
+    required: false,
+    default: [],
+  },
+  addedLong: {
+    type: Array,
+    required: false,
+    default: [],
   },
 });
 

@@ -52,13 +52,46 @@ router.post('/ideaDisliked/', (req, res) => {
   console.log("updated idea" + req.body.ideaID);
 });
 
-// @route   POST api/items/ideaAddedDifficuly/
+// @route   POST api/items/addedHardToIdea/
 // @desc    search for anything
 // @access  Public
-router.post('/ideaAddedDifficuly/', (req, res) => {   
+router.post('/addedHardToIdea/', (req, res) => {   
   console.log("updating idea" + req.body.ideaID);
   Item.findOneAndUpdate({ _id: req.body.ideaID },
-    { "$push": { "liked": req.body.userID } })
+    { "$push": { "addedHard": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea" + req.body.ideaID);
+});
+
+// @route   POST api/items/addedEasyToIdea/
+// @desc    search for anything
+// @access  Public
+router.post('/addedEasyToIdea/', (req, res) => {   
+  console.log("updating idea" + req.body.ideaID);
+  Item.findOneAndUpdate({ _id: req.body.ideaID },
+    { "$push": { "addedEasy": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea" + req.body.ideaID);
+});
+
+// @route   POST api/items/addedLongToIdea/
+// @desc    search for anything
+// @access  Public
+router.post('/addedLongToIdea/', (req, res) => {   
+  console.log("updating idea" + req.body.ideaID);
+  Item.findOneAndUpdate({ _id: req.body.ideaID },
+    { "$push": { "addedLong": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea" + req.body.ideaID);
+});
+
+// @route   POST api/items/addedShortToIDea/
+// @desc    search for anything
+// @access  Public
+router.post('/addedShortToIDea/', (req, res) => {   
+  console.log("updating idea" + req.body.ideaID);
+  Item.findOneAndUpdate({ _id: req.body.ideaID },
+    { "$push": { "addedShort": req.body.userID } })
   .then(items => res.json(items));
   console.log("updated idea" + req.body.ideaID);
 });

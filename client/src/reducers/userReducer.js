@@ -14,8 +14,10 @@ const initialState = {
     loggedInUserLastName: "",
     likedIdeas: [],
     dislikedIdeas: [],
-    addedDifficulty: [],
-    reducedDifficulty: [],
+    hardIdeas: [],
+    easyIdeas: [],
+    longIdeas:[],
+    shortIdeas: []
 };
 
 function reducer(state = initialState, action) {
@@ -45,16 +47,26 @@ function reducer(state = initialState, action) {
         ...state,
         dislikedIdeas: [...state.dislikedIdeas, action.payload]
       }
-    case ADD_HARD_IDEA_TO_USER:
-      return {
-        ...state,
-        likedIdeas: [...state.likedIdeas, action.payload]
-      }
-    case ADD_EASY_IDEA_TO_USER:
-      return {
-        ...state,
-        likedIdeas: [...state.likedIdeas, action.payload]
-      }
+    // case ADD_HARD_IDEA_TO_USER:
+    //   return {
+    //     ...state,
+    //     hardIdeas: [...state.likedIdeas, action.payload]
+    //   }
+    // case ADD_EASY_IDEA_TO_USER:
+    //   return {
+    //     ...state,
+    //     easyIdeas: [...state.likedIdeas, action.payload]
+    //   }
+    //   case ADD_LONG_IDEA_TO_USER:
+    //   return {
+    //     ...state,
+    //     longIdeas: [...state.likedIdeas, action.payload]
+    //   }
+    // case ADD_SHORT_IDEA_TO_USER:
+    //   return {
+    //     ...state,
+    //     shortIdeas: [...state.likedIdeas, action.payload]
+    //   }
     default:
       return state;
   }

@@ -62,33 +62,36 @@ export const dislikeIdea = (userID,ideaID) => dispatch => {
   );
 }
 
-export const updateIdeaData = (userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
-  
+export const updateIdeaIndicator = (userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
   console.log('in ideaActions -> updateIdeaData(userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName)')
-  console.log('sending post: ' + userPostUrl)
-  var postObject = {userID: userID, ideaID: ideaID}
-  axios.post(userPostUrl, postObject)
-  .then(res =>
-    {
-      console.log(`sent post to: ` + userPostUrl)
-      dispatch({
-        type: addToUserReduxTypeName,
-        payload: ideaID
-      })
-    }
-  );
+  if(userPostUrl != '' && userPostUrl != null){
+    console.log('sending post: ' + userPostUrl)
+    var postObject = {userID: userID, ideaID: ideaID}
+    axios.post(userPostUrl, postObject)
+    .then(res =>
+      {
+        console.log(`sent post to: ` + userPostUrl)
+        dispatch({
+          type: addToUserReduxTypeName,
+          payload: ideaID
+        })
+      }
+    );
+  }
 
-  console.log('sending post: api/idea/ideaDisliked/');
-  var ideaPostObject = {userID: userID, ideaID: ideaID}
-  axios.post(ideaPostUrl,ideaPostObject)
-  .then(res =>
-    {
-      console.log(`sent post to: ` + ideaPostUrl);
-      dispatch({
-        type: addToIdeaReduxTypeName,
-        payload: ideaID
-      })
-    }
-  );
+  if(ideaPostUrl != null && ideaPostUrl != ''){
+    console.log('sending post: api/idea/ideaDisliked/');
+    var ideaPostObject = {userID: userID, ideaID: ideaID}
+    axios.post(ideaPostUrl,ideaPostObject)
+    .then(res =>
+      {
+        console.log(`sent post to: ` + ideaPostUrl);
+        dispatch({
+          type: addToIdeaReduxTypeName,
+          payload: ideaID
+        })
+      }
+    );
+  }
 }
   

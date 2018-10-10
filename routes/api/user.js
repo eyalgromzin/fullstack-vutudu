@@ -56,29 +56,29 @@ router.post('/userLiked', (req, res) => {   //works
   console.log("updating" + req.body.userID);
   User.findOneAndUpdate({ id: req.body.userID },
     { "$push": { "liked": req.body.ideaID } })
-  .then(items => res.json(items));
+  .then(users => res.json(users));
   console.log("updated " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/userDone/
 // @desc    search for anything
 // @access  Public
-router.post('/userDisliked', (req, res) => {   //works
-  console.log("updating " + req.body.userID);
-  User.findOneAndUpdate({ id: req.body.userID },
-    { "$push": { "disliked": req.body.ideaID } })
-  .then(items => res.json(items));
-  console.log("updated " + req.body.userID);
-});
-
-// @route   POST api/user/userAddedDifficulty/
-// @desc    search for anything
-// @access  Public
-router.post('/userAddedDifficulty', (req, res) => {   //works
+router.post('/userDone', (req, res) => {   //works
   console.log("updating" + req.body.userID);
   User.findOneAndUpdate({ id: req.body.userID },
-    { "$push": { "addedDifficulty": req.body.ideaID } })
-  .then(items => res.json(items));
+    { "$push": { "done": req.body.ideaID } })
+  .then(users => res.json(users));
+  console.log("updated " + req.body.userID);
+});
+
+// @route   POST api/user/userCreated/
+// @desc    search for anything
+// @access  Public
+router.post('/userCreated', (req, res) => {   //works
+  console.log("updating" + req.body.userID);
+  User.findOneAndUpdate({ id: req.body.userID },
+    { "$push": { "created": req.body.ideaID } })
+  .then(users => res.json(users));
   console.log("updated " + req.body.userID);
 });
 

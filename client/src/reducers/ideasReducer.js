@@ -8,6 +8,8 @@ import { SAVE_IDEAS,
   ADD_DIFFICULTY,
   REDUCE_DIFFICULTY } from './types';
 import { ADD_USER_TO_IDEA_LIKES, ADD_USER_TO_IDEA_DISLIKES } from './types'
+import { ADD_USER_TO_IDEA_ADDED_HARD, ADD_USER_TO_IDEA_ADDED_EASY } from './types'
+import { ADD_USER_TO_IDEA_ADDED_LONG, ADD_USER_TO_IDEA_ADDED_SHORT } from './types'
 
 //on startup get all ideas
 
@@ -26,6 +28,8 @@ const initialState = {
     disliked: [],
     addedHard: [],
     addedEasy: [],
+    addedLong: [],
+    addedShort: [],
   },
   ])
 };
@@ -90,7 +94,38 @@ function reducer(state = initialState, action) {
         ...state,
         currentIdea
       };
+    case ADD_USER_TO_IDEA_ADDED_HARD:
+      var currentIdea = state.ideas[state.currentIdeaIndex];
+      currentIdea.addedHard = [action.payload,...currentIdea.addedHard]
 
+      return {
+        ...state,
+        currentIdea
+      };
+    case ADD_USER_TO_IDEA_ADDED_EASY:
+      var currentIdea = state.ideas[state.currentIdeaIndex];
+      currentIdea.addedEasy = [action.payload,...currentIdea.addedEasy]
+
+      return {
+        ...state,
+        currentIdea
+      };
+      case ADD_USER_TO_IDEA_ADDED_LONG:
+      var currentIdea = state.ideas[state.currentIdeaIndex];
+      currentIdea.addedLong = [action.payload,...currentIdea.addedLong]
+
+      return {
+        ...state,
+        currentIdea
+      };
+    case ADD_USER_TO_IDEA_ADDED_SHORT:
+      var currentIdea = state.ideas[state.currentIdeaIndex];
+      currentIdea.addedShort = [action.payload,...currentIdea.addedShort]
+
+      return {
+        ...state,
+        currentIdea
+      };
     default:
       return state;
   }
