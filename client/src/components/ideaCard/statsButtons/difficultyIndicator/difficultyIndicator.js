@@ -3,9 +3,9 @@ import './difficultyIndicator.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
 import { ADD_DIFFICULTY,REDUCE_DIFFICULTY } from 'reducers/types'
-import {updateIdeaIndicator} from 'actions/ideaActions'
 import {ADD_USER_TO_IDEA_ADDED_EASY, ADD_USER_TO_IDEA_ADDED_HARD, } from 'reducers/types'
 import { ADD_USER_TO_IDEA_LIKES } from '../../../../reducers/types';
+import {updateIdeaIndicator} from 'actions/ideaActions'
 
 class DiffictultyIndicator extends Component {
 constructor(props){

@@ -3,6 +3,7 @@
     height: 100%;
     width: 100%;
     background-color: grey;
+    z-index: 100;
 }
 
 #loginContent{

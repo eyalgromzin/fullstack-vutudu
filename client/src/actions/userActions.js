@@ -26,7 +26,7 @@ export const createUserIfNotExists = user => dispatch => {
           })
           dispatch({
             type: SET_LOGGED_IN_USER_FIRST_NAME,
-            payload: res.data.lastName
+            payload: res.data.firstName
           })
           dispatch({
             type: SET_LOGGED_IN_USER_LAST_NAME,

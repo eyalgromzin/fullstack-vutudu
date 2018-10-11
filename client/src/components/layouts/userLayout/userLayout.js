@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import './userLayout.css'
+import { connect } from 'react-redux';
+import 'commonCss.css'
+import userIdeasDropDown from 'components'
 
-export default class userLayout extends Component {
+class userLayout extends Component {
     constructor(){
         super();
     }
@@ -9,12 +12,21 @@ export default class userLayout extends Component {
   render() {
     return (
       <React.Fragment>
+        <span class="layoutTitle"> {this.props.firstName + " " + this.props.lastName} </span>
+        
         <div id="userLikedIdeas">
-            <div class="horizontalContainer">
-                user layout
-            </div>
+          <userIdeasDropDown />    
         </div>
       </React.Fragment>
-    )
+    ) 
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    firstName: state.userReducer.loggedInUserFirstName,
+    lastName: state.userReducer.loggedInUserLastName,
+  };
+}
+
+export default connect(mapStateToProps)(userLayout)
