@@ -4,8 +4,6 @@ import '../searchBarCommonStyles.css'
 import { searchItems } from 'actions/itemActions'
 import { connect } from 'react-redux'
 import { SAVE_IDEAS } from 'reducers/ideasReducer'
-// import { addItem } from 'actions/itemActions';
-
 
 class SearchButton extends Component {
   constructor(props){

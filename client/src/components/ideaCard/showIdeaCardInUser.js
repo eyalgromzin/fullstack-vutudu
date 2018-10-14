@@ -12,7 +12,7 @@ import { Button } from 'react-bootstrap';
 import 'commonCss.css'
 import DoneButton from './doneButton'
 
-export default class ShowIdeaCardInUser extends Component {
+class ShowIdeaCardInUser extends Component {
   render() {
     return (
         <div id="ideaCardWithButtons">
@@ -41,3 +41,12 @@ export default class ShowIdeaCardInUser extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    title: state.userReducer.currentPreviewedIdea.title,
+    content: state.userReducer.currentPreviewedIdea.content,
+  };
+}
+
+export default connect(mapStateToProps)(ShowIdeaCardInUser)

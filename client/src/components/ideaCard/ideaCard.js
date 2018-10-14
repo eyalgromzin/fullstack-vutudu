@@ -16,6 +16,12 @@ import DoneButton from './doneButton'
 class IdeaCard extends Component {
   constructor(props){
     super(props);
+
+    //load from this idea everything. 
+    //then it will be able to get from redux the idea, and pass it as props . and use it.
+    this.state = {
+      idea: {}
+    }
   }
 
   render() {

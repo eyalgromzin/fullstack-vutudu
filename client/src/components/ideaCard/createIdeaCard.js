@@ -5,7 +5,7 @@ import './createIdeaCard.css'
 import { connect } from 'react-redux';
 import { NEW_IDEA_SET_TITLE,NEW_IDEA_SET_CONTENT } from 'reducers/types'
 import 'commonCss.css'
-import { addItem } from 'actions/itemActions';
+import { addIdeaToDB } from 'actions/ideaActions';
 import PropTypes from 'prop-types';
 import {  Creators } from 'redux';
 import store from 'store'
@@ -15,11 +15,7 @@ class CreateIdeaCard extends Component {
   constructor(props){
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    // this.handleCreateIdeaClick = this.handleCreateIdeaClick.bind(this);
-    this.extractTagsFromContent= this.extractTagsFromContent.bind(this);
-    this.handleOnTitleChange= this.handleOnTitleChange.bind(this);
-    this.handleOnContentChange= this.handleOnContentChange.bind(this);
-
+  
     this.state={
       error:"",
       isHasError: false
@@ -41,6 +37,7 @@ class CreateIdeaCard extends Component {
         // name: this.props.title,
         title: this.props.title,
         content: this.props.content,
+        createdBy: this.props.userID,
         place: this.props.place,
         minTime: this.props.minTime,
         maxTime: this.props.maxTime,
@@ -48,12 +45,14 @@ class CreateIdeaCard extends Component {
         maxNumOfPeople: this.props.maxNumOfPeople,
       };
 
-      // Add item via addItem action
-      this.props.addItem1(newItem);
+      // Add item via createItem action
+      this.props.addIdeaToDB(newItem, this.props.userID);
+
+      
     }
   }
 
-  extractTagsFromContent(){
+  extractTagsFromContent = () => {
     var contentText = this.props.content;
     var words = contentText.split(" ");
     var tags = [];
@@ -69,47 +68,29 @@ class CreateIdeaCard extends Component {
 
   isHasError = false;
 
-  handleOnTitleChange(e){
+  handleOnTitleChange = (e) => {
     store.dispatch({type: NEW_IDEA_SET_TITLE, payload: e.target.value});  
   }
 
-  handleOnContentChange(e){
+  handleOnContentChange = (e) => {
     store.dispatch({type: NEW_IDEA_SET_CONTENT, payload: e.target.value});
   }
 
   render() {
     return (
       <React.Fragment>
-      <div id="createIdeaContainer">
-        <div id="ideaCard"> 
-          <div id="ideaCardContent">
-            <input type="text" id="newIdeaTitle" placeholder="<title>" onChange={this.handleOnTitleChange}/>
-            <textarea type="text" id="newIdeaContent" placeholder="<content>" onChange={this.handleOnContentChange}/>
+        <div id="createIdeaContainer">
+          <div id="ideaCard"> 
+            <div id="ideaCardContent">
+              <input type="text" id="newIdeaTitle" placeholder="<title>" onChange={this.handleOnTitleChange}/>
+              <textarea type="text" id="newIdeaContent" placeholder="<content>" onChange={this.handleOnContentChange}/>
+            </div>
+          </div>
+          <div id="newIdeaError"> {this.state.error} </div>
+          <div class="alignRight">
+            <div id="createIdeaButton" onClick={this.handleCreateIdeaClick}> create </div>
           </div>
         </div>
-        <div id="newIdeaError"> {this.state.error} </div>
-        <div class="alignRight">
-          <div id="createIdeaButton" onClick={this.handleCreateIdeaClick}> create </div>
-        </div>
-      </div>
-
-
-      {/* <div id="createIdeaContainer">
-        <div id="ideaCard">
-          <table id="createIdeaTable">
-            <tr >
-              <input type="text" id="newIdeaTitle" placeholder="<title>" onChange={this.handleOnTitleChange}/>
-              
-            </tr>
-            <tr>
-              <textarea type="text" id="newIdeaContent" placeholder="<content>" onChange={this.handleOnContentChange}/>
-            </tr>
-          </table>
-        </div>
-        <div class="alignRight">
-          <div id="createIdeaButton" onClick={this.handleCreateIdeaClick}> create </div>
-        </div>
-      </div> */}
       </React.Fragment>
     )
   }
@@ -124,12 +105,13 @@ function mapStateToProps(state) {
     maxTime: state.newIdeaReducer.maxTime,
     minNumOfPeople: state.newIdeaReducer.minNumOfPeople,
     maxNumOfPeople: state.newIdeaReducer.maxNumOfPeople,
+    userID: state.userReducer.loggedInUserID,
   };
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addItem1: bindActionCreators (addItem, dispatch)
+    addIdeaToDB: bindActionCreators (addIdeaToDB, dispatch)
   }
 }
 

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADD_ITEM } from 'reducers/types';
+import { ADD_IDEA } from 'reducers/types';
 import { SAVE_IDEAS,NO_ITEMS_FOUND, UPDATE_CURRENT_IDEA, SET_CURRENT_IDEA } from 'reducers/types'
 import { connect } from 'react-redux';
 
@@ -18,18 +18,7 @@ import { connect } from 'react-redux';
 //   );
 // };
 
-export const addItem = item => dispatch => {
-  console.log('adding item to mongo: ' + item.subject);
-  
-  axios.post('/api/items', item).then(res =>
-    dispatch({
-      type: ADD_ITEM,
-      payload: res.data
-    })
-  );
 
-  console.log('item added');
-};
 
 // export const addUser = user => dispatch => {
 //   axios.post('/api/items/user', user).then(res =>

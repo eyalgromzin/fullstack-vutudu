@@ -16,15 +16,16 @@ router.get('/', (req, res) => {
 // @route   POST api/items
 // @desc    Create An Item
 // @access  Public
-router.post('/', (req, res) => {
+router.post('/createIdea/', (req, res) => {
   const newItem = new Item({
-    title: req.body.title,
-    content: req.body.content,
-    place: req.body.place,
-    minTime: req.body.minTime,
-    maxTime: req.body.maxTime,
-    minNumOfPeople: req.body.minNumOfPeople,
-    maxNumOfPeople: req.body.maxNumOfPeople
+    title: req.body.idea.title,
+    content: req.body.idea.content,
+    createdBy: req.body.idea.createdBy,
+    place: req.body.idea.place,
+    minTime: req.body.idea.minTime,
+    maxTime: req.body.idea.maxTime,
+    minNumOfPeople: req.body.idea.minNumOfPeople,
+    maxNumOfPeople: req.body.idea.maxNumOfPeople
   });
 
   newItem.save().then(item=> res.json(item));
@@ -152,25 +153,37 @@ router.post('/search/', (req, res) => {
   .then(items => res.json(items));
 });
 
-// @route   POST api/items
-// @desc    Create An Item
+// @route   POST api/items/addedHardToIdea/
+// @desc    search for anything
 // @access  Public
-router.post('/', (req, res) => {
-  const newItem = new Item({
-    title: req.body.title,
-    content: req.body.content,
-    place: req.body.place,
-    minTime: req.body.minTime,
-    maxTime: req.body.maxTime,
-    minNumOfPeople: req.body.minNumOfPeople,
-    maxNumOfPeople: req.body.maxNumOfPeople
-  });
+router.post('/addIdeaToUserCreatedIdeas/', (req, res) => {   
+  console.log("updating idea" + req.body.ideaID);
+  Item.findOneAndUpdate({ _id: req.body.ideaID },
+    { "$push": { "addedHard": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea" + req.body.ideaID);
+});
+
+//duplicate
+// // @route   POST api/items
+// // @desc    Create An Item
+// // @access  Public
+// router.post('/', (req, res) => {
+//   const newItem = new Item({
+//     title: req.body.title,
+//     content: req.body.content,
+//     place: req.body.place,
+//     minTime: req.body.minTime,
+//     maxTime: req.body.maxTime,
+//     minNumOfPeople: req.body.minNumOfPeople,
+//     maxNumOfPeople: req.body.maxNumOfPeople
+//   });
 
   //save saves is to the data base
   //uses mongoose
   //how does the save works? how can save be added to any object?
-  newItem.save().then(item => res.json(item));
-});
+//   newItem.save().then(item => res.json(item));
+// });
 
 // @route   DELETE api/items/:id
 // @desc    Delete A Item
@@ -192,6 +205,26 @@ router.post('/getUserLikedIdeas/', (req, res) => {
   console.log("getting user liked ideas: " + req.body.userID);
   Item.find({ liked: req.body.userID })
   // Item.find({ liked: { "$in" : [req.body.ideaID]}  })
+  .then(
+    items => res.json(items)
+  );
+  console.log("got User Liked Ideas");
+});
+
+// @route   POST api/user/findLiked/
+// @desc    search for anything
+// @access  Public
+//
+//pass user id
+//
+//find all ideas containing: userID
+router.post('/updateUserIdeas/', (req, res) => {   
+  console.log("getting user ideas: " + req.body.userID + ", type: " + req.body.ideaType);
+
+  var query = {};
+  query[req.body.ideaType]  = req.body.userID;
+
+  Item.find(query)
   .then(
     items => res.json(items)
   );

@@ -1,8 +1,17 @@
 import axios from 'axios';
-// import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING, ADD_USER } from 'reducers/types'
-import { SAVE_IDEAS,NO_ITEMS_FOUND,UPDATE_CURRENT_IDEA,USER_SET_LIKED_IDEAS } from 'reducers/types'
-import { LOGIN_USER, SET_LOGGED_IN_USER, SET_CURRENT_IDEA } from 'reducers/types'
-import { SET_LOGGED_IN_USER_FIRST_NAME, SET_LOGGED_IN_USER_ID, SET_LOGGED_IN_USER_LAST_NAME } from '../reducers/types';
+import { 
+  SAVE_IDEAS,
+  NO_ITEMS_FOUND,
+  UPDATE_CURRENT_IDEA,
+  USER_SET_LIKED_IDEAS_DATA,
+  LOGIN_USER,
+  SET_LOGGED_IN_USER, 
+  SET_CURRENT_IDEA,
+  SET_LOGGED_IN_USER_FIRST_NAME, 
+  SET_LOGGED_IN_USER_ID, 
+  SET_LOGGED_IN_USER_LAST_NAME, 
+  SET_USER_CURRENT_PREVIEWD_IDEAS,
+} from 'reducers/types'
 
 //works till the return
 export const createUserIfNotExists = user => dispatch => {
@@ -77,7 +86,26 @@ export const getLikedIdeas = userID => dispatch => {
     {
       console.log('got: api/Items/getUserLikedIdeas');
       dispatch({
-        type: USER_SET_LIKED_IDEAS,
+        type: USER_SET_LIKED_IDEAS_DATA,
+        payload: res.data
+      })
+    }
+  );
+}
+
+//e.g. 
+export const updateUserIdeas = (userID, ideaType, reduxActionName) => dispatch => {
+  console.log('sending post: api/Items/updateUserIdeas: userID: ' + userID + ', ideaType: ' + ideaType);
+  axios.post(`/api/items/updateUserIdeas`,{userID,ideaType})
+  .then(res =>
+    {
+      console.log('got: /api/items/updateUserIdeas');
+      dispatch({
+        type: reduxActionName,
+        payload: res.data
+      });
+      dispatch({
+        type: SET_USER_CURRENT_PREVIEWD_IDEAS,
         payload: res.data
       })
     }

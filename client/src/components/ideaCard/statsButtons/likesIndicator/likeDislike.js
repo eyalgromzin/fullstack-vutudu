@@ -28,11 +28,11 @@ class LikeDislike extends Component {
   render() {
     return (
       <div class="bottomIndicator">
-        <img src={require("images/like.png")} id="likeButton" className={"bottomButton " + (this.enabled? "hoverClickHand" : "")}
+        <img src={require("images/like.png")} id="likeButton" className={"bottomButton hoverClickHand"}
           onClick={this.handleLikeClick}/>
         {this.props.liked.length}
         
-        <img src={require("images/dislike.png")} id="dislikeButton" class="bottomButton " + (this.enabled? "hoverClickHand" : "")
+        <img src={require("images/dislike.png")} id="dislikeButton" className={"bottomButton hoverClickHand"}
           onClick={this.handleDislikeClick}/>
         {this.props.disliked.length}
         

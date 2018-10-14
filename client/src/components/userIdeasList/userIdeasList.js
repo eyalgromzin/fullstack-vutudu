@@ -2,32 +2,38 @@ import React, { Component } from 'react'
 import './userIdeasList.css'
 import ReactList from 'react-list';
 import { connect } from 'react-redux';
+import {SET_USER_PREVIEW_IDEA} from 'reducers/types'
 
 class UserIdeasList extends Component {
   
   renderItem = (index, key) => {  //key is running number
-    return <div key={key} onClick={() => this.userIDeaClicked(this.props.likedIdeasData[index])} class="listRow">{this.props.likedIdeasData[index].title}</div>;
+    return <div key={key} onClick={ () => 
+      { 
+        this.userIdeaClicked(this.props.currentPreviewedIdeas[index]._id) 
+      } 
+    } 
+    className="listRow">{this.props.currentPreviewedIdeas[index].title}
+    
+      
+      </div>;
   }
 
-  userIDeaClicked = (account) => {
-    console.log("clicked " + account.name);
+  userIdeaClicked = (id) => {  //doesnt work
+    console.log("clicked id: " + id);
+    var clickedIdea = this.props.currentPreviewedIdeas.filter(obj => {
+      return obj._id === id
+    })
+    this.props.dispatch({type: SET_USER_PREVIEW_IDEA, payload: clickedIdea[0]})
   }
-
-  // state = {
-  //   // accounts: [{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},
-  //   // {name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},
-  //   // {name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},{name:'asdasd'},]
-  //   accounts: this.props.likedIdeasData
-  // };
 
   render() {
     return (
       <React.Fragment>
-        <div style={{overflow: 'auto', maxHeight: 525}}>
+        <div style={{overflow: 'auto', height: 525}}>
           <div class="listOutline">
             <ReactList
               itemRenderer={this.renderItem}
-              length={this.props.likedIdeasData == null? 0 : this.props.likedIdeasData.length}
+              length={this.props.currentPreviewedIdeas == null? 0 : this.props.currentPreviewedIdeas.length}
               type='uniform'
             />
           </div>
@@ -39,7 +45,7 @@ class UserIdeasList extends Component {
 
 function mapStateToProps(state) {
   return {
-    likedIdeasData: state.userReducer.likedIdeasData,
+    currentPreviewedIdeas: state.userReducer.currentPreviewedIdeas
   };
 }
 

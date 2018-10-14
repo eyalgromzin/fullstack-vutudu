@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './userLayout.css'
 import { connect } from 'react-redux';
 import 'commonCss.css'
-import UserIdeasDropDown from 'components/userIdeasDropDown/userIdeasDropDown'
+import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
 import UserIdeasList from 'components/userIdeasList/userIdeasList'
 import ShowIdeaCardInUser from 'components/ideaCard/showIdeaCardInUser'
 import {getLikedIdeas} from 'actions/userActions'
@@ -23,8 +23,8 @@ class userLayout extends Component {
         {/* <span class="layoutTitle"> {this.props.firstName + " " + this.props.lastName} </span> */}
 
         <div id="userLayoutIdeasSelectSideBar" class="userLayoutMainContent">
-          <div id="userIdeasDropDown">
-            <UserIdeasDropDown />    
+          <div id="UserIdeasTypeDropDown">
+            <UserIdeasTypeDropDown />    
           </div>
           <div id="userIdeasList">
             <UserIdeasList />

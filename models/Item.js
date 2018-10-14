@@ -17,6 +17,10 @@ const ItemSchema = new Schema({
     required: true,
     default: 'content',
   },
+  createdBy: {
+    type: String,
+    required: true,
+  },
   place: {
     type: String,
     required: false,
