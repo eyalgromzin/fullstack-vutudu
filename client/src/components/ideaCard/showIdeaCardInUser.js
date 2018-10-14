@@ -12,22 +12,16 @@ import { Button } from 'react-bootstrap';
 import 'commonCss.css'
 import DoneButton from './doneButton'
 
-
-class IdeaCard extends Component {
-  constructor(props){
-    super(props);
-  }
-
+export default class ShowIdeaCardInUser extends Component {
   render() {
     return (
-      <div id="ideaCardWithButtons">
+        <div id="ideaCardWithButtons">
           <div id="ideaCard"> 
             <div id="topCardButtons">
-              <IdeaPreviousNextButtons />
               <div id="cardIndicators"> 
-                <LikeDislike />
-                <TimeIndicator />
-                <DifficultyIndicator />
+                <LikeDislike enabled="false" />
+                <TimeIndicator enabled="false" />
+                <DifficultyIndicator enabled="false" />
               </div>
             </div>
             <div id="ideaTitle"> 
@@ -37,8 +31,8 @@ class IdeaCard extends Component {
               {this.props.content}
             </div>
             <div id="ideaMainContentBottomButtons"> 
-              <IdeaAttachmentsButton />
-              <IdeaPlaceButton />
+              {/* <IdeaAttachmentsButton /> */}
+              {/* <IdeaPlaceButton /> */}
             </div>
           </div>
           <div id="statusButtons">
@@ -47,18 +41,3 @@ class IdeaCard extends Component {
     )
   }
 }
-
-function mapStateToProps(state) {
-  
-  return {
-    title: state.ideasReducer.currentIdea.title,
-    content: state.ideasReducer.currentIdea.content,
-    place: state.ideasReducer.currentIdea.place,
-    minTIme: state.ideasReducer.currentIdea.minTIme,
-    maxTime: state.ideasReducer.currentIdea.maxTime,
-    minNumOfPeople: state.ideasReducer.currentIdea.minNumOfPeople,
-    maxNumOfPeople: state.ideasReducer.currentIdea.maxNumOfPeople
-  };
-}
-
-export default connect(mapStateToProps)(IdeaCard);

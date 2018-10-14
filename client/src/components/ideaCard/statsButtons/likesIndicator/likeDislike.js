@@ -9,6 +9,8 @@ import { ADD_DISLIKED_IDEA_TO_USER, ADD_USER_TO_IDEA_DISLIKES } from 'reducers/t
 class LikeDislike extends Component {
   constructor(props){
     super(props);
+
+    this.enabled = props.enabled;
   }
 
   handleDislikeClick = () => {
@@ -26,11 +28,11 @@ class LikeDislike extends Component {
   render() {
     return (
       <div class="bottomIndicator">
-        <img src={require("images/like.png")} id="likeButton" class="bottomButton hoverClickHand" 
+        <img src={require("images/like.png")} id="likeButton" className={"bottomButton " + (this.enabled? "hoverClickHand" : "")}
           onClick={this.handleLikeClick}/>
         {this.props.liked.length}
         
-        <img src={require("images/dislike.png")} id="dislikeButton" class="bottomButton hoverClickHand" 
+        <img src={require("images/dislike.png")} id="dislikeButton" class="bottomButton " + (this.enabled? "hoverClickHand" : "")
           onClick={this.handleDislikeClick}/>
         {this.props.disliked.length}
         

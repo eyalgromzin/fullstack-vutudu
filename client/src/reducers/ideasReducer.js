@@ -9,12 +9,13 @@ import { SAVE_IDEAS,
   REDUCE_DIFFICULTY } from './types';
 import { ADD_USER_TO_IDEA_LIKES, ADD_USER_TO_IDEA_DISLIKES } from './types'
 import { ADD_USER_TO_IDEA_ADDED_HARD, ADD_USER_TO_IDEA_ADDED_EASY } from './types'
-import { ADD_USER_TO_IDEA_ADDED_LONG, ADD_USER_TO_IDEA_ADDED_SHORT } from './types'
+import { ADD_USER_TO_IDEA_ADDED_LONG, ADD_USER_TO_IDEA_ADDED_SHORT, SET_CURRENT_IDEA } from './types'
 
 //on startup get all ideas
 
 const initialState = {
   currentIdeaIndex: 0,
+  currentIdea: {},
   ideas: ([{
     _id: '000',
     title: 'click Search',
@@ -31,7 +32,7 @@ const initialState = {
     addedLong: [],
     addedShort: [],
   },
-  ])
+  ]),  
 };
 
 function reducer(state = initialState, action) {
@@ -41,6 +42,11 @@ function reducer(state = initialState, action) {
           ...state,
           ideas: action.payload,  //[...state.ideas,action.payload]
         };
+    case SET_CURRENT_IDEA:
+      return {
+        ...state,
+        currentIdea: action.payload,
+      };
     case CHANGE_CURRENT_IDEA_INDEX:
       return{
           ...state,

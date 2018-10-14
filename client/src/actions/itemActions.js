@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ADD_ITEM } from 'reducers/types';
-import { SAVE_IDEAS,NO_ITEMS_FOUND,UPDATE_CURRENT_IDEA } from 'reducers/types'
+import { SAVE_IDEAS,NO_ITEMS_FOUND, UPDATE_CURRENT_IDEA, SET_CURRENT_IDEA } from 'reducers/types'
 import { connect } from 'react-redux';
 
 // Pass axios to the imported 'axios-debug' function.
@@ -50,6 +50,10 @@ export const searchItems = (place,time,numOfPeople) => dispatch => {
       dispatch({
         type: SAVE_IDEAS,
         payload: res.data
+      });
+      dispatch({
+        type: SET_CURRENT_IDEA,
+        payload: res.data[0]
       })
     }else{
       console.log('got 0 items from db');

@@ -5,7 +5,9 @@ import {  SET_LOGGED_IN_USER_ID,
           SET_LOGGED_IN_USER_FIRST_NAME,
           SET_LOGGED_IN_USER_LAST_NAME,
           ADD_LIKED_IDEA_TO_USER,
-          ADD_DISLIKED_IDEA_TO_USER
+          ADD_DISLIKED_IDEA_TO_USER,
+          USER_SET_LIKED_IDEAS,
+          USER_PAGE_IDEAS_TYPE
         } from 'reducers/types'
 
 const initialState = {
@@ -17,7 +19,11 @@ const initialState = {
     hardIdeas: [],
     easyIdeas: [],
     longIdeas:[],
-    shortIdeas: []
+    shortIdeas: [],
+    currentPreviewIdea: {},
+    likedIdeasData: [],
+    createdIdeasData: [],
+    doneIdeasData: []
 };
 
 function reducer(state = initialState, action) {
@@ -47,26 +53,16 @@ function reducer(state = initialState, action) {
         ...state,
         dislikedIdeas: [...state.dislikedIdeas, action.payload]
       }
-    // case ADD_HARD_IDEA_TO_USER:
-    //   return {
-    //     ...state,
-    //     hardIdeas: [...state.likedIdeas, action.payload]
-    //   }
-    // case ADD_EASY_IDEA_TO_USER:
-    //   return {
-    //     ...state,
-    //     easyIdeas: [...state.likedIdeas, action.payload]
-    //   }
-    //   case ADD_LONG_IDEA_TO_USER:
-    //   return {
-    //     ...state,
-    //     longIdeas: [...state.likedIdeas, action.payload]
-    //   }
-    // case ADD_SHORT_IDEA_TO_USER:
-    //   return {
-    //     ...state,
-    //     shortIdeas: [...state.likedIdeas, action.payload]
-    //   }
+    case USER_SET_LIKED_IDEAS:
+      return {
+        ...state,
+        likedIdeasData: action.payload
+      }
+    case USER_PAGE_IDEAS_TYPE:
+      return {
+        ...state,
+        userPageIdeasType: action.payload
+      }
     default:
       return state;
   }

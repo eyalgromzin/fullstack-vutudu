@@ -39,32 +39,32 @@ const ItemSchema = new Schema({
     required: false,
   },
   liked: {
-    type: Array,
+    type: [String],
     required: false,
     default: [],
   },
   disliked: {
-    type: Array,
+    type: [String],
     required: false,
     default: [],
   },
   addedEasy: {
-    type: Array,
+    type: [String],
     required: false,
     default: [],
   },
   addedHard: {
-    type: Array,
+    type: [String],
     required: false,
     default: [],
   },
   addedShort: {
-    type: Array,
+    type: [String],
     required: false,
     default: [],
   },
   addedLong: {
-    type: Array,
+    type: [String],
     required: false,
     default: [],
   },

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './layout.css'
 import logo from '../images/logo.svg';
-import './layout.css';
 
 // import Counter from './components/Counter';
 import { createStore } from 'redux';
@@ -44,13 +43,13 @@ class Layout extends Component {
         <LoginScreen />
         <Router>
           <React.Fragment>
-            <div class="mainContent">
+            {/* <div class="mainContent"> */}
               <TopBar />    
               <Redirect from="/" to="/search" />
               <Route path="/search" component={searchLayout} />
               <Route path="/create" component={createLayout} />
               <Route path="/user" component={userLayout} />
-            </div>
+            {/* </div> */}
           </ React.Fragment>
         </Router>
       </React.Fragment>

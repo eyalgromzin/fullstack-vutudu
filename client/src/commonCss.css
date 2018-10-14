@@ -11,6 +11,10 @@
   padding: 0 20%;
 }
 
+.userLayoutMainContent{
+    padding: 0 0;
+}
+
 .hoverClickHand{
     cursor: pointer;
 }
@@ -30,4 +34,6 @@
 
 .layoutTitle{
     font-size: 40px;
+    margin-bottom: 20px;
+    margin-left: 40%;
 }

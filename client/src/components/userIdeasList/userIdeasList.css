@@ -1,0 +1,17 @@
+.listOutline{
+    background-color: aquamarine;
+    border: 1px;
+    border-style: solid;
+}
+
+.listRow{
+    font-weight: bolder;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    background-color: beige;
+}
+
+.listRow:hover{
+    background-color: white;
+    cursor: pointer;
+}

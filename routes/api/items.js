@@ -181,7 +181,22 @@ router.delete('/:id', (req, res) => {
     .catch(err => res.status(404).json({ success: false }));
 });
 
-
+// @route   POST api/user/findLiked/
+// @desc    search for anything
+// @access  Public
+//
+//pass user id
+//
+//find all ideas containing: userID
+router.post('/getUserLikedIdeas/', (req, res) => {   
+  console.log("getting user liked ideas: " + req.body.userID);
+  Item.find({ liked: req.body.userID })
+  // Item.find({ liked: { "$in" : [req.body.ideaID]}  })
+  .then(
+    items => res.json(items)
+  );
+  console.log("got User Liked Ideas");
+});
 
 
 /////////////////////// USER API //////////////////////
