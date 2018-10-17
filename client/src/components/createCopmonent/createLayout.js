@@ -9,6 +9,7 @@ export default class createLayout extends Component {
       <div class="mainContent">
         <CreateIdeaBar />
         <CreateIdeaCard />
+        <CreateIdeaButton />
       </div>
     )
   }

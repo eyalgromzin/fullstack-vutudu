@@ -10,7 +10,8 @@ import {  SET_LOGGED_IN_USER_ID,
           USER_PAGE_IDEAS_TYPE,
           SET_USER_PREVIEW_IDEA,
           SET_USER_CREATED_IDEAS,
-          SET_USER_CURRENT_PREVIEWD_IDEAS
+          SET_USER_CURRENT_PREVIEWD_IDEAS,
+          USER_SET_SELECTED_DROPDOWN_TYPE
         } from 'reducers/types'
 
 const initialState = {
@@ -30,6 +31,8 @@ const initialState = {
     doneIdeasData: [],
     currentPreviewedIdea: {},
     currentPreviewedIdeas: [],
+    selectedDropDownType: "",
+    isEdit: false,
 };
 
 function reducer(state = initialState, action) {
@@ -74,6 +77,11 @@ function reducer(state = initialState, action) {
         ...state,
         likedIdeasData: action.payload
       }
+    case USER_SET_SELECTED_DROPDOWN_TYPE:
+      return {
+        ...state,
+        selectedDropDownType: action.payload
+      }
     case USER_PAGE_IDEAS_TYPE:
       return {
         ...state,
@@ -83,6 +91,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         currentPreviewedIdeas: action.payload
+      }
+    case SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT:
+      return {
+        ...state,
+        isEdit: action.payload
       }
     default:
       return state;

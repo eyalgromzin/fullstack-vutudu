@@ -11,7 +11,7 @@ export default class searchLayout extends Component {
       <div class="mainContent">
         <SearchBar />
         <IdeaCard />
-        <DoneButton />
+        {/* <DoneButton /> */}
       </div>
     )
   }

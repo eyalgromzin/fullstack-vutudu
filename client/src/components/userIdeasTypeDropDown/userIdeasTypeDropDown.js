@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { USER_PAGE_IDEAS_TYPE,
   USER_SET_LIKED_IDEAS_DATA,
   SET_USER_CREATED_IDEAS,
+  USER_SET_SELECTED_DROPDOWN_TYPE,
   } from "reducers/types";
 // import { getUserCreatedIdeas } from 'actions/itemActions'
 // import { updateUserIdeas } from from 'actions/itemActions'
@@ -36,11 +37,8 @@ class UserIdeasTypeDropDown extends Component {
   }
 
   options = [
-    { value: USER_SET_LIKED_IDEAS_DATA, label: 'Liked', },
+    { value: USER_SET_LIKED_IDEAS_DATA, label: 'Liked'},
     { value: SET_USER_CREATED_IDEAS, label: 'Created'},
-    
-    //no need to search all db to get it. we dont save 'done' in idea 
-    // { value: DONE_IDEAS, label: 'Done', nameInDB: 'done'} 
   ]
 
   defaultOption = this.options[0]
@@ -53,7 +51,7 @@ class UserIdeasTypeDropDown extends Component {
     var userIdeasType = ideasTypeDictionary[e.label];
     var reduxActionName = e.value;
     this.props.updateUserIdeas(userID, userIdeasType, reduxActionName);
-
+    store.dispatch({type: USER_SET_SELECTED_DROPDOWN_TYPE, payload: e.label })
     //add ideas to 
   }
 

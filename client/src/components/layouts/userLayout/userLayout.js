@@ -31,7 +31,12 @@ class userLayout extends Component {
           </div>
         </div>
         <div id="userLayoutIdeaPreview">
-          <ShowIdeaCardInUser />
+          { this.props.isIdeaEdited? 
+            <EditIdeaCard />
+            :
+            <ShowIdeaCardInUser />
+          }
+          
         </div>
       </React.Fragment>
     ) 
@@ -43,7 +48,7 @@ function mapStateToProps(state) {
     firstName: state.userReducer.loggedInUserFirstName,
     lastName: state.userReducer.loggedInUserLastName,
     userID: state.userReducer.loggedInUserID,
-    
+    isIdeaEdited: state.userReducer.isEdit,
   };
 }
 

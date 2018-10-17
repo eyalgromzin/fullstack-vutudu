@@ -26,31 +26,7 @@ class CreateIdeaCard extends Component {
     // this.setState({value: event.target.value})
   }
 
-  handleCreateIdeaClick = (event) => {
-    this.error = "";
-    this.isHasError = false;
-    
-    //add validation for empty fields / wrong
-
-    if(!this.isHasError){
-      const newItem = {
-        // name: this.props.title,
-        title: this.props.title,
-        content: this.props.content,
-        createdBy: this.props.userID,
-        place: this.props.place,
-        minTime: this.props.minTime,
-        maxTime: this.props.maxTime,
-        minNumOfPeople: this.props.minNumOfPeople,
-        maxNumOfPeople: this.props.maxNumOfPeople,
-      };
-
-      // Add item via createItem action
-      this.props.addIdeaToDB(newItem, this.props.userID);
-
-      
-    }
-  }
+  
 
   extractTagsFromContent = () => {
     var contentText = this.props.content;
@@ -87,9 +63,7 @@ class CreateIdeaCard extends Component {
             </div>
           </div>
           <div id="newIdeaError"> {this.state.error} </div>
-          <div class="alignRight">
-            <div id="createIdeaButton" onClick={this.handleCreateIdeaClick}> create </div>
-          </div>
+          
         </div>
       </React.Fragment>
     )

@@ -13,6 +13,21 @@ import 'commonCss.css'
 import DoneButton from './doneButton'
 
 class ShowIdeaCardInUser extends Component {
+  constructor(){
+    super();
+  }
+
+  editIdeaID = (ideaID) => {
+    //make the fields to text boxes to edit the fields
+    this.state.isEdit = true;
+    this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: true});
+  }
+
+  editIdea = () => {
+    //make the fields to text boxes to edit the fields
+    this.editIdeaID(this.props.currentPreviewedIdea._id);
+  }
+
   render() {
     return (
         <div id="ideaCardWithButtons">
@@ -24,9 +39,7 @@ class ShowIdeaCardInUser extends Component {
                 <DifficultyIndicator enabled="false" />
               </div>
             </div>
-            <div id="ideaTitle"> 
-              {this.props.title}
-            </div>
+          
             <div id="ideaContentText"> 
               {this.props.content}
             </div>
@@ -34,7 +47,29 @@ class ShowIdeaCardInUser extends Component {
               {/* <IdeaAttachmentsButton /> */}
               {/* <IdeaPlaceButton /> */}
             </div>
+            <div>
+              
+            
+                  
+            </div>
           </div>
+          { this.props.currentPreviewedIdeaType == "Created" && this.props.currentPreviewedIdea != null 
+              && !this.state.isEdit ? 
+            <img src={require("images/edit.png")} id="editIdeaButton" 
+            onClick={() => {
+                this.editIdea()
+              }}  />  
+            : 
+            <React.Fragment /> 
+          }
+
+          {
+            this.state.isEdit && 
+            <img src={require("images/save.png")} id="editIdeaButton" 
+            onClick={() => {
+                this.editIdea()
+              }}  />  
+          }
           <div id="statusButtons">
           </div>
       </div>
@@ -46,6 +81,8 @@ function mapStateToProps(state) {
   return {
     title: state.userReducer.currentPreviewedIdea.title,
     content: state.userReducer.currentPreviewedIdea.content,
+    currentPreviewedIdeaType: state.userReducer.selectedDropDownType,
+    currentPreviewedIdea: state.userReducer.currentPreviewedIdea,
   };
 }
 
