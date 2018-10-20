@@ -211,6 +211,19 @@ router.post('/getUserLikedIdeas/', (req, res) => {
   console.log("got User Liked Ideas");
 });
 
+//find all ideas containing: userID
+router.post('/updateIdea/', (req, res) => {   
+  console.log("updating idea: " + req.body.ideaID);
+  console.log("_id: " + req.body._id);
+  console.log("title: " + req.body.title);
+  console.log("content: " + req.body.content);
+  Item.findOneAndUpdate({ _id: req.body.ideaID }, {$set: {title: req.body.title, content: req.body.content}}, {new: true})
+  .then(
+    items => res.json(items)
+  );
+  console.log("updated idea: " + req.body.ideaID);
+});
+
 // @route   POST api/user/findLiked/
 // @desc    search for anything
 // @access  Public

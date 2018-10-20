@@ -4,7 +4,7 @@ import searchReducer from './searchReducer'
 import countReducer from './countReducer'
 import commonReducer from './commonReducer'
 import ideasReducer from './ideasReducer'
-import newIdeaReducer from './newIdeaReducer'
+import editedIdeaReducer from './editedIdeaReducer'
 import userReducer from './userReducer';
 
 const rootReducer = combineReducers({
@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   countReducer: countReducer,
   commonReducer: commonReducer,
   ideasReducer: ideasReducer,
-  newIdeaReducer: newIdeaReducer,
+  editedIdeaReducer: editedIdeaReducer,
   userReducer: userReducer
 })
  

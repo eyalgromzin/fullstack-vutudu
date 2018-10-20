@@ -6,6 +6,8 @@ import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTyp
 import UserIdeasList from 'components/userIdeasList/userIdeasList'
 import ShowIdeaCardInUser from 'components/ideaCard/showIdeaCardInUser'
 import {getLikedIdeas} from 'actions/userActions'
+import EditIdeaCard from 'components/ideaCard/editIdeaCard'
+import EditCardInUser from 'components/ideaCard/editCardInUser';
 
 class userLayout extends Component {
   constructor(){
@@ -32,9 +34,10 @@ class userLayout extends Component {
         </div>
         <div id="userLayoutIdeaPreview">
           { this.props.isIdeaEdited? 
-            <EditIdeaCard />
+            <EditCardInUser />
             :
             <ShowIdeaCardInUser />
+            
           }
           
         </div>
@@ -48,7 +51,7 @@ function mapStateToProps(state) {
     firstName: state.userReducer.loggedInUserFirstName,
     lastName: state.userReducer.loggedInUserLastName,
     userID: state.userReducer.loggedInUserID,
-    isIdeaEdited: state.userReducer.isEdit,
+    isIdeaEdited: state.userReducer.isIdeaEdited,
   };
 }
 

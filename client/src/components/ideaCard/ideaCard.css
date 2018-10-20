@@ -3,7 +3,7 @@
     width: 20px;
 }
 
-#ideaTitle{
+.ideaTitle{
     font-family: cursive;
     color: black;
     font-size: 40px;
@@ -82,6 +82,11 @@
     margin: 10px;
     border-width: 2px;
     height: 25px;
+}
+
+#saveIdeaButton{
+    width: 60px;
+    height: 60px;
 }
 
 #ideaMainContentContainer{

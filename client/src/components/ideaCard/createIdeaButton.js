@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { addIdeaToDB } from 'actions/ideaActions';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-export default class createIdeaButton extends Component {
+class createIdeaButton extends Component {
     handleCreateIdeaClick = (event) => {
         this.error = "";
         this.isHasError = false;
@@ -43,7 +45,15 @@ const mapDispatchToProps = dispatch => {
 
   function mapStateToProps(state) {
     return {
-      title: state.newIdeaReducer.title,
+      title: state.editedIdeaReducer.title,
+      content: state.editedIdeaReducer.content,
+      createdBy: state.userReducer.loggedInUserID,
+      place: state.editedIdeaReducer.place,
+      minTime: state.editedIdeaReducer.minTime,
+      maxTime: state.editedIdeaReducer.maxTime,
+      minNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
+      maxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
+      userID: state.userReducer.loggedInUserID,
     };
   }
 

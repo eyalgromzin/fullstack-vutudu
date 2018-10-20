@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CreateIdeaBar from '../searchBar/createIdeaBar'
-import CreateIdeaCard from '../ideaCard/createIdeaCard'
+import EditIdeaCard from '../ideaCard/editIdeaCard'
+import CreateIdeaButton from '../ideaCard/createIdeaButton'
 import 'commonCss.css'
 
 export default class createLayout extends Component {
@@ -8,7 +9,7 @@ export default class createLayout extends Component {
     return (
       <div class="mainContent">
         <CreateIdeaBar />
-        <CreateIdeaCard />
+        <EditIdeaCard existingTitle="" existingContent="" existingID="" />
         <CreateIdeaButton />
       </div>
     )

@@ -3,7 +3,7 @@ import '../searchBarCommonStyles.css'
 import 'commonCss.css'
 import './numOfPeopleCreator.css'
 import { connect } from 'react-redux';
-import { NEW_IDEA_SET_MIN_PEOPLE, NEW_IDEA_SET_MAX_PEOPLE } from 'reducers/types'
+import { EDITED_IDEA_SET_MIN_PEOPLE, EDITED_IDEA_SET_MAX_PEOPLE } from 'reducers/types'
 
 class NumOfPeopleCreator extends Component {
 
@@ -12,11 +12,11 @@ class NumOfPeopleCreator extends Component {
   }
 
   minNumOfPeopleChange = (event) => {
-    this.props.dispatch({ type: NEW_IDEA_SET_MIN_PEOPLE, payload: Number(event.target.value) }); //Number()
+    this.props.dispatch({ type: EDITED_IDEA_SET_MIN_PEOPLE, payload: Number(event.target.value) }); //Number()
   }
 
   maxNumOfPeopleChange = (event) => {
-    this.props.dispatch({ type: NEW_IDEA_SET_MAX_PEOPLE, payload: Number(event.target.value) });
+    this.props.dispatch({ type: EDITED_IDEA_SET_MAX_PEOPLE, payload: Number(event.target.value) });
   }
 
   render() {
@@ -57,8 +57,8 @@ class NumOfPeopleCreator extends Component {
 
 function mapStateToProps(state) {
   return {
-    minNumOfPeople: state.newIdeaReducer.minNumOfPeople,
-    maxNumOfPeople: state.newIdeaReducer.maxNumOfPeople,
+    minNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
+    maxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
   };
 }
 

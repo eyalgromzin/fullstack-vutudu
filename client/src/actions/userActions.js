@@ -10,8 +10,13 @@ import {
   SET_LOGGED_IN_USER_FIRST_NAME, 
   SET_LOGGED_IN_USER_ID, 
   SET_LOGGED_IN_USER_LAST_NAME, 
-  SET_USER_CURRENT_PREVIEWD_IDEAS,
+  SET_USER_CURRENT_PREVIEWED_IDEAS,
+  EDITED_IDEA_SET_CONTENT,
+  UPDATE_PREVIEWED_IDEAS_IDEA,
+  RESET_USER_CURRENT_PREVIEWED_IDEAS,
+  UPDATE_CREATED_IDEAS_IDEA
 } from 'reducers/types'
+import { EDITED_IDEA_SET_TITLE, SET_USER_CREATED_IDEAS } from '../reducers/types';
 
 //works till the return
 export const createUserIfNotExists = user => dispatch => {
@@ -105,11 +110,39 @@ export const updateUserIdeas = (userID, ideaType, reduxActionName) => dispatch =
         payload: res.data
       });
       dispatch({
-        type: SET_USER_CURRENT_PREVIEWD_IDEAS,
+        type: SET_USER_CURRENT_PREVIEWED_IDEAS,
         payload: res.data
       })
     }
   );
 }
+
+//e.g. 
+export const updateIdea = (ideaID, title, content) => dispatch => {
+  console.log('sending post: api/items/updateIdea: ideaID: ' + ideaID + ', title: ' + title + ', content: ' + content);
+  axios.post(`/api/items/updateIdea`,{ideaID, title, content})
+  .then(res =>
+    {
+      console.log('got reply: /api/items/updateIdea');
+      dispatch({
+        type: EDITED_IDEA_SET_TITLE,
+        payload: res.data.title
+      });
+      dispatch({
+        type: EDITED_IDEA_SET_CONTENT,
+        payload: res.data.title
+      });
+      dispatch({
+        type: UPDATE_PREVIEWED_IDEAS_IDEA,
+        payload: res.data
+      });
+      dispatch({
+        type: UPDATE_CREATED_IDEAS_IDEA,
+        payload: res.data
+      });
+    }
+  );
+}
+
 
 

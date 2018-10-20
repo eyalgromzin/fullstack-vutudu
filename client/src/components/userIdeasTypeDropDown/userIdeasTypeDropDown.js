@@ -22,20 +22,6 @@ ideasTypeDictionary["Liked"] = "liked";
 ideasTypeDictionary["Created"] = "createdBy";
 
 class UserIdeasTypeDropDown extends Component {
-  
-
-  constructor(){
-    super();
-
-    
-    this.initIdeaTypeDictionary();
-  }
-
-  initIdeaTypeDictionary = () => {
-    // this.ideasTypeDictionary["Liked"] = "liked";
-    // this.ideasTypeDictionary["Created"] = "createdBy";
-  }
-
   options = [
     { value: USER_SET_LIKED_IDEAS_DATA, label: 'Liked'},
     { value: SET_USER_CREATED_IDEAS, label: 'Created'},

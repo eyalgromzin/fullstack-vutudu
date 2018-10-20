@@ -12,7 +12,7 @@ import TopBar from '../components/topBar/topBar'
 import SearchBar from '../components/searchBar/searchBar'
 import IdeaCard from '../components/ideaCard/ideaCard'
 import CreateIdeaBar from '../components/searchBar/createIdeaBar'
-import CreateIdeaCard from '../components/ideaCard/createIdeaCard'
+import EditIdeaCard from '../components/ideaCard/editIdeaCard'
 import LoginScreen from '../components/loginScreen/loginScreen'
 
 import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";

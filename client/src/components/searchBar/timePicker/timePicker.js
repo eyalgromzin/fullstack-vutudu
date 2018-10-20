@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './timePicker.css'
 import '../searchBarCommonStyles.css'
-// import {NEW_IDEA_SET_TIME} from 'reducers/types'
+// import {EDITED_IDEA_SET_TIME} from 'reducers/types'
 // import { SEARCH_SET_TIME } from 'reducers/types';
 
 export default class TimePicker extends Component {
