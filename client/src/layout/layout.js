@@ -19,6 +19,7 @@ import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom
 import createLayout from '../components/createCopmonent/createLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userLayout from '../components/layouts/userLayout/userLayout';
+import SideBar from 'components/sideBar'
 
 export const showIdeaPage = 'SHOW_IDEAS';
 export const createIdeaPage = 'CREATE_IDEA';
@@ -43,13 +44,12 @@ class Layout extends Component {
         <LoginScreen />
         <Router>
           <React.Fragment>
-            {/* <div class="mainContent"> */}
-              <TopBar />    
+              {/* <TopBar />     */}
+              <SideBar />
               <Redirect from="/" to="/search" />
               <Route path="/search" component={searchLayout} />
               <Route path="/create" component={createLayout} />
               <Route path="/user" component={userLayout} />
-            {/* </div> */}
           </ React.Fragment>
         </Router>
       </React.Fragment>

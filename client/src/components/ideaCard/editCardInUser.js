@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EditIdeaCard from '../ideaCard/editIdeaCard'
+import EditIdeaCard from 'components/ideaCard/editIdeaCard'
 import SaveIdeaButton from 'components/ideaCard/saveIdeaButton';
 
 export default class editCardInUser extends Component {

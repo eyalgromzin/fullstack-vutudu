@@ -3,9 +3,7 @@
   }
   
   body{
-    /* background-image: url('../images/topBackground.jpg');
-    background-repeat: no-repeat; */
-    background-size: 100% 35%;
+    background-color: #F4F9FF;
   }
   
   .mainContent{

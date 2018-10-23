@@ -6,11 +6,6 @@ import { connect } from 'react-redux';
 import { EDITED_IDEA_SET_MIN_PEOPLE, EDITED_IDEA_SET_MAX_PEOPLE } from 'reducers/types'
 
 class NumOfPeopleCreator extends Component {
-
-  constructor(props){
-    super(props);
-  }
-
   minNumOfPeopleChange = (event) => {
     this.props.dispatch({ type: EDITED_IDEA_SET_MIN_PEOPLE, payload: Number(event.target.value) }); //Number()
   }
@@ -23,7 +18,7 @@ class NumOfPeopleCreator extends Component {
     return (
       <div class="searchBarChooserContainer" > 
         <div class="searchBarChooserData">
-          <img src={require("images/people.png")} class="searchBarIcon " />
+          <img src={require("images/people.png")} class="searchBarIcon" />
             <select id="minNumOfPeopleChooser" class="" onChange={this.minNumOfPeopleChange}>
               <option value="0" class="timeChooserOption" >0</option>
               <option value="1" class="timeChooserOption" >1</option>
