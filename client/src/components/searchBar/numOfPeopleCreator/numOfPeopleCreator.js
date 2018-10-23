@@ -16,7 +16,7 @@ class NumOfPeopleCreator extends Component {
 
   render() {
     return (
-      <div class="searchBarChooserContainer" > 
+      <div class="searchBarChooserContainer middleSearchBarBox" > 
         <div class="searchBarChooserData">
           <img src={require("images/people.png")} class="searchBarIcon" />
             <select id="minNumOfPeopleChooser" class="" onChange={this.minNumOfPeopleChange}>

@@ -2,10 +2,6 @@
 
   }
   
-  body{
-    background-color: #F4F9FF;
-  }
-  
   .mainContent{
     padding: 0 20%;
   }
@@ -14,5 +10,6 @@
       margin:0; 
       padding:0;
       height: 100%;
-      background-color: grey !important; 
+      background-color: #F4F9FF !important; 
+      
   }

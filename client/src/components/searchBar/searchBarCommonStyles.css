@@ -14,17 +14,18 @@
     margin: 10px;
 }
 
-.searchBarChooserContainer{
+ .searchBarChooserContainer{
     display: inline-block;
-    background-color: white;
-    margin: 20px;
-    border-color: peachpuff;
-    border-width: 5px;
-    border-style: solid;
+    /* background-color: white; */
+    mergin-right: 10px;
+} 
+
+.middleSearchBarBox{
+    box-shadow: 10px 10px 10px 10px;
 }
 
 #searchBar{
-    margin-bottom: 20px;
+    margin: 20px;
     text-align: center;
 }
 

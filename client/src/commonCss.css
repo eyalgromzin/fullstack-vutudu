@@ -22,14 +22,23 @@
 #mainLogo{
     display: inline-block;
     color: white;
-    font-size: 50px;
+    font-size: 85px;
     font-family: fantasy;
     font-weight: bold;
+
+    padding-top: 100px;
+
+    transform: rotate(90deg);
+    transform-origin: left 90%;
 
 }
 
 .alignMiddleDiv{
     margin: auto;
+}
+
+.smallZIndex{
+    
 }
 
 .layoutTitle{
@@ -40,5 +49,6 @@
 
 .vertical-text {
 	transform: rotate(90deg);
-	transform-origin: left top 0;
+    transform-origin: center; 
+    /* left top 0 */
 }

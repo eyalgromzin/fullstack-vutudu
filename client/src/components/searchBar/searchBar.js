@@ -28,8 +28,11 @@ class SearchBar extends Component {
   render() {
     return (
       <div id="searchBar">
-        <span class="topBarName" > SEARCH: </span>
+        {/* <span class="topBarName" > SEARCH: </span> */}
+        <span class="smallZIndex">
         <PlaceSelector onChangeEvent={this.placeOnChangeEvent} />
+        </span>
+        <div
         <TimePicker onChangeEvent={this.timeOnChangeEvent} />
         <NumOfPeopleSelector />
         <MoreChooser />
