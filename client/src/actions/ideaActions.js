@@ -18,14 +18,14 @@ export const updateIdeaIndicator = (userID,ideaID,userPostUrl,addToUserReduxType
         console.log(`sent post to: ` + userPostUrl)
         dispatch({
           type: addToUserReduxTypeName,
-          payload: ideaID
+          payload: res.data
         })
       }
     );
   }
 
   if(ideaPostUrl != null && ideaPostUrl != ''){
-    console.log('sending post: api/idea/ideaDisliked/');
+    console.log('sending post: ' + ideaPostUrl);
     var ideaPostObject = {userID: userID, ideaID: ideaID}
     axios.post(ideaPostUrl,ideaPostObject)
     .then(res =>

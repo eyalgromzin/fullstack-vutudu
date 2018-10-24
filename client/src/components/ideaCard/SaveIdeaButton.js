@@ -4,6 +4,7 @@ import './ideaCard.css'
 import {SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT} from 'reducers/types'
 import { updateIdea } from 'actions/userActions'
 import store from 'store';
+import { updateUserIdeas } from 'actions/userActions'
 
 
 class SaveIdeaButton extends Component {
@@ -13,6 +14,8 @@ class SaveIdeaButton extends Component {
       this.props.newTitle,
       this.props.newContent);
     // store.dispatch({type: UPDATE_CREATED_IDEAS_IDEA, payload: false});
+    
+    // this.props.updateUserIdeas(this.props.userID,);
   }
 
   render() {
@@ -39,7 +42,8 @@ function mapStateToProps(state) {
     newContent: state.editedIdeaReducer.content,
     currentPreviewedIdea: state.userReducer.currentPreviewedIdea,
     isIdeaEdited: state.userReducer.isIdeaEdited,
+    userID: state.userReducer.loggedInUserID,
   };
 }
 
-export default connect(mapStateToProps, {updateIdea} )(SaveIdeaButton)
+export default connect(mapStateToProps, {updateIdea,updateUserIdeas} )(SaveIdeaButton)

@@ -23,15 +23,15 @@ const initialState = {
     loggedInUserID: "",
     loggedInUserFirstName: "",
     loggedInUserLastName: "",
-    hardIdeas: [],
-    easyIdeas: [],
-    longIdeas:[],
-    shortIdeas: [],
-    likedIdeas: [],
-    likedIdeasData: [],
-    dislikedIdeas: [],
-    createdIdeas: [],
-    createdIdeasData: [],
+    // hardIdeas: [],
+    // easyIdeas: [],
+    // longIdeas:[],
+    // shortIdeas: [],
+    likedIdeas: [], //copy here the liked ideas - its ok because the user liked them as they are
+    // likedIdeasData: [],
+    // dislikedIdeas: [],
+    createdIdeas: [], //copy here created ideas - on edit, update the user and the item itself.
+    // createdIdeasData: [],
     doneIdeas: [],
     doneIdeasData: [],
     currentPreviewedIdea: {},
@@ -95,11 +95,11 @@ function reducer(state = initialState, action) {
         ...state,
         createdIdeas: action.payload
       }
-    case USER_SET_LIKED_IDEAS_DATA:
-      return {
-        ...state,
-        likedIdeasData: action.payload
-      }
+    // case USER_SET_LIKED_IDEAS_DATA:
+    //   return {
+    //     ...state,
+    //     likedIdeasData: action.payload
+    //   }
     case USER_SET_SELECTED_DROPDOWN_TYPE:
       return {
         ...state,

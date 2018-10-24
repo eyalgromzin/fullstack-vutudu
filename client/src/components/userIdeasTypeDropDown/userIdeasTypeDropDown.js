@@ -7,8 +7,6 @@ import { USER_PAGE_IDEAS_TYPE,
   SET_USER_CREATED_IDEAS,
   USER_SET_SELECTED_DROPDOWN_TYPE,
   } from "reducers/types";
-// import { getUserCreatedIdeas } from 'actions/itemActions'
-// import { updateUserIdeas } from from 'actions/itemActions'
 import { updateUserIdeas } from 'actions/userActions'
 import store from 'store'
 
@@ -16,8 +14,7 @@ export const LIKED_IDEAS = "LIKED_IDEAS";
 export const DONE_IDEAS = "DONE_IDEAS";
 export const CREATED_IDEAS = "CREATED_IDEAS";
 
-var ideasTypeDictionary = {}; // create an empty array
-
+export const ideasTypeDictionary = {}; // create an empty array
 ideasTypeDictionary["Liked"] = "liked";
 ideasTypeDictionary["Created"] = "createdBy";
 
