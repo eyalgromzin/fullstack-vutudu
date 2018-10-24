@@ -15,10 +15,11 @@ class NumOfPeopleSelector extends Component {
 
   render() {
     return (
-      <div class="searchBarChooserContainer" > 
-        <div class="searchBarChooserData">
-          <img src={require("images/people.png")} class="searchBarIcon " />
-            <select id="numOfPeopleChooser" class="" onChange={this.handleChange}>
+      <React.Fragment>
+      {/* <div class="searchBarChooserContainer" > 
+        <div class="searchBarChooserData"> */}
+          {/* <img src={require("images/people.png")} class="searchBarIcon " /> */}
+            <select id="numOfPeopleChooser" className={this.props.cssClass} onChange={this.handleChange}>
               <option value="1" class="timeChooserOption">1</option>
               <option value="2" class="timeChooserOption">2</option>
               <option value="2000" class="timeChooserOption">couple</option>
@@ -29,8 +30,9 @@ class NumOfPeopleSelector extends Component {
               <option value="7" class="timeChooserOption">7</option>
               <option value="8000" class="timeChooserOption">7+</option>
             </select>
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
+      </React.Fragment>
     )
   }
 }

@@ -8,7 +8,7 @@ import CardCountInfo from './cardButtons/cardCountInfo/cardCountInfo'
 import IdeaAttachmentsButton from './cardButtons/ideaAttachmentsButton/ideaAttachmentButton'
 import IdeaPlaceButton from './cardButtons/placeButton/placeButton'
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import 'commonCss.css'
 import DoneButton from './doneButton'
 import { SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT } from 'reducers/types'
@@ -27,7 +27,7 @@ class ShowIdeaCardInUser extends Component {
     return (
         <div id="ideaCardWithButtons">
           <div id="ideaCard"> 
-            <div id="topCardButtons">
+            <div id="cardIndicationButtons">
               <div id="cardIndicators"> 
                 <LikeDislike enabled="false" />
                 <TimeIndicator enabled="false" />

@@ -31,10 +31,12 @@ class LikeDislike extends Component {
         <img src={require("images/like.png")} id="likeButton" className={"bottomButton hoverClickHand"}
           onClick={this.handleLikeClick}/>
         {this.props.liked.length}
+        <img src={require("images/upArrow.png")} onClick={this.handleLikeClick} className={"bottomButton hoverClickHand"} />
         
-        <img src={require("images/dislike.png")} id="dislikeButton" className={"bottomButton hoverClickHand"}
-          onClick={this.handleDislikeClick}/>
         {this.props.disliked.length}
+        <img src={require("images/downArrow.png")} id="dislikeButton" className={"bottomButton hoverClickHand"}
+          onClick={this.handleDislikeClick}/>
+        
         
         <span> ({Math.round((this.props.liked.length/((this.props.liked.length + this.props.disliked.length) == 0? 1 : (this.props.liked.length + this.props.disliked.length)) * 100))}%)</span>
       </div>

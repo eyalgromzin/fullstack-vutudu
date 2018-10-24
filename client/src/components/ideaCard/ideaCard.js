@@ -8,7 +8,7 @@ import CardCountInfo from './cardButtons/cardCountInfo/cardCountInfo'
 import IdeaAttachmentsButton from './cardButtons/ideaAttachmentsButton/ideaAttachmentButton'
 import IdeaPlaceButton from './cardButtons/placeButton/placeButton'
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import 'commonCss.css'
 import DoneButton from './doneButton'
 
@@ -26,30 +26,33 @@ class IdeaCard extends Component {
 
   render() {
     return (
-      <div id="ideaCardWithButtons">
+      <React.Fragment>
+        <IdeaPreviousNextButtons />
+       <div id="ideaCardWithButtons">
           <div id="ideaCard"> 
-            <div id="topCardButtons">
-              <IdeaPreviousNextButtons />
-              <div id="cardIndicators"> 
-                <LikeDislike />
-                <TimeIndicator />
-                <DifficultyIndicator />
-              </div>
-            </div>
             <div id="ideaTitle"> 
               {this.props.title}
             </div>
             <div id="ideaContentText"> 
               {this.props.content}
             </div>
-            <div id="ideaMainContentBottomButtons"> 
-              <IdeaAttachmentsButton />
-              <IdeaPlaceButton />
-            </div>
+            {/* <div id="ideaMainContentBottomButtons"> 
+               <IdeaAttachmentsButton />
+              <IdeaPlaceButton /> 
+            </div> */}
           </div>
-          <div id="statusButtons">
+          <div id="cardIndicationButtons">
+              
+              <div id="cardIndicators"> 
+                <LikeDislike />
+                <TimeIndicator />
+                <DifficultyIndicator />
+              </div>
           </div>
-      </div>
+           {/* <div id="statusButtons">
+           </div> */}
+       </div> 
+      </React.Fragment>
     )
   }
 }

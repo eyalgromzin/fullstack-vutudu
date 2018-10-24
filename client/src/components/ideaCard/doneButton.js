@@ -6,7 +6,7 @@ export default class DoneButton extends Component {
   render() {
     return (
         <div>
-            <Button bsSize="large" class="alignMiddleDiv" id="doneButton"> Done! </Button>
+            {/* <Button bsSize="large" class="alignMiddleDiv" id="doneButton"> Done! </Button> */}
         </div>
     )
   }

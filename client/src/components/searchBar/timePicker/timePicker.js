@@ -13,10 +13,11 @@ export default class TimePicker extends Component {
 
   render() {
     return (
-      <div class="searchBarChooserContainer" > 
-        <div class="searchBarChooserData">
-          <img id="timeChooserImage" src={require("images/time.png")} class="searchBarIcon verticalMiddleAlign" />
-            <select id="timeChooser" onChange={this.handleOnChange}>
+      <React.Fragment>
+       {/* <div class="searchBarChooserContainer" > 
+         <div class="searchBarChooserData"> */}
+          {/* <img id="timeChooserImage" src={require("images/time.png")} class="searchBarIcon verticalMiddleAlign" /> */}
+            <select id="timeChooser" onChange={this.handleOnChange} className={this.props.cssClass}>
               <option value="5" class="timeChooserOption">5m</option>
               <option value="10" class="timeChooserOption">10m</option>
               <option value="15" class="timeChooserOption">15m</option>
@@ -24,8 +25,9 @@ export default class TimePicker extends Component {
               <option value="60" class="timeChooserOption">1h</option>
               <option value="6000" class="timeChooserOption">1h+</option>
             </select>
-        </div>
-      </div>
+          {/* </div>
+       </div>  */}
+      </React.Fragment>
     )
   }
 }

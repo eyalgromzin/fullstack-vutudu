@@ -19,13 +19,15 @@ export default class MoreChooser extends Component {
 
   render() {
     return (
-      <div class="searchBarChooserContainer" > 
+      <React.Fragment>
+      {/* <div class="searchBarChooserContainer" > 
         <div class="searchBarChooserData">
-          <div>
-            <input type="text" id="moreChooser" placeholder="#MoreInfo" onChange={this.handleChange} />
-          </div>
+          <div> */}
+            <input type="text" id="moreChooser" className={this.props.cssClass} placeholder="#MoreInfo" onChange={this.handleChange} />
+          {/* </div>
         </div>
-      </div>
+      </div> */}
+      </React.Fragment>
     )
   }
 }

@@ -5,10 +5,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "axios-debug": "0.0.4",
-    "bootstrap": "^4.1.1",
     "react": "^16.5.2",
     "react-addons-update": "^15.6.2",
-    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-dropdown": "^1.6.2",
     "react-facebook": "^5.0.3",

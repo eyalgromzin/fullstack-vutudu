@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import Layout from './layout/layout'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 class App extends Component {
