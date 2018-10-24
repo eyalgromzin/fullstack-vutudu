@@ -1,14 +1,20 @@
-- create dynamic method for all the idea indication buttons.
 
-- hard
-- easy
-- time+
-- time-
+- save liked and created ideas fully to user
+- load them in user page and not from the db
 
-- change like to work with the dynamic method.
+
+
+
+
+
+
+
+
+
+
+
+large tasks
 
 - create popup when idea is created.
-
-
 
 - change the like idea to 1 post request instead of 2
