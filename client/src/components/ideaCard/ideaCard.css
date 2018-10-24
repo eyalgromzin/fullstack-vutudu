@@ -27,7 +27,6 @@
 
 #ideaCard{
     box-shadow: 0px 0px 20px 5px;
-    
     background-color: white;
     min-height: 350px;
     max-height: 550px;
@@ -55,8 +54,8 @@
 }
 
 .bottomButton{
-    height:20px;
-    width: 20px;
+    height:30px;
+    width: 30px;
 }
 
 .bottomIndicator{
@@ -76,10 +75,7 @@
 #cardIndicationButtons{
     /* margin-top: 10px; */
     padding-bottom: 5px;
-    border-bottom: solid;
-    border-bottom-color: #56AAC5;
     margin: 10px;
-    border-width: 2px;
     height: 25px;
 }
 

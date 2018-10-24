@@ -21,17 +21,21 @@ class EditIdeaCard extends Component {
   
     this.state={
       error:"",
-      isHasError: false
+      isHasError: false,
+      existingTitle: this.props.existingTitle,
+      existingContent: this.props.existingContent,
     }
   }
 
   isHasError = false;
 
   handleOnTitleChange = (e) => {
+      this.state.existingTitle = e.target.value;
       store.dispatch({type: EDITED_IDEA_SET_TITLE, payload: e.target.value});  
   }
 
   handleOnContentChange = (e) => {
+    this.state.existingContent = e.target.value;
       store.dispatch({type: EDITED_IDEA_SET_CONTENT, payload: e.target.value});
   }
 
@@ -41,8 +45,8 @@ class EditIdeaCard extends Component {
         <div id="createIdeaContainer">
           <div id="ideaCard"> 
             <div id="ideaCardContent">
-              <input type="text" id="newIdeaTitle" value={this.props.title} placeholder="<title>" onChange={this.handleOnTitleChange}/>
-              <textarea type="text" id="newIdeaContent" value={this.props.content} placeholder="<content>" onChange={this.handleOnContentChange}/>
+              <input type="text" id="newIdeaTitle" value={this.state.existingTitle} placeholder="<title>" onChange={this.handleOnTitleChange}/>
+              <textarea type="text" id="newIdeaContent" value={this.state.existingContent} placeholder="<content>" onChange={this.handleOnContentChange}/>
             </div>
           </div>
           <div id="newIdeaError"> {this.state.error} </div>

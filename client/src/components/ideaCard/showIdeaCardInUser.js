@@ -27,13 +27,6 @@ class ShowIdeaCardInUser extends Component {
     return (
         <div id="ideaCardWithButtons">
           <div id="ideaCard"> 
-            <div id="cardIndicationButtons">
-              <div id="cardIndicators"> 
-                <LikeDislike enabled="false" />
-                <TimeIndicator enabled="false" />
-                <DifficultyIndicator enabled="false" />
-              </div>
-            </div>
             <div class="ideaTitle">
               {this.props.title}
             </div>
@@ -45,7 +38,13 @@ class ShowIdeaCardInUser extends Component {
               {/* <IdeaPlaceButton /> */}
             </div>
           </div>
-          
+          <div id="cardIndicationButtons">
+              <div id="cardIndicators"> 
+                <LikeDislike enabled="false" />
+                <TimeIndicator enabled="false" />
+                <DifficultyIndicator enabled="false" />
+              </div>
+            </div>
           <EditIdeaButton />
           
           <div id="statusButtons">

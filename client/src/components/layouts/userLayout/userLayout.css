@@ -1,6 +1,6 @@
 #userLayoutIdeasSelectSideBar{
     width: 20%;
-    margin-left: 2%;
+    margin-left: 7%;
     margin-top: 30px;
 }
 
@@ -10,7 +10,7 @@
 
 #userLayoutIdeaPreview{
     position: fixed;
-    left: 24%;
+    left: 30%;
     top: 180px;
-    width: 74%;
+    width: 67%;
 }
