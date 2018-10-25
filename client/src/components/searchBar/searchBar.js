@@ -29,15 +29,14 @@ class SearchBar extends Component {
     return (
       <div id="searchBar">
         {/* <span class="topBarName" > SEARCH: </span> */}
-        <PlaceSelector onChangeEvent={this.placeOnChangeEvent} cssClass="SearchBarSquare" />
+        <PlaceSelector onChangeEvent={this.placeOnChangeEvent} cssClass="searchBarTextSquare" />
         <div class="middlePlaceHolder" />
-        <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="SearchBarSquare" />
+        <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="searchBarDropDownSquare" />
         <div class="middlePlaceHolder" />
-        <NumOfPeopleSelector  cssClass="SearchBarSquare" />
+        <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
         <div class="middlePlaceHolder" />
-        <MoreChooser  cssClass="SearchBarSquare" />
-        <div class="middlePlaceHolder" />
-        <SearchButton  cssClass="SearchBarSquare" />
+        <MoreChooser  cssClass="searchBarTextSquare" />
+        <SearchButton  cssClass="searchBarTextSquare" />
       </div>
     )
   }

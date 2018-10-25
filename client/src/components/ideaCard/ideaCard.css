@@ -30,6 +30,8 @@
     background-color: white;
     min-height: 350px;
     max-height: 550px;
+    display: inline-block;
+    width: 90%;
     
 }
 
@@ -77,6 +79,11 @@
     padding-bottom: 5px;
     margin: 10px;
     height: 25px;
+}
+
+#shareContainer{
+    display: inline-block;
+    height: 100%;
 }
 
 #saveIdeaButton{

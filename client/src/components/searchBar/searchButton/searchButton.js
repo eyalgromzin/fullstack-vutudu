@@ -23,11 +23,9 @@ class SearchButton extends Component {
 
   render() {
     return (
-      <a>
-      <div class="displayInlineBlock hoverClickHand" id="searchButton"  onClick={this.handleSearchClick}>
-        search
-      </div>
-      </a>
+      // <div class="" id="searchButtonOutline"  onClick={this.handleSearchClick}> 
+        <img src={require("images/search.png")} id="searchButton" />
+      // </div>
     )
   }
 }

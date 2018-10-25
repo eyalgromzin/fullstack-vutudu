@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 // import { Button } from 'react-bootstrap';
 import 'commonCss.css'
 import DoneButton from './doneButton'
+import ShareButton from 'components/ideaCard/cardButtons/shareButton'
 
 
 class IdeaCard extends Component {
@@ -29,6 +30,7 @@ class IdeaCard extends Component {
       <React.Fragment>
         <IdeaPreviousNextButtons />
        <div id="ideaCardWithButtons">
+        <div id="ideaCardWithShare" >
           <div id="ideaCard"> 
             <div id="ideaTitle"> 
               {this.props.title}
@@ -37,18 +39,21 @@ class IdeaCard extends Component {
               {this.props.content}
             </div>
             {/* <div id="ideaMainContentBottomButtons"> 
-               <IdeaAttachmentsButton />
+              <IdeaAttachmentsButton />
               <IdeaPlaceButton /> 
             </div> */}
           </div>
-          <div id="cardIndicationButtons">
-              
-              <div id="cardIndicators"> 
-                <LikeDislike />
-                <TimeIndicator />
-                <DifficultyIndicator />
-              </div>
+          <div id="shareContainer">
+              <ShareButton />
           </div>
+        </div>
+        <div id="cardIndicationButtons">
+            <div id="cardIndicators"> 
+              <LikeDislike />
+              <TimeIndicator />
+              <DifficultyIndicator />
+            </div>
+        </div>
            {/* <div id="statusButtons">
            </div> */}
        </div> 

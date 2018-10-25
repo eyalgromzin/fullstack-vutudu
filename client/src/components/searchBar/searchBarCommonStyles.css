@@ -25,7 +25,8 @@
 }
 
 #searchBar{
-    /* margin: 20px; */
+    margin-bottom: 20px; 
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -35,9 +36,23 @@
     vertical-align: middle;
 }
 
-.SearchBarSquare{
-    box-shadow: 0px 0px 20px 5px;
+.searchBarTextSquare{
+    box-shadow: 0px 0px 20px 2px;
     z-index: 0;
+    position: relative;
+    height: 35px;
+    width: 200px;
+}
+
+.searchBarDropDownSquare{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: 0px 0px 20px 2px;
+    z-index: 0;
+    position: relative;
+    height: 40px;
+    width: 100px;
 }
 
 .middlePlaceHolder{
@@ -46,4 +61,7 @@
     z-index: 100;
     display: inline-block;
     background-color: #F4F9FF;
+    position: relative;
+    vertical-align: middle;
+
 }

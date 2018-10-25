@@ -1,7 +1,9 @@
 #searchButton{
-    margin: 20px;
-    padding: 10px;
-    background-color: red;
+    padding: 7px;
+    height: 30px;
+    width: 30px;
+    background-color: #326A9E;
     display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
 }
-
