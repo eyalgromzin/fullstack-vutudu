@@ -15,7 +15,22 @@ import { ADD_USER_TO_IDEA_ADDED_LONG, ADD_USER_TO_IDEA_ADDED_SHORT, SET_CURRENT_
 
 const initialState = {
   currentIdeaIndex: 0,
-  currentIdea: {},
+  currentIdea: {
+    _id: '000',
+    title: 'click Search',
+    content: 'To find ideas of what to do',
+    place: 'fill place',
+    minTime: 0,
+    maxTime: 0,
+    minNumOfPeople: 0,
+    maxNumOfPeople: 0,
+    liked: [],
+    disliked: [],
+    addedHard: [],
+    addedEasy: [],
+    addedLong: [],
+    addedShort: [],
+  },
   ideas: ([{
     _id: '000',
     title: 'click Search',

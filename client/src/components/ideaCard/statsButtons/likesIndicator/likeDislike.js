@@ -14,15 +14,15 @@ class LikeDislike extends Component {
   }
 
   handleDislikeClick = () => {
-    this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
-      '/api/user/userLiked/',ADD_LIKED_IDEA_TO_USER,    
+    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+      null,null,    
       '/api/items/ideaDisliked/',ADD_USER_TO_IDEA_DISLIKES);
   }
 
   handleLikeClick = () => {
-    this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
-      null,null,    //dont add difficult ideas to user
-      '/api/items/idealiked/',ADD_USER_TO_IDEA_LIKES);
+    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+      '/api/user/userLiked/',ADD_LIKED_IDEA_TO_USER,    //dont add difficult ideas to user
+      '/api/items/ideaLiked/',ADD_USER_TO_IDEA_LIKES);
   }
 
   render() {
@@ -49,7 +49,8 @@ function mapStateToProps(state) {
     liked: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].liked,
     disliked: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].disliked,
     userID: state.userReducer.loggedInUserID,
-    ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id
+    ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id,
+    idea: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex],
   };
 }
 

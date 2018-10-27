@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import './searchButton.css'
 import '../searchBarCommonStyles.css'
-import { searchItems } from 'actions/itemActions'
+import { searchItems } from 'actions/ideaActions'
 import { connect } from 'react-redux'
-import { SAVE_IDEAS } from 'reducers/ideasReducer'
 
 class SearchButton extends Component {
   constructor(props){
@@ -24,7 +23,7 @@ class SearchButton extends Component {
   render() {
     return (
       // <div class="" id="searchButtonOutline"  onClick={this.handleSearchClick}> 
-        <img src={require("images/search.png")} id="searchButton" />
+        <img src={require("images/search.png")} id="searchButton" onClick={this.handleSearchClick} />
       // </div>
     )
   }

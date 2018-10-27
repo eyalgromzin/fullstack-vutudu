@@ -53,9 +53,9 @@ router.post('/create', (req, res) => {
 // @desc    search for anything
 // @access  Public
 router.post('/userLiked', (req, res) => {   //works
-  console.log("updating" + req.body.userID);
+  console.log("updating " + req.body.userID);
   User.findOneAndUpdate({ id: req.body.userID },
-    { "$push": { "liked": req.body.ideaID } })
+    { "$push": { "liked": req.body.idea } })
   .then(users => res.json(users));
   console.log("updated " + req.body.userID);
 });
@@ -64,7 +64,7 @@ router.post('/userLiked', (req, res) => {   //works
 // @desc    search for anything
 // @access  Public
 router.post('/userDone', (req, res) => {   //works
-  console.log("updating" + req.body.userID);
+  console.log("updating " + req.body.userID);
   User.findOneAndUpdate({ id: req.body.userID },
     { "$push": { "done": req.body.ideaID } })
   .then(users => res.json(users));

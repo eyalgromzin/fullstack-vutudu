@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const ObjectId = require('mongodb').ObjectID;
+// const mongoose = require('mongoose');
 
 // Item Model
 const Item = require('../../models/Item');
@@ -35,22 +37,33 @@ router.post('/createIdea/', (req, res) => {
 // @desc    search for anything
 // @access  Public
 router.post('/ideaLiked/', (req, res) => {   
-  console.log("updating idea" + req.body.ideaID);
-  Item.findOneAndUpdate({ _id: req.body.ideaID },
-    { "$push": { "liked": req.body.userID } })
-  .then(items => res.json(items));
-  console.log("updated idea" + req.body.ideaID);
-});
+  console.log("updating idea " + req.body.idea._id.$oid);
 
+  var ideaID = req.body.idea._id.$oid;
+
+  Item.findOneAndUpdate( {_id: ideaID},      //{'_id': ObjectID(ideaID)}
+    { "$push": { "liked": req.body.userID } },
+    {new: true})
+  .then(
+    items => res.json(items)
+  );
+});
+ 
 // @route   POST api/items/ideaDisliked/
 // @desc    search for anything
 // @access  Public
-router.post('/ideaDisliked/', (req, res) => {   
-  console.log("updating idea" + req.body.ideaID);
-  Item.findOneAndUpdate({ _id: req.body.ideaID },
-    { "$push": { "disliked": req.body.userID } })
-  .then(items => res.json(items));
-  console.log("updated idea" + req.body.ideaID);
+// doesnt work
+router.post('/ideaDisliked/', (req, res) => { 
+  console.log("updating idea " + req.body.idea._id.$oid);
+
+  var ideaID = req.body.idea._id.$oid;
+
+  Item.findOneAndUpdate( {_id: ideaID},      //{'_id': ObjectID(ideaID)}
+    { "$push": { "disliked": req.body.userID } },
+    {new: true})
+  .then(
+    items => res.json(items)
+  );  
 });
 
 // @route   POST api/items/addedHardToIdea/

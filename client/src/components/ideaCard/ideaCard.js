@@ -29,34 +29,34 @@ class IdeaCard extends Component {
     return (
       <React.Fragment>
         <IdeaPreviousNextButtons />
-       <div id="ideaCardWithButtons">
-        <div id="ideaCardWithShare" >
-          <div id="ideaCard"> 
-            <div id="ideaTitle"> 
-              {this.props.title}
+        <div id="ideaCardWithButtons">
+          <div id="ideaCardWithShare" >
+            <div id="ideaCard"> 
+              <div id="ideaTitle"> 
+                {this.props.title}
+              </div>
+              <div id="ideaContentText"> 
+                {this.props.content}
+              </div>
+              {/* <div id="ideaMainContentBottomButtons"> 
+                <IdeaAttachmentsButton />
+                <IdeaPlaceButton /> 
+              </div> */}
             </div>
-            <div id="ideaContentText"> 
-              {this.props.content}
+            <div id="shareContainer">
+                <ShareButton />
             </div>
-            {/* <div id="ideaMainContentBottomButtons"> 
-              <IdeaAttachmentsButton />
-              <IdeaPlaceButton /> 
+          </div>
+          <div id="cardIndicationButtons">
+              <div id="cardIndicators"> 
+                <LikeDislike />
+                <TimeIndicator />
+                <DifficultyIndicator />
+              </div>
+          </div>
+            {/* <div id="statusButtons">
             </div> */}
-          </div>
-          <div id="shareContainer">
-              <ShareButton />
-          </div>
-        </div>
-        <div id="cardIndicationButtons">
-            <div id="cardIndicators"> 
-              <LikeDislike />
-              <TimeIndicator />
-              <DifficultyIndicator />
-            </div>
-        </div>
-           {/* <div id="statusButtons">
-           </div> */}
-       </div> 
+        </div> 
       </React.Fragment>
     )
   }

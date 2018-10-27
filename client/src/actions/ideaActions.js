@@ -3,15 +3,17 @@ import { ADD_LIKED_IDEA_TO_USER,
   ADD_USER_TO_IDEA_LIKES,
   CREATE_IDEA,
   ADD_USER_TO_IDEA_DISLIKES,
-  ADD_CREATED_IDEA_TO_USER
+  ADD_CREATED_IDEA_TO_USER,
+  SAVE_IDEAS,
+  NO_ITEMS_FOUND, 
+  SET_CURRENT_IDEA
 } from 'reducers/types'
 
-
-export const updateIdeaIndicator = (userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
+export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
   console.log('in ideaActions -> updateIdeaData(userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName)')
   if(userPostUrl != '' && userPostUrl != null){
     console.log('sending post: ' + userPostUrl)
-    var postObject = {userID: userID, ideaID: ideaID}
+    var postObject = {userID: userID, idea: idea}
     axios.post(userPostUrl, postObject)
     .then(res =>
       {
@@ -26,19 +28,44 @@ export const updateIdeaIndicator = (userID,ideaID,userPostUrl,addToUserReduxType
 
   if(ideaPostUrl != null && ideaPostUrl != ''){
     console.log('sending post: ' + ideaPostUrl);
-    var ideaPostObject = {userID: userID, ideaID: ideaID}
+    var ideaPostObject = {userID: userID, idea: idea}
     axios.post(ideaPostUrl,ideaPostObject)
     .then(res =>
       {
         console.log(`sent post to: ` + ideaPostUrl);
         dispatch({
           type: addToIdeaReduxTypeName,
-          payload: ideaID
+          payload: idea._id.$oid
         })
       }
     );
   }
 }
+
+export const searchItems = (place,time,numOfPeople) => dispatch => {
+  console.log('using thunk in search items');
+  axios
+  .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
+  .then(res =>{
+    if(res.data.length > 0){
+      console.log('got ideas from db');
+      dispatch({
+        type: SAVE_IDEAS,
+        payload: res.data
+      });
+      dispatch({
+        type: SET_CURRENT_IDEA,
+        payload: res.data[0]
+      })
+    }else{
+      console.log('got 0 items from db');
+      dispatch({
+        type: NO_ITEMS_FOUND
+      })
+    }
+  }
+  );
+};
 
 export const addIdeaToDB = (idea,userID) => dispatch => {
   console.log('adding item to mongo: ' + idea.title);
@@ -47,6 +74,8 @@ export const addIdeaToDB = (idea,userID) => dispatch => {
 
   axios.post('/api/items/createIdea', {idea,userID}).then(res =>
     {
+      console.log('added item to mongo: ' + idea.title);
+
       dispatch({
         type: CREATE_IDEA,
         payload: res.data

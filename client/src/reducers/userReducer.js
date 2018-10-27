@@ -23,13 +23,13 @@ const initialState = {
     loggedInUserID: "",
     loggedInUserFirstName: "",
     loggedInUserLastName: "",
-    // hardIdeas: [],
-    // easyIdeas: [],
-    // longIdeas:[],
-    // shortIdeas: [],
+    hardIdeas: [],
+    easyIdeas: [],
+    longIdeas:[],
+    shortIdeas: [],
     likedIdeas: [], //copy here the liked ideas - its ok because the user liked them as they are
     // likedIdeasData: [],
-    // dislikedIdeas: [],
+    dislikedIdeas: [],
     createdIdeas: [], //copy here created ideas - on edit, update the user and the item itself.
     // createdIdeasData: [],
     doneIdeas: [],

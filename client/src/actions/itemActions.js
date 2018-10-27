@@ -29,30 +29,30 @@ import { connect } from 'react-redux';
 //   );
 // };
 
-export const searchItems = (place,time,numOfPeople) => dispatch => {
-  console.log('using thunk in search items');
-  axios
-  .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
-  .then(res =>{
-    if(res.data.length > 0){
-      console.log('got ideas from db');
-      dispatch({
-        type: SAVE_IDEAS,
-        payload: res.data
-      });
-      dispatch({
-        type: SET_CURRENT_IDEA,
-        payload: res.data[0]
-      })
-    }else{
-      console.log('got 0 items from db');
-      dispatch({
-        type: NO_ITEMS_FOUND
-      })
-    }
-  }
-  );
-};
+// export const searchItems = (place,time,numOfPeople) => dispatch => {
+//   console.log('using thunk in search items');
+//   axios
+//   .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
+//   .then(res =>{
+//     if(res.data.length > 0){
+//       console.log('got ideas from db');
+//       dispatch({
+//         type: SAVE_IDEAS,
+//         payload: res.data
+//       });
+//       dispatch({
+//         type: SET_CURRENT_IDEA,
+//         payload: res.data[0]
+//       })
+//     }else{
+//       console.log('got 0 items from db');
+//       dispatch({
+//         type: NO_ITEMS_FOUND
+//       })
+//     }
+//   }
+//   );
+// };
 
 // export const deleteItem = id => dispatch => {
 //   axios.delete(`/api/items/${id}`).then(res =>

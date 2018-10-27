@@ -7,3 +7,11 @@
     vertical-align: middle;
     margin-left: 15px;
 }
+
+#searchButton :hover{
+    background-color: #326a90;
+}
+
+#searchButton :active{
+    background-color: #516f83;
+}
