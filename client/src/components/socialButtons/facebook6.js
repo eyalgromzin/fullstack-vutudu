@@ -7,6 +7,13 @@ import { createUserIfNotExists } from 'actions/userActions'
 import { bindActionCreators } from 'redux';
 import store from 'store'
 
+import {
+  SET_USER_LIKED_IDEAS,
+  SET_USER_CREATED_IDEAS
+} from 'reducers/types' 
+import { updateUserIdeas } from 'actions/userActions'
+
+
 class facebook6 extends Component {
   responseFacebook = (response) => {
     if (response.accessToken) {
@@ -23,9 +30,16 @@ class facebook6 extends Component {
       }
 
       this.props.createUserIfNotExists1(user);
+
+      this.updateUserIdeas();
     } else {
       console.log('User cancelled login or did not fully authorize.');
     }
+  }
+
+  updateUserIdeas = () => {
+    this.props.updateUserIdeas(this.props.userID, 'Liked', SET_USER_LIKED_IDEAS);
+    this.props.updateUserIdeas(this.props.userID, 'Created', SET_USER_CREATED_IDEAS);
   }
 
   componentClicked = () => {
@@ -49,7 +63,8 @@ class facebook6 extends Component {
 
 function mapDispatchToProps(dispatch) {
   return({
-    createUserIfNotExists1: bindActionCreators (createUserIfNotExists, dispatch)
+    createUserIfNotExists1: bindActionCreators (createUserIfNotExists, dispatch),
+    updateUserIdeas: bindActionCreators (updateUserIdeas, dispatch)
   })
 }
 
@@ -59,4 +74,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(facebook6); //the dispatch doesnt work because of it
+export default connect(mapStateToProps,mapDispatchToProps)(facebook6); 

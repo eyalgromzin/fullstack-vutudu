@@ -43,7 +43,7 @@ function mapStateToProps(state) {
     addedLong: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedLong,
     initialMinTime: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].minTime,
     initialMaxTime: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].maxTime,
-    userID: state.userReducer.loggedInUserID,
+    userID: state.userPageReducer.loggedInUserID,
     ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id
   };
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import EditIdeaCard from 'components/ideaCard/editIdeaCard'
-import SaveIdeaButton from 'components/ideaCard/saveIdeaButton';
+import UserSaveIdeaButton from 'components/ideaCard/saveIdeaButton';
 import { connect } from 'react-redux';
 
 class EditCardInUser extends Component {
@@ -8,7 +8,7 @@ class EditCardInUser extends Component {
     return (
       <div>
         <EditIdeaCard existingTitle={this.props.title} existingContent={this.props.content} /> 
-        <SaveIdeaButton />
+        <UserSaveIdeaButton />
       </div>
     )
   }
@@ -16,9 +16,9 @@ class EditCardInUser extends Component {
 
 function mapStateToProps(state) {
   return {
-    title: state.userReducer.currentPreviewedIdea.title,
-    content: state.userReducer.currentPreviewedIdea.content,
-    currentPreviewedIdea: state.userReducer.currentPreviewedIdea._id,
+    title: state.userPageReducer.currentPreviewedIdea.title,
+    content: state.userPageReducer.currentPreviewedIdea.content,
+    currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea._id,
   };
 }
 

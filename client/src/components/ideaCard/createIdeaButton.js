@@ -47,13 +47,13 @@ const mapDispatchToProps = dispatch => {
     return {
       title: state.editedIdeaReducer.title,
       content: state.editedIdeaReducer.content,
-      createdBy: state.userReducer.loggedInUserID,
+      createdBy: state.userPageReducer.loggedInUserID,
       place: state.editedIdeaReducer.place,
       minTime: state.editedIdeaReducer.minTime,
       maxTime: state.editedIdeaReducer.maxTime,
       minNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
       maxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
-      userID: state.userReducer.loggedInUserID,
+      userID: state.userPageReducer.loggedInUserID,
     };
   }
 

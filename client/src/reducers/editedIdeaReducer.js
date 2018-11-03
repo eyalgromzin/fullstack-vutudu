@@ -5,10 +5,13 @@ import { EDITED_IDEA_SET_MIN_PEOPLE, EDITED_IDEA_SET_MAX_PEOPLE } from 'reducers
 import { EDITED_IDEA_SET_TIME } from 'reducers/types'
 import { EDITED_IDEA_SET_TITLE } from 'reducers/types'
 import { EDITED_IDEA_SET_CONTENT } from 'reducers/types'
-import { EDITED_IDEA_SET_PLACE } from 'reducers/types'
+import { 
+  EDITED_IDEA_SET_PLACE,
+  EDITED_IDEA_SET_ID 
+} from 'reducers/types'
 
 const initialState = {
-    
+    id: '',   //always empty
     title: '',
     content: '',
     place: '',
@@ -16,7 +19,6 @@ const initialState = {
     maxTime: 5,
     minNumOfPeople: 2,
     maxNumOfPeople: 4,
-    // tags: []
 };
 
 function reducer(state = initialState, action) {
@@ -51,6 +53,11 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       content: action.payload,
+    };
+    case EDITED_IDEA_SET_ID:
+    return {
+      ...state,
+      id: action.payload,
     };
     default:
       return state;

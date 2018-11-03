@@ -10,8 +10,6 @@ import { EDITED_IDEA_SET_TITLE,
 } from 'reducers/types'
 import 'commonCss.css'
 import { addIdeaToDB } from 'actions/ideaActions';
-import PropTypes from 'prop-types';
-import {  Creators } from 'redux';
 import store from 'store'
 import { bindActionCreators } from 'redux';
 
@@ -65,7 +63,7 @@ function mapStateToProps(state) {
     maxTime: state.editedIdeaReducer.maxTime,
     minNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
     maxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
-    userID: state.userReducer.loggedInUserID,
+    userID: state.userPageReducer.loggedInUserID,
   };
 }
 

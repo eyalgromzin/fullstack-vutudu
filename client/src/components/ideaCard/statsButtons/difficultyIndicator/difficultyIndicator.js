@@ -51,7 +51,7 @@ function mapStateToProps(state) {
   return {
     hardCount: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedHard,
     easyCount: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedEasy,
-    userID: state.userReducer.loggedInUserID,
+    userID: state.userPageReducer.loggedInUserID,
     ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id
   };
 }

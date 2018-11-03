@@ -3,7 +3,7 @@ import {
   SAVE_IDEAS,
   NO_ITEMS_FOUND,
   UPDATE_CURRENT_IDEA,
-  USER_SET_LIKED_IDEAS_DATA,
+  USER_SET_LIKED_IDEAS,
   LOGIN_USER,
   SET_LOGGED_IN_USER, 
   SET_CURRENT_IDEA,
@@ -13,10 +13,11 @@ import {
   SET_USER_CURRENT_PREVIEWED_IDEAS,
   EDITED_IDEA_SET_CONTENT,
   UPDATE_PREVIEWED_IDEAS_IDEA,
-  RESET_USER_CURRENT_PREVIEWED_IDEAS,
-  UPDATE_CREATED_IDEAS_IDEA
+  UPDATE_CREATED_IDEAS_IDEA,
+  UPDATE_LIKED_IDEAS_IDEA
 } from 'reducers/types'
 import { EDITED_IDEA_SET_TITLE, SET_USER_CREATED_IDEAS } from '../reducers/types';
+import store from 'store'
 
 //works till the return
 export const createUserIfNotExists = user => dispatch => {
@@ -91,14 +92,21 @@ export const getLikedIdeas = userID => dispatch => {
     {
       console.log('got: api/Items/getUserLikedIdeas');
       dispatch({
-        type: USER_SET_LIKED_IDEAS_DATA,
+        type: USER_SET_LIKED_IDEAS,
         payload: res.data
       })
     }
   );
 }
 
-//e.g. 
+//run it on the beginning of the app load
+export const copyUserIdeas = (userID, ideaType, reduxActionName) => dispatch => {
+  store.dispatch({
+          type: reduxActionName,
+        });
+}
+
+//run it on the beginning of the app load
 export const updateUserIdeas = (userID, ideaType, reduxActionName) => dispatch => {
   console.log('sending post: api/Items/updateUserIdeas: userID: ' + userID + ', ideaType: ' + ideaType);
   axios.post(`/api/items/updateUserIdeas`,{userID,ideaType})
@@ -109,10 +117,6 @@ export const updateUserIdeas = (userID, ideaType, reduxActionName) => dispatch =
         type: reduxActionName,
         payload: res.data
       });
-      dispatch({
-        type: SET_USER_CURRENT_PREVIEWED_IDEAS,
-        payload: res.data
-      })
     }
   );
 }
@@ -124,22 +128,29 @@ export const updateIdea = (ideaID, title, content) => dispatch => {
   .then(res =>
     {
       console.log('got reply: /api/items/updateIdea');
-      dispatch({
-        type: EDITED_IDEA_SET_TITLE,
-        payload: res.data.title
-      });
-      dispatch({
-        type: EDITED_IDEA_SET_CONTENT,
-        payload: res.data.title
-      });
+      // dispatch({
+      //   type: EDITED_IDEA_SET_TITLE,
+      //   payload: res.data.title
+      // });
+      // dispatch({
+      //   type: EDITED_IDEA_SET_CONTENT,
+      //   payload: res.data.content
+      // });
+
       dispatch({
         type: UPDATE_PREVIEWED_IDEAS_IDEA,
         payload: res.data
       });
-      dispatch({
-        type: UPDATE_CREATED_IDEAS_IDEA,
-        payload: res.data
-      });
+
+      //fix this when the previewed is fixed
+      // dispatch({
+      //   type: UPDATE_CREATED_IDEAS_IDEA,
+      //   payload: res.data
+      // });
+      // dispatch({
+      //   type: UPDATE_LIKED_IDEAS_IDEA,
+      //   payload: res.data
+      // });
     }
   );
 }

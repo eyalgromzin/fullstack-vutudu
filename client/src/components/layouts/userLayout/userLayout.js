@@ -10,14 +10,8 @@ import EditIdeaCard from 'components/ideaCard/editIdeaCard'
 import EditCardInUser from 'components/ideaCard/editCardInUser';
 
 class userLayout extends Component {
-  constructor(){
-      super();
-  }
-
-  componentDidMount(){
-    var userID = this.props.userID;
-    this.props.getLikedIdeas({userID});
-  }
+  ideasList = () => 
+    this.setState({refreshShoeList: !this.state.refreshShoeList})
 
   render() {
     return (
@@ -29,7 +23,7 @@ class userLayout extends Component {
             <UserIdeasTypeDropDown />    
           </div>
           <div id="userIdeasList">
-            <UserIdeasList />
+            <UserIdeasList ideas={this.props.currentPreviewedIdeas} updateViewToggle={this.props.updateToggle} />
           </div>
         </div>
         <div id="userLayoutIdeaPreview">
@@ -48,10 +42,12 @@ class userLayout extends Component {
 
 function mapStateToProps(state) {
   return {
-    firstName: state.userReducer.loggedInUserFirstName,
-    lastName: state.userReducer.loggedInUserLastName,
-    userID: state.userReducer.loggedInUserID,
-    isIdeaEdited: state.userReducer.isIdeaEdited,
+    firstName: state.userPageReducer.loggedInUserFirstName,
+    lastName: state.userPageReducer.loggedInUserLastName,
+    userID: state.userPageReducer.loggedInUserID,
+    isIdeaEdited: state.userPageReducer.isIdeaEdited,
+    currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
+    updateToggle: state.userPageReducer.updateToggle,
   };
 }
 

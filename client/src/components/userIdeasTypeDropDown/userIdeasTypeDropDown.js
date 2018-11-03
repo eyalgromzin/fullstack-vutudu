@@ -3,11 +3,13 @@ import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import { connect } from 'react-redux';
 import { USER_PAGE_IDEAS_TYPE,
-  USER_SET_LIKED_IDEAS_DATA,
+  USER_SET_LIKED_IDEAS,
   SET_USER_CREATED_IDEAS,
   USER_SET_SELECTED_DROPDOWN_TYPE,
+  USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
+  USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
   } from "reducers/types";
-import { updateUserIdeas } from 'actions/userActions'
+import { copyUserIdeas, updateUserIdeas } from 'actions/userActions'
 import store from 'store'
 
 export const LIKED_IDEAS = "LIKED_IDEAS";
@@ -20,8 +22,8 @@ ideasTypeDictionary["Created"] = "createdBy";
 
 class UserIdeasTypeDropDown extends Component {
   options = [
-    { value: USER_SET_LIKED_IDEAS_DATA, label: 'Liked'},
-    { value: SET_USER_CREATED_IDEAS, label: 'Created'},
+    { value: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS, label: 'Liked'},
+    { value: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS, label: 'Created'},
   ]
 
   defaultOption = this.options[0]
@@ -33,9 +35,10 @@ class UserIdeasTypeDropDown extends Component {
     var userID = this.props.userID;
     var userIdeasType = ideasTypeDictionary[e.label];
     var reduxActionName = e.value;
-    this.props.updateUserIdeas(userID, userIdeasType, reduxActionName);
+
+    this.props.copyUserIdeas(userID, userIdeasType, reduxActionName);
+    
     store.dispatch({type: USER_SET_SELECTED_DROPDOWN_TYPE, payload: e.label })
-    //add ideas to 
   }
 
   render() {
@@ -49,9 +52,9 @@ class UserIdeasTypeDropDown extends Component {
 
 function mapStateToProps(state) {
   return {
-    userID: state.userReducer.loggedInUserID,
+    userID: state.userPageReducer.loggedInUserID,
   };
 }
 
 
-export default connect(mapStateToProps, {updateUserIdeas})(UserIdeasTypeDropDown)
+export default connect(mapStateToProps, {updateUserIdeas, copyUserIdeas})(UserIdeasTypeDropDown)

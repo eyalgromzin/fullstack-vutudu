@@ -232,12 +232,17 @@ router.post('/updateIdea/', (req, res) => {
   console.log("content: " + req.body.content);
   Item.findOneAndUpdate({ _id: req.body.ideaID }, {$set: {title: req.body.title, content: req.body.content}}, {new: true})
   .then(
-    items => res.json(items)
+    
+    items => {
+      console.log("updated idea: " + JSON.stringify(items));
+      return res.json(items);
+    }
+    
   );
-  console.log("updated idea: " + req.body.ideaID);
-});
+  // console.log("updated idea: " + req.body.ideaID);
+  });
 
-// @route   POST api/user/findLiked/
+// @route   POST /api/items/updateUserIdeas
 // @desc    search for anything
 // @access  Public
 //

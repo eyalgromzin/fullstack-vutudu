@@ -48,7 +48,7 @@ function mapStateToProps(state) {
   return {
     liked: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].liked,
     disliked: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].disliked,
-    userID: state.userReducer.loggedInUserID,
+    userID: state.userPageReducer.loggedInUserID,
     ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id,
     idea: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex],
   };

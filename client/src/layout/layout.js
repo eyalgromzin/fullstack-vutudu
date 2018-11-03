@@ -7,7 +7,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { connect } from 'react-redux';
 
-import store from '../store'
+import store from 'store'
 import TopBar from '../components/topBar/topBar'
 import SearchBar from '../components/searchBar/searchBar'
 import IdeaCard from '../components/ideaCard/ideaCard'
@@ -20,9 +20,17 @@ import createLayout from '../components/createCopmonent/createLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userLayout from '../components/layouts/userLayout/userLayout';
 import SideBar from 'components/sideBar'
+import { updateUserIdeas } from '../actions/userActions';
+
+import {
+  SET_USER_LIKED_IDEAS,
+  SET_USER_CREATED_IDEAS
+} from 'reducers/types' 
 
 export const showIdeaPage = 'SHOW_IDEAS';
 export const createIdeaPage = 'CREATE_IDEA';
+
+ 
 
 
 
@@ -36,6 +44,15 @@ class Layout extends Component {
       currentPage: showIdeaPage,
       place: ''
     }
+  }
+
+  // updateUserIdeas = () => {
+    
+  // }
+
+  componentDidMount() {
+    this.props.updateUserIdeas(this.props.userID, 'Liked', SET_USER_LIKED_IDEAS);
+    this.props.updateUserIdeas(this.props.userID, 'Created', SET_USER_CREATED_IDEAS);
   }
   
   render() {
@@ -60,8 +77,10 @@ class Layout extends Component {
 function mapStateToProps(state) {
   return {
     currentPage: state.commonReducer.currentPage,
-    loggedIn: state.commonReducer.loggedIn
+    loggedIn: state.commonReducer.loggedIn,
+    userID: state.userPageReducer.loggedInUserID,
+
   };
 }
 
-export default connect(mapStateToProps)(Layout);
+export default connect(mapStateToProps, {updateUserIdeas})(Layout);

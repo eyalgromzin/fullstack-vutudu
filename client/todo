@@ -1,3 +1,17 @@
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
 functionality:
 - save liked and created ideas fully to user
 - load them in user page and not from the db

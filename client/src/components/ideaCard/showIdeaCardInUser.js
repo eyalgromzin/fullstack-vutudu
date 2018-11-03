@@ -56,10 +56,10 @@ class ShowIdeaCardInUser extends Component {
 
 function mapStateToProps(state) {
   return {
-    title: state.userReducer.currentPreviewedIdea.title,
-    content: state.userReducer.currentPreviewedIdea.content,
-    currentPreviewedIdeaType: state.userReducer.selectedDropDownType,
-    currentPreviewedIdea: state.userReducer.currentPreviewedIdea,
+    title: state.userPageReducer.currentPreviewedIdea.title,
+    content: state.userPageReducer.currentPreviewedIdea.content,
+    currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
+    currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
   };
 }
 

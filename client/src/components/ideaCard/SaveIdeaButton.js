@@ -1,21 +1,40 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 import './ideaCard.css'
-import {SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT} from 'reducers/types'
+import {
+  SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
+  CHANGE_UPDATE_TOGGLE,
+  EDITED_IDEA_SET_ID ,
+  EDITED_IDEA_SET_TITLE,
+  EDITED_IDEA_SET_CONTENT
+} from 'reducers/types'
 import { updateIdea } from 'actions/userActions'
 import store from 'store';
-import { updateUserIdeas } from 'actions/userActions'
 
+class UserSaveIdeaButton extends Component {
+  
+constructor(props){
+  super();
 
-class SaveIdeaButton extends Component {
+  const { dispatch } = props
+  bindActionCreators(updateIdea, dispatch)
+}
+
   saveIdea = () => {
-    store.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});
-    this.props.updateIdea(this.props.currentPreviewedIdea._id,
+    //to update the list
+
+    this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});
+    this.props.dispatch({type: EDITED_IDEA_SET_ID, payload: this.props.currentPreviewedIdea._id});
+    this.props.dispatch({type: EDITED_IDEA_SET_TITLE, payload: this.props.currentPreviewedIdea.title});
+    this.props.dispatch({type: EDITED_IDEA_SET_CONTENT, payload: this.props.currentPreviewedIdea.content});
+
+    store.dispatch({type: CHANGE_UPDATE_TOGGLE});
+
+    this.props.updateIdea1(
+      this.props.currentPreviewedIdea._id,
       this.props.newTitle,
       this.props.newContent);
-    // store.dispatch({type: UPDATE_CREATED_IDEAS_IDEA, payload: false});
-    
-    // this.props.updateUserIdeas(this.props.userID,);
   }
 
   render() {
@@ -35,15 +54,24 @@ class SaveIdeaButton extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return({
+    updateIdea1: bindActionCreators (updateIdea, dispatch),
+    dispatch
+  })
+}
+
 function mapStateToProps(state) {
   return {
-    // currentPreviewedIdeaType: state.userReducer.selectedDropDownType,
+    // currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
     newTitle: state.editedIdeaReducer.title,
     newContent: state.editedIdeaReducer.content,
-    currentPreviewedIdea: state.userReducer.currentPreviewedIdea,
-    isIdeaEdited: state.userReducer.isIdeaEdited,
-    userID: state.userReducer.loggedInUserID,
+    currentPreviewedIdea: state.userPageReducer.currentPreviewedIdeas
+                          .filter (idea => {return state.editedIdeaReducer.id == idea._id})[0],
+    isIdeaEdited: state.userPageReducer.isIdeaEdited,
+    userID: state.userPageReducer.loggedInUserID,
+    updateToggle: state.userPageReducer.updateToggle,
   };
 }
 
-export default connect(mapStateToProps, {updateIdea,updateUserIdeas} )(SaveIdeaButton)
+export default connect(mapStateToProps,mapDispatchToProps )(UserSaveIdeaButton) //updateUserIdeas
