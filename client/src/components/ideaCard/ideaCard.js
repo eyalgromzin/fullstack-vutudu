@@ -31,6 +31,7 @@ class IdeaCard extends Component {
         <IdeaPreviousNextButtons />
         <div id="ideaCardWithButtons">
           <div id="ideaCardWithShare" >
+            
             <div id="ideaCard"> 
               <div id="ideaTitle"> 
                 {this.props.title}
@@ -38,14 +39,11 @@ class IdeaCard extends Component {
               <div id="ideaContentText"> 
                 {this.props.content}
               </div>
-              {/* <div id="ideaMainContentBottomButtons"> 
-                <IdeaAttachmentsButton />
-                <IdeaPlaceButton /> 
-              </div> */}
             </div>
             <div id="shareContainer">
                 <ShareButton />
             </div>
+            
           </div>
           <div id="cardIndicationButtons">
               <div id="cardIndicators"> 
@@ -54,8 +52,6 @@ class IdeaCard extends Component {
                 <DifficultyIndicator />
               </div>
           </div>
-            {/* <div id="statusButtons">
-            </div> */}
         </div> 
       </React.Fragment>
     )
