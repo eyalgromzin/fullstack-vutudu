@@ -10,7 +10,6 @@ import IdeaPlaceButton from './cardButtons/placeButton/placeButton'
 import { connect } from 'react-redux';
 // import { Button } from 'react-bootstrap';
 import 'commonCss.css'
-import DoneButton from './doneButton'
 import ShareButton from 'components/ideaCard/cardButtons/shareButton'
 
 

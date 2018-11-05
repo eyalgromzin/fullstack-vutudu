@@ -10,7 +10,6 @@ import IdeaPlaceButton from './cardButtons/placeButton/placeButton'
 import { connect } from 'react-redux';
 // import { Button } from 'react-bootstrap';
 import 'commonCss.css'
-import DoneButton from './doneButton'
 import { SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT } from 'reducers/types'
 import EditIdeaButton from './editIdeaButton' 
 

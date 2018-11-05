@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import { addIdeaToDB } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import Notifications, {notify} from 'react-notify-toast';
 
 class createIdeaButton extends Component {
+  
+
     handleCreateIdeaClick = (event) => {
         this.error = "";
         this.isHasError = false;
@@ -23,15 +26,21 @@ class createIdeaButton extends Component {
             maxNumOfPeople: this.props.maxNumOfPeople,
           };
     
+          let myColor = { background: '#0E1717', text: "#FFFFFF" };
+          notify.show('Idea Created!', "success", 1000, myColor);
+
           // Add item via createItem action
           this.props.addIdeaToDB(newItem, this.props.userID);
         }
       }
 
+    
+
   render() {
     return (
         <div class="alignRight">
-            <div id="createIdeaButton" onClick={this.handleCreateIdeaClick}> create </div>
+          <div id="createIdeaButton" onClick={this.handleCreateIdeaClick}> create </div>
+          <Notifications options={{zIndex: 200, top: '0px' , wrapperId:'toastWrapperID', id:'toastID' ,animationDuration: 1000 }} />
         </div>
     )
   }
