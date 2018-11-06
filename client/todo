@@ -13,6 +13,7 @@ home:
         - on create, must fill all 
         - on search, ???
     - on user page load first time, show liked ideas. 
+    - without login, enable search, but for indicators / create - require login
 
 bugs:
     - search fails sometimes - need to understand when
