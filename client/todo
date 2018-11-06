@@ -4,7 +4,6 @@ functionality:
 - make create idea page pretty  
     - glow
     - size same as search
-- if finds nothing, indicate it to the user.
 - clear the create idea page if idea created 
 - make the side icons look the same. - work
 - make user page pretty like the rest of the site - work
@@ -17,9 +16,7 @@ functionality:
 - add validations and alerts 
     - on create, must fill all 
     - on search, ???
-
-NTH: 
-- create your own list,  - not mandatory
+- on user page load first time, show liked ideas.
 
 bugs:
 - search fails sometimes - need to understand when
