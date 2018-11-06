@@ -24,31 +24,33 @@ class ShowIdeaCardInUser extends Component {
 
   render() {
     return (
-        <div id="ideaCardWithButtons">
-          <div id="ideaCard"> 
-            <div class="ideaTitle">
-              {this.props.title}
-            </div>
-            <div id="ideaContentText"> 
-              {this.props.content}
-            </div>
-            <div id="ideaMainContentBottomButtons"> 
-              {/* <IdeaAttachmentsButton /> */}
-              {/* <IdeaPlaceButton /> */}
-            </div>
-          </div>
-          <div id="cardIndicationButtons">
-              <div id="cardIndicators"> 
-                <LikeDislike enabled="false" />
-                <TimeIndicator enabled="false" />
-                <DifficultyIndicator enabled="false" />
+      <React.Fragment>
+        {this.props.currentPreviewedIdeas.length > 0 ? 
+          <div id="ideaCardWithButtonsInUser">
+            <div id="ideaCardInUser"> 
+              <div class="ideaTitle">
+                {this.props.title}
+              </div>
+              <div id="ideaContentText"> 
+                {this.props.content}
               </div>
             </div>
-          <EditIdeaButton />
-          
-          <div id="statusButtons">
-          </div>
-      </div>
+            <div id="cardIndicationButtons">
+                <div id="cardIndicators"> 
+                  <LikeDislike enabled="false" />
+                  <TimeIndicator enabled="false" />
+                  <DifficultyIndicator enabled="false" />
+                </div>
+              </div>
+            <EditIdeaButton />
+            
+            <div id="statusButtons">
+            </div>
+        </div>
+        :
+        ""
+        }
+      </React.Fragment>
     )
   }
 }
@@ -59,6 +61,7 @@ function mapStateToProps(state) {
     content: state.userPageReducer.currentPreviewedIdea.content,
     currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
+    currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
   };
 }
 

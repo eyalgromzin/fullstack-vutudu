@@ -3,7 +3,7 @@
     width: 20px;
 }
 
-#ideaTitle{
+.ideaTitle{
     font-family: cursive;
     color: black;
     font-size: 40px;
@@ -32,6 +32,16 @@
     max-height: 550px;
     display: table-cell;
     width: 9000%;   /* acts as 90.00% */
+    
+}
+
+#ideaCardInUser{
+    box-shadow: 0px 0px 20px 5px;
+    background-color: white;
+    min-height: 350px;
+    max-height: 550px;
+    width: 95%;   /* acts as 90.00% */
+    margin: auto;
     
 }
 

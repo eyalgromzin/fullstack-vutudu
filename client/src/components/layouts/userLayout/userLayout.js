@@ -17,23 +17,30 @@ class userLayout extends Component {
     return (
       <React.Fragment>
         {/* <span class="layoutTitle"> {this.props.firstName + " " + this.props.lastName} </span> */}
-
-        <div id="userLayoutIdeasSelectSideBar" class="userLayoutMainContent">
-          <div id="UserIdeasTypeDropDown">
-            <UserIdeasTypeDropDown />    
+        <div id="userLayout" >
+          <div id="userLayoutIdeasSelectSideBar" class="userLayoutMainContent">
+            <div id="UserIdeasTypeDropDown">
+              <UserIdeasTypeDropDown />    
+            </div>
+            {this.props.currentPreviewedIdeas.length > 0 ? 
+              <div id="userIdeasList">
+                <UserIdeasList ideas={this.props.currentPreviewedIdeas} updateViewToggle={this.props.updateToggle} />
+              </div>
+              :
+              "Empty"
+            }
           </div>
-          <div id="userIdeasList">
-            <UserIdeasList ideas={this.props.currentPreviewedIdeas} updateViewToggle={this.props.updateToggle} />
+          <div id="userIdeaPreviewSide" >
+            <div id="userLayoutIdeaPreview">
+              { this.props.isIdeaEdited? 
+                <EditCardInUser />
+                :
+                <ShowIdeaCardInUser />
+                
+              }
+              
+            </div>
           </div>
-        </div>
-        <div id="userLayoutIdeaPreview">
-          { this.props.isIdeaEdited? 
-            <EditCardInUser />
-            :
-            <ShowIdeaCardInUser />
-            
-          }
-          
         </div>
       </React.Fragment>
     ) 

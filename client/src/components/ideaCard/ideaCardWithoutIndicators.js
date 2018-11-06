@@ -8,7 +8,7 @@ class ideaCardWithoutIndicators extends Component {
             <div id="ideaData">
                 
             </div>
-            <div id="ideaTitle"> 
+            <div class="ideaTitle"> 
               {this.props.title}
             </div>
             <div id="ideaContentText"> 

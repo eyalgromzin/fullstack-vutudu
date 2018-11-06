@@ -30,9 +30,8 @@ class IdeaCard extends Component {
         <IdeaPreviousNextButtons />
         <div id="ideaCardWithButtons">
           <div id="ideaCardWithShare" >
-            
             <div id="ideaCard"> 
-              <div id="ideaTitle"> 
+              <div class="ideaTitle"> 
                 {this.props.title}
               </div>
               <div id="ideaContentText"> 

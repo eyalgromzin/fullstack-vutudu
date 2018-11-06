@@ -4,8 +4,9 @@ import ReactList from 'react-list';
 // import { connect } from 'react-redux';
 import store from 'store'
 import {SET_USER_CURRENT_PREVIEWED_IDEA, SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT} from 'reducers/types'
+import { connect } from 'react-redux';
 
-export default class UserIdeasList extends Component {
+class UserIdeasList extends Component {
   //this.props.ideas
 
   constructor(props){
@@ -41,16 +42,25 @@ export default class UserIdeasList extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{overflow: 'auto', height: 525}}>
-          <div class="listOutline">
-            <ReactList
-              itemRenderer={this.renderItem}
-              length={this.props.ideas == null? 0 : this.props.ideas.length}
-              type='uniform'
-            />
+        
+          <div style={{overflow: 'auto', height: 525}}>
+            <div class="listOutline">
+              <ReactList
+                itemRenderer={this.renderItem}
+                length={this.props.ideas == null? 0 : this.props.ideas.length}
+                type='uniform'
+              />
+            </div>
           </div>
-        </div>
       </React.Fragment>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
+  };
+}
+
+export default connect(mapStateToProps)(UserIdeasList); 

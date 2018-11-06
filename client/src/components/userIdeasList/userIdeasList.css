@@ -1,17 +1,17 @@
 .listOutline{
-    background-color: aquamarine;
-    border: 1px;
-    border-style: solid;
 }
 
 .listRow{
     font-weight: bolder;
-    border-bottom: 1px;
-    border-bottom-style: solid;
-    background-color: beige;
+    background-color: floralwhite;
+    margin-bottom: 5px;
 }
 
 .listRow:hover{
-    background-color: white;
+    background-color: antiquewhite;
     cursor: pointer;
+}
+
+#userIdeasList{
+    box-shadow: 0px 0px 20px 1px;
 }

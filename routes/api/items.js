@@ -115,14 +115,16 @@ router.post('/addedShortToIDea/', (req, res) => {
 // @access  Public
 router.get('/search/:place/:time/:numOfPeople', (req, res) => {   //
   Item.find({
-    place: req.params.place,
     $and:[
-      {minTime: {$lte: req.params.time}},
-      {maxTime: {$gte: req.params.time}}
-    ],
-    $and:[
-      {minNumOfPeople: {$lte: req.params.numOfPeople}},
-      {maxNumOfPeople: {$gte: req.params.numOfPeople}}
+      {place: req.params.place},
+      {$and:[
+        {minTime: {$lte: req.params.time}},
+        {maxTime: {$gte: req.params.time}}
+      ]},
+      {$and:[
+        {minNumOfPeople: {$lte: req.params.numOfPeople}},
+        {maxNumOfPeople: {$gte: req.params.numOfPeople}}
+      ]}
     ]
   })
   .then(items => res.json(items));
