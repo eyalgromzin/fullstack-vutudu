@@ -1,15 +1,20 @@
 #searchButton{
     padding: 7px;
-    height: 30px;
-    width: 30px;
-    background-color: #326A9E;
+    height: 35px;
+    width: 35px;
+    background-color:rgb(180, 170, 255);
     display: inline-block;
     vertical-align: middle;
-    margin-left: 15px;
-}
+    margin-left: 2%;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    border-style: solid;
+    box-shadow: rgb(136, 136, 119) 0px 0px 20px;
+    border-radius: 17px;
+}   
 
 #searchButton :hover{
-    background-color: #326a90;
+    background-color: #EAF;
 }
 
 #searchButton :active{

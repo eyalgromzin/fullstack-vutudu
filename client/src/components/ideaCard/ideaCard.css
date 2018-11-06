@@ -88,6 +88,10 @@
     vertical-align: middle;
 }
 
+#ideaCardWithShare{
+    margin-bottom: 15px;
+}
+
 #saveIdeaButton{
     width: 60px;
     height: 60px;

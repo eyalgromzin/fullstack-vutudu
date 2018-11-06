@@ -14,10 +14,10 @@ export default class SideBar extends Component {
                 <img id="searchIdeasButton" src={require("images/search_white.png")} className="leftBarIcon verticalMiddleAlign" 
                   onClick={() => { history.push('/search') }}
                 />
-                <img id="newIdeaButton" src={require("images/write_white.png")} className="leftBarIcon verticalMiddleAlign"
+                <img id="newIdeaButton" src={require("images/writeWhite.png")} className="leftBarIcon verticalMiddleAlign"
                   onClick={() => { history.push('/create') }}
                 />
-                <img id="userButton" src={require("images/user_white.png")} className="leftBarIcon verticalMiddleAlign alignMiddle"
+                <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle"
                   onClick={() => { history.push('/user') }}
                 />
                 

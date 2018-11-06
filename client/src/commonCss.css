@@ -22,14 +22,14 @@
 #mainLogo{
     display: inline-block;
     color: white;
-    font-size: 85px;
+    font-size: 75px;
     font-family: fantasy;
     font-weight: bold;
 
     padding-top: 100px;
 
     transform: rotate(90deg);
-    transform-origin: left 95%;
+    transform-origin: left 96%;
 
 }
 
