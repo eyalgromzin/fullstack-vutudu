@@ -11,6 +11,14 @@
     padding-right: 10px;
 }
 
+#createIdeaCardContent{
+    padding: 10px;
+}
+
+#createIdeaContainer{
+    box-shadow: 0px 0px 20px 5px;
+}
+
 #ideaMainContent{
     background-color: thistle;
     height: 500px;

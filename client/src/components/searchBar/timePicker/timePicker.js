@@ -15,6 +15,7 @@ export default class TimePicker extends Component {
     return (
       <React.Fragment>
         <select id="timeChooser" onChange={this.handleOnChange} className={this.props.cssClass}>
+          <option value="999999" class="timeChooserOption">Time</option>
           <option value="5" class="timeChooserOption">5m</option>
           <option value="10" class="timeChooserOption">10m</option>
           <option value="15" class="timeChooserOption">15m</option>

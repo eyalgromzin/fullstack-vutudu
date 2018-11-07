@@ -29,7 +29,7 @@ class SearchBar extends Component {
     return (
       <div id="searchBar">
         {/* <span class="topBarName" > SEARCH: </span> */}
-        <PlaceSelector onChangeEvent={this.placeOnChangeEvent} cssClass="searchBarTextSquare" />
+        <PlaceSelector tagID="searchBarPlaceSelector" onChangeEvent={this.placeOnChangeEvent} cssClass="searchBarTextSquare" />
         <div class="middlePlaceHolder" />
         <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="searchBarDropDownSquare" />
         <div class="middlePlaceHolder" />

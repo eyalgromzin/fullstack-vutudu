@@ -12,6 +12,7 @@ import 'commonCss.css'
 import { addIdeaToDB } from 'actions/ideaActions';
 import store from 'store'
 import { bindActionCreators } from 'redux';
+import './ideaCard.css'
 
 class EditIdeaCard extends Component {
   constructor(props){
@@ -41,8 +42,8 @@ class EditIdeaCard extends Component {
     return (
       <React.Fragment>
         <div id="createIdeaContainer">
-          <div id="ideaCard"> 
-            <div id="ideaCardContent">
+          <div id="createideaCard"> 
+            <div id="createIdeaCardContent">
               <input type="text" id="newIdeaTitle" value={this.props.title == null? "" : this.props.title } placeholder="<title>" onChange={this.handleOnTitleChange}/>
               <textarea type="text" id="newIdeaContent" value={this.props.content == null ? "" : this.props.content } placeholder="<content>" onChange={this.handleOnContentChange}/>
             </div>

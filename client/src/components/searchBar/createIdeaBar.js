@@ -30,9 +30,9 @@ class CreateIdeaBar extends Component {
     return (
       <div id="searchBar">
         <span class="topBarName" > CREATE: </span>
-        <PlaceSelector onChangeEvent={this.placeOnChangeEvent} />
-        <TimePicker onChangeEvent={this.timeOnChangeEvent}/>
-        <NumOfPeopleCreator />        
+        <PlaceSelector tagID="createBarPlaceSelector" cssClass="createBarTextBox" onChangeEvent={this.placeOnChangeEvent} />
+        <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" />
+        <NumOfPeopleCreator cssClass="createBarDropDown" />        
       </div>
     )
   }

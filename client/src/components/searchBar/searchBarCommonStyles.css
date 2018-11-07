@@ -10,8 +10,24 @@
     display: inline-block;
 }
 
-.searchBarChooserData{
-    margin: 10px;
+.createBarTextBox{
+    height: 35px;
+    width: 200px;
+    margin-right: 20px;
+}
+
+#createBarNumOfPeopleCreator{
+    margin-left: 10px;
+}
+
+.createBarDropDown{
+    height: 40px;
+    width: 100px;
+}
+
+.numOfPeopleCreatorDropDown{
+    height: 40px;
+    width: 60px;
 }
 
  .searchBarChooserContainer{
@@ -21,7 +37,7 @@
 } 
 
 .middleSearchBarBox{
-    box-shadow: 10px 10px 10px 10px;
+    margin-left: 10px;
 }
 
 #searchBar{
