@@ -4,7 +4,6 @@ work:
         - size same as search
 home:
     - show stats in user page - home
-    - clear the create idea page if idea created 
     - support #
     - check # works in search
     - create lists: hardest, most liked, lowest time, and put them in the main page. - at the bottom of the search page - home

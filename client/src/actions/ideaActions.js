@@ -5,6 +5,7 @@ import { ADD_LIKED_IDEA_TO_USER,
   ADD_USER_TO_IDEA_DISLIKES,
   ADD_CREATED_IDEA_TO_USER,
   SAVE_IDEAS,
+  EDITED_IDEA_CLEAR,
   NO_ITEMS_FOUND, 
   SET_CURRENT_IDEA
 } from 'reducers/types'
@@ -93,6 +94,10 @@ export const addIdeaToDB = (idea,userID) => dispatch => {
             type: ADD_CREATED_IDEA_TO_USER,
             payload: ideaID
           });
+
+          dispatch({
+            type: EDITED_IDEA_CLEAR,
+          })
 
           console.log('added ideaID to user ..created.. array');
         }

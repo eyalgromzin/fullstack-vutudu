@@ -2,9 +2,12 @@ import React from 'react';
 import { combineReducers } from "redux";
 import update from "react-addons-update";
 import { EDITED_IDEA_SET_MIN_PEOPLE, EDITED_IDEA_SET_MAX_PEOPLE } from 'reducers/types'
-import { EDITED_IDEA_SET_TIME } from 'reducers/types'
-import { EDITED_IDEA_SET_TITLE } from 'reducers/types'
-import { EDITED_IDEA_SET_CONTENT } from 'reducers/types'
+import { 
+  EDITED_IDEA_SET_TIME,
+  EDITED_IDEA_SET_TITLE,
+  EDITED_IDEA_SET_CONTENT ,
+  EDITED_IDEA_CLEAR
+} from 'reducers/types'
 import { 
   EDITED_IDEA_SET_PLACE,
   EDITED_IDEA_SET_ID 
@@ -59,6 +62,12 @@ function reducer(state = initialState, action) {
       ...state,
       id: action.payload,
     };
+    case EDITED_IDEA_CLEAR:
+      return {
+        ...state,
+        title: "",
+        content: ""
+      };
     default:
       return state;
   }
