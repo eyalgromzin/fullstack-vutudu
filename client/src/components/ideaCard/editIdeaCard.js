@@ -13,6 +13,7 @@ import { addIdeaToDB } from 'actions/ideaActions';
 import store from 'store'
 import { bindActionCreators } from 'redux';
 import './ideaCard.css'
+import {getTagsFromText} from './methods'
 
 class EditIdeaCard extends Component {
   constructor(props){
@@ -34,8 +35,11 @@ class EditIdeaCard extends Component {
   }
 
   handleOnContentChange = (e) => {
-    // this.state.existingContent = e.target.value;
-      store.dispatch({type: EDITED_IDEA_SET_CONTENT, payload: e.target.value});
+    
+    store.dispatch({type: EDITED_IDEA_SET_CONTENT, payload: e.target.value});
+    
+    var tags = getTagsFromText(e.target.value);
+    store.dispatch({type: EDITED_IDEA_SET_TAGS, payload: tags});
   }
 
   render() {
@@ -74,4 +78,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(EditIdeaCard);  // ,mergeProps    //,mapDispatchToProps
+export default connect(mapStateToProps,mapDispatchToProps)(EditIdeaCard);  

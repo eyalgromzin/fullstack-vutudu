@@ -24,6 +24,7 @@ class createIdeaButton extends Component {
             maxTime: this.props.maxTime,
             minNumOfPeople: this.props.minNumOfPeople,
             maxNumOfPeople: this.props.maxNumOfPeople,
+            tags: this.props.tags,
           };
     
           let myColor = { background: '#0E1717', text: "#FFFFFF" };
@@ -31,6 +32,8 @@ class createIdeaButton extends Component {
 
           // Add item via createItem action
           this.props.addIdeaToDB(newItem, this.props.userID);
+
+          this.props.updateTags();
         }
       }
 
@@ -63,7 +66,8 @@ const mapDispatchToProps = dispatch => {
       minNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
       maxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
       userID: state.userPageReducer.loggedInUserID,
+      tags: state.editedIdeaReducer.tags,
     };
   }
 
-export default connect(mapStateToProps,mapDispatchToProps)(createIdeaButton);  // ,mergeProps    //,mapDispatchToProps
+export default connect(mapStateToProps,mapDispatchToProps)(createIdeaButton);

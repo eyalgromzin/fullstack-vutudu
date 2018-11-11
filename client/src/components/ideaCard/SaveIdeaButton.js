@@ -34,7 +34,8 @@ constructor(props){
     this.props.updateIdea1(
       this.props.currentPreviewedIdea._id,
       this.props.newTitle,
-      this.props.newContent);
+      this.props.newContent,
+      this.props.newTags);
   }
 
   render() {
@@ -66,11 +67,13 @@ function mapStateToProps(state) {
     // currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
     newTitle: state.editedIdeaReducer.title,
     newContent: state.editedIdeaReducer.content,
+    newTags: state.editedIdeaReducer.tags,
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdeas
                           .filter (idea => {return state.editedIdeaReducer.id == idea._id})[0],
     isIdeaEdited: state.userPageReducer.isIdeaEdited,
     userID: state.userPageReducer.loggedInUserID,
     updateToggle: state.userPageReducer.updateToggle,
+
   };
 }
 

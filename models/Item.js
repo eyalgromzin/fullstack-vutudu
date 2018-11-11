@@ -17,6 +17,11 @@ const ItemSchema = new Schema({
     required: true,
     default: 'content',
   },
+  tags: {
+    type: [String],
+    required: false,
+    default: [],
+  },
   createdBy: {
     type: String,
     required: true,

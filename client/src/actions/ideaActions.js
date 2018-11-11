@@ -68,6 +68,29 @@ export const searchItems = (place,time,numOfPeople) => dispatch => {
   );
 };
 
+export const updateTags = (tags) => dispatch => {
+  array.forEach(tag => {
+    //update the 1 letter 
+    var firstLetters = tag.substring(0, 1);
+    addTagToLettersBucket(firstLetters, tag);
+    //updating 2 letters
+    firstLetters = tag.substring(0, 2);
+    addTagToLettersBucket(firstLetters, tag);
+
+    //updating 3 letters
+    firstLetters = tag.substring(0, 3);
+    addTagToLettersBucket(firstLetters, tag);
+  });
+}
+
+const addTagToLettersBucket = (firstLetters, tag) => {
+  axios.post('/api/tags/update_bucket', {firstLetters,tag})
+  .then(res => {
+    console.log('tags added to their bucket');
+    
+  })
+};
+
 export const addIdeaToDB = (idea,userID) => dispatch => {
   console.log('adding item to mongo: ' + idea.title);
   var ideaCreated = false;
@@ -104,9 +127,5 @@ export const addIdeaToDB = (idea,userID) => dispatch => {
       );
     }
   )
-
-  
-
-  
 };
 

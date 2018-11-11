@@ -3,20 +3,35 @@ work:
         - glow
         - size same as search
 home:
-    - show stats in user page - home
-    - support #
+    - support #, more - 
+        - on first letter typing, get all first letter hashtags
+        - on 2nd letter typing, get all 2 letters hashtags
+        - when user creates text, each word that starts with hashtag will be save to tags 
+            field in the idea.
+        - on search, will search the idea has tags also.
+        - tags - not mandatory.
+        - update tags on edit 
+        - update tag on create
     - check # works in search
-    - create lists: hardest, most liked, lowest time, and put them in the main page. - at the bottom of the search page - home
-    - change the like idea to 1 post request instead of 2 - home.
+    - add support for links.
+        - make each link as an attachment.
+        - create attachments button
+        - create attachments section
+        - on link click, if its not youtube, open is as an iframe.
+        - youtube links open as a youtube player.
+    - create lists,  and put them in the main page. - at the bottom of the search page - home 
+        - hardest 
+        - most liked
+        - shortest time.
+    - show stats in user page - home - 
+        - update user idea on idea indicator click.
+    - on user page load first time, show liked ideas.
     - add validations and alerts 
         - on create, must fill all 
         - on search, ???
-    - on user page load first time, show liked ideas. 
     - without login, enable search, but for indicators / create - require login
+    - change the like idea to 1 post request instead of 2 - home.
 
-bugs:
-    - search fails sometimes - need to understand when
-    - user page, empty the list first on changing type
 
 
 

@@ -57,6 +57,11 @@ function reducer(state = initialState, action) {
       ...state,
       content: action.payload,
     };
+    case EDITED_IDEA_SET_TAGS:
+    return {
+      ...state,
+      content: action.payload,
+    };
     case EDITED_IDEA_SET_ID:
     return {
       ...state,

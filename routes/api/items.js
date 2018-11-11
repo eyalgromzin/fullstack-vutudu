@@ -27,7 +27,8 @@ router.post('/createIdea/', (req, res) => {
     minTime: req.body.idea.minTime,
     maxTime: req.body.idea.maxTime,
     minNumOfPeople: req.body.idea.minNumOfPeople,
-    maxNumOfPeople: req.body.idea.maxNumOfPeople
+    maxNumOfPeople: req.body.idea.maxNumOfPeople,
+    tags: req.body.idea.tags,
   });
 
   newItem.save().then(item=> res.json(item));
@@ -37,7 +38,7 @@ router.post('/createIdea/', (req, res) => {
 // @desc    search for anything
 // @access  Public
 router.post('/ideaLiked/', (req, res) => {   
-  console.log("updating idea " + req.body.idea._id.$oid);
+  console.log("updating idea " + req.bod-.idea._id.$oid);
 
   var ideaID = req.body.idea._id.$oid;
 
@@ -232,7 +233,9 @@ router.post('/updateIdea/', (req, res) => {
   console.log("_id: " + req.body._id);
   console.log("title: " + req.body.title);
   console.log("content: " + req.body.content);
-  Item.findOneAndUpdate({ _id: req.body.ideaID }, {$set: {title: req.body.title, content: req.body.content}}, {new: true})
+  console.log("tags: " + req.body.tags);
+  Item.findOneAndUpdate({ _id: req.body.ideaID }, 
+    {$set: {title: req.body.title, content: req.body.content, tags: req.body.tags}}, {new: true})
   .then(
     
     items => {
@@ -263,22 +266,5 @@ router.post('/updateUserIdeas/', (req, res) => {
   );
   console.log("got User Liked Ideas");
 });
-
-
-/////////////////////// USER API //////////////////////
-
-
-
-
-// // @route   GET api/search/:place/:time/:numOfPeople/:more
-// // @desc    search for anything
-// // @access  Public
-// router.post('/user/liked/:userID/:ideaID', (req, res) => {   
-//   var query = {'id':req.params.userID};
-//   // req.newData.liked = 
-//   Item.findOneAndUpdate(query,req.newData,{upsert:true},function(err,doc){
-//   })
-//   .then(items => res.json(items));
-// });
 
 module.exports = router;
