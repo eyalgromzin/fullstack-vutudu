@@ -31,7 +31,7 @@ class NumOfPeopleCreator extends Component {
               <option value="7" class="timeChooserOption" >7</option>
               <option value="8000" class="timeChooserOption" >7+</option>
             </select>
-            <span> - </span>
+            <span class="createBarMiddlePlaceHolder"> - </span>
             <select id="maxNumOfPeopleChooser" class="numOfPeopleCreatorDropDown" onChange={this.maxNumOfPeopleChange}>
               <option value="9999999" class="timeChooserOption">Max # of ppl</option>
               <option value="0" class="timeChooserOption">0</option>

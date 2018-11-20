@@ -69,7 +69,7 @@ export const searchItems = (place,time,numOfPeople) => dispatch => {
 };
 
 export const updateTags = (tags) => dispatch => {
-  array.forEach(tag => {
+  tags.forEach(tag => {
     //update the 1 letter 
     var firstLetters = tag.substring(0, 1);
     addTagToLettersBucket(firstLetters, tag);

@@ -14,20 +14,25 @@
     height: 35px;
     width: 200px;
     margin-right: 20px;
+    box-shadow: 0px 0px 20px 2px;
 }
 
 #createBarNumOfPeopleCreator{
     margin-left: 10px;
+    box-shadow: 0px 0px 20px 2px;
 }
 
 .createBarDropDown{
     height: 40px;
     width: 100px;
+    box-shadow: 0px 0px 20px 2px;
 }
 
 .numOfPeopleCreatorDropDown{
     height: 40px;
     width: 60px;
+    box-shadow: 0px 0px 20px -15px;
+    border: none;
 }
 
  .searchBarChooserContainer{
@@ -59,6 +64,8 @@
     width: 27%;
 }
 
+
+
 .searchBarDropDownSquare{
     border-top: none;
     border-left: none;
@@ -68,6 +75,10 @@
     position: relative;
     height: 40px;
     width: 17%;
+}
+
+.createBarMiddlePlaceHolder{
+    z-index: 100;
 }
 
 .middlePlaceHolder{

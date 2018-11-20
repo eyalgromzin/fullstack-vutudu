@@ -6,11 +6,10 @@ import {
   EDITED_IDEA_SET_TIME,
   EDITED_IDEA_SET_TITLE,
   EDITED_IDEA_SET_CONTENT ,
-  EDITED_IDEA_CLEAR
-} from 'reducers/types'
-import { 
+  EDITED_IDEA_CLEAR,
   EDITED_IDEA_SET_PLACE,
-  EDITED_IDEA_SET_ID 
+  EDITED_IDEA_SET_ID,
+  EDITED_IDEA_SET_TAGS,
 } from 'reducers/types'
 
 const initialState = {

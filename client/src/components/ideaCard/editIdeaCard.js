@@ -7,6 +7,7 @@ import { EDITED_IDEA_SET_TITLE,
   EDITED_IDEA_SET_CONTENT,
   PREVIEWED_IDEA_SET_TITLE,
   PREVIEWED_IDEA_SET_CONTENT,
+  EDITED_IDEA_SET_TAGS,
 } from 'reducers/types'
 import 'commonCss.css'
 import { addIdeaToDB } from 'actions/ideaActions';

@@ -7,6 +7,7 @@ import MoreChooser from './moreChooser/moreChooser'
 import { EDITED_IDEA_SET_PLACE } from 'reducers/types'
 import { EDITED_IDEA_SET_TIME } from 'reducers/types'
 import { connect } from 'react-redux';
+import './searchBarCommonStyles.css'
 
 class CreateIdeaBar extends Component {
   constructor(props){
