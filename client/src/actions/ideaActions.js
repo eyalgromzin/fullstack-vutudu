@@ -72,22 +72,21 @@ export const updateTags = (tags) => dispatch => {
   tags.forEach(tag => {
     //update the 1 letter 
     var firstLetters = tag.substring(0, 1);
-    addTagToLettersBucket(firstLetters, tag);
+    addTagToLettersBucketIfNotExists(firstLetters, tag);
     //updating 2 letters
     firstLetters = tag.substring(0, 2);
-    addTagToLettersBucket(firstLetters, tag);
+    addTagToLettersBucketIfNotExists(firstLetters, tag);
 
     //updating 3 letters
     firstLetters = tag.substring(0, 3);
-    addTagToLettersBucket(firstLetters, tag);
+    addTagToLettersBucketIfNotExists(firstLetters, tag);
   });
 }
 
-const addTagToLettersBucket = (firstLetters, tag) => {
+const addTagToLettersBucketIfNotExists = (firstLetters, tag) => {
   axios.post('/api/tags/update_bucket', {firstLetters,tag})
   .then(res => {
     console.log('tags added to their bucket');
-    
   })
 };
 

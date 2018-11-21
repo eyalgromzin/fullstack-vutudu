@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { addIdeaToDB } from 'actions/ideaActions';
+import { addIdeaToDB, updateTags } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Notifications, {notify} from 'react-notify-toast';
+
 
 class createIdeaButton extends Component {
   
@@ -33,7 +34,8 @@ class createIdeaButton extends Component {
           // Add item via createItem action
           this.props.addIdeaToDB(newItem, this.props.userID);
 
-          this.props.updateTags();
+          //NTH
+          // this.props.updateTags();
         }
       }
 
@@ -51,7 +53,8 @@ class createIdeaButton extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-      addIdeaToDB: bindActionCreators (addIdeaToDB, dispatch)
+      addIdeaToDB: bindActionCreators (addIdeaToDB, dispatch),
+      updateTags: bindActionCreators (updateTags, dispatch),
     }
   }
 

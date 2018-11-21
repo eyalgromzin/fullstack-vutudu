@@ -1,14 +1,4 @@
 to do at home:
-    - support #, more - 
-        - on first letter typing, get all first letter hashtags
-        - on 2nd letter typing, get all 2 letters hashtags
-        - when user creates text, each word that starts with hashtag will be save to tags 
-            field in the idea.
-        - on search, will search the idea has tags also.
-        - tags - not mandatory.
-        - update tags on edit 
-        - update tag on create
-    - check # works in search
     - add support for links.
         - make each link as an attachment.
         - create attachments button
@@ -28,7 +18,17 @@ to do at home:
     - without login, enable search, but for indicators / create - require login
     - change the like idea to 1 post request instead of 2 - home.
 
-
+NTH: 
+ - support #, more - 
+        - on first letter typing, get all first letter hashtags
+        - on 2nd letter typing, get all 2 letters hashtags
+        - when user creates text, each word that starts with hashtag will be save to tags 
+            field in the idea.
+        - on search, will search the idea has tags also.
+        - tags - not mandatory.
+        - update tags on edit 
+        - update tag on create
+    - check # works in search
 
 
 
