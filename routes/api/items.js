@@ -38,7 +38,7 @@ router.post('/createIdea/', (req, res) => {
 // @desc    search for anything
 // @access  Public
 router.post('/ideaLiked/', (req, res) => {   
-  console.log("updating idea " + req.bod-.idea._id.$oid);
+  console.log("updating idea " + req.body.idea._id.$oid);
 
   var ideaID = req.body.idea._id.$oid;
 

@@ -8,6 +8,7 @@ import { USER_PAGE_IDEAS_TYPE,
   USER_SET_SELECTED_DROPDOWN_TYPE,
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
+  SET_USER_CURRENT_PREVIEWED_IDEAS,
   } from "reducers/types";
 import { copyUserIdeas, updateUserIdeas } from 'actions/userActions'
 import store from 'store'
@@ -21,12 +22,18 @@ ideasTypeDictionary["Liked"] = "liked";
 ideasTypeDictionary["Created"] = "createdBy";
 
 class UserIdeasTypeDropDown extends Component {
+  
+
   options = [
     { value: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS, label: 'Liked'},
     { value: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS, label: 'Created'},
   ]
 
   defaultOption = this.options[0]
+
+  componentDidMount() {
+    this.onChange({value: "USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS", label: "Liked"});
+  }
 
   onChange = (e) => {
     // store.dispatch({type: USER_PAGE_IDEAS_TYPE, payload: e.value });
@@ -35,6 +42,9 @@ class UserIdeasTypeDropDown extends Component {
     var userID = this.props.userID;
     var userIdeasType = ideasTypeDictionary[e.label];
     var reduxActionName = e.value;
+
+    //change current previewed ideas to null first.
+    store.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEAS, payload: {}});
 
     this.props.copyUserIdeas(userID, userIdeasType, reduxActionName);
     

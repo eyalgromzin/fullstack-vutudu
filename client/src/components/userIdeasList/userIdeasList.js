@@ -17,6 +17,8 @@ class UserIdeasList extends Component {
     }
   }
 
+  
+
   renderItem = (index, key) => {  //key is running number
     return <div key={key} onClick={ () => 
       { 

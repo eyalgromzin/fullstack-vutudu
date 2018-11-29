@@ -39,8 +39,8 @@ class EditIdeaCard extends Component {
     
     store.dispatch({type: EDITED_IDEA_SET_CONTENT, payload: e.target.value});
     
-    var tags = getTagsFromText(e.target.value);
-    store.dispatch({type: EDITED_IDEA_SET_TAGS, payload: tags});
+    // var tags = getTagsFromText(e.target.value);
+    // store.dispatch({type: EDITED_IDEA_SET_TAGS, payload: tags});
   }
 
   render() {

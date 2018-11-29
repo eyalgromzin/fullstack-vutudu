@@ -23,18 +23,18 @@ import store from 'store'
 export const createUserIfNotExists = user => dispatch => {
   console.log('in createUserIfNotExists beginning:' + user)
   var isUserExists = false;
-  console.log('sending get request');
+  console.log('sending get request: api/user/' + `${user.id}`);
   
   axios.get(`api/user/${user.id}`).then(res => {  // => dispatch => 
     console.log('in createUserIfNotExists response:' + res.data)
     // return res.data;
     if(res.data.length == 0){
       // dispatch => {
-        console.log('sending post: api/user/create:' + res.data)
+        console.log('sending post: api/user/' + `${user.id}` + 'create:' + res.data)
 
         axios.post(`/api/user/create`,user)
         .then(res => {
-          console.log('sent post: api/user/create:' + res.data)
+          console.log('sent post: api/user/create:' + user)
           dispatch({
             type: SET_LOGGED_IN_USER_ID,
             payload: res.data.id
@@ -100,6 +100,7 @@ export const getLikedIdeas = userID => dispatch => {
 }
 
 //run it on the beginning of the app load
+//get user ideas - liked / created
 export const copyUserIdeas = (userID, ideaType, reduxActionName) => dispatch => {
   store.dispatch({
           type: reduxActionName,

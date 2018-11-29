@@ -16,7 +16,6 @@ class userLayout extends Component {
   render() {
     return (
       <React.Fragment>
-        {/* <span class="layoutTitle"> {this.props.firstName + " " + this.props.lastName} </span> */}
         <div id="userLayout" >
           <div id="userLayoutIdeasSelectSideBar" class="userLayoutMainContent">
             <div id="UserIdeasTypeDropDown">

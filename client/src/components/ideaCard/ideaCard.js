@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import Linkify from 'react-linkify';
 import './ideaCard.css'
 import LikeDislike from './statsButtons/likesIndicator/likeDislike'
 import DifficultyIndicator from './statsButtons/difficultyIndicator/difficultyIndicator'
 import TimeIndicator from './statsButtons/timeIndicator/timeIndicator'
-import IdeaPreviousNextButtons from './cardButtons/nextPreviousButtons/nextPreviousButtons'
+import IdeaNextButtonsPreviousButtons from './cardButtons/nextPreviousButtons/nextPreviousButtons'
 import CardCountInfo from './cardButtons/cardCountInfo/cardCountInfo'
 import IdeaAttachmentsButton from './cardButtons/ideaAttachmentsButton/ideaAttachmentButton'
 import IdeaPlaceButton from './cardButtons/placeButton/placeButton'
@@ -27,7 +28,7 @@ class IdeaCard extends Component {
   render() {
     return (
       <React.Fragment>
-        <IdeaPreviousNextButtons />
+        <IdeaNextButtonsPreviousButtons />
         <div id="ideaCardWithButtons">
           <div id="ideaCardWithShare" >
             <div id="ideaCard"> 
@@ -35,13 +36,14 @@ class IdeaCard extends Component {
                 {this.props.title}
               </div>
               <div id="ideaContentText"> 
-                {this.props.content}
+                <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
+                  {this.props.content}
+                </Linkify>
               </div>
             </div>
             <div id="shareContainer">
                 <ShareButton />
             </div>
-            
           </div>
           <div id="cardIndicationButtons">
               <div id="cardIndicators"> 

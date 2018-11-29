@@ -46,10 +46,6 @@ class Layout extends Component {
     }
   }
 
-  // updateUserIdeas = () => {
-    
-  // }
-
   componentDidMount() {
     this.props.updateUserIdeas(this.props.userID, 'Liked', SET_USER_LIKED_IDEAS);
     this.props.updateUserIdeas(this.props.userID, 'Created', SET_USER_CREATED_IDEAS);

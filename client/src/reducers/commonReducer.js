@@ -1,9 +1,9 @@
-import React from 'react';
-import { combineReducers } from "redux";
+import { CHANGE_SEARCHED_STATE, } from 'reducers/types'
 
 const initialState = {
   currentPage: 'SHOW_IDEA',
-  loggedIn: false
+  loggedIn: false,
+  searched: false,
 };
 
 export const CHANGE_PAGE_TO_CREATE_IDEA = "CHANGE_PAGE_TO_CREATE_IDEA";
@@ -26,6 +26,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         loggedIn: action.payload
+      }
+    case CHANGE_SEARCHED_STATE:
+      return {
+        ...state,
+        searched: action.payload
       }
     default:
       return state;

@@ -8,6 +8,7 @@ import CardCountInfo from './cardButtons/cardCountInfo/cardCountInfo'
 import IdeaAttachmentsButton from './cardButtons/ideaAttachmentsButton/ideaAttachmentButton'
 import IdeaPlaceButton from './cardButtons/placeButton/placeButton'
 import { connect } from 'react-redux';
+import Linkify from 'react-linkify';
 // import { Button } from 'react-bootstrap';
 import 'commonCss.css'
 import { SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT } from 'reducers/types'
@@ -26,26 +27,41 @@ class ShowIdeaCardInUser extends Component {
     return (
       <React.Fragment>
         {this.props.currentPreviewedIdeas.length > 0 ? 
-          <div id="ideaCardWithButtonsInUser">
-            <div id="ideaCardInUser"> 
-              <div class="ideaTitle">
-                {this.props.title}
+          <div id="ideaCardWithTopBar">
+            <div class="ideaIndicators" >
+              <div class="userPageIdeaIndicator">
+                place: {this.props.place}
               </div>
-              <div id="ideaContentText"> 
-                {this.props.content}
+              {/* <div id="userPageIdeaTime">
+                time: {this.props.minTime}-{this.props.maxTime}  
+              </div> */}
+              <div class="userPageIdeaIndicator">
+                # of ppl: {this.props.minNumOfPeople}-{this.props.maxNumOfPeople}
               </div>
             </div>
-            <div id="cardIndicationButtons">
-                <div id="cardIndicators"> 
-                  <LikeDislike enabled="false" />
-                  <TimeIndicator enabled="false" />
-                  <DifficultyIndicator enabled="false" />
+            <div id="ideaCardWithButtonsInUser">
+              <div id="ideaCardInUser"> 
+                <div class="ideaTitle">
+                  {this.props.title}
+                </div>
+                <div id="ideaContentText"> 
+                  <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
+                    {this.props.content}
+                  </Linkify>
                 </div>
               </div>
-            <EditIdeaButton />
-            
-            <div id="statusButtons">
-            </div>
+              <div id="cardIndicationButtons">
+                  <div id="cardIndicators"> 
+                    <LikeDislike enabled="false" />
+                    <TimeIndicator enabled="false" />
+                    <DifficultyIndicator enabled="false" />
+                  </div>
+                </div>
+              <EditIdeaButton />
+              
+              <div id="statusButtons">
+              </div>
+          </div>
         </div>
         :
         ""
@@ -62,6 +78,11 @@ function mapStateToProps(state) {
     currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
     currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
+    place: state.userPageReducer.currentPreviewedIdea.place,
+    minTime: state.userPageReducer.currentPreviewedIdea.minTime,
+    maxTime: state.userPageReducer.currentPreviewedIdea.maxTime,
+    minNumOfPeople: state.userPageReducer.currentPreviewedIdea.minNumOfPeople,
+    maxNumOfPeople: state.userPageReducer.currentPreviewedIdea.maxNumOfPeople,
   };
 }
 

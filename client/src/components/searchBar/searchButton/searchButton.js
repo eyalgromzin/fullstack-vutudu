@@ -3,6 +3,9 @@ import './searchButton.css'
 import '../searchBarCommonStyles.css'
 import { searchItems } from 'actions/ideaActions'
 import { connect } from 'react-redux'
+import { CHANGE_SEARCHED_STATE, } from 'reducers/types'
+import store from 'store'
+
 
 class SearchButton extends Component {
   constructor(props){
@@ -17,14 +20,13 @@ class SearchButton extends Component {
   }
 
   handleSearchClick = () => {
+    store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
     this.props.searchItems(this.props.place,this.props.time,this.props.numOfPeople);
   }
 
   render() {
     return (
-      // <div class="" id="searchButtonOutline"  onClick={this.handleSearchClick}> 
         <img src={require("images/search.png")} id="searchButton" onClick={this.handleSearchClick} />
-      // </div>
     )
   }
 }
