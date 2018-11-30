@@ -19,7 +19,7 @@ class NumOfPeopleSelector extends Component {
             <select id="numOfPeopleChooser" className={this.props.cssClass} onChange={this.handleChange}>
               <option value="1" class="timeChooserOption">1</option>
               <option value="2" class="timeChooserOption">2</option>
-              <option value="2000" class="timeChooserOption">couple</option>
+              <option value="20000" class="timeChooserOption">couple</option>
               <option value="3" class="timeChooserOption">3</option>
               <option value="4" class="timeChooserOption">4</option>
               <option value="5" class="timeChooserOption">5</option>

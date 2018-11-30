@@ -47,6 +47,7 @@ class Layout extends Component {
   }
 
   componentDidMount() {
+    //update user ideas on website startup
     this.props.updateUserIdeas(this.props.userID, 'Liked', SET_USER_LIKED_IDEAS);
     this.props.updateUserIdeas(this.props.userID, 'Created', SET_USER_CREATED_IDEAS);
   }

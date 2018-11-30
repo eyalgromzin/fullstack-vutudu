@@ -55,6 +55,7 @@ const mapDispatchToProps = dispatch => {
     return {
       addIdeaToDB: bindActionCreators (addIdeaToDB, dispatch),
       updateTags: bindActionCreators (updateTags, dispatch),
+      dispatch,
     }
   }
 

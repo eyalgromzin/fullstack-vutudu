@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import GoogleLogin from 'react-google-login';
 import './socialButtons.css'
 import { connect } from 'react-redux';
-import {CHANGE_LOGGED_IN_STATE} from 'reducers/commonReducer'
+import { CHANGE_LOGGED_IN_STATE } from 'reducers/types'
+
+
 
 class GoogleButton extends Component {
 

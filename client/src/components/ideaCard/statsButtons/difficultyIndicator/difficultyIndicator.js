@@ -6,6 +6,7 @@ import { ADD_DIFFICULTY,REDUCE_DIFFICULTY } from 'reducers/types'
 import {ADD_USER_TO_IDEA_ADDED_EASY, ADD_USER_TO_IDEA_ADDED_HARD, } from 'reducers/types'
 import { ADD_USER_TO_IDEA_LIKES } from '../../../../reducers/types';
 import {updateIdeaIndicator} from 'actions/ideaActions'
+import {showLogInScreen} from 'actions/commonActions'
 
 class DiffictultyIndicator extends Component {
 constructor(props){
@@ -16,15 +17,23 @@ constructor(props){
 }
 
   handleAddDifficultyClick(){
-    this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
-                    null,null,    //dont add difficult ideas to user
-                    'api/items/addedHardToIdea/',ADD_USER_TO_IDEA_ADDED_HARD);
+    if(!this.props.loggedIn){
+      showLogInScreen();
+    }else{  
+      this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
+                      null,null,    //dont add difficult ideas to user
+                      'api/items/addedHardToIdea/',ADD_USER_TO_IDEA_ADDED_HARD);
+    }
   }
 
   handleReduceDifficultyClick(){
-    this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
-                    null,null,    //dont add easy ideas to user
-                    'api/items/addedEasyToIdea/',ADD_USER_TO_IDEA_ADDED_EASY);
+    if(!this.props.loggedIn){
+      showLogInScreen();
+    }else{  
+      this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
+                      null,null,    //dont add easy ideas to user
+                      'api/items/addedEasyToIdea/',ADD_USER_TO_IDEA_ADDED_EASY);
+    }
   }
 
   render() {

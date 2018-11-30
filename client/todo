@@ -1,10 +1,8 @@
-    - without login, enable search, but for indicators / create - require login
     - show stats in user page - home - 
         - update user idea on idea indicator click. so the user will always be updated with latest stats.
     - create lists, and put them in the main page. - at the bottom of the search page - home 
         - hardest 
         - most liked
-    - enable 'new line' when creating and editing an idea.
     - support #, more - 
             - on first letter typing, get all first letter hashtags
             - on 2nd letter typing, get all 2 letters hashtags
@@ -12,12 +10,14 @@
                 field in the idea.
             - on search, will search the idea has tags also.
             - tags - not mandatory.
-            - update tags on edit 
+            - update tags on edit.
             - update tag on create
         - check # works in search
     - add validations and alerts 
         - on create, must fill all 
         - on search, ???
+        - on indicators - only 1 click
+    - indicators dont work again. - likes / difficulty / time
 
     small things
     - on edit card, enable to change "# of people" , and "place" also.  - add them at the top.

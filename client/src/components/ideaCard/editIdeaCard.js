@@ -75,7 +75,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addIdeaToDB: bindActionCreators (addIdeaToDB, dispatch)
+    addIdeaToDB: bindActionCreators (addIdeaToDB, dispatch),
+    dispatch
   }
 }
 

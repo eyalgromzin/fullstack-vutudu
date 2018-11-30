@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import AppNavbar from './components/AppNavbar';
 // import ShoppingList from './components/ShoppingList';
 // import ItemModal from './components/ItemModal';
-import { Container } from 'reactstrap';
 import { Provider } from 'react-redux';
 import store from 'store'
 import Layout from './layout/layout'

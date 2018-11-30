@@ -2,8 +2,15 @@ import React, { Component } from 'react'
 import 'commonCss.css'
 import './layout.css'
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import {showLogInScreen} from 'actions/commonActions'
 
-export default class SideBar extends Component {
+
+class SideBar extends Component {
+  showLogin = () => {
+    showLogInScreen();
+  }
+
   render() {
     return (
     <React.Fragment>
@@ -17,10 +24,16 @@ export default class SideBar extends Component {
                 <img id="newIdeaButton" src={require("images/writeWhite.png")} className="leftBarIcon verticalMiddleAlign"
                   onClick={() => { history.push('/create') }}
                 />
-                <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle"
-                  onClick={() => { history.push('/user') }}
-                />
-                
+
+                {
+                  this.props.loggedIn?
+                  <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle"
+                  onClick={() => { history.push('/user') }} />
+                  :
+                  <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle"
+                  onClick={this.showLogin} />
+                }
+
                 <div id="mainLogo" class="vertical-text"> VUTUDU </div> 
 
               </React.Fragment> 
@@ -30,3 +43,11 @@ export default class SideBar extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    loggedIn: state.commonReducer.loggedIn,
+  };
+}
+
+export default connect(mapStateToProps)(SideBar);

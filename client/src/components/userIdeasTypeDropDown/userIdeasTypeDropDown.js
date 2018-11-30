@@ -36,17 +36,13 @@ class UserIdeasTypeDropDown extends Component {
   }
 
   onChange = (e) => {
-    // store.dispatch({type: USER_PAGE_IDEAS_TYPE, payload: e.value });
 
-    //works - puts the ideas into needed place
-    var userID = this.props.userID;
-    var userIdeasType = ideasTypeDictionary[e.label];
     var reduxActionName = e.value;
 
     //change current previewed ideas to null first.
     store.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEAS, payload: {}});
 
-    this.props.copyUserIdeas(userID, userIdeasType, reduxActionName);
+    this.props.copyUserIdeas(reduxActionName);
     
     store.dispatch({type: USER_SET_SELECTED_DROPDOWN_TYPE, payload: e.label })
   }

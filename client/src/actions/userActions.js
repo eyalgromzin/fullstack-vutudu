@@ -101,7 +101,7 @@ export const getLikedIdeas = userID => dispatch => {
 
 //run it on the beginning of the app load
 //get user ideas - liked / created
-export const copyUserIdeas = (userID, ideaType, reduxActionName) => dispatch => {
+export const copyUserIdeas = (reduxActionName) => dispatch => {
   store.dispatch({
           type: reduxActionName,
         });

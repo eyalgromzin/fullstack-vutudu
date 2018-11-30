@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import FacebookLogin from 'react-facebook-login';
-import {CHANGE_LOGGED_IN_STATE, commonReducer} from 'reducers/commonReducer'
+import { commonReducer } from 'reducers/commonReducer'
+import {CHANGE_LOGGED_IN_STATE} from 'reducers/types'
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { createUserIfNotExists } from 'actions/userActions'

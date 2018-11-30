@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import {ADD_TIME, REDUCE_TIME} from 'reducers/types'
 import {ADD_USER_TO_IDEA_ADDED_LONG, ADD_USER_TO_IDEA_ADDED_SHORT} from 'reducers/types'
 import {updateIdeaIndicator} from 'actions/ideaActions'
+import {showLogInScreen} from 'actions/commonActions'
 
 class TimeIndicator extends Component {
 constructor(props){
@@ -14,15 +15,23 @@ constructor(props){
 }
 
   handleAddAddTimeClick(){
-    this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
-      null,null,    //dont add difficult ideas to user
-      'api/items/addedLongToIdea/',ADD_USER_TO_IDEA_ADDED_LONG);
+    if(!this.props.loggedIn){
+      showLogInScreen();
+    }else{    
+      this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
+        null,null,    //dont add difficult ideas to user
+        'api/items/addedLongToIdea/',ADD_USER_TO_IDEA_ADDED_LONG);
+    }
   }
 
   handleReduceTimeClick(){
-    this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
-      null,null,    //dont add difficult ideas to user
-      'api/items/addedShortToIdea/',ADD_USER_TO_IDEA_ADDED_SHORT);
+    if(!this.props.loggedIn){
+      showLogInScreen();
+    }else{  
+      this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
+        null,null,    //dont add difficult ideas to user
+        'api/items/addedShortToIdea/',ADD_USER_TO_IDEA_ADDED_SHORT);
+    }
   }
 
   render() {

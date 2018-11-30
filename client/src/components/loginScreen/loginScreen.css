@@ -6,6 +6,13 @@
     z-index: 100;
 }
 
+#loginXButton{
+    float: right;
+    font-size: 40px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
 #loginContent{
     width: 40%;
     height: 60%;
