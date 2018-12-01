@@ -15,7 +15,7 @@ import { ADD_USER_TO_IDEA_ADDED_LONG, ADD_USER_TO_IDEA_ADDED_SHORT, SET_CURRENT_
 
 const initialState = {
   currentIdeaIndex: 0,
-  currentIdea: {
+  currentIdea: {  //why do i need it?
     _id: '000',
     title: 'click Search',
     content: 'To find ideas of what to do',

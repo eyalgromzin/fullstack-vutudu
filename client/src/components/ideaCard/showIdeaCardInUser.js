@@ -14,7 +14,7 @@ import 'commonCss.css'
 import { SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT } from 'reducers/types'
 import EditIdeaButton from './editIdeaButton' 
 
-class ShowIdeaCardInUser extends Component {
+class IdeaCardInUser extends Component {
   constructor(){
     super();
 
@@ -52,7 +52,7 @@ class ShowIdeaCardInUser extends Component {
               </div>
               <div id="cardIndicationButtons">
                   <div id="cardIndicators"> 
-                    <LikeDislike enabled="false" />
+                    <LikeDislike enabled="false" idea={this.props.currentPreviewedIdea}/>
                     <TimeIndicator enabled="false" />
                     <DifficultyIndicator enabled="false" />
                   </div>
@@ -86,4 +86,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(ShowIdeaCardInUser)
+export default connect(mapStateToProps)(IdeaCardInUser)

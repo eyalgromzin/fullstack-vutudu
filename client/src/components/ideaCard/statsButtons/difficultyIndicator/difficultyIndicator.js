@@ -58,10 +58,10 @@ constructor(props){
 
 function mapStateToProps(state) {
   return {
-    hardCount: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedHard,
-    easyCount: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedEasy,
+    hardCount: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedHard,
+    easyCount: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedEasy,
     userID: state.userPageReducer.loggedInUserID,
-    ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id
+    ideaID: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex]._id
   };
 }
 

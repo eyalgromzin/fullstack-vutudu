@@ -48,12 +48,12 @@ constructor(props){
 
 function mapStateToProps(state) {
   return {
-    addedShort: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedShort,
-    addedLong: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].addedLong,
-    initialMinTime: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].minTime,
-    initialMaxTime: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].maxTime,
+    addedShort: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedShort,
+    addedLong: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedLong,
+    initialMinTime: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].minTime,
+    initialMaxTime: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].maxTime,
     userID: state.userPageReducer.loggedInUserID,
-    ideaID: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex]._id
+    ideaID: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex]._id
   };
 }
 

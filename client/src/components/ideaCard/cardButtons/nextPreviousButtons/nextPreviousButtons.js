@@ -55,8 +55,8 @@ import CardCountInfo from '../cardCountInfo/cardCountInfo'
 
 function mapStateToProps(state) {
     return {
-      currentIdeaIndex: state.ideasReducer.currentIdeaIndex,
-      ideas: state.ideasReducer.ideas
+      currentIdeaIndex: state.searchPageReducer.currentIdeaIndex,
+      ideas: state.searchPageReducer.ideas
     };
   }
 

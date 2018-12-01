@@ -11,14 +11,8 @@ class searchLayout extends Component {
       <React.Fragment>
         <div class="mainContent">
           <SearchBar />
-        {/* <div class="mainContent">
-          
-        </div> */}
-        
-          {/* <IdeaCard /> */}
-
           {
-            this.props.searched ? <IdeaCard /> : <TopTable />
+            this.props.searched ? <IdeaCard idea={this.props.idea} /> : <TopTable />
           }
         </div>
       </React.Fragment>
@@ -29,6 +23,7 @@ class searchLayout extends Component {
 function mapStateToProps(state) {
   return {
     searched: state.commonReducer.searched,
+    idea: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex],
   };
 }
 

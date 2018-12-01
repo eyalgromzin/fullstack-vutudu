@@ -1,8 +1,11 @@
     - show stats in user page - home - 
-        - update user idea on idea indicator click. so the user will always be updated with latest stats.
+    
+    - update user idea on idea indicator click. so the user will always be updated with latest stats.
+    
     - create lists, and put them in the main page. - at the bottom of the search page - home 
         - hardest 
         - most liked
+    
     - support #, more - 
             - on first letter typing, get all first letter hashtags
             - on 2nd letter typing, get all 2 letters hashtags
@@ -13,13 +16,16 @@
             - update tags on edit.
             - update tag on create
         - check # works in search
+    
     - add validations and alerts 
         - on create, must fill all 
-        - on search, ???
+        - on search - 1 work for more and place
         - on indicators - only 1 click
+    
     - indicators dont work again. - likes / difficulty / time
 
-    small things
     - on edit card, enable to change "# of people" , and "place" also.  - add them at the top.
+    
+    more:
     - change the top text in user page "place" , "num of people" to icons
     - change the like idea to 1 post request instead of 2 - home.

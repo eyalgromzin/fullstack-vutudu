@@ -23,13 +23,13 @@ class ideaCardWithoutIndicators extends Component {
 function mapStateToProps(state) {
   
     return {
-      title: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].title,
-      content: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].content,
-      place: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].place,
-      minTIme: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].minTIme,
-      maxTime: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].maxTime,
-      minNumOfPeople: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].minNumOfPeople,
-      maxNumOfPeople: state.ideasReducer.ideas[state.ideasReducer.currentIdeaIndex].maxNumOfPeople
+      title: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].title,
+      content: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].content,
+      place: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].place,
+      minTIme: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].minTIme,
+      maxTime: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].maxTime,
+      minNumOfPeople: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].minNumOfPeople,
+      maxNumOfPeople: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].maxNumOfPeople
     };
   }
   

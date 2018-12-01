@@ -14,8 +14,8 @@ class CardCountInfo extends Component {
 
 function mapStateToProps(state) {
     return {
-      currentIdeaIndex: state.ideasReducer.currentIdeaIndex,
-      ideas: state.ideasReducer.ideas,
+      currentIdeaIndex: state.searchPageReducer.currentIdeaIndex,
+      ideas: state.searchPageReducer.ideas,
     };
   }
 
