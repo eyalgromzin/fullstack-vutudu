@@ -18,7 +18,7 @@ constructor(props){
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{  
-      this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
+      this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
                       null,null,    //dont add difficult ideas to user
                       'api/items/addedHardToIdea/',ADD_USER_TO_IDEA_ADDED_HARD);
     }
@@ -28,7 +28,7 @@ constructor(props){
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{  
-      this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
+      this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
                       null,null,    //dont add easy ideas to user
                       'api/items/addedEasyToIdea/',ADD_USER_TO_IDEA_ADDED_EASY);
     }
@@ -41,14 +41,14 @@ constructor(props){
         <img src={require("images/upArrow.png")} id="increaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleAddDifficultyClick}/>
 
-        {this.props.hardCount.length}
+        {this.props.idea.addedHard.length}
 
         <img src={require("images/downArrow.png")} id="decreaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleReduceDifficultyClick}/>        
 
-        {this.props.easyCount.length}
+        {this.props.idea.addedEasy.length}
 
-        <span> ({Math.round((this.props.hardCount.length/(this.props.easyCount.length + this.props.hardCount.length == 0 ? 1 : this.props.easyCount.length + this.props.hardCount.length)) * 100) }%)  </span>
+        <span> ({Math.round((this.props.idea.addedHard.length/(this.props.idea.addedEasy.length + this.props.idea.addedHard.length == 0 ? 1 : this.props.idea.addedEasy.length + this.props.idea.addedHard.length)) * 100) }%)  </span>
       </div>
     )
   }
@@ -56,10 +56,8 @@ constructor(props){
 
 function mapStateToProps(state) {
   return {
-    hardCount: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedHard,
-    easyCount: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedEasy,
     userID: state.userPageReducer.loggedInUserID,
-    ideaID: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex]._id
+    loggedIn: state.commonReducer.loggedIn,
   };
 }
 

@@ -5,7 +5,8 @@ import {
   SAVE_IDEAS,
   EDITED_IDEA_CLEAR,
   NO_ITEMS_FOUND, 
-  SET_CURRENT_IDEA
+  SET_CURRENT_IDEA,
+  CHANGE_SEARCHED_STATE
 } from 'reducers/types'
 
 export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
@@ -14,13 +15,14 @@ export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeNa
   console.log(`addToUserReduxTypeName: ` + addToUserReduxTypeName)
 
   //update user - V
+  console.log('ideaActions: adding idea to user: ' + idea._id)
   if(userPostUrl != '' && userPostUrl != null){
     console.log('sending post: ' + userPostUrl)
     var postObject = {userID: userID, idea: idea}
     axios.post(userPostUrl, postObject)
     .then(res =>
       {
-        console.log(`got response from: ` + userPostUrl)
+        console.log(`user was updated`)
         dispatch({
           type: addToUserReduxTypeName,
           payload: res.data
@@ -29,14 +31,14 @@ export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeNa
     );
   }
 
-  console.log('updating idea: ' + idea._id)
+  console.log('ideaActions: adding user to idea: ' + idea._id)
   if(ideaPostUrl != null && ideaPostUrl != ''){
     console.log('sending post: ' + ideaPostUrl);
     var ideaPostObject = {userID: userID, idea: idea}
     axios.post(ideaPostUrl,ideaPostObject)
     .then(res =>
       {
-        console.log(`sent post to: ` + ideaPostUrl);
+        console.log(`idea was updated`);
         dispatch({
           type: addToIdeaReduxTypeName,
           payload: idea._id
@@ -52,14 +54,10 @@ export const searchItems = (place,time,numOfPeople) => dispatch => {
   .then(res =>{
     if(res.data.length > 0){
       console.log('got ideas from db');
-      dispatch({
-        type: SAVE_IDEAS,
-        payload: res.data
-      });
-      dispatch({
-        type: SET_CURRENT_IDEA,
-        payload: res.data[0]
-      })
+      dispatch({ type: SET_CURRENT_IDEA, payload: res.data[0] })
+      dispatch({ type: SAVE_IDEAS, payload: res.data });
+      dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
+      
     }else{
       console.log('got 0 items from db');
       dispatch({

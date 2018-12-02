@@ -9,15 +9,6 @@ export const search = () => {
     var numOfPeople = store.getState().searchBarReducer.numOfPeople
     var more = store.getState().searchBarReducer.more
 
-    store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
-
     store.dispatch(searchItems(place, time, numOfPeople));
-
-        // .then(res => res.json())
-    // store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
-    // dispatch(searchItems         //to run it
-    //to get data from reducers
-
-    // store.dispatch();
 }
 

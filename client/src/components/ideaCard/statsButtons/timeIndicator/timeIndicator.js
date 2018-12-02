@@ -18,9 +18,9 @@ constructor(props){
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{    
-      this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
+      this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
         null,null,    //dont add difficult ideas to user
-        'api/items/addedLongToIdea/',ADD_USER_TO_IDEA_ADDED_LONG);
+        'api/items/addLongToIdea/',ADD_USER_TO_IDEA_ADDED_LONG);
     }
   }
 
@@ -28,9 +28,9 @@ constructor(props){
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{  
-      this.props.updateIdeaIndicator(this.props.userID,this.props.ideaID,
+      this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
         null,null,    //dont add difficult ideas to user
-        'api/items/addedShortToIdea/',ADD_USER_TO_IDEA_ADDED_SHORT);
+        'api/items/addShortToIdea/',ADD_USER_TO_IDEA_ADDED_SHORT);
     }
   }
 
@@ -39,7 +39,7 @@ constructor(props){
       <div className="bottomIndicator">
         <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image"/>
         <img src={require("images/downArrow.png")} id="decreaseTime" className="bottomButton hoverClickHand" onClick={this.handleReduceTimeClick} alt="decrease time"/>
-        <span>{this.props.initialMinTime - this.props.addedShort.length} - {this.props.initialMaxTime + this.props.addedLong.length}</span>
+        <span>{this.props.idea.minTime - this.props.idea.addedShort.length} - {this.props.idea.maxTime + this.props.idea.addedLong.length}</span>
         <img src={require("images/upArrow.png")} id="incrementTime" className="bottomButton hoverClickHand" onClick={this.handleAddAddTimeClick} alt="increase time"/>
       </div>
     )
@@ -53,7 +53,8 @@ function mapStateToProps(state) {
     initialMinTime: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].minTime,
     initialMaxTime: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].maxTime,
     userID: state.userPageReducer.loggedInUserID,
-    ideaID: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex]._id
+    ideaID: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex]._id,
+    loggedIn: state.commonReducer.loggedIn,
   };
 }
 

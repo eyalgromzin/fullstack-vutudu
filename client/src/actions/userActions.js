@@ -1,20 +1,11 @@
 import axios from 'axios';
 import { 
-  SAVE_IDEAS,
-  NO_ITEMS_FOUND,
-  UPDATE_CURRENT_IDEA,
   USER_SET_LIKED_IDEAS,
-  LOGIN_USER,
   SET_LOGGED_IN_USER, 
-  SET_CURRENT_IDEA,
   SET_LOGGED_IN_USER_FIRST_NAME, 
   SET_LOGGED_IN_USER_ID, 
   SET_LOGGED_IN_USER_LAST_NAME, 
-  SET_USER_CURRENT_PREVIEWED_IDEAS,
-  EDITED_IDEA_SET_CONTENT,
   UPDATE_PREVIEWED_IDEAS_IDEA,
-  UPDATE_CREATED_IDEAS_IDEA,
-  UPDATE_LIKED_IDEAS_IDEA
 } from 'reducers/types'
 import { EDITED_IDEA_SET_TITLE, SET_USER_CREATED_IDEAS } from '../reducers/types';
 import store from 'store'
@@ -67,7 +58,7 @@ export const createUserIfNotExists = user => dispatch => {
           })
     }
   }).then(res => {
-    
+
   })
   .catch(error => 
     console.log('error: ' + error));

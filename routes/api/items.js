@@ -38,9 +38,8 @@ router.post('/createIdea/', (req, res) => {
 // @desc    search for anything
 // @access  Public
 router.post('/ideaLiked/', (req, res) => {   
-  console.log("updating idea " + req.body.idea._id.$oid);
-
-  var ideaID = req.body.idea._id.$oid;
+  var ideaID = req.body.idea._id;
+  console.log("ideaLiked: updating idea " + ideaID);
 
   Item.findOneAndUpdate( {_id: ideaID},      //{'_id': ObjectID(ideaID)}
     { "$push": { "liked": req.body.userID } },
@@ -55,7 +54,7 @@ router.post('/ideaLiked/', (req, res) => {
 // @access  Public
 // doesnt work
 router.post('/ideaDisliked/', (req, res) => { 
-  console.log("updating idea " + req.body.idea._id.toString());
+  console.log("ideaDisliked: updating idea " + req.body.idea._id.toString());
 
   var ideaID = req.body.idea._id;
 
@@ -71,30 +70,38 @@ router.post('/ideaDisliked/', (req, res) => {
 // @desc    search for anything
 // @access  Public
 router.post('/addedHardToIdea/', (req, res) => {   
-  console.log("updating idea" + req.body.ideaID);
-  Item.findOneAndUpdate({ _id: req.body.ideaID },
+  var ideaID = req.body.idea._id;
+  console.log("addedHardToIdea: updating idea" + ideaID);
+  console.log("ideaID: " + ideaID + ", userID: " + req.body.userID)
+
+  Item.findOneAndUpdate({ _id: ideaID },
     { "$push": { "addedHard": req.body.userID } })
   .then(items => res.json(items));
-  console.log("updated idea" + req.body.ideaID);
+  console.log("updated idea hard " + ideaID);
 });
 
 // @route   POST api/items/addedEasyToIdea/
 // @desc    search for anything
 // @access  Public
 router.post('/addedEasyToIdea/', (req, res) => {   
-  console.log("updating idea" + req.body.ideaID);
-  Item.findOneAndUpdate({ _id: req.body.ideaID },
+  var ideaID = req.body.idea._id;
+  console.log("addedEasyToIdea: updating idea" + ideaID);
+  console.log("ideaID: " + ideaID + ", userID: " + req.body.userID)
+
+  Item.findOneAndUpdate({ _id: ideaID },
     { "$push": { "addedEasy": req.body.userID } })
   .then(items => res.json(items));
-  console.log("updated idea" + req.body.ideaID);
+  console.log("updated idea easy " + ideaID);
 });
 
-// @route   POST api/items/addedLongToIdea/
+// @route   POST api/items/addLongToIdea/
 // @desc    search for anything
 // @access  Public
-router.post('/addedLongToIdea/', (req, res) => {   
-  console.log("updating idea" + req.body.ideaID);
-  Item.findOneAndUpdate({ _id: req.body.ideaID },
+router.post('/addLongToIdea/', (req, res) => {   
+  var ideaID = req.body.idea._id;
+  console.log("addedLongToIdea: updating idea" + ideaID);
+  console.log("ideaID: " + ideaID + ", userID: " + req.body.userID)
+  Item.findOneAndUpdate({ _id: ideaID },
     { "$push": { "addedLong": req.body.userID } })
   .then(items => res.json(items));
   console.log("updated idea" + req.body.ideaID);
@@ -103,9 +110,12 @@ router.post('/addedLongToIdea/', (req, res) => {
 // @route   POST api/items/addedShortToIDea/
 // @desc    search for anything
 // @access  Public
-router.post('/addedShortToIDea/', (req, res) => {   
-  console.log("updating idea" + req.body.ideaID);
-  Item.findOneAndUpdate({ _id: req.body.ideaID },
+router.post('/addShortToIDea/', (req, res) => {   
+  var ideaID = req.body.idea._id;
+  console.log("addedShortToIdea: updating idea" + ideaID);
+  console.log("ideaID: " + ideaID + ", userID: " + req.body.userID)
+
+  Item.findOneAndUpdate({ _id: req.body.idea._id },
     { "$push": { "addedShort": req.body.userID } })
   .then(items => res.json(items));
   console.log("updated idea" + req.body.ideaID);
@@ -173,7 +183,7 @@ router.post('/search/', (req, res) => {
 // @desc    search for anything
 // @access  Public
 router.post('/addIdeaToUserCreatedIdeas/', (req, res) => {   
-  console.log("updating idea" + req.body.ideaID);
+  console.log("addIdeaToUserCreatedIdeas: updating idea" + req.body.ideaID);
   Item.findOneAndUpdate({ _id: req.body.ideaID },
     { "$push": { "addedHard": req.body.userID } })
   .then(items => res.json(items));
@@ -229,7 +239,7 @@ router.post('/getUserLikedIdeas/', (req, res) => {
 
 //find all ideas containing: userID
 router.post('/updateIdea/', (req, res) => {   
-  console.log("updating idea: " + req.body.ideaID);
+  console.log("updateIdea: updating idea: " + req.body.ideaID);
   console.log("_id: " + req.body._id);
   console.log("title: " + req.body.title);
   console.log("content: " + req.body.content);

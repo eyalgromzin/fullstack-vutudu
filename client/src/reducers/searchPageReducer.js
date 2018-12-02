@@ -61,7 +61,7 @@ function reducer(state = initialState, action) {
     case SAVE_IDEAS:
         return {
           ...state,
-          ideas: action.payload,  //[...state.ideas,action.payload]
+          ideas: action.payload,
         };
     case SET_CURRENT_IDEA:
       return {
