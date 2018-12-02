@@ -10,7 +10,7 @@ export default class PlaceButton extends Component {
   render() {
     return (
       <React.Fragment>
-        <img src={require("images/placeIcon.png")} id="placeButton" class="cardBottomButton hoverClickHand" onClick={this.handlePlaceClick}/>
+        <img src={require("images/placeIcon.png")} id="placeButton" className="cardBottomButton hoverClickHand" onClick={this.handlePlaceClick}/>
       </React.Fragment>
     )
   }

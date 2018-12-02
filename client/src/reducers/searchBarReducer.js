@@ -8,7 +8,7 @@ const initialState = {
     more: 'more'
   };
 
-  function searchReducer(state = initialState, action) {
+  function searchBarReducer(state = initialState, action) {
     switch(action.type) {
       case 'SEARCH_SET_PLACE':
         return {
@@ -36,4 +36,4 @@ const initialState = {
     }
   }
 
-  export default searchReducer;
+  export default searchBarReducer;

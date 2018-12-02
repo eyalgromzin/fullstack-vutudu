@@ -34,7 +34,7 @@ class SideBar extends Component {
                   onClick={this.showLogin} />
                 }
 
-                <div id="mainLogo" class="vertical-text"> VUTUDU </div> 
+                <div id="mainLogo" className="vertical-text"> VUTUDU </div> 
 
               </React.Fragment> 
             )} />

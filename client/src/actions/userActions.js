@@ -47,6 +47,8 @@ export const createUserIfNotExists = user => dispatch => {
             type: SET_LOGGED_IN_USER_LAST_NAME,
             payload: res.data.lastName
           })
+          // updateUserIdeas(user.id,);
+          
         });
       // };
     }else{
@@ -64,6 +66,8 @@ export const createUserIfNotExists = user => dispatch => {
             payload: res.data[0].lastName
           })
     }
+  }).then(res => {
+    
   })
   .catch(error => 
     console.log('error: ' + error));
@@ -90,7 +94,7 @@ export const getLikedIdeas = userID => dispatch => {
   axios.post(`/api/items/getUserLikedIdeas`,userID)
   .then(res =>
     {
-      console.log('got: api/Items/getUserLikedIdeas');
+      console.log('got sponse from: api/Items/getUserLikedIdeas: ' + JSON.stringify(res));
       dispatch({
         type: USER_SET_LIKED_IDEAS,
         payload: res.data

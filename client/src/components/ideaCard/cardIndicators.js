@@ -9,7 +9,7 @@ export default class CardIndicators extends Component {
       <React.Fragment>
         <div id="cardIndicationButtons">
               <div id="cardIndicators"> 
-                <LikeDislike idea={this.props.idea} />
+                <LikeDislike idea={this.props.idea} refresh={this.props.refresh} />
                 <TimeIndicator idea={this.props.idea} />
                 <DifficultyIndicator idea={this.props.idea} />
               </div>

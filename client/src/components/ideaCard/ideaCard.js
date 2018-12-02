@@ -17,7 +17,7 @@ class IdeaCard extends Component {
         <div id="ideaCardWithButtons">
           <div id="ideaCardWithShare" >
             <div id="ideaCard"> 
-              <div class="ideaTitle"> 
+              <div className="ideaTitle"> 
                 {this.props.title}
               </div>
               <div id="ideaContentText"> 
@@ -30,7 +30,7 @@ class IdeaCard extends Component {
               <ShareButton />
             </div>
           </div>
-          <CardIndicators idea={this.props.idea} />
+          <CardIndicators idea={this.props.idea} refresh={this.props.refresh} />
         </div> 
       </React.Fragment>
     )

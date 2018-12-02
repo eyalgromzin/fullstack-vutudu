@@ -3,9 +3,9 @@ import './searchButton.css'
 import '../searchBarCommonStyles.css'
 import { searchItems } from 'actions/ideaActions'
 import { connect } from 'react-redux'
-import { CHANGE_SEARCHED_STATE, } from 'reducers/types'
-import store from 'store'
-
+// import { CHANGE_SEARCHED_STATE, } from 'reducers/types'
+// import store from 'store'
+import { search } from 'components/searchBar/searchBarCommon'
 
 class SearchButton extends Component {
   constructor(props){
@@ -20,8 +20,9 @@ class SearchButton extends Component {
   }
 
   handleSearchClick = () => {
-    store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
-    this.props.searchItems(this.props.place,this.props.time,this.props.numOfPeople);
+    // store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
+    // this.props.searchItems(this.props.place,this.props.time,this.props.numOfPeople);
+    search();
   }
 
   render() {
@@ -33,10 +34,10 @@ class SearchButton extends Component {
 
 function mapStateToProps(state) {
     return {
-      place: state.searchReducer.place,
-      time: state.searchReducer.time,
-      numOfPeople: state.searchReducer.numOfPeople,
-      more: state.searchReducer.more,
+      place: state.searchBarReducer.place,
+      time: state.searchBarReducer.time,
+      numOfPeople: state.searchBarReducer.numOfPeople,
+      more: state.searchBarReducer.more,
     };
   }
 

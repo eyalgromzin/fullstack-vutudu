@@ -16,34 +16,34 @@ class NumOfPeopleCreator extends Component {
 
   render() {
     return (
-      <div class="searchBarChooserContainer middleSearchBarBox" > 
+      <div className="searchBarChooserContainer middleSearchBarBox" > 
         <div id="createBarNumOfPeopleCreator">
-            <select id="minNumOfPeopleChooser" class="numOfPeopleCreatorDropDown" onChange={this.minNumOfPeopleChange}>
-              <option value="9999999" class="timeChooserOption" >Min # of ppl</option>
-              <option value="0" class="timeChooserOption" >0</option>
-              <option value="1" class="timeChooserOption" >1</option>
-              <option value="2" class="timeChooserOption" >2</option>
-              <option value="20000" class="timeChooserOption">couple</option>
-              <option value="3" class="timeChooserOption" >3</option>
-              <option value="4" class="timeChooserOption" >4</option>
-              <option value="5" class="timeChooserOption" >5</option>
-              <option value="6" class="timeChooserOption" >6</option>
-              <option value="7" class="timeChooserOption" >7</option>
-              <option value="8000" class="timeChooserOption" >7+</option>
+            <select id="minNumOfPeopleChooser" className="numOfPeopleCreatorDropDown" onChange={this.minNumOfPeopleChange}>
+              <option value="9999999" className="timeChooserOption" >Min # of ppl</option>
+              <option value="0" className="timeChooserOption" >0</option>
+              <option value="1" className="timeChooserOption" >1</option>
+              <option value="2" className="timeChooserOption" >2</option>
+              <option value="20000" className="timeChooserOption">couple</option>
+              <option value="3" className="timeChooserOption" >3</option>
+              <option value="4" className="timeChooserOption" >4</option>
+              <option value="5" className="timeChooserOption" >5</option>
+              <option value="6" className="timeChooserOption" >6</option>
+              <option value="7" className="timeChooserOption" >7</option>
+              <option value="8000" className="timeChooserOption" >7+</option>
             </select>
-            <span class="createBarMiddlePlaceHolder"> - </span>
-            <select id="maxNumOfPeopleChooser" class="numOfPeopleCreatorDropDown" onChange={this.maxNumOfPeopleChange}>
-              <option value="9999999" class="timeChooserOption">Max # of ppl</option>
-              <option value="0" class="timeChooserOption">0</option>
-              <option value="1" class="timeChooserOption">1</option>
-              <option value="2" class="timeChooserOption">2</option>
-              <option value="20000" class="timeChooserOption">couple</option>
-              <option value="3" class="timeChooserOption">3</option>
-              <option value="4" class="timeChooserOption">4</option>
-              <option value="5" class="timeChooserOption">5</option>
-              <option value="6" class="timeChooserOption">6</option>
-              <option value="7" class="timeChooserOption">7</option>
-              <option value="8000" class="timeChooserOption">7+</option>
+            <span className="createBarMiddlePlaceHolder"> - </span>
+            <select id="maxNumOfPeopleChooser" className="numOfPeopleCreatorDropDown" onChange={this.maxNumOfPeopleChange}>
+              <option value="9999999" className="timeChooserOption">Max # of ppl</option>
+              <option value="0" className="timeChooserOption">0</option>
+              <option value="1" className="timeChooserOption">1</option>
+              <option value="2" className="timeChooserOption">2</option>
+              <option value="20000" className="timeChooserOption">couple</option>
+              <option value="3" className="timeChooserOption">3</option>
+              <option value="4" className="timeChooserOption">4</option>
+              <option value="5" className="timeChooserOption">5</option>
+              <option value="6" className="timeChooserOption">6</option>
+              <option value="7" className="timeChooserOption">7</option>
+              <option value="8000" className="timeChooserOption">7+</option>
             </select>
         </div>
       </div>

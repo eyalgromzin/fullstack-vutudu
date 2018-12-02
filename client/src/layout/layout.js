@@ -60,7 +60,7 @@ class Layout extends Component {
           <React.Fragment>
               {/* <TopBar />     */}
               <SideBar />
-              <Redirect from="/" to="/search" />
+              <Redirect from="/" to="/search" />  {/* cause on startup , the url is /, and it shows nothing */}
               <Route path="/search" component={searchLayout} />
               <Route path="/create" component={createLayout} />
               <Route path="/user" component={userLayout} />

@@ -55,9 +55,9 @@ router.post('/ideaLiked/', (req, res) => {
 // @access  Public
 // doesnt work
 router.post('/ideaDisliked/', (req, res) => { 
-  console.log("updating idea " + req.body.idea._id.$oid);
+  console.log("updating idea " + req.body.idea._id.toString());
 
-  var ideaID = req.body.idea._id.$oid;
+  var ideaID = req.body.idea._id;
 
   Item.findOneAndUpdate( {_id: ideaID},      //{'_id': ObjectID(ideaID)}
     { "$push": { "disliked": req.body.userID } },

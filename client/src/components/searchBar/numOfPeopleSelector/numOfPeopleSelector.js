@@ -3,6 +3,8 @@ import './numOfPeopleSelector.css'
 import '../searchBarCommonStyles.css'
 import {SEARCH_SET_NUM_OF_PEOPLE} from 'reducers/types'
 import { connect } from 'react-redux';
+import { search } from 'components/searchBar/searchBarCommon'
+import store from 'store'
 
 class NumOfPeopleSelector extends Component {
   constructor(){
@@ -13,19 +15,27 @@ class NumOfPeopleSelector extends Component {
     this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: event.target.value });
   }
 
+  placeSelectorKeyUp = (event) => {
+    if (event.keyCode === 13) {
+      // Trigger the button element with a click
+      console.log("enter clicked on place input")
+      search(store);
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
-            <select id="numOfPeopleChooser" className={this.props.cssClass} onChange={this.handleChange}>
-              <option value="1" class="timeChooserOption">1</option>
-              <option value="2" class="timeChooserOption">2</option>
-              <option value="20000" class="timeChooserOption">couple</option>
-              <option value="3" class="timeChooserOption">3</option>
-              <option value="4" class="timeChooserOption">4</option>
-              <option value="5" class="timeChooserOption">5</option>
-              <option value="6" class="timeChooserOption">6</option>
-              <option value="7" class="timeChooserOption">7</option>
-              <option value="8000" class="timeChooserOption">7+</option>
+            <select id="numOfPeopleChooser" className={this.props.cssClass} onKeyUp={this.placeSelectorKeyUp} onChange={this.handleChange}>
+              <option value="1" className="timeChooserOption">1</option>
+              <option value="2" className="timeChooserOption">2</option>
+              <option value="20000" className="timeChooserOption">couple</option>
+              <option value="3" className="timeChooserOption">3</option>
+              <option value="4" className="timeChooserOption">4</option>
+              <option value="5" className="timeChooserOption">5</option>
+              <option value="6" className="timeChooserOption">6</option>
+              <option value="7" className="timeChooserOption">7</option>
+              <option value="8000" className="timeChooserOption">7+</option>
             </select>
       </React.Fragment>
     )

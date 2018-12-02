@@ -1,4 +1,6 @@
-    - show stats in user page - home - 
+    - show stats in search page 
+
+    - show stats in user page 
     
     - update user idea on idea indicator click. so the user will always be updated with latest stats.
     
@@ -26,6 +28,15 @@
 
     - on edit card, enable to change "# of people" , and "place" also.  - add them at the top.
     
+    - put hard coded startup decisions to place and more for auto suggestion like: house , kitchen, park, bus_station, bus
+
+    - loading when searching
+
+    - animations
+        - after load, when the idea pops up , do it slower.
+        - on indicator click, highlight it for half a second
+        - login screen should show slower. when it pops up
+
     more:
     - change the top text in user page "place" , "num of people" to icons
     - change the like idea to 1 post request instead of 2 - home.

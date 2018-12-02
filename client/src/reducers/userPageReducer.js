@@ -6,7 +6,6 @@ import {  SET_LOGGED_IN_USER_ID,
           SET_LOGGED_IN_USER_LAST_NAME,
           ADD_LIKED_IDEA_TO_USER,
           ADD_CREATED_IDEA_TO_USER,
-          USER_SET_LIKED_IDEAS,
           USER_PAGE_IDEAS_TYPE,
           SET_USER_CURRENT_PREVIEWED_IDEA,
           SET_USER_CREATED_IDEAS,
@@ -43,7 +42,7 @@ const initialState = {
 };
 
 const updateIdeaInArray = (ideasArray, idea) => {
-  var newObject =  JSON.parse(JSON.stringify(ideasArray));
+  // var newObject =  JSON.parse(JSON.stringify(ideasArray));
   
   ideasArray.forEach(ideaI => {
     if(ideaI._id == idea._id){
@@ -54,32 +53,6 @@ const updateIdeaInArray = (ideasArray, idea) => {
 
   return ideasArray;
 }
-
-// const updateIdea = (ideasArray, newIdea) => {
-//   //i update here the ideas , and then returning the idea 
-//   // state.createdIdeas.forEach(element => {
-//   //   if(element._id == idea._id){
-//   //     element.title = idea.title;
-//   //     element.content = idea.content
-//   //   }
-//   // });
-
-//   // return state.currentPreviewedIdeas;
-
-//     // return state.createdIdeas.map((item, index) => {
-//     //   if (item._id != idea._id) {
-//     //     // This isn't the item we care about - keep it as-is
-//     //     return item;
-//     //   }
-
-//     //   // Otherwise, this is the one we want - return an updated value
-//     //   return {
-//     //     ...item,
-//     //     title: idea.title,
-//     //     content: idea.content
-//     //   }
-//     // })
-//   }
 
 const updateLikedIdeasIdea = (state, idea) => {
   state.likedIdeas.forEach(element => {

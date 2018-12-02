@@ -6,13 +6,21 @@ import 'commonCss.css'
 import { connect } from 'react-redux';
 
 class searchLayout extends Component {
+  constructor(props){
+    super();
+
+    this.state={refresh: false}
+  }
+
   render() {
+    this.state.refresh = !this.state.refresh
+    
     return (
       <React.Fragment>
-        <div class="mainContent">
+        <div className="mainContent">
           <SearchBar />
           {
-            this.props.searched ? <IdeaCard idea={this.props.idea} /> : <TopTable />
+            this.props.searched ? <IdeaCard idea={this.props.idea} refresh={this.state.refresh} /> : <TopTable />
           }
         </div>
       </React.Fragment>
@@ -23,7 +31,7 @@ class searchLayout extends Component {
 function mapStateToProps(state) {
   return {
     searched: state.commonReducer.searched,
-    idea: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex],
+    idea: state.searchPageReducer.currentIdea,
   };
 }
 

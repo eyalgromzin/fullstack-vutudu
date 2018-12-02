@@ -5,19 +5,19 @@ import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
 import UserIdeasList from 'components/userIdeasList/userIdeasList'
 import ShowIdeaCardInUser from 'components/ideaCard/showIdeaCardInUser'
-import {getLikedIdeas} from 'actions/userActions'
+// import {getLikedIdeas} from 'actions/userActions'
 import EditIdeaCard from 'components/ideaCard/editIdeaCard'
 import EditCardInUser from 'components/ideaCard/editCardInUser';
 
 class userLayout extends Component {
-  ideasList = () => 
-    this.setState({refreshShoeList: !this.state.refreshShoeList})
+  // ideasList = () => 
+  //   this.setState({refreshShoeList: !this.state.refreshShoeList})  //suppose to help refresh the user ideas list 
 
   render() {
     return (
       <React.Fragment>
         <div id="userLayout" >
-          <div id="userLayoutIdeasSelectSideBar" class="userLayoutMainContent">
+          <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
             <div id="UserIdeasTypeDropDown">
               <UserIdeasTypeDropDown />    
             </div>
@@ -57,4 +57,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {getLikedIdeas})(userLayout)
+export default connect(mapStateToProps)(userLayout) //getLikedIdeas

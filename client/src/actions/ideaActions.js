@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { ADD_LIKED_IDEA_TO_USER, 
-  ADD_USER_TO_IDEA_LIKES,
+import {
   CREATE_IDEA,
-  ADD_USER_TO_IDEA_DISLIKES,
   ADD_CREATED_IDEA_TO_USER,
   SAVE_IDEAS,
   EDITED_IDEA_CLEAR,
@@ -12,13 +10,17 @@ import { ADD_LIKED_IDEA_TO_USER,
 
 export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
   console.log('in ideaActions -> updateIdeaData(userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName)')
+  console.log(`addToIdeaReduxTypeName: ` + addToIdeaReduxTypeName)
+  console.log(`addToUserReduxTypeName: ` + addToUserReduxTypeName)
+
+  //update user - V
   if(userPostUrl != '' && userPostUrl != null){
     console.log('sending post: ' + userPostUrl)
     var postObject = {userID: userID, idea: idea}
     axios.post(userPostUrl, postObject)
     .then(res =>
       {
-        console.log(`sent post to: ` + userPostUrl)
+        console.log(`got response from: ` + userPostUrl)
         dispatch({
           type: addToUserReduxTypeName,
           payload: res.data
@@ -27,6 +29,7 @@ export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeNa
     );
   }
 
+  console.log('updating idea: ' + idea._id)
   if(ideaPostUrl != null && ideaPostUrl != ''){
     console.log('sending post: ' + ideaPostUrl);
     var ideaPostObject = {userID: userID, idea: idea}
@@ -36,7 +39,7 @@ export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeNa
         console.log(`sent post to: ` + ideaPostUrl);
         dispatch({
           type: addToIdeaReduxTypeName,
-          payload: idea._id.$oid
+          payload: idea._id
         })
       }
     );
@@ -44,7 +47,6 @@ export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeNa
 }
 
 export const searchItems = (place,time,numOfPeople) => dispatch => {
-  console.log('using thunk in search items');
   axios
   .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
   .then(res =>{

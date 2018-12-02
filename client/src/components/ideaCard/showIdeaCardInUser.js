@@ -28,20 +28,20 @@ class IdeaCardInUser extends Component {
       <React.Fragment>
         {this.props.currentPreviewedIdeas.length > 0 ? 
           <div id="ideaCardWithTopBar">
-            <div class="ideaIndicators" >
-              <div class="userPageIdeaIndicator">
+            <div className="ideaIndicators" >
+              <div className="userPageIdeaIndicator">
                 place: {this.props.place}
               </div>
               {/* <div id="userPageIdeaTime">
                 time: {this.props.minTime}-{this.props.maxTime}  
               </div> */}
-              <div class="userPageIdeaIndicator">
+              <div className="userPageIdeaIndicator">
                 # of ppl: {this.props.minNumOfPeople}-{this.props.maxNumOfPeople}
               </div>
             </div>
             <div id="ideaCardWithButtonsInUser">
               <div id="ideaCardInUser"> 
-                <div class="ideaTitle">
+                <div className="ideaTitle">
                   {this.props.title}
                 </div>
                 <div id="ideaContentText"> 

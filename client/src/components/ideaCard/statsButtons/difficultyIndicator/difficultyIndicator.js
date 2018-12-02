@@ -2,9 +2,7 @@ import React, { Component } from 'react'
 import './difficultyIndicator.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
-import { ADD_DIFFICULTY,REDUCE_DIFFICULTY } from 'reducers/types'
 import {ADD_USER_TO_IDEA_ADDED_EASY, ADD_USER_TO_IDEA_ADDED_HARD, } from 'reducers/types'
-import { ADD_USER_TO_IDEA_LIKES } from '../../../../reducers/types';
 import {updateIdeaIndicator} from 'actions/ideaActions'
 import {showLogInScreen} from 'actions/commonActions'
 
@@ -38,14 +36,14 @@ constructor(props){
 
   render() {
     return (
-      <div class="bottomIndicator">
-        <img src={require("images/difficulty.png")} id="difficultyImage" class="bottomButton"/>
-        <img src={require("images/upArrow.png")} id="increaseDifficulty" class="bottomButton hoverClickHand" 
+      <div className="bottomIndicator">
+        <img src={require("images/difficulty.png")} id="difficultyImage" className="bottomButton"/>
+        <img src={require("images/upArrow.png")} id="increaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleAddDifficultyClick}/>
 
         {this.props.hardCount.length}
 
-        <img src={require("images/downArrow.png")} id="decreaseDifficulty" class="bottomButton hoverClickHand" 
+        <img src={require("images/downArrow.png")} id="decreaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleReduceDifficultyClick}/>        
 
         {this.props.easyCount.length}

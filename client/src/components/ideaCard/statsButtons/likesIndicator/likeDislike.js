@@ -3,15 +3,13 @@ import './likeDislike.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
 import {updateIdeaIndicator} from 'actions/ideaActions'
-import { ADD_LIKED_IDEA_TO_USER, ADD_USER_TO_IDEA_LIKES } from 'reducers/types'
+import { ADD_LIKED_IDEA_TO_USER, ADD_USER_TO_CURRENT_IDEA_LIKES } from 'reducers/types'
 import { ADD_USER_TO_IDEA_DISLIKES } from 'reducers/types'
 import {showLogInScreen} from 'actions/commonActions'
 
 class LikeDislike extends Component {
-  constructor(props){
-    super(props);
-
-    this.enabled = props.enabled;
+  componentDidUpdate(prevProps) {
+    console.log("like updated")
   }
 
   handleDislikeClick = () => {
@@ -32,7 +30,7 @@ class LikeDislike extends Component {
     }else{    
       this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
         '/api/user/userLiked/',ADD_LIKED_IDEA_TO_USER,    //dont add difficult ideas to user
-        '/api/items/ideaLiked/',ADD_USER_TO_IDEA_LIKES);
+        '/api/items/ideaLiked/',ADD_USER_TO_CURRENT_IDEA_LIKES);
 
         //also send a request to the user to add the user as a like person to the idea thats in the user
     }
@@ -40,7 +38,7 @@ class LikeDislike extends Component {
 
   render() {
     return (
-      <div class="bottomIndicator">
+      <div className="bottomIndicator">
         <img src={require("images/like.png")} id="likeButton" className={"bottomButton hoverClickHand"}
           onClick={this.handleLikeClick}/>
         {this.props.idea.liked.length}
@@ -59,9 +57,6 @@ class LikeDislike extends Component {
 
 function mapStateToProps(state) {
   return {
-    // liked: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].liked,
-    // disliked: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].disliked,
-    // idea: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex],
     userID: state.userPageReducer.loggedInUserID,
     showLogin: state.commonReducer.showLogin,
     loggedIn: state.commonReducer.loggedIn,

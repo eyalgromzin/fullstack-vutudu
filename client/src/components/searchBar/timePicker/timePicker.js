@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import './timePicker.css'
 import '../searchBarCommonStyles.css'
-// import {EDITED_IDEA_SET_TIME} from 'reducers/types'
-// import { SEARCH_SET_TIME } from 'reducers/types';
+import { search } from 'components/searchBar/searchBarCommon'
+import store from 'store'
 
 export default class TimePicker extends Component {
   constructor(props){
@@ -11,17 +11,25 @@ export default class TimePicker extends Component {
     this.handleOnChange = props.onChangeEvent;  
   }
 
+  placeSelectorKeyUp = (event) => {
+    if (event.keyCode === 13) {
+      // Trigger the button element with a click
+      console.log("enter clicked on place input")
+      search(store);
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
-        <select id="timeChooser" onChange={this.handleOnChange} className={this.props.cssClass}>
-          <option value="999999" class="timeChooserOption">Time</option>
-          <option value="5" class="timeChooserOption">5m</option>
-          <option value="10" class="timeChooserOption">10m</option>
-          <option value="15" class="timeChooserOption">15m</option>
-          <option value="30" class="timeChooserOption">30m</option>
-          <option value="60" class="timeChooserOption">1h</option>
-          <option value="6000" class="timeChooserOption">1h+</option>
+        <select id="timeChooser" onChange={this.handleOnChange} onKeyDown={this.placeSelectorKeyUp} className={this.props.cssClass}>
+          <option value="999999" className="timeChooserOption">Time</option>
+          <option value="5" className="timeChooserOption">5m</option>
+          <option value="10" className="timeChooserOption">10m</option>
+          <option value="15" className="timeChooserOption">15m</option>
+          <option value="30" className="timeChooserOption">30m</option>
+          <option value="60" className="timeChooserOption">1h</option>
+          <option value="6000" className="timeChooserOption">1h+</option>
         </select>
       </React.Fragment>
     )

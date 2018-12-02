@@ -43,7 +43,7 @@ class createIdeaButton extends Component {
 
   render() {
     return (
-        <div class="alignRight">
+        <div className="alignRight">
           <div id="createIdeaButton" onClick={this.handleCreateIdeaClick}> create </div>
           <Notifications options={{zIndex: 200, top: '35px' , wrapperId:'toastWrapperID', id:'toastID' ,animationDuration: 2000 }} />
         </div>
