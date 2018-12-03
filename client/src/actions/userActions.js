@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { 
-  USER_SET_LIKED_IDEAS,
   SET_LOGGED_IN_USER, 
   SET_LOGGED_IN_USER_FIRST_NAME, 
   SET_LOGGED_IN_USER_ID, 
   SET_LOGGED_IN_USER_LAST_NAME, 
   UPDATE_PREVIEWED_IDEAS_IDEA,
+  CHANGE_LOGGED_IN_STATE,
+  SET_USER_LIKED_IDEAS,
 } from 'reducers/types'
 import { EDITED_IDEA_SET_TITLE, SET_USER_CREATED_IDEAS } from '../reducers/types';
 import store from 'store'
@@ -38,7 +39,9 @@ export const createUserIfNotExists = user => dispatch => {
             type: SET_LOGGED_IN_USER_LAST_NAME,
             payload: res.data.lastName
           })
-          // updateUserIdeas(user.id,);
+          dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: true });
+
+          updateUser(user.id);
           
         });
       // };
@@ -56,6 +59,9 @@ export const createUserIfNotExists = user => dispatch => {
             type: SET_LOGGED_IN_USER_LAST_NAME,
             payload: res.data[0].lastName
           })
+          dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: true });
+
+          updateUser(user.id);
     }
   }).then(res => {
 
@@ -80,20 +86,6 @@ export const createUser = user => dispatch => {
   );
 }
 
-export const getLikedIdeas = userID => dispatch => {
-  console.log('sending post: api/Items/getUserLikedIdeas:' + userID)
-  axios.post(`/api/items/getUserLikedIdeas`,userID)
-  .then(res =>
-    {
-      console.log('got sponse from: api/Items/getUserLikedIdeas: ' + JSON.stringify(res));
-      dispatch({
-        type: USER_SET_LIKED_IDEAS,
-        payload: res.data
-      })
-    }
-  );
-}
-
 //run it on the beginning of the app load
 //get user ideas - liked / created
 export const copyUserIdeas = (reduxActionName) => dispatch => {
@@ -102,20 +94,46 @@ export const copyUserIdeas = (reduxActionName) => dispatch => {
         });
 }
 
-//run it on the beginning of the app load
-export const updateUserIdeas = (userID, ideaType, reduxActionName) => dispatch => {
-  console.log('sending post: api/Items/updateUserIdeas: userID: ' + userID + ', ideaType: ' + ideaType);
-  axios.post(`/api/items/updateUserIdeas`,{userID,ideaType})
+
+export const updateUser = (userID) => {
+  store.dispatch(getUserFromDB(userID));
+}
+
+
+// //'Liked' / 'Created' 
+export const getUserFromDB = userID => dispatch => {
+  console.log('sending post:  api/user/getUser/, userID: ' + userID)
+  axios.post(`/api/user/getUser`,{userID})
   .then(res =>
     {
-      console.log('got: /api/items/updateUserIdeas');
+      console.log('got response from: api/Items/getUserLikedIdeas');
       dispatch({
-        type: reduxActionName,
-        payload: res.data
-      });
+        type: SET_USER_LIKED_IDEAS,
+        payload: res.data[0].liked
+      })
+      dispatch({
+        type: SET_USER_CREATED_IDEAS,
+        payload: res.data[0].created
+      })
     }
   );
 }
+
+
+
+// export const updateUserCreatedIdeas = (userID) => dispatch => {
+//   console.log('sending post: api/Items/getUserCreatedIdeas: userID: ' + userID);
+//   axios.post(`/api/items/getUserCreatedIdeas`,{userID})
+//   .then(res =>
+//     {
+//       console.log('got: /api/items/getUserCreatedIdeas');
+//       dispatch({
+//         type: SET_USER_CREATED_IDEAS,
+//         payload: res.data
+//       });
+//     }
+//   );
+// }
 
 //e.g. 
 export const updateIdea = (ideaID, title, content) => dispatch => {

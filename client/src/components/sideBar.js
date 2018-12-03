@@ -11,6 +11,14 @@ class SideBar extends Component {
     showLogInScreen();
   }
 
+  showNewIdeaScreen = (history) => {
+    if(!this.props.loggedIn){
+      showLogInScreen();
+    }else{  
+      history.push('/create')
+    }
+  }
+
   render() {
     return (
     <React.Fragment>
@@ -22,7 +30,7 @@ class SideBar extends Component {
                   onClick={() => { history.push('/search') }}
                 />
                 <img id="newIdeaButton" src={require("images/writeWhite.png")} className="leftBarIcon verticalMiddleAlign"
-                  onClick={() => { history.push('/create') }}
+                  onClick={() =>  this.showNewIdeaScreen(history) }    //() => { history.push('/create') }
                 />
 
                 {

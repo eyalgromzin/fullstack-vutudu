@@ -12,7 +12,6 @@ import {
   SET_USER_LIKED_IDEAS,
   SET_USER_CREATED_IDEAS
 } from 'reducers/types' 
-import { updateUserIdeas } from 'actions/userActions'
 
 
 class facebook6 extends Component {
@@ -31,7 +30,8 @@ class facebook6 extends Component {
       }
 
       this.props.createUserIfNotExists1(user);
-      store.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: true });
+      
+
 
     } else {
       console.log('User cancelled login or did not fully authorize.');
@@ -60,7 +60,6 @@ class facebook6 extends Component {
 function mapDispatchToProps(dispatch) {
   return({
     createUserIfNotExists1: bindActionCreators (createUserIfNotExists, dispatch),
-    updateUserIdeas: bindActionCreators (updateUserIdeas, dispatch)
   })
 }
 

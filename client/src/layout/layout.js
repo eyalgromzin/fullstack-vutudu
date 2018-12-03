@@ -20,7 +20,7 @@ import createLayout from '../components/createCopmonent/createLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userLayout from '../components/layouts/userLayout/userLayout';
 import SideBar from 'components/sideBar'
-import { updateUserIdeas } from '../actions/userActions';
+// import { updateUserIdeas } from '../actions/userActions';
 
 import {
   SET_USER_LIKED_IDEAS,
@@ -46,11 +46,11 @@ class Layout extends Component {
     }
   }
 
-  componentDidMount() {
-    //update user ideas on website startup
-    this.props.updateUserIdeas(this.props.userID, 'Liked', SET_USER_LIKED_IDEAS);
-    this.props.updateUserIdeas(this.props.userID, 'Created', SET_USER_CREATED_IDEAS);
-  }
+  // componentDidMount() {
+  //   //update user ideas on website startup
+  //   // this.props.updateUserIdeas(this.props.userID, 'Liked', SET_USER_LIKED_IDEAS);
+  //   // this.props.updateUserIdeas(this.props.userID, 'Created', SET_USER_CREATED_IDEAS);
+  // }
   
   render() {
     return (
@@ -80,4 +80,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {updateUserIdeas})(Layout);
+export default connect(mapStateToProps)(Layout);    

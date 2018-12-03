@@ -8,10 +8,20 @@ import ShowIdeaCardInUser from 'components/ideaCard/showIdeaCardInUser'
 // import {getLikedIdeas} from 'actions/userActions'
 import EditIdeaCard from 'components/ideaCard/editIdeaCard'
 import EditCardInUser from 'components/ideaCard/editCardInUser';
+import { 
+  USER_SET_SELECTED_DROPDOWN_TYPE,
+  USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
+  USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
+  SET_USER_CURRENT_PREVIEWED_IDEAS,
+  } from "reducers/types";
 
 class userLayout extends Component {
-  // ideasList = () => 
-  //   this.setState({refreshShoeList: !this.state.refreshShoeList})  //suppose to help refresh the user ideas list 
+  constructor(props){
+    super(props);
+
+    this.props.dispatch({type: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS});
+    this.props.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS});
+  }
 
   render() {
     return (
@@ -34,7 +44,7 @@ class userLayout extends Component {
               { this.props.isIdeaEdited? 
                 <EditCardInUser />
                 :
-                <ShowIdeaCardInUser />
+                <ShowIdeaCardInUser enabled={false}/>
                 
               }
               

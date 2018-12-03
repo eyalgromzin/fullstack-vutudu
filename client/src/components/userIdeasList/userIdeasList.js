@@ -26,9 +26,9 @@ class UserIdeasList extends Component {
       } 
     } 
     className="listRow">   
-      {this.props.ideas[index].title == null || 
-      this.props.ideas[index].title == "" ? "empty title" 
-      : this.props.ideas[index].title}
+      {this.props.ideas == null || this.props.ideas[index] == null 
+      || this.props.ideas[index].title == null || this.props.ideas[index].title == "" ? 
+      "empty title"  : this.props.ideas[index].title}
     </div>;
   }
 
@@ -49,7 +49,7 @@ class UserIdeasList extends Component {
             <div className="listOutline">
               <ReactList
                 itemRenderer={this.renderItem}
-                length={this.props.ideas == null? 0 : this.props.ideas.length}
+                length={this.props == null || this.props.ideas == null? 0 : this.props.ideas.length}
                 type='uniform'
               />
             </div>

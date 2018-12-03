@@ -6,7 +6,7 @@ import {
   EDITED_IDEA_SET_TIME,
   EDITED_IDEA_SET_TITLE,
   EDITED_IDEA_SET_CONTENT ,
-  EDITED_IDEA_CLEAR,
+  CLEAR_EDITED_IDEA,
   EDITED_IDEA_SET_PLACE,
   EDITED_IDEA_SET_ID,
   EDITED_IDEA_SET_TAGS,
@@ -66,7 +66,7 @@ function reducer(state = initialState, action) {
       ...state,
       id: action.payload,
     };
-    case EDITED_IDEA_CLEAR:
+    case CLEAR_EDITED_IDEA:
       return {
         ...state,
         title: "",

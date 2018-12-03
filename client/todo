@@ -1,8 +1,13 @@
-    - show stats in search page 
+    - indicators: 
+        - update user created idea on idea indicator click. so the user will always be updated with latest stats.
 
-    - show stats in user page 
-    
-    - update user idea on idea indicator click. so the user will always be updated with latest stats.
+        - enable to remove indicator. to remove like / dislike / hard/ easy / +time / -time
+
+        - disable the option to do more than 1 indicator click
+
+        - on edit card, enable to change "# of people" , and "place" also.  - add them at the top.
+
+
     
     - create lists, and put them in the main page. - at the bottom of the search page - home 
         - hardest 
@@ -24,13 +29,9 @@
         - on search - 1 work for more and place
         - on indicators - only 1 click
     
-    - indicators dont work again. - likes / difficulty / time
-
-    - on edit card, enable to change "# of people" , and "place" also.  - add them at the top.
-    
     - put hard coded startup decisions to place and more for auto suggestion like: house , kitchen, park, bus_station, bus
-
-    - loading when searching
+    
+    - loading icon when searching
 
     - animations
         - after load, when the idea pops up , do it slower.

@@ -15,12 +15,8 @@ import { SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT } from 'reducers/types'
 import EditIdeaButton from './editIdeaButton' 
 
 class IdeaCardInUser extends Component {
-  constructor(){
-    super();
-
-    this.state ={ 
-      isEdit: false,
-    }
+  constructor(props){
+    super(props);
   }
 
   render() {
@@ -52,9 +48,9 @@ class IdeaCardInUser extends Component {
               </div>
               <div id="cardIndicationButtons">
                   <div id="cardIndicators"> 
-                    <LikeDislike enabled="false" idea={this.props.currentPreviewedIdea}/>
-                    <TimeIndicator enabled="false" />
-                    <DifficultyIndicator enabled="false" />
+                    <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
+                    <TimeIndicator enabled={false}  />  {/* idea={this.props.currentPreviewedIdea} */ }
+                    <DifficultyIndicator enabled={false} />  {/* idea={this.props.currentPreviewedIdea} */ }
                   </div>
                 </div>
               <EditIdeaButton />

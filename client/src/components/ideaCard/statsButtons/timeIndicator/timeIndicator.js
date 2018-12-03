@@ -39,7 +39,10 @@ constructor(props){
       <div className="bottomIndicator">
         <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image"/>
         <img src={require("images/downArrow.png")} id="decreaseTime" className="bottomButton hoverClickHand" onClick={this.handleReduceTimeClick} alt="decrease time"/>
-        <span>{this.props.idea.minTime - this.props.idea.addedShort.length} - {this.props.idea.maxTime + this.props.idea.addedLong.length}</span>
+        <span>{this.props.idea  === undefined ? 
+          0 : this.props.idea.minTime - this.props.idea.addedShort.length} - 
+          {this.props.idea  === undefined ? 
+          0 : this.props.idea.maxTime + this.props.idea.addedLong.length}</span>
         <img src={require("images/upArrow.png")} id="incrementTime" className="bottomButton hoverClickHand" onClick={this.handleAddAddTimeClick} alt="increase time"/>
       </div>
     )

@@ -3,7 +3,7 @@ import {
   CREATE_IDEA,
   ADD_CREATED_IDEA_TO_USER,
   SAVE_IDEAS,
-  EDITED_IDEA_CLEAR,
+  CLEAR_EDITED_IDEA,
   NO_ITEMS_FOUND, 
   SET_CURRENT_IDEA,
   CHANGE_SEARCHED_STATE
@@ -46,6 +46,22 @@ export const updateIdeaIndicator = (userID,idea,userPostUrl,addToUserReduxTypeNa
       }
     );
   }
+}
+
+export const addIdeaToUserCreatedIdeas = (userID, idea) => dispatch => {
+  //update user - V
+  console.log('ideaActions: adding idea to user: ' + idea._id)
+  var postObject = {userID: userID, idea: idea}
+  axios.post('', postObject)
+  .then(res =>
+    {
+      console.log(`user was updated`)
+      dispatch({
+        type: ADD_CREATED_IDEA_TO_USER,
+        payload: res.data
+      })
+    }
+  );
 }
 
 export const searchItems = (place,time,numOfPeople) => dispatch => {
@@ -92,36 +108,26 @@ const addTagToLettersBucketIfNotExists = (firstLetters, tag) => {
 
 export const addIdeaToDB = (idea,userID) => dispatch => {
   console.log('adding item to mongo: ' + idea.title);
-  var ideaCreated = false;
-  var ideaAddedToUser = false;
 
   axios.post('/api/items/createIdea', {idea,userID}).then(res =>
     {
-      console.log('added item to mongo: ' + idea.title);
-
-      dispatch({
-        type: CREATE_IDEA,
-        payload: res.data
-      });
-
-      var response = res.data;
-      var ideaID = response._id;
-      var axiosObj = {ideaID,userID};
-
-      console.log('item added');
+      console.log('added item to mongo: ' + res.data.title);
+      
+      var idea = res.data
+      var axiosObj = {userID, idea};
 
       axios.post('/api/user/addIdeaToUserCreatedIdeas', axiosObj).then(res =>
         {
           dispatch({
             type: ADD_CREATED_IDEA_TO_USER,
-            payload: ideaID
+            payload: res.data
           });
 
           dispatch({
-            type: EDITED_IDEA_CLEAR,
+            type: CLEAR_EDITED_IDEA,
           })
 
-          console.log('added ideaID to user ..created.. array');
+          console.log('added ideaID to user created array');
         }
       );
     }

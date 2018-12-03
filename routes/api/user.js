@@ -75,9 +75,21 @@ router.post('/userDone', (req, res) => {   //works
 router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
   console.log("updating: " + req.body.userID);
   User.findOneAndUpdate({ id: req.body.userID },
-    { "$push": { "created": req.body.ideaID } })
+    { "$push": { "created": req.body.idea } })
   .then(users => res.json(users));
   console.log("updated: " + req.body.userID);
+});
+
+// @route   POST api/user/getUser/
+// @desc    search for anything
+// @access  Public
+router.post('/getUser', (req, res) => {   //works
+  console.log("getting user: " + req.body.userID);
+  User.find({ id: req.body.userID })
+    .then(users => {
+      res.json(users);
+      console.log("got user");
+    });
 });
 
 

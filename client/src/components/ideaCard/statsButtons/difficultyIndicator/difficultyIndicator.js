@@ -7,12 +7,12 @@ import {updateIdeaIndicator} from 'actions/ideaActions'
 import {showLogInScreen} from 'actions/commonActions'
 
 class DiffictultyIndicator extends Component {
-constructor(props){
-  super(props)
+  constructor(props){
+    super(props)
 
-  this.handleAddDifficultyClick = this.handleAddDifficultyClick.bind(this);
-  this.handleReduceDifficultyClick = this.handleReduceDifficultyClick.bind(this);
-}
+    this.handleAddDifficultyClick = this.handleAddDifficultyClick.bind(this);
+    this.handleReduceDifficultyClick = this.handleReduceDifficultyClick.bind(this);
+  }
 
   handleAddDifficultyClick(){
     if(!this.props.loggedIn){
@@ -41,14 +41,15 @@ constructor(props){
         <img src={require("images/upArrow.png")} id="increaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleAddDifficultyClick}/>
 
-        {this.props.idea.addedHard.length}
+        {this.props.idea === undefined ? 0 : this.props.idea.addedHard.length}
 
         <img src={require("images/downArrow.png")} id="decreaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleReduceDifficultyClick}/>        
 
-        {this.props.idea.addedEasy.length}
+        {this.props.idea === undefined ? 0 : this.props.idea.addedEasy.length}
 
-        <span> ({Math.round((this.props.idea.addedHard.length/(this.props.idea.addedEasy.length + this.props.idea.addedHard.length == 0 ? 1 : this.props.idea.addedEasy.length + this.props.idea.addedHard.length)) * 100) }%)  </span>
+        <span> ({this.props.idea === undefined ? 
+          0 : Math.round((this.props.idea.addedHard.length/(this.props.idea.addedEasy.length + this.props.idea.addedHard.length == 0 ? 1 : this.props.idea.addedEasy.length + this.props.idea.addedHard.length)) * 100) }%)  </span>
       </div>
     )
   }

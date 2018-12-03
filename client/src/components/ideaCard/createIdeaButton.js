@@ -25,7 +25,7 @@ class createIdeaButton extends Component {
             maxTime: this.props.maxTime,
             minNumOfPeople: this.props.minNumOfPeople,
             maxNumOfPeople: this.props.maxNumOfPeople,
-            tags: this.props.tags,
+            tags: [],
           };
     
           let myColor = { background: '#0E1717', text: "#FFFFFF" };
@@ -33,9 +33,6 @@ class createIdeaButton extends Component {
 
           // Add item via createItem action
           this.props.addIdeaToDB(newItem, this.props.userID);
-
-          //NTH
-          // this.props.updateTags();
         }
       }
 

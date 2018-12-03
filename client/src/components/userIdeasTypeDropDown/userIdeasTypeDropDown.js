@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import { connect } from 'react-redux';
-import { USER_PAGE_IDEAS_TYPE,
-  USER_SET_LIKED_IDEAS,
-  SET_USER_CREATED_IDEAS,
+import { 
   USER_SET_SELECTED_DROPDOWN_TYPE,
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
   SET_USER_CURRENT_PREVIEWED_IDEAS,
   } from "reducers/types";
-import { copyUserIdeas, updateUserIdeas } from 'actions/userActions'
+import { copyUserIdeas } from 'actions/userActions'
 import store from 'store'
 
 export const LIKED_IDEAS = "LIKED_IDEAS";
@@ -63,4 +61,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, {updateUserIdeas, copyUserIdeas})(UserIdeasTypeDropDown)
+export default connect(mapStateToProps, {copyUserIdeas})(UserIdeasTypeDropDown)

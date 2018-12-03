@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     .then(items => res.json(items));
 });
 
-// @route   POST api/items
+// @route   POST api/items/createIdea
 // @desc    Create An Item
 // @access  Public
 router.post('/createIdea/', (req, res) => {
@@ -227,15 +227,15 @@ router.delete('/:id', (req, res) => {
 //pass user id
 //
 //find all ideas containing: userID
-router.post('/getUserLikedIdeas/', (req, res) => {   
-  console.log("getting user liked ideas: " + req.body.userID);
-  Item.find({ liked: req.body.userID })
-  // Item.find({ liked: { "$in" : [req.body.ideaID]}  })
-  .then(
-    items => res.json(items)
-  );
-  console.log("got User Liked Ideas");
-});
+// router.post('/getUserLikedIdeas/', (req, res) => {   
+//   console.log("getting user liked ideas: " + req.body.userID);
+//   Item.find({ liked: req.body.userID })
+//   // Item.find({ liked: { "$in" : [req.body.ideaID]}  })
+//   .then(
+//     items => res.json(items)
+//   );
+//   console.log("got User Liked Ideas");
+// });
 
 //find all ideas containing: userID
 router.post('/updateIdea/', (req, res) => {   
@@ -257,24 +257,43 @@ router.post('/updateIdea/', (req, res) => {
   // console.log("updated idea: " + req.body.ideaID);
   });
 
-// @route   POST /api/items/updateUserIdeas
+  //not needed - its duplicated to the user!!!!
+
+// @route   POST /api/items/getUserCreatedIdeas
 // @desc    search for anything
 // @access  Public
 //
 //pass user id
 //
 //find all ideas containing: userID
-router.post('/updateUserIdeas/', (req, res) => {   
-  console.log("getting user ideas: " + req.body.userID + ", type: " + req.body.ideaType);
+// router.post('/getUserCreatedIdeas/', (req, res) => {     //getUserIdeas
+//   console.log("getting user created ideas: " + req.body.userID);
 
-  var query = {};
-  query[req.body.ideaType]  = req.body.userID;
+//   var query = {};
+//   query[req.body.ideaType] = req.body.userID;
+//   Item.find(query)
+//   .then(
+//     items => res.json(items)
+//   );
+//   console.log("got User Liked Ideas");
+// });
 
-  Item.find(query)
-  .then(
-    items => res.json(items)
-  );
-  console.log("got User Liked Ideas");
-});
+// @route   POST /api/items/getUserCreatedIdeas
+// @desc    search for anything
+// @access  Public
+//
+//pass user id
+//
+// //find all ideas containing: userID
+// router.post('/getUserLikedIdeas/', (req, res) => {     //getUserIdeas
+//   console.log("getting user liked ideas: " + req.body.userID);
+
+//   Item.find({ liked: {$in: [req.body.userID] } })
+//     .then(
+//       items => res.json(items)
+//     );
+  
+//   console.log("got User Liked Ideas");
+// });
 
 module.exports = router;
