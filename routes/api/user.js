@@ -3,6 +3,8 @@ const router = express.Router();
 
 // user Model
 const User = require('../../models/user');
+// // Item Model
+// const Item = require('../../models/Item');
 
 // @route   GET api/user/:id
 // @desc    search for anything
@@ -55,6 +57,47 @@ router.post('/userLiked', (req, res) => {   //works
   User.findOneAndUpdate({ id: req.body.userID },
     { "$push": { "liked": req.body.idea } })
   .then(users => res.json(users));
+  console.log("added idea to user: " + req.body.userID);
+  
+  //update the created idea of the  user that created the idea - add to like array the user id that liked it.
+  User.findOneAndUpdate({ id: req.body.idea.createdBy, "created._id": req.body.idea._id},
+    { "$push": { "created.$.liked": req.body.userID }})
+  .then(users => res.json(users));
+  console.log("added user id to the liked idea in the created user: " + req.body.userID);
+});
+
+// @route   POST api/user/userLiked/
+// @desc    search for anything
+// @access  Public
+router.post('/userDisliked', (req, res) => {   //works
+  //update the created idea of the  user that created the idea - add to dislike array the user id that disliked it.
+  User.findOneAndUpdate({ id: req.body.idea.createdBy, "created._id": req.body.idea._id},
+    { "$push": { "created.$.disliked": req.body.userID }})
+  .then(users => res.json(users));
+  console.log("added user id to the liked idea in the created user: " + req.body.userID);
+});
+
+// @route   POST api/user/updateUserCreatedIdea/
+// @get userID, ideaID, title, content
+// @desc    update idea in user 
+// @access  Public
+router.post('/updateUserCreatedIdea', (req, res) => {   //works
+  console.log("updating " + req.body.userID);
+  User.findOneAndUpdate({ id: req.body.userID, "created._id": req.body.ideaID},
+    { "$set": { "created.$.title": req.body.title, "created.$.content": req.body.content }})
+  .then(users => res.json(users));
+  console.log("updated " + req.body.userID);
+});
+
+// @route   POST api/user/addUserToUserLikedIdea/
+// @get userID, ideaID, title, content
+// @desc    update idea in user 
+// @access  Public
+router.post('/addUserToUserLikedIdea', (req, res) => {   //works
+  console.log("adding user: " + req.body.userIDToAdd + ", to idea: " + req.body.ideaID + ", in user: " + req.body.userIDToUpdate);
+  User.findOneAndUpdate({ id: req.body.userID, "liked._id": req.body.ideaID},
+    { "$push": { "liked.$.liked": req.body.userIDToAdd }})
+  .then(users => res.json(users));
   console.log("updated " + req.body.userID);
 });
 
@@ -76,6 +119,17 @@ router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
   console.log("updating: " + req.body.userID);
   User.findOneAndUpdate({ id: req.body.userID },
     { "$push": { "created": req.body.idea } })
+  .then(users => res.json(users));
+  console.log("updated: " + req.body.userID);
+});
+
+// @route   POST api/user/userCreated/
+// @desc    search for anything
+// @access  Public
+router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
+  console.log("updating: " + req.body.userID);
+  User.findOneAndUpdate({ id: req.body.userID },
+    { "$push": { "created._id": { "_id": req.body.idea.id } } })
   .then(users => res.json(users));
   console.log("updated: " + req.body.userID);
 });

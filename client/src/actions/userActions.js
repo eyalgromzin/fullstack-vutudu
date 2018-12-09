@@ -4,9 +4,10 @@ import {
   SET_LOGGED_IN_USER_FIRST_NAME, 
   SET_LOGGED_IN_USER_ID, 
   SET_LOGGED_IN_USER_LAST_NAME, 
-  UPDATE_PREVIEWED_IDEAS_IDEA,
+  UPDATE_PREVIEWED_IDEA,
   CHANGE_LOGGED_IN_STATE,
   SET_USER_LIKED_IDEAS,
+  UPDATE_USER_CREATED_IDEA,
 } from 'reducers/types'
 import { EDITED_IDEA_SET_TITLE, SET_USER_CREATED_IDEAS } from '../reducers/types';
 import store from 'store'
@@ -119,52 +120,43 @@ export const getUserFromDB = userID => dispatch => {
   );
 }
 
-
-
-// export const updateUserCreatedIdeas = (userID) => dispatch => {
-//   console.log('sending post: api/Items/getUserCreatedIdeas: userID: ' + userID);
-//   axios.post(`/api/items/getUserCreatedIdeas`,{userID})
-//   .then(res =>
-//     {
-//       console.log('got: /api/items/getUserCreatedIdeas');
-//       dispatch({
-//         type: SET_USER_CREATED_IDEAS,
-//         payload: res.data
-//       });
-//     }
-//   );
-// }
-
 //e.g. 
-export const updateIdea = (ideaID, title, content) => dispatch => {
+export const updateIdea = (ideaID, title, content, userID) => dispatch => {
   console.log('sending post: api/items/updateIdea: ideaID: ' + ideaID + ', title: ' + title + ', content: ' + content);
   axios.post(`/api/items/updateIdea`,{ideaID, title, content})
   .then(res =>
     {
       console.log('got reply: /api/items/updateIdea');
-      // dispatch({
-      //   type: EDITED_IDEA_SET_TITLE,
-      //   payload: res.data.title
-      // });
-      // dispatch({
-      //   type: EDITED_IDEA_SET_CONTENT,
-      //   payload: res.data.content
-      // });
-
       dispatch({
-        type: UPDATE_PREVIEWED_IDEAS_IDEA,
+        type: UPDATE_PREVIEWED_IDEA,
+        payload: {ideaID, title, content}
+      });
+    }
+  );
+  
+  console.log('sending post: api/user/updateUserCreatedIdea: userID: ' + userID + ', ideaID: ' + ideaID + ', title: ' + title + ', content: ' + content);
+  axios.post(`/api/user/updateUserCreatedIdea`,{userID, ideaID, title, content})
+  .then(res =>
+    {
+      console.log('got reply: /api/user/updateUserCreatedIdea');
+      dispatch({
+        type: UPDATE_USER_CREATED_IDEA,
         payload: res.data
       });
+    }
+  );
+}
 
-      //fix this when the previewed is fixed
-      // dispatch({
-      //   type: UPDATE_CREATED_IDEAS_IDEA,
-      //   payload: res.data
-      // });
-      // dispatch({
-      //   type: UPDATE_LIKED_IDEAS_IDEA,
-      //   payload: res.data
-      // });
+export const addUserToUserLikedIdea = (userIDToUpdate, ideaID, userIDToAdd) => dispatch => {
+  console.log('sending post: api/user/addUserToUserLikedIdea: userIDToUpdate: ' + userIDToUpdate + ', ideaID: ' + ideaID + ', userIDToAdd: ' + userIDToAdd);
+  axios.post(`/api/user/addUserToUserLikedIdea`,{userIDToUpdate, ideaID, userIDToAdd})
+  .then(res =>
+    {
+      console.log('got reply: /api/user/updateUserCreatedIdea');
+      dispatch({
+        type: UPDATE_USER_CREATED_IDEA,
+        payload: res.data
+      });
     }
   );
 }

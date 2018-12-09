@@ -12,14 +12,19 @@ import {  SET_LOGGED_IN_USER_ID,
           SET_USER_CURRENT_PREVIEWED_IDEAS,
           USER_SET_SELECTED_DROPDOWN_TYPE,
           SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
-          UPDATE_PREVIEWED_IDEAS_IDEA,
-          UPDATE_CREATED_IDEAS_IDEA,
+          UPDATE_PREVIEWED_IDEA,  
           USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
           USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
           UPDATE_LIKED_IDEAS_IDEA,
           CHANGE_UPDATE_TOGGLE,
           SET_USER_LIKED_IDEAS,
+          REMOVE_IDEA_FROM_USER_CREATED_IDEAS,
+          UPDATE_USER_CREATED_IDEA,
         } from 'reducers/types'
+import {removeIdeaFromArray} from 'commonUtils'
+import { updateIdea } from '../actions/userActions';
+var dcopy = require('deep-copy')
+
 
 const initialState = {
     loggedInUserID: "",
@@ -42,16 +47,16 @@ const initialState = {
 };
 
 const updateIdeaInArray = (ideasArray, idea) => {
-  // var newObject =  JSON.parse(JSON.stringify(ideasArray));
+  var newIdeasArray = dcopy(ideasArray);
   
-  ideasArray.forEach(ideaI => {
-    if(ideaI._id == idea._id){
+  newIdeasArray.forEach(ideaI => {
+    if(ideaI != null && ideaI !== undefined && ideaI._id == idea._id){
       ideaI.title = idea.title;
       ideaI.content = idea.content
     }
   });
 
-  return ideasArray;
+  return newIdeasArray;
 }
 
 const updateLikedIdeasIdea = (state, idea) => {
@@ -63,6 +68,10 @@ const updateLikedIdeasIdea = (state, idea) => {
   });
 
   return state.currentPreviewedIdeas;
+}
+
+function getCopyOfCurrentIdea (state){
+  return dcopy(state.currentIdea);
 }
 
 function reducer(state = initialState, action) {
@@ -128,17 +137,20 @@ function reducer(state = initialState, action) {
         ...state,
         currentPreviewedIdea: action.payload
       }
-    case UPDATE_PREVIEWED_IDEAS_IDEA:
+    case REMOVE_IDEA_FROM_USER_CREATED_IDEAS:
+        var createdIdeas = getCopyOfCurrentIdea(state.createdIdeas)
+        createdIdeas = removeIdeaFromArray(createdIdeas,action.payload);
+
+        return {
+          ...state,
+          createdIdeas: createdIdeas
+        }
+    case UPDATE_PREVIEWED_IDEA:
       var newPreviewedIdeas = updateIdeaInArray(state.currentPreviewedIdeas, action.payload);
       return {
         ...state,
         currentPreviewedIdeas: newPreviewedIdeas,
         updateToggle: !state.updateToggle
-      }
-    case UPDATE_CREATED_IDEAS_IDEA:
-      return {
-        ...state,
-        createdIdeas: updateIdeaInArray(state, action.payload)
       }
     case UPDATE_LIKED_IDEAS_IDEA:
       return {
@@ -159,6 +171,14 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         updateToggle: !state.updateToggle
+      }
+    case UPDATE_USER_CREATED_IDEA:
+      var createdIdeas = dcopy(state.createdIdeas)
+      createdIdeas = updateIdeaInArray(createdIdeas, action.payload);
+
+      return {
+        ...state,
+        createdIdeas: createdIdeas
       }
     default:
       return state;

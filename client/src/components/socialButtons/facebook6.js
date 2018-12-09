@@ -29,9 +29,7 @@ class facebook6 extends Component {
         id: response.id
       }
 
-      this.props.createUserIfNotExists1(user);
-      
-
+      this.props.createUserIfNotExists(user);
 
     } else {
       console.log('User cancelled login or did not fully authorize.');
@@ -59,7 +57,7 @@ class facebook6 extends Component {
 
 function mapDispatchToProps(dispatch) {
   return({
-    createUserIfNotExists1: bindActionCreators (createUserIfNotExists, dispatch),
+    createUserIfNotExists: bindActionCreators (createUserIfNotExists, dispatch),
   })
 }
 

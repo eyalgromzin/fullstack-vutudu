@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var item = require('mongoose').model('item').schema;
 
 const userSchema = new Schema({
     firstName: {
@@ -19,12 +20,12 @@ const userSchema = new Schema({
     liked: {
         type: Array,
         required: false,
-        default: []
+        default: [item]
       },
     created: {
         type: Array,
         required: false,
-        default: []
+        default: [item]
       },
     done: {
         type: Array,

@@ -31,11 +31,11 @@ constructor(props){
 
     store.dispatch({type: CHANGE_UPDATE_TOGGLE});
 
-    this.props.updateIdea1(
+    this.props.updateIdea(
       this.props.currentPreviewedIdea._id,
       this.props.newTitle,
       this.props.newContent,
-      this.props.newTags);
+      this.props.userID);
   }
 
   render() {
@@ -57,7 +57,7 @@ constructor(props){
 
 function mapDispatchToProps(dispatch) {
   return({
-    updateIdea1: bindActionCreators (updateIdea, dispatch),
+    updateIdea: bindActionCreators (updateIdea, dispatch),
     dispatch
   })
 }

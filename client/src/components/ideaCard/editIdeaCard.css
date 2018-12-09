@@ -25,6 +25,11 @@ input:focus {
     min-height: 400px;
 }
 
+.userPageIdeaButton{
+    height: 60px;
+    width: 60px;
+}
+
 #createIdeaButton{
     display: inline-block;
     margin-top: 13px;

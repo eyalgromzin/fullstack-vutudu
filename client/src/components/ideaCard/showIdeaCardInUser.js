@@ -13,6 +13,7 @@ import Linkify from 'react-linkify';
 import 'commonCss.css'
 import { SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT } from 'reducers/types'
 import EditIdeaButton from './editIdeaButton' 
+import DeleteIdeaButton from './deleteIdeaButton' 
 
 class IdeaCardInUser extends Component {
   constructor(props){
@@ -49,11 +50,12 @@ class IdeaCardInUser extends Component {
               <div id="cardIndicationButtons">
                   <div id="cardIndicators"> 
                     <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
-                    <TimeIndicator enabled={false}  />  {/* idea={this.props.currentPreviewedIdea} */ }
-                    <DifficultyIndicator enabled={false} />  {/* idea={this.props.currentPreviewedIdea} */ }
+                    <TimeIndicator enabled={false}  idea={this.props.currentPreviewedIdea}  />  
+                    <DifficultyIndicator enabled={false} idea={this.props.currentPreviewedIdea} />
                   </div>
                 </div>
               <EditIdeaButton />
+              <DeleteIdeaButton />
               
               <div id="statusButtons">
               </div>

@@ -41,14 +41,14 @@ class DiffictultyIndicator extends Component {
         <img src={require("images/upArrow.png")} id="increaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleAddDifficultyClick}/>
 
-        {this.props.idea === undefined ? 0 : this.props.idea.addedHard.length}
+        {this.props.idea === undefined || this.props.idea.addedHard === undefined ? 0 : this.props.idea.addedHard.length}
 
         <img src={require("images/downArrow.png")} id="decreaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleReduceDifficultyClick}/>        
 
-        {this.props.idea === undefined ? 0 : this.props.idea.addedEasy.length}
+        {this.props.idea === undefined || this.props.idea.addedEasy === undefined ? 0 : this.props.idea.addedEasy.length}
 
-        <span> ({this.props.idea === undefined ? 
+        <span> ({this.props.idea === undefined || this.props.idea.addedHard === undefined || this.props.idea.addedEasy === undefined ?  
           0 : Math.round((this.props.idea.addedHard.length/(this.props.idea.addedEasy.length + this.props.idea.addedHard.length == 0 ? 1 : this.props.idea.addedEasy.length + this.props.idea.addedHard.length)) * 100) }%)  </span>
       </div>
     )

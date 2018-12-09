@@ -211,89 +211,41 @@ router.post('/addIdeaToUserCreatedIdeas/', (req, res) => {
 //   newItem.save().then(item => res.json(item));
 // });
 
-// @route   DELETE api/items/:id
-// @desc    Delete A Item
+// // @route   DELETE api/items/:id
+// // @desc    Delete A Item
+// // @access  Public
+// router.post('/delete/', (req, res) => {
+//   console.log("deleting idea: " + req.body.ideaID);
+//   Item.findById(req.body.ideaID)
+//     .then(item => item.remove().then(() => res.json({ success: true })))
+//     .catch(err => res.status(404).json({ success: false }));
+//   console.log("deleted idea: " + req.params.id);
+// });
+
+// @route   POST api/items/updateIdea/
+// @desc    update idea 
 // @access  Public
-router.delete('/:id', (req, res) => {
-  Item.findById(req.params.id)
-    .then(item => item.remove().then(() => res.json({ success: true })))
-    .catch(err => res.status(404).json({ success: false }));
+router.post('/deleteIdea/', (req, res) => {   
+  console.log("in items router: deleting idea: " + req.body.ideaID);
+  Item.findById( req.body.ideaID ) 
+  .then(item => item.remove().then(() => res.json({ success: true })))
 });
 
-// @route   POST api/user/findLiked/
-// @desc    search for anything
+// @route   POST api/items/updateIdea/
+// @desc    update idea 
 // @access  Public
-//
-//pass user id
-//
-//find all ideas containing: userID
-// router.post('/getUserLikedIdeas/', (req, res) => {   
-//   console.log("getting user liked ideas: " + req.body.userID);
-//   Item.find({ liked: req.body.userID })
-//   // Item.find({ liked: { "$in" : [req.body.ideaID]}  })
-//   .then(
-//     items => res.json(items)
-//   );
-//   console.log("got User Liked Ideas");
-// });
-
-//find all ideas containing: userID
 router.post('/updateIdea/', (req, res) => {   
-  console.log("updateIdea: updating idea: " + req.body.ideaID);
-  console.log("_id: " + req.body._id);
-  console.log("title: " + req.body.title);
-  console.log("content: " + req.body.content);
-  console.log("tags: " + req.body.tags);
+  console.log("updating idea: " + req.body.ideaID);
+  console.log("new title: " + req.body.title);
+  console.log("new content: " + req.body.content);
   Item.findOneAndUpdate({ _id: req.body.ideaID }, 
     {$set: {title: req.body.title, content: req.body.content, tags: req.body.tags}}, {new: true})
-  .then(
-    
+  .then( 
     items => {
-      console.log("updated idea: " + JSON.stringify(items));
+      console.log("updated idea: " + req.body.ideaID);
       return res.json(items);
     }
-    
   );
-  // console.log("updated idea: " + req.body.ideaID);
-  });
-
-  //not needed - its duplicated to the user!!!!
-
-// @route   POST /api/items/getUserCreatedIdeas
-// @desc    search for anything
-// @access  Public
-//
-//pass user id
-//
-//find all ideas containing: userID
-// router.post('/getUserCreatedIdeas/', (req, res) => {     //getUserIdeas
-//   console.log("getting user created ideas: " + req.body.userID);
-
-//   var query = {};
-//   query[req.body.ideaType] = req.body.userID;
-//   Item.find(query)
-//   .then(
-//     items => res.json(items)
-//   );
-//   console.log("got User Liked Ideas");
-// });
-
-// @route   POST /api/items/getUserCreatedIdeas
-// @desc    search for anything
-// @access  Public
-//
-//pass user id
-//
-// //find all ideas containing: userID
-// router.post('/getUserLikedIdeas/', (req, res) => {     //getUserIdeas
-//   console.log("getting user liked ideas: " + req.body.userID);
-
-//   Item.find({ liked: {$in: [req.body.userID] } })
-//     .then(
-//       items => res.json(items)
-//     );
-  
-//   console.log("got User Liked Ideas");
-// });
+});
 
 module.exports = router;

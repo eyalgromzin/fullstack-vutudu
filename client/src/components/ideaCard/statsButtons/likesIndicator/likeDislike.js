@@ -6,6 +6,7 @@ import {updateIdeaIndicator} from 'actions/ideaActions'
 import { ADD_LIKED_IDEA_TO_USER, ADD_USER_TO_CURRENT_IDEA_LIKES } from 'reducers/types'
 import { ADD_USER_TO_IDEA_DISLIKES } from 'reducers/types'
 import {showLogInScreen} from 'actions/commonActions'
+// import {updateUserIdeaWithLike} from 'actions/userActions'
 
 class LikeDislike extends Component {
   componentDidUpdate(prevProps) {
@@ -20,7 +21,8 @@ class LikeDislike extends Component {
       if(this.props.enabled) {
         console.log("showing send like request");
         this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-          null,null,    
+          //dont add disliked idea to user. not interesting., but add it to the user created idea for stats
+          '/api/user/userDisliked/', null,     
           '/api/items/ideaDisliked/',ADD_USER_TO_IDEA_DISLIKES);
       }
     }
@@ -34,6 +36,8 @@ class LikeDislike extends Component {
         this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
           '/api/user/userLiked/',ADD_LIKED_IDEA_TO_USER,    //dont add difficult ideas to user
           '/api/items/ideaLiked/',ADD_USER_TO_CURRENT_IDEA_LIKES);
+
+          // this.props.updateUserIdeaWithLike(this.props.userID,this.props.idea);
       }
 
         //also send a request to the user to add the user as a like person to the idea thats in the user
@@ -66,4 +70,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {updateIdeaIndicator})(LikeDislike);
+export default connect(mapStateToProps, {updateIdeaIndicator})(LikeDislike);  //, updateUserIdeaWithLike

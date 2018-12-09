@@ -30,7 +30,7 @@ class IdeaCard extends Component {
               <ShareButton />
             </div>
           </div>
-          <CardIndicators idea={this.props.idea} refresh={this.props.refresh} />
+          <CardIndicators idea={this.props.idea} enabled={true} refresh={this.props.refresh} enabled={this.props.enabled} />
         </div> 
       </React.Fragment>
     )

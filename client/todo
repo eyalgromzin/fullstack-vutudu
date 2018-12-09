@@ -1,13 +1,18 @@
+    - finish delete idea
+    
     - indicators: 
         - update user created idea on idea indicator click. so the user will always be updated with latest stats.
+            - like
+            - dislike
 
-        - enable to remove indicator. to remove like / dislike / hard/ easy / +time / -time
+            - hard
+            - easy
+            - time+
+            - time-
 
         - disable the option to do more than 1 indicator click
-
-        - on edit card, enable to change "# of people" , and "place" also.  - add them at the top.
-
-
+        
+    - on edit card, enable to change "# of people" , and "place" also. - add them at the top.
     
     - create lists, and put them in the main page. - at the bottom of the search page - home 
         - hardest 
@@ -38,6 +43,14 @@
         - on indicator click, highlight it for half a second
         - login screen should show slower. when it pops up
 
+    - enable user to delete created ideas
+
+    - on user edit idea & on create idea, the idea is updated only on next login. need it to be immidiate. 
+        probably the redux is not good.
+      
+
     more:
     - change the top text in user page "place" , "num of people" to icons
     - change the like idea to 1 post request instead of 2 - home.
+    - change user idea edit icon to use thesame outline as the side bar
+    - enable to remove indicator. to remove like / dislike / hard/ easy / +time / -time
