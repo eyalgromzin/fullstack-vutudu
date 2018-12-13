@@ -45,9 +45,7 @@ class userLayout extends Component {
                 <EditCardInUser />
                 :
                 <ShowIdeaCardInUser enabled={false}/>
-                
               }
-              
             </div>
           </div>
         </div>

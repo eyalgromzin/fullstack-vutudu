@@ -6,26 +6,24 @@ const userSchema = new Schema({
     firstName: {
         type: String,
         required: true,
-        default: 'firstName'
     },   
     lastName: {
         type: String,
         required: true,
-        default: 'lastName'
     },    
     id:{
         type: String,
-        required: true,
+        required: true
     },
     liked: {
         type: Array,
         required: false,
-        default: [item]
+        // default: [item]  //makes it not work
       },
     created: {
         type: Array,
         required: false,
-        default: [item]
+        // default: [item]
       },
     done: {
         type: Array,

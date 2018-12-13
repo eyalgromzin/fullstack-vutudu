@@ -1,3 +1,5 @@
+//user actions
+
 import axios from 'axios';
 import { 
   SET_LOGGED_IN_USER, 
@@ -8,9 +10,14 @@ import {
   CHANGE_LOGGED_IN_STATE,
   SET_USER_LIKED_IDEAS,
   UPDATE_USER_CREATED_IDEA,
+  SET_USER_CREATED_IDEAS,
+  EMPTY_USER_PREVIEWED_IDEA
 } from 'reducers/types'
-import { EDITED_IDEA_SET_TITLE, SET_USER_CREATED_IDEAS } from '../reducers/types';
 import store from 'store'
+
+export const emptyUserPreviewedIdea = () => {
+  store.dispatch({type: EMPTY_USER_PREVIEWED_IDEA})
+}
 
 //works till the return
 export const createUserIfNotExists = user => dispatch => {
@@ -19,15 +26,19 @@ export const createUserIfNotExists = user => dispatch => {
   console.log('sending get request: api/user/' + `${user.id}`);
   
   axios.get(`api/user/${user.id}`).then(res => {  // => dispatch => 
-    console.log('in createUserIfNotExists response:' + res.data)
+    console.log('in createUserIfNotExists response:' + JSON.stringify(res.data))
     // return res.data;
     if(res.data.length == 0){
       // dispatch => {
-        console.log('sending post: api/user/' + `${user.id}` + 'create:' + res.data)
-
+        console.log('sending post: api/user/create')
+        // console.log('userObject: ' + JSON.stringify({firstName: user.firstName, lastName: user.lastName, id: user.id}))
+        // axios.post(`/api/user/create`,user)
+        // axios.post(`/api/user/create`,{firstName: user.firstName, lastName: user.lastName, id: user.id})
+        
+        console.log('userObject: ' + JSON.stringify(user))
         axios.post(`/api/user/create`,user)
         .then(res => {
-          console.log('sent post: api/user/create:' + user)
+          console.log('sent post: api/user/create: ' + user)
           dispatch({
             type: SET_LOGGED_IN_USER_ID,
             payload: res.data.id

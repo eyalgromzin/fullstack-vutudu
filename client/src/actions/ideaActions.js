@@ -1,13 +1,15 @@
 import axios from 'axios';
 import {
   ADD_CREATED_IDEA_TO_USER,
-  REMOVE_IDEA_FROM_USER_CREATED_IDEAS,
   SAVE_IDEAS,
   CLEAR_EDITED_IDEA,
   NO_ITEMS_FOUND, 
   SET_CURRENT_IDEA,
-  CHANGE_SEARCHED_STATE
+  CHANGE_SEARCHED_STATE,
+  REMOVE_CREATED_IDEA_FROM_USER
 } from 'reducers/types'
+import { emptyUserPreviewedIdea } from 'actions/userActions'
+import { USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS } from '../reducers/types';
 
 export const updateIdeaIndicator = (loggedInUserID,idea,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
   console.log('in ideaActions -> updateIdeaData(userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName)')
@@ -121,7 +123,7 @@ export const addIdeaToDB = (idea,userID) => dispatch => {
         {
           dispatch({
             type: ADD_CREATED_IDEA_TO_USER,
-            payload: res.data
+            payload: idea
           });
 
           dispatch({
@@ -135,47 +137,37 @@ export const addIdeaToDB = (idea,userID) => dispatch => {
   )
 };
 
-export const deleteIdea = (ideaID) => dispatch => {
+export const deleteIdea = (userID, ideaID) => dispatch => {
   console.log('ideaActions: deleting idea: ' + ideaID);
-  axios.post('/api/items/deleteIdea', {ideaID})
+  axios.post('/api/items/deleteIdea', {ideaID}) //deletes idea but throws 404
   .then(res => {
-    console.log('idea deleted');
+    console.log('idea deleted from db');
+    
+    console.log('removing idea from user also:');
+    console.log('{userID, ideaID}: ' + JSON.stringify({userID, ideaID}) );
+    
+    axios.post('/api/user/deleteCreatedIdea', {userID, ideaID})
+    .then(res => {
+      console.log('idea was removed from user');
+
+      dispatch({
+        type: REMOVE_CREATED_IDEA_FROM_USER,
+        payload: ideaID
+      });
+      
+      //update the drop down list
+      dispatch({
+        type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
+      });
+
+      //empty current idea in user page
+      emptyUserPreviewedIdea();
+    })
   })
 
-  axios.post('/api/user/deleteCreatedIdea', {userID, ideaID})
-  .then(res => {
-    console.log('idea was removed from user');
-
-    dispatch({
-      type: REMOVE_CREATED_IDEA_FROM_USER,
-      payload: ideaID
-    });
-  })
+  
 
   
 };
 
-// export const deleteIdea = (ideaID) => dispatch => {
-//   axios.post('/api/items/delete', {ideaID})
-//   .then(res => {
-//     console.log('idea deleted');
-//   })
-// };
 
-// export const deleteIdea = (ideaID) => dispatch => {
-//   console.log('deleting item: ' + ideaID);
-  
-//   //goes to the wrong local ip 
-//   axios.post('/api/items/delete',{ideaID}).then(res =>
-//     {
-//       console.log('idea ' + ideaID + ' deleted');
-      
-//       dispatch({
-//         type: REMOVE_IDEA_FROM_USER_CREATED_IDEAS,
-//         payload: ideaID
-//       });
-
-      
-//     }
-//   );
-// }

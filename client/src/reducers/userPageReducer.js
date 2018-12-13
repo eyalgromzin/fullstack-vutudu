@@ -18,12 +18,14 @@ import {  SET_LOGGED_IN_USER_ID,
           UPDATE_LIKED_IDEAS_IDEA,
           CHANGE_UPDATE_TOGGLE,
           SET_USER_LIKED_IDEAS,
-          REMOVE_IDEA_FROM_USER_CREATED_IDEAS,
           UPDATE_USER_CREATED_IDEA,
+          REMOVE_CREATED_IDEA_FROM_USER,
+          CLEAR_USER_PAGE_IDEA,
+          EMPTY_USER_PREVIEWED_IDEA,
         } from 'reducers/types'
-import {removeIdeaFromArray} from 'commonUtils'
-import { updateIdea } from '../actions/userActions';
+        import {idea} from 'models/idea'
 var dcopy = require('deep-copy')
+
 
 
 const initialState = {
@@ -72,6 +74,14 @@ const updateLikedIdeasIdea = (state, idea) => {
 
 function getCopyOfCurrentIdea (state){
   return dcopy(state.currentIdea);
+}
+
+function removeIdea(ideas, ideaID){
+  const arrayWithoutIdea = ideas.filter(
+    ele => ele._id != ideaID
+  );
+
+  return arrayWithoutIdea;
 }
 
 function reducer(state = initialState, action) {
@@ -127,6 +137,13 @@ function reducer(state = initialState, action) {
         ...state,
         currentPreviewedIdeas: action.payload
       }
+    // case UPDATE_USER_CURRENT_PREVIEWED_IDEAS:
+    //   return {
+    //     userCurrentPreviewedIdeas = 
+
+    //     ...state,
+    //     currentPreviewedIdeas: action.payload
+    //   }
     case SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT:
       return {
         ...state,
@@ -137,14 +154,6 @@ function reducer(state = initialState, action) {
         ...state,
         currentPreviewedIdea: action.payload
       }
-    case REMOVE_IDEA_FROM_USER_CREATED_IDEAS:
-        var createdIdeas = getCopyOfCurrentIdea(state.createdIdeas)
-        createdIdeas = removeIdeaFromArray(createdIdeas,action.payload);
-
-        return {
-          ...state,
-          createdIdeas: createdIdeas
-        }
     case UPDATE_PREVIEWED_IDEA:
       var newPreviewedIdeas = updateIdeaInArray(state.currentPreviewedIdeas, action.payload);
       return {
@@ -163,18 +172,40 @@ function reducer(state = initialState, action) {
         currentPreviewedIdeas: state.likedIdeas
       }
     case USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS:
+      let newCreatedIdeas = dcopy(state.createdIdeas);
+
       return {
         ...state,
-        currentPreviewedIdeas: state.createdIdeas
+        currentPreviewedIdeas: newCreatedIdeas
       }
+    case CLEAR_USER_PAGE_IDEA:
+      return {
+        ...state,
+        currentPreviewedIdea: {}
+    }      
     case CHANGE_UPDATE_TOGGLE:
       return {
         ...state,
         updateToggle: !state.updateToggle
       }
+    case EMPTY_USER_PREVIEWED_IDEA:
+      return {
+        ...state,
+        currentPreviewedIdea: {}
+      }
     case UPDATE_USER_CREATED_IDEA:
       var createdIdeas = dcopy(state.createdIdeas)
       createdIdeas = updateIdeaInArray(createdIdeas, action.payload);
+
+      return {
+        ...state,
+        createdIdeas: createdIdeas
+      }
+    case REMOVE_CREATED_IDEA_FROM_USER:
+      var createdIdeas = dcopy(state.createdIdeas)
+      var ideaID = action.payload
+
+      createdIdeas = removeIdea(createdIdeas, ideaID);
 
       return {
         ...state,

@@ -27,38 +27,32 @@ class IdeaCardInUser extends Component {
           <div id="ideaCardWithTopBar">
             <div className="ideaIndicators" >
               <div className="userPageIdeaIndicator">
-                place: {this.props.place}
+                place: {this.props.currentPreviewedIdea.place}
               </div>
-              {/* <div id="userPageIdeaTime">
-                time: {this.props.minTime}-{this.props.maxTime}  
-              </div> */}
               <div className="userPageIdeaIndicator">
-                # of ppl: {this.props.minNumOfPeople}-{this.props.maxNumOfPeople}
+                # of ppl: {this.props.currentPreviewedIdea.minNumOfPeople}-{this.props.currentPreviewedIdea.maxNumOfPeople}
               </div>
             </div>
             <div id="ideaCardWithButtonsInUser">
               <div id="ideaCardInUser"> 
                 <div className="ideaTitle">
-                  {this.props.title}
+                  {this.props.currentPreviewedIdea.title}
                 </div>
                 <div id="ideaContentText"> 
                   <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
-                    {this.props.content}
+                    {this.props.currentPreviewedIdea.content}
                   </Linkify>
                 </div>
               </div>
               <div id="cardIndicationButtons">
-                  <div id="cardIndicators"> 
-                    <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
-                    <TimeIndicator enabled={false}  idea={this.props.currentPreviewedIdea}  />  
-                    <DifficultyIndicator enabled={false} idea={this.props.currentPreviewedIdea} />
-                  </div>
+                <div id="cardIndicators"> 
+                  <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
+                  <TimeIndicator enabled={false}  idea={this.props.currentPreviewedIdea}  />  
+                  <DifficultyIndicator enabled={false} idea={this.props.currentPreviewedIdea} />
                 </div>
-              <EditIdeaButton />
-              <DeleteIdeaButton />
-              
-              <div id="statusButtons">
               </div>
+              <EditIdeaButton />
+              <DeleteIdeaButton idea={this.props.currentPreviewedIdea} />
           </div>
         </div>
         :
@@ -71,8 +65,6 @@ class IdeaCardInUser extends Component {
 
 function mapStateToProps(state) {
   return {
-    title: state.userPageReducer.currentPreviewedIdea.title,
-    content: state.userPageReducer.currentPreviewedIdea.content,
     currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
     currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,

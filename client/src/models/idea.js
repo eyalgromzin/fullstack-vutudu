@@ -1,0 +1,18 @@
+export const idea = {
+    title: "",
+    content: "",
+    date: {},
+    createdBy: "",
+    tags: [],
+    place: "",
+    minTime: 0,
+    maxTime: 0,
+    minNumOfPeople: 0,
+    maxNumOfPeople: 0,
+    liked: [],
+    disliked: [],
+    addedEasy: [],
+    addedHard: [],
+    addedShort: [],
+    addedLong: [],
+}

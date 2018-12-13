@@ -1,3 +1,5 @@
+//user
+
 const express = require('express');
 const router = express.Router();
 
@@ -30,6 +32,17 @@ router.get('/:userID', (req, res) => {   //
 //for first log in - upsert
 router.post('/create', (req, res) => {
   
+  // console.log("creating user:");
+  // console.log("firstName: " + req.body.firstName);
+  // console.log("lastName: " + req.body.lastName);
+  // console.log("id: " + req.body.id);
+
+  // const newUser = new User({
+  //   firstName: req.body.firstName,     
+  //   lastName: req.body.lastName,
+  //   id: req.body.id,
+  // })
+
   console.log(req.body.firstName);
   console.log(req.body.lastName);
   console.log(req.body.id);
@@ -45,8 +58,10 @@ router.post('/create', (req, res) => {
     newUser => res.json(newUser)
   )
   .catch(function(error){
-      console.log(error);
-    });
+    var x=5;
+    x++;
+    console.log(error);
+  });
 });
 
 // @route   POST api/user/userLiked/
@@ -113,7 +128,7 @@ router.post('/userDone', (req, res) => {   //works
 });
 
 // @route   POST api/user/userCreated/
-// @desc    search for anything
+// @desc    addIdeaToUserCreatedIdeas
 // @access  Public
 router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
   console.log("updating: " + req.body.userID);
@@ -124,7 +139,7 @@ router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
 });
 
 // @route   POST api/user/userCreated/
-// @desc    search for anything
+// @desc    add Idea To User Created Ideas
 // @access  Public
 router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
   console.log("updating: " + req.body.userID);
@@ -144,6 +159,28 @@ router.post('/getUser', (req, res) => {   //works
       res.json(users);
       console.log("got user");
     });
+});
+
+// @route   POST api/user/getUser/
+// @desc    search for anything
+// @access  Public
+router.post('/deleteCreatedIdea', (req, res) => {   //works
+  console.log("removing created idea: " + req.body.userID + " from user: " + req.body.ideaID);
+  User.findOneAndUpdate(
+    { id: req.body.userID },
+    { "$pull" : { created: { _id: req.body.ideaID } } },
+    { new: true }
+  )
+  .then(user => {
+    res.json(user);
+    console.log("removed created idea from user");
+  })
+  .catch(error => {
+    console.error('error during delete created idea: ', error);
+  })
+
+  
+
 });
 
 

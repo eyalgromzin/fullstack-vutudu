@@ -1,6 +1,6 @@
 export const removeIdeaFromArray = (ideasArr, ideaID) => {
     const arrayWithoutIdea = ideasArr.filter(
-        ele => ele.ideaID != ideaID
+        ele => ele._id != ideaID
     );
 
     return arrayWithoutIdea;

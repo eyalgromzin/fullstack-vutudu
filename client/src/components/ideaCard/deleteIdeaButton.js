@@ -4,15 +4,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './editIdeaCard.css'
 
-class EditIdeaButton extends Component {
+
+class DeleteIdeaButton extends Component {
+  deleteIdea = () => {
+    this.props.deleteIdea(this.props.loggedInUserID, this.props.idea._id)
+  }
+
   render() {
     return (
       <React.Fragment>
-        { this.props.currentPreviewedIdeaType == "Created" && this.props.currentPreviewedIdea != null 
+        { this.props.currentPreviewedIdeaType == "Created" && this.props.idea != null 
             && !this.props.isIdeaEdited ? 
           <img src={require("images/deleteWithOutline.png")} className="userPageIdeaButton" id="deleteIdeaButton" 
           onClick={() => {
-              this.props.deleteIdea(this.props.currentPreviewedIdea._id)
+              this.deleteIdea()
             }}  />  
           : 
           <React.Fragment />
@@ -25,8 +30,8 @@ class EditIdeaButton extends Component {
 function mapStateToProps(state) {
     return {
       currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
-      currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
       isIdeaEdited: state.userPageReducer.isIdeaEdited,
+      loggedInUserID: state.userPageReducer.loggedInUserID,
     };
   }
   
@@ -37,4 +42,4 @@ function mapStateToProps(state) {
     }
   }
 
-export default connect(mapStateToProps,mapDispatchToProps)(EditIdeaButton)    //mapDispatchToProps
+export default connect(mapStateToProps,mapDispatchToProps)(DeleteIdeaButton)    //mapDispatchToProps

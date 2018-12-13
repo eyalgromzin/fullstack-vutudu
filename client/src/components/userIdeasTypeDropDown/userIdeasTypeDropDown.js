@@ -30,7 +30,7 @@ class UserIdeasTypeDropDown extends Component {
   defaultOption = this.options[0]
 
   componentDidMount() {
-    this.onChange({value: "USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS", label: "Liked"});
+    this.onChange({value: "USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS", label: "Liked"});
   }
 
   onChange = (e) => {
