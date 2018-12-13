@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
 import UserIdeasList from 'components/userIdeasList/userIdeasList'
-import ShowIdeaCardInUser from 'components/ideaCard/showIdeaCardInUser'
+import IdeaCardInUser from 'components/ideaCard/ideaCardInUser'
 // import {getLikedIdeas} from 'actions/userActions'
 import EditIdeaCard from 'components/ideaCard/editIdeaCard'
 import EditCardInUser from 'components/ideaCard/editCardInUser';
@@ -44,7 +44,7 @@ class userLayout extends Component {
               { this.props.isIdeaEdited? 
                 <EditCardInUser />
                 :
-                <ShowIdeaCardInUser enabled={false}/>
+                <IdeaCardInUser enabled={false}/>
               }
             </div>
           </div>

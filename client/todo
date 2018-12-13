@@ -1,12 +1,20 @@
     - indicators: 
-        - update user created idea on idea indicator click. so the user will always be updated with latest stats.
+        - undo indicator click and make it highlited:
             - like
             - dislike
 
             - hard
             - easy
+            - time+
+            - time-
+
+        - update user created idea on idea indicator click. so the user will always be updated with latest stats.
+            - hard
+            - easy
             - time +
             - time -
+
+        - on indicator click, make the indicator highlighted.
 
         - disable the option to do more than 1 indicator click
         

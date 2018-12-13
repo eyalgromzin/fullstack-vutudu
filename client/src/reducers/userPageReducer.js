@@ -22,6 +22,8 @@ import {  SET_LOGGED_IN_USER_ID,
           REMOVE_CREATED_IDEA_FROM_USER,
           CLEAR_USER_PAGE_IDEA,
           EMPTY_USER_PREVIEWED_IDEA,
+          // ADD_USER_TO_LIKED_OF_CREATED_IDEA,
+
         } from 'reducers/types'
         import {idea} from 'models/idea'
 var dcopy = require('deep-copy')
@@ -107,6 +109,15 @@ function reducer(state = initialState, action) {
         ...state,
         likedIdeas: [...state.likedIdeas, action.payload]
       }
+    // case ADD_USER_TO_LIKED_OF_CREATED_IDEA:
+    //   let likedIdeas = dcopy(state.likedIdeas);
+    //   let ideaIndex = likedIdeas.findIndex((idea => idea._id == action.payload.ideaID));
+    //   likedIdeas[ideaIndex].liked.push(action.payload.userID)
+
+    //   return {
+    //     ...state,
+    //     likedIdeas: likedIdeas
+    //   }
     case ADD_CREATED_IDEA_TO_USER:
       return {
         ...state,

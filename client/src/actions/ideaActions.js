@@ -10,6 +10,7 @@ import {
 } from 'reducers/types'
 import { emptyUserPreviewedIdea } from 'actions/userActions'
 import { USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS } from '../reducers/types';
+import store from 'store'
 
 export const updateIdeaIndicator = (loggedInUserID,idea,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
   console.log('in ideaActions -> updateIdeaData(userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName)')
@@ -49,6 +50,10 @@ export const updateIdeaIndicator = (loggedInUserID,idea,userPostUrl,addToUserRed
       }
     );
   }
+
+  //update the idea in the user to show immidiately results.
+  // console.log('updating idea in user created ideas, so the stats will be updated.');
+  // store.dispatch({type: updateIdeaInUserReduxName, payload: {loggedInUserID, ideaID: idea._id} })
 }
 
 export const addIdeaToUserCreatedIdeas = (userID, idea) => dispatch => {
