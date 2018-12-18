@@ -46,6 +46,9 @@ function getCopyOfCurrentIdea (state){
 }
 
 function reducer(state = initialState, action) {
+  let userID = '';
+  let removedArray = '';
+
   switch(action.type) {
     case SAVE_IDEAS:
         return {
@@ -103,9 +106,9 @@ function reducer(state = initialState, action) {
         currentIdea
       };
     case REMOVE_USER_FROM_IDEA_LIKES:
-      let userID = action.payload;
+      userID = action.payload;
       var currentIdea = getCopyOfCurrentIdea(state);
-      let removedArray = _.remove(currentIdea.liked, (idea) => userID == idea._id);
+      removedArray = _.remove(currentIdea.liked, (idea) => userID == idea._id);
       currentIdea.liked = removedArray
       // currentIdea.liked.pull(action.payload);
       
@@ -122,8 +125,12 @@ function reducer(state = initialState, action) {
         currentIdea
       };
     case REMOVE_USER_FROM_IDEA_DISLIKES:
+      // var currentIdea = getCopyOfCurrentIdea(state);
+      // currentIdea.disliked.push(action.payload);
+      userID = action.payload;
       var currentIdea = getCopyOfCurrentIdea(state);
-      currentIdea.disliked.push(action.payload);
+      removedArray = _.remove(currentIdea.disliked, (idea) => userID == idea._id);
+      currentIdea.disliked = removedArray
 
       return {
         ...state,

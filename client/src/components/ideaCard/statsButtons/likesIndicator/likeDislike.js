@@ -69,11 +69,14 @@ class LikeDislike extends Component {
         console.log("showing send like request");
         if(this.state.clickedLike){
           this.removeLike();
+          this.addDislike();
         }else if (this.state.clickedDislike){
           this.removeDislike();
+        }else{
+          this.addDislike();
         }
 
-        this.addDislike();
+        
       }
     }
   }
@@ -85,11 +88,14 @@ class LikeDislike extends Component {
       if(this.props.enabled) {
         if(this.state.clickedDislike){
           this.removeDislike();
+          this.addLike();
         }else if(this.state.clickedLike){
           this.removeLike();
+        }else{
+          this.addLike();
         }
 
-        this.addLike();
+        
       }
     }
   }

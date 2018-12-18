@@ -41,7 +41,7 @@ router.post('/ideaLiked/', (req, res) => {
   var ideaID = req.body.idea._id;
   console.log("ideaLiked: updating idea " + ideaID);
 
-  Item.findOneAndUpdate( {_id: ideaID},      //{'_id': ObjectID(ideaID)}
+  Item.findOneAndUpdate( {_id: ideaID},     
     { "$push": { "liked": req.body.userID } },
     {new: true})
   .then(
@@ -91,7 +91,7 @@ router.post('/removeIdeaDisliked/', (req, res) => {
   var ideaID = req.body.idea._id;
 
   Item.findOneAndUpdate( {_id: ideaID},      //{'_id': ObjectID(ideaID)}
-    { "$push": { "disliked": req.body.userID } },
+    { "$pull": { "disliked": req.body.userID } },
     {new: true})
   .then(
     items => res.json(items)
