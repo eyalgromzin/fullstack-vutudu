@@ -14,6 +14,8 @@ import { SAVE_IDEAS,
   REMOVE_USER_FROM_IDEA_DISLIKES,
   REMOVE_USER_FROM_IDEA_ADDED_HARD,
   REMOVE_USER_FROM_IDEA_ADDED_EASY,
+  REMOVE_USER_FROM_IDEA_ADDED_SHORT,
+  REMOVE_USER_FROM_IDEA_ADDED_LONG,
   SET_CURRENT_IDEA } from './types'
 // import dcopy from 'deep-copy'
 var dcopy = require('deep-copy')
@@ -175,9 +177,31 @@ function reducer(state = initialState, action) {
         ...state,
         currentIdea
       };
-      case ADD_USER_TO_IDEA_ADDED_LONG:
+    case ADD_USER_TO_IDEA_ADDED_LONG:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.addedLong = [action.payload,...currentIdea.addedLong]
+
+      return {
+        ...state,
+        currentIdea
+      };
+      
+    case REMOVE_USER_FROM_IDEA_ADDED_LONG:
+      userID = action.payload;
+      var currentIdea = getCopyOfCurrentIdea(state);
+      removedArray = _.remove(currentIdea.addedLong, (idea) => userID == idea._id);
+      currentIdea.addedLong = removedArray
+
+      return {
+        ...state,
+        currentIdea
+      };
+
+    case REMOVE_USER_FROM_IDEA_ADDED_SHORT:
+      userID = action.payload;
+      var currentIdea = getCopyOfCurrentIdea(state);
+      removedArray = _.remove(currentIdea.addedShort, (idea) => userID == idea._id);
+      currentIdea.addedShort = removedArray
 
       return {
         ...state,

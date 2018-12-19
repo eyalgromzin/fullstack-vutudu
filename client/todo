@@ -1,9 +1,7 @@
     - indicators: 
         - undo indicator click and make it highlighted:
-            - hard
-            - easy
-            - time+
-            - time-
+            - time +
+            - time -
 
         - update user created idea on idea indicator click. so the user will always be updated with latest stats.
             - hard
@@ -17,10 +15,11 @@
             - time + 
             - time - 
 
-        - disable the option to do more than 1 indicator click
-        
+    - on like remove, remove idea from user liked ideas
+    - on like remove, remove user from the created user  
+
     - on edit card, enable to change "# of people" , and "place" also. - add them at the top.
-    
+
     - create lists, and put them in the main page. - at the bottom of the search page - home 
         - hardest 
         - most liked

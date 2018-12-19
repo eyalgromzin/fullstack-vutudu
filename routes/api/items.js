@@ -167,6 +167,19 @@ router.post('/addLongToIdea/', (req, res) => {
   console.log("updated idea" + req.body.ideaID);
 });
 
+// @route   POST api/items/addLongToIdea/
+// @desc    search for anything
+// @access  Public
+router.post('/removeLongFromIdea/', (req, res) => {   
+  var ideaID = req.body.idea._id;
+  console.log("removedLongFromIdea: updating idea" + ideaID);
+  console.log("userID: " + req.body.userID)
+  Item.findOneAndUpdate({ _id: ideaID },
+    { "$pull": { "addedLong": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea" + req.body.ideaID);
+});
+
 // @route   POST api/items/addedShortToIDea/
 // @desc    search for anything
 // @access  Public
@@ -177,6 +190,20 @@ router.post('/addShortToIDea/', (req, res) => {
 
   Item.findOneAndUpdate({ _id: req.body.idea._id },
     { "$push": { "addedShort": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea" + req.body.ideaID);
+});
+
+// @route   POST api/items/addedShortToIDea/
+// @desc    search for anything
+// @access  Public
+router.post('/removeShortFromIDea/', (req, res) => {   
+  var ideaID = req.body.idea._id;
+  console.log("removed Short from Idea: " + ideaID);
+  console.log("userID: " + req.body.userID)
+
+  Item.findOneAndUpdate({ _id: req.body.idea._id },
+    { "$pull": { "addedShort": req.body.userID } })
   .then(items => res.json(items));
   console.log("updated idea" + req.body.ideaID);
 });

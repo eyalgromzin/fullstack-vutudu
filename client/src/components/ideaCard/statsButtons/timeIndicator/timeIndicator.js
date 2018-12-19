@@ -2,35 +2,89 @@ import React, { Component } from 'react'
 import './timeIndicator.css'
 import { connect } from 'react-redux';
 import {ADD_TIME, REDUCE_TIME} from 'reducers/types'
-import {ADD_USER_TO_IDEA_ADDED_LONG, ADD_USER_TO_IDEA_ADDED_SHORT} from 'reducers/types'
+import {
+  ADD_USER_TO_IDEA_ADDED_LONG, 
+  ADD_USER_TO_IDEA_ADDED_SHORT,
+  REMOVE_USER_FROM_IDEA_ADDED_SHORT,
+  REMOVE_USER_FROM_IDEA_ADDED_LONG,
+} from 'reducers/types'
 import {updateIdeaIndicator} from 'actions/ideaActions'
 import {showLogInScreen} from 'actions/commonActions'
 
 class TimeIndicator extends Component {
-constructor(props){
-  super(props)
+  constructor(props){
+    super(props)
 
-  this.handleAddAddTimeClick = this.handleAddAddTimeClick.bind(this);
-  this.handleReduceTimeClick = this.handleReduceTimeClick.bind(this);
-}
-
-  handleAddAddTimeClick(){
-    if(!this.props.loggedIn){
-      showLogInScreen();
-    }else{    
-      this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
-        null,null,    //dont add difficult ideas to user
-        'api/items/addLongToIdea/',ADD_USER_TO_IDEA_ADDED_LONG);
+    this.state = {
+      addedTimePlus: false,
+      addedTimeMinus: false
     }
   }
 
-  handleReduceTimeClick(){
+  addTimePlus = () => {
+    this.setState({addedTimePlus: true});
+
+    this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
+      null,null,    //dont add difficult ideas to user
+      'api/items/addLongToIdea/',ADD_USER_TO_IDEA_ADDED_LONG);
+  }
+
+  removeTimePlus = () => {
+    this.setState({addedTimePlus: false});
+
+    this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
+      null,null,    //dont add difficult ideas to user
+      'api/items/removeLongFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_LONG);
+  }
+
+  addTimeMinus = () => {
+    this.setState({addedTimeMinus: true});
+
+    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+      null,null,    //dont add difficult ideas to user
+      'api/items/addShortToIdea/',ADD_USER_TO_IDEA_ADDED_SHORT);
+  }
+
+  removeTimeMinus = () => {
+    this.setState({addedTimeMinus: false});
+
+    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+      null,null,    //dont add difficult ideas to user
+      'api/items/removeShortFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_SHORT);
+  }
+
+  handleAddAddTimeClick = () => {
+    if(!this.props.loggedIn){
+      showLogInScreen();
+    }else{    
+      if(this.props.enabled) {
+        if(this.state.addedTimeMinus){
+          this.removeTimeMinus();
+          this.addTimePlus();
+        }else if(this.state.addedTimePlus){
+          this.removeTimePlus();
+        }else{
+          this.addTimePlus();
+        }
+      }
+    }
+  }
+
+  //this doesnt work
+  addTimeMinusClick = () => {
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{  
-      this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-        null,null,    //dont add difficult ideas to user
-        'api/items/addShortToIdea/',ADD_USER_TO_IDEA_ADDED_SHORT);
+      if(this.props.enabled) {
+        if(this.state.addedTimePlus){
+          this.removeTimePlus();
+          this.addTimeMinus();
+        }else if (this.state.addedTimeMinus){
+            this.removeTimeMinus();
+        }else{
+            this.addTimeMinus();
+        }
+      }
     }
   }
 
@@ -38,12 +92,12 @@ constructor(props){
     return (
       <div className="bottomIndicator">
         <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image"/>
-        <img src={require("images/downArrow.png")} id="decreaseTime" className="bottomButton hoverClickHand" onClick={this.handleReduceTimeClick} alt="decrease time"/>
+        <img src={this.state.addedTimeMinus? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="decreaseTime" className="bottomButton hoverClickHand" onClick={this.addTimeMinusClick} alt="decrease time"/>
         <span>{this.props.idea  === undefined || this.props.idea.addedShort  === undefined ? 
           0 : this.props.idea.minTime - this.props.idea.addedShort.length} - 
           {this.props.idea  === undefined || this.props.idea.addedLong  === undefined? 
           0 : this.props.idea.maxTime + this.props.idea.addedLong.length}</span>
-        <img src={require("images/upArrow.png")} id="incrementTime" className="bottomButton hoverClickHand" onClick={this.handleAddAddTimeClick} alt="increase time"/>
+        <img src={this.state.addedTimePlus ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} id="incrementTime" className="bottomButton hoverClickHand" onClick={this.handleAddAddTimeClick} alt="increase time"/>
       </div>
     )
   }
