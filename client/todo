@@ -1,6 +1,9 @@
-    - on like remove, remove idea from user liked ideas
-    - on like remove, remove user from the created user  
+    - on show card, check if user liked / disliked / ... the card and update the icons
+    
 
+
+
+    
     - on edit card, enable to change "# of people" , and "place" also. - add them at the top.
 
     - create lists, and put them in the main page. - at the bottom of the search page - home 
