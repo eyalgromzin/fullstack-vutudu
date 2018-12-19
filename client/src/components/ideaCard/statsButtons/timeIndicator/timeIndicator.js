@@ -58,10 +58,10 @@ class TimeIndicator extends Component {
       showLogInScreen();
     }else{    
       if(this.props.enabled) {
-        if(this.state.addedTimeMinus){
+        if(this.isClickedTimeMinus()){
           this.removeTimeMinus();
           this.addTimePlus();
-        }else if(this.state.addedTimePlus){
+        }else if(this.isClickedTimePlus()){
           this.removeTimePlus();
         }else{
           this.addTimePlus();
@@ -76,10 +76,10 @@ class TimeIndicator extends Component {
       showLogInScreen();
     }else{  
       if(this.props.enabled) {
-        if(this.state.addedTimePlus){
+        if(this.isClickedTimePlus()){
           this.removeTimePlus();
           this.addTimeMinus();
-        }else if (this.state.addedTimeMinus){
+        }else if (this.isClickedTimeMinus()){
             this.removeTimeMinus();
         }else{
             this.addTimeMinus();
@@ -88,16 +88,27 @@ class TimeIndicator extends Component {
     }
   }
 
+  isClickedTimePlus = () => {
+    return this.props.idea.addedLong.includes(this.props.userID) || this.state.addedTimePlus;
+  }
+
+  isClickedTimeMinus = () => {
+    return this.props.idea.addedShort.includes(this.props.userID) || this.state.addedTimeMinus;
+  }
+
   render() {
+    let addedTimePlus = this.isClickedTimePlus();
+    let addedTimeMinus = this.isClickedTimeMinus();
+
     return (
       <div className="bottomIndicator">
         <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image"/>
-        <img src={this.state.addedTimeMinus? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="decreaseTime" className="bottomButton hoverClickHand" onClick={this.addTimeMinusClick} alt="decrease time"/>
+        <img src={addedTimeMinus? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="decreaseTime" className="bottomButton hoverClickHand" onClick={this.addTimeMinusClick} alt="decrease time"/>
         <span>{this.props.idea  === undefined || this.props.idea.addedShort  === undefined ? 
           0 : this.props.idea.minTime - this.props.idea.addedShort.length} - 
           {this.props.idea  === undefined || this.props.idea.addedLong  === undefined? 
           0 : this.props.idea.maxTime + this.props.idea.addedLong.length}</span>
-        <img src={this.state.addedTimePlus ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} id="incrementTime" className="bottomButton hoverClickHand" onClick={this.handleAddAddTimeClick} alt="increase time"/>
+        <img src={addedTimePlus ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} id="incrementTime" className="bottomButton hoverClickHand" onClick={this.handleAddAddTimeClick} alt="increase time"/>
       </div>
     )
   }

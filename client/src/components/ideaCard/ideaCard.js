@@ -13,7 +13,7 @@ class IdeaCard extends Component {
   render() {
     return (
       <React.Fragment>
-        <div class="mainContent">
+        <div className="mainContent">
           <IdeaNextButtonsPreviousButtons />
           <div id="ideaCardWithButtons">
             <div id="ideaCardWithShare" >

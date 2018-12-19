@@ -20,8 +20,6 @@ class SearchButton extends Component {
   }
 
   handleSearchClick = () => {
-    // store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
-    // this.props.searchItems(this.props.place,this.props.time,this.props.numOfPeople);
     search();
   }
 

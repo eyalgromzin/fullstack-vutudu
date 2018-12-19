@@ -19,7 +19,7 @@ class LikeDislike extends Component {
 
     this.state = {
       clickedLike: false,
-      clickedDislike: false
+      clickedDisike: false
     }
   }
 
@@ -56,10 +56,6 @@ class LikeDislike extends Component {
       this.setState({clickedDislike: false});
   }
 
-  componentDidUpdate(prevProps) {
-    console.log("like updated")
-  }
-
   handleDislikeClick = () => {
     if(!this.props.loggedIn){
       console.log("showing login screen");
@@ -67,10 +63,10 @@ class LikeDislike extends Component {
     }else{    
       if(this.props.enabled) {
         console.log("showing send like request");
-        if(this.state.clickedLike){
+        if(this.isClickedLike()){
           this.removeLike();
           this.addDislike();
-        }else if (this.state.clickedDislike){
+        }else if (this.isClickedDislike()){
             this.removeDislike();
         }else{
             this.addDislike();
@@ -84,10 +80,10 @@ class LikeDislike extends Component {
       showLogInScreen();
     }else{   
       if(this.props.enabled) {
-        if(this.state.clickedDislike){
+        if(this.isClickedDislike()){
           this.removeDislike();
           this.addLike();
-        }else if(this.state.clickedLike){
+        }else if(this.isClickedLike()){
           this.removeLike();
         }else{
           this.addLike();
@@ -96,16 +92,27 @@ class LikeDislike extends Component {
     }
   }
 
+  isClickedLike = () => {
+    return this.props.idea.liked.includes(this.props.userID) || this.state.clickedLike;
+  }
+
+  isClickedDislike = () => {
+    return this.props.idea.disliked.includes(this.props.userID) || this.state.clickedDisike;
+  }
+
   render() {
+    let clickedLike = this.isClickedLike();
+    let clickedDislike = this.isClickedDislike();
+
     return (
       <div className="bottomIndicator">
         <img src={require("images/like.png")} id="likeButton" className={"bottomButton hoverClickHand"}
           onClick={this.handleLikeClick}/>
         {this.props.idea.liked === undefined ? 0 : this.props.idea.liked.length}
-        <img src={this.state.clickedLike? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} onClick={this.handleLikeClick} className={"bottomButton hoverClickHand"} />
+        <img src={clickedLike ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} onClick={this.handleLikeClick} className={"bottomButton hoverClickHand"} />
         
         {this.props.idea.disliked === undefined ? 0 : this.props.idea.disliked.length}
-        <img src={this.state.clickedDislike? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="dislikeButton" className={"bottomButton hoverClickHand"}
+        <img src={clickedDislike ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="dislikeButton" className={"bottomButton hoverClickHand"}
           onClick={this.handleDislikeClick}/>
         
         <span> ({ this.props.idea.liked === undefined || this.props.idea.disliked === undefined ? 0 : Math.round((this.props.idea.liked.length/((this.props.idea.liked.length + this.props.idea.disliked.length) == 0? 1 : (this.props.idea.liked.length + this.props.idea.disliked.length)) * 100))}%)</span>

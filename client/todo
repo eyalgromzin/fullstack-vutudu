@@ -1,8 +1,5 @@
-    - on show card, check if user liked / disliked / ... the card and update the icons
-    
-
-
-
+    - on login , reload current page to update stats ...
+        - hard, easy
     
     - on edit card, enable to change "# of people" , and "place" also. - add them at the top.
 
@@ -39,6 +36,8 @@
 
     - on user edit idea & on create idea, the idea is updated only on next login. need it to be immidiate. 
         probably the redux is not good.
+
+    - no results found screen, in case no results were found
 
     more:
     - change the top text in user page "place" , "num of people" to icons
