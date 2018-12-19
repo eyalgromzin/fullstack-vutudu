@@ -71,12 +71,10 @@ class LikeDislike extends Component {
           this.removeLike();
           this.addDislike();
         }else if (this.state.clickedDislike){
-          this.removeDislike();
+            this.removeDislike();
         }else{
-          this.addDislike();
+            this.addDislike();
         }
-
-        
       }
     }
   }
@@ -94,8 +92,6 @@ class LikeDislike extends Component {
         }else{
           this.addLike();
         }
-
-        
       }
     }
   }

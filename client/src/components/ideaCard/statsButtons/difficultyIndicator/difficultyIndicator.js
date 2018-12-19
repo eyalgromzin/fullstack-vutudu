@@ -15,49 +15,74 @@ class DifficultyIndicator extends Component {
   constructor(props){
     super(props)
 
-    this.handleAddDifficultyClick = this.handleAddDifficultyClick.bind(this);
-    this.handleReduceDifficultyClick = this.handleReduceDifficultyClick.bind(this);
+    this.state = {
+      addedHard: false,
+      addedEasy: false
+    }
   }
 
   addHard = () => {
+    this.setState({addedHard: true});
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
       null,null,    //dont add difficult ideas to user
       'api/items/addHardToIdea/',ADD_USER_TO_IDEA_ADDED_HARD);
   }
 
   removeHard = () => {
+    this.setState({addedHard: false});
+
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
       null,null,    //dont add difficult ideas to user
       'api/items/removeHardFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_HARD);
   }
 
   removeEasy = () => {
+    this.setState({addedEasy: false});
+
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
       null,null,    //dont add difficult ideas to user
       'api/items/removeEasyFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_EASY);
   }
 
   addEasy = () => {
+    this.setState({addedEasy: true});
+
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
       null,null,    //dont add easy ideas to user
       'api/items/addedEasyToIdea/',ADD_USER_TO_IDEA_ADDED_EASY);
   } 
 
-  handleAddDifficultyClick(){
+  handleAddHardClick = () => { 
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{  
-      
+      if(this.props.enabled) {
+        if(this.state.addedEasy){
+          this.removeEasy();
+          this.addHard();
+        }else if(this.state.addedHard){
+          this.removeHard();
+        }else{
+          this.addHard();
+        }
+      }
     }
   }
 
-  handleReduceDifficultyClick(){
+  handleAddEasyClick = () => {
     if(!this.props.loggedIn){
       showLogInScreen();
-    }else{  
-      this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-                      null,null,    //dont add easy ideas to user
-                      'api/items/addedEasyToIdea/',ADD_USER_TO_IDEA_ADDED_EASY);
+    }else{
+      if(this.props.enabled) {
+        if(this.state.addedHard){
+          this.removeHard();
+          this.addEasy();
+        }else if (this.state.addedEasy){
+            this.removeEasy();
+        }else{
+            this.addEasy();
+        }
+      }
     }
   }
 
@@ -65,13 +90,13 @@ class DifficultyIndicator extends Component {
     return (
       <div className="bottomIndicator">
         <img src={require("images/difficulty.png")} id="difficultyImage" className="bottomButton"/>
-        <img src={require("images/upArrow.png")} id="increaseDifficulty" className="bottomButton hoverClickHand" 
-          onClick={this.handleAddDifficultyClick}/>
+        <img src={this.state.addedHard ? require("images/upArrowHighlighted.png"): require("images/upArrow.png")} id="increaseDifficulty" className="bottomButton hoverClickHand" 
+          onClick={this.handleAddHardClick}/>
 
         {this.props.idea === undefined || this.props.idea.addedHard === undefined ? 0 : this.props.idea.addedHard.length}
 
-        <img src={require("images/downArrow.png")} id="decreaseDifficulty" className="bottomButton hoverClickHand" 
-          onClick={this.handleReduceDifficultyClick}/>        
+        <img src={this.state.addedEasy ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="decreaseDifficulty" className="bottomButton hoverClickHand" 
+          onClick={this.handleAddEasyClick}/>        
 
         {this.props.idea === undefined || this.props.idea.addedEasy === undefined ? 0 : this.props.idea.addedEasy.length}
 

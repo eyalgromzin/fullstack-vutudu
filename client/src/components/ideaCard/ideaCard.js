@@ -13,25 +13,27 @@ class IdeaCard extends Component {
   render() {
     return (
       <React.Fragment>
-        <IdeaNextButtonsPreviousButtons />
-        <div id="ideaCardWithButtons">
-          <div id="ideaCardWithShare" >
-            <div id="ideaCard"> 
-              <div className="ideaTitle"> 
-                {this.props.title}
+        <div class="mainContent">
+          <IdeaNextButtonsPreviousButtons />
+          <div id="ideaCardWithButtons">
+            <div id="ideaCardWithShare" >
+              <div id="ideaCard"> 
+                <div className="ideaTitle"> 
+                  {this.props.title}
+                </div>
+                <div id="ideaContentText"> 
+                  <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
+                    {this.props.content}
+                  </Linkify>
+                </div>
               </div>
-              <div id="ideaContentText"> 
-                <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
-                  {this.props.content}
-                </Linkify>
+              <div id="shareContainer">
+                <ShareButton />
               </div>
             </div>
-            <div id="shareContainer">
-              <ShareButton />
-            </div>
-          </div>
-          <CardIndicators idea={this.props.idea} enabled={true} refresh={this.props.refresh} enabled={this.props.enabled} />
-        </div> 
+            <CardIndicators idea={this.props.idea} enabled={true} refresh={this.props.refresh} enabled={this.props.enabled} />
+          </div> 
+        </div>
       </React.Fragment>
     )
   }
