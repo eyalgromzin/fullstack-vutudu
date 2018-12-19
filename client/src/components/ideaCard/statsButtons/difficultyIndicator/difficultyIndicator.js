@@ -24,7 +24,7 @@ class DifficultyIndicator extends Component {
   addHard = () => {
     this.setState({addedHard: true});
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      null,null,    //dont add difficult ideas to user
+      '/api/user/addHardToIdeaCreator/',null,    //dont add difficult ideas to user
       'api/items/addHardToIdea/',ADD_USER_TO_IDEA_ADDED_HARD);
   }
 
@@ -32,7 +32,7 @@ class DifficultyIndicator extends Component {
     this.setState({addedHard: false});
 
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      null,null,    //dont add difficult ideas to user
+      '/api/user/removeHardFromIdeaCreator/',null,    //dont add difficult ideas to user
       'api/items/removeHardFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_HARD);
   }
 
@@ -40,7 +40,7 @@ class DifficultyIndicator extends Component {
     this.setState({addedEasy: false});
 
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      null,null,    //dont add difficult ideas to user
+      '/api/user/removeEasyFromIdeaCreator/',null,    //dont add difficult ideas to user
       'api/items/removeEasyFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_EASY);
   }
 
@@ -48,7 +48,7 @@ class DifficultyIndicator extends Component {
     this.setState({addedEasy: true});
 
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      null,null,    //dont add easy ideas to user
+      '/api/user/addEasyToIdeaCreator/',null,    //dont add easy ideas to user
       'api/items/addedEasyToIdea/',ADD_USER_TO_IDEA_ADDED_EASY);
   } 
 

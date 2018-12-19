@@ -1,20 +1,3 @@
-    - indicators: 
-        - undo indicator click and make it highlighted:
-            - time +
-            - time -
-
-        - update user created idea on idea indicator click. so the user will always be updated with latest stats.
-            - hard
-            - easy
-            - time +
-            - time -
-
-        - on indicator click, make the indicator highlighted.
-            - hard
-            - easy
-            - time + 
-            - time - 
-
     - on like remove, remove idea from user liked ideas
     - on like remove, remove user from the created user  
 
@@ -53,7 +36,6 @@
 
     - on user edit idea & on create idea, the idea is updated only on next login. need it to be immidiate. 
         probably the redux is not good.
-      
 
     more:
     - change the top text in user page "place" , "num of people" to icons

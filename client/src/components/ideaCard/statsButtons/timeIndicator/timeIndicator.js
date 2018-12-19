@@ -25,7 +25,7 @@ class TimeIndicator extends Component {
     this.setState({addedTimePlus: true});
 
     this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
-      null,null,    //dont add difficult ideas to user
+      '/api/user/addTimePlusToIdeaCreator/',null,    //dont add difficult ideas to user
       'api/items/addLongToIdea/',ADD_USER_TO_IDEA_ADDED_LONG);
   }
 
@@ -33,7 +33,7 @@ class TimeIndicator extends Component {
     this.setState({addedTimePlus: false});
 
     this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
-      null,null,    //dont add difficult ideas to user
+      '/api/user/removeTimePlusFromIdeaCreator/',null,    //dont add difficult ideas to user
       'api/items/removeLongFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_LONG);
   }
 
@@ -41,7 +41,7 @@ class TimeIndicator extends Component {
     this.setState({addedTimeMinus: true});
 
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      null,null,    //dont add difficult ideas to user
+      '/api/user/addTimeMinusToIdeaCreator/',null,    //dont add difficult ideas to user
       'api/items/addShortToIdea/',ADD_USER_TO_IDEA_ADDED_SHORT);
   }
 
@@ -49,7 +49,7 @@ class TimeIndicator extends Component {
     this.setState({addedTimeMinus: false});
 
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      null,null,    //dont add difficult ideas to user
+      '/api/user/removeTimeMinusFromIdeaCreator/',null,    //dont add difficult ideas to user
       'api/items/removeShortFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_SHORT);
   }
 
