@@ -57,10 +57,10 @@ class DifficultyIndicator extends Component {
       showLogInScreen();
     }else{  
       if(this.props.enabled) {
-        if(this.state.addedEasy){
+        if(this.isAddedEasy()){
           this.removeEasy();
           this.addHard();
-        }else if(this.state.addedHard){
+        }else if(this.isAddedHard()){
           this.removeHard();
         }else{
           this.addHard();
@@ -74,10 +74,10 @@ class DifficultyIndicator extends Component {
       showLogInScreen();
     }else{
       if(this.props.enabled) {
-        if(this.state.addedHard){
+        if(this.isAddedHard()){
           this.removeHard();
           this.addEasy();
-        }else if (this.state.addedEasy){
+        }else if (this.isAddedEasy()){
             this.removeEasy();
         }else{
             this.addEasy();
@@ -86,16 +86,27 @@ class DifficultyIndicator extends Component {
     }
   }
 
+  isAddedHard = () => {
+    return this.props.idea.addedHard.includes(this.props.userID) || this.state.addedHard;
+  }
+
+  isAddedEasy = () => {
+    return this.props.idea.addedEasy.includes(this.props.userID) || this.state.addedEasy;
+  }
+
   render() {
+    let addedHard = this.isAddedHard();
+    let addedEasy = this.isAddedEasy();
+
     return (
       <div className="bottomIndicator">
         <img src={require("images/difficulty.png")} id="difficultyImage" className="bottomButton"/>
-        <img src={this.state.addedHard ? require("images/upArrowHighlighted.png"): require("images/upArrow.png")} id="increaseDifficulty" className="bottomButton hoverClickHand" 
+        <img src={addedHard ? require("images/upArrowHighlighted.png"): require("images/upArrow.png")} id="increaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleAddHardClick}/>
 
         {this.props.idea === undefined || this.props.idea.addedHard === undefined ? 0 : this.props.idea.addedHard.length}
 
-        <img src={this.state.addedEasy ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="decreaseDifficulty" className="bottomButton hoverClickHand" 
+        <img src={addedEasy ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="decreaseDifficulty" className="bottomButton hoverClickHand" 
           onClick={this.handleAddEasyClick}/>        
 
         {this.props.idea === undefined || this.props.idea.addedEasy === undefined ? 0 : this.props.idea.addedEasy.length}
