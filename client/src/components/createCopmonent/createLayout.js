@@ -7,7 +7,7 @@ import 'commonCss.css'
 export default class createLayout extends Component {
   render() {
     return (
-      <div className="mainContent">
+      <div className="createMainContent">
         <CreateIdeaBar />
         <EditIdeaCard existingTitle="" existingContent="" existingID="" />
         <CreateIdeaButton />

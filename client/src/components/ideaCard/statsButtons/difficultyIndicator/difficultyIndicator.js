@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import './difficultyIndicator.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
-import {ADD_USER_TO_IDEA_ADDED_EASY, ADD_USER_TO_IDEA_ADDED_HARD, } from 'reducers/types'
+import {
+  ADD_USER_TO_IDEA_ADDED_EASY, 
+  ADD_USER_TO_IDEA_ADDED_HARD,
+  REMOVE_USER_FROM_IDEA_ADDED_HARD,
+  REMOVE_USER_FROM_IDEA_ADDED_EASY,
+} from 'reducers/types'
 import {updateIdeaIndicator} from 'actions/ideaActions'
 import {showLogInScreen} from 'actions/commonActions'
 
-class DiffictultyIndicator extends Component {
+class DifficultyIndicator extends Component {
   constructor(props){
     super(props)
 
@@ -14,13 +19,35 @@ class DiffictultyIndicator extends Component {
     this.handleReduceDifficultyClick = this.handleReduceDifficultyClick.bind(this);
   }
 
+  addHard = () => {
+    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+      null,null,    //dont add difficult ideas to user
+      'api/items/addHardToIdea/',ADD_USER_TO_IDEA_ADDED_HARD);
+  }
+
+  removeHard = () => {
+    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+      null,null,    //dont add difficult ideas to user
+      'api/items/removeHardFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_HARD);
+  }
+
+  removeEasy = () => {
+    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+      null,null,    //dont add difficult ideas to user
+      'api/items/removeEasyFromIdea/',REMOVE_USER_FROM_IDEA_ADDED_EASY);
+  }
+
+  addEasy = () => {
+    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+      null,null,    //dont add easy ideas to user
+      'api/items/addedEasyToIdea/',ADD_USER_TO_IDEA_ADDED_EASY);
+  } 
+
   handleAddDifficultyClick(){
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{  
-      this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-                      null,null,    //dont add difficult ideas to user
-                      'api/items/addedHardToIdea/',ADD_USER_TO_IDEA_ADDED_HARD);
+      
     }
   }
 
@@ -62,4 +89,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {updateIdeaIndicator} )(DiffictultyIndicator);
+export default connect(mapStateToProps, {updateIdeaIndicator} )(DifficultyIndicator);

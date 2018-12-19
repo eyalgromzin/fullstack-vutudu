@@ -29,12 +29,14 @@ class CreateIdeaBar extends Component {
 
   render() {
     return (
-      <div id="searchBar">
-        <span className="topBarName" > CREATE: </span>
-        <PlaceSelector tagID="createBarPlaceSelector" cssClass="createBarTextBox" onChangeEvent={this.placeOnChangeEvent} />
-        <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" />
-        <NumOfPeopleCreator cssClass="createBarDropDown" />        
-      </div>
+      <div id="createBar">
+        <div id="createBarButtons">
+          <span className="topBarName" > CREATE: </span>
+          <PlaceSelector tagID="createBarPlaceSelector" cssClass="createBarTextBox" onChangeEvent={this.placeOnChangeEvent} />
+          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" />
+          <NumOfPeopleCreator cssClass="createBarDropDown" />        
+        </div>
+      </div> 
     )
   }
 }

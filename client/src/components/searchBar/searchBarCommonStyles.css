@@ -10,6 +10,7 @@
     display: inline-block;
 }
 
+
 .createBarTextBox{
     height: 35px;
     width: 200px;
@@ -48,6 +49,9 @@
 #searchBar{
     margin-bottom: 20px; 
     margin-top: 15px;
+    background-color: darkgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .topBarName{
@@ -57,8 +61,8 @@
 }
 
 .searchBarTextSquare{
-    box-shadow: 0px 0px 20px 2px;
-    z-index: 0;
+    /* box-shadow: 0px 0px 20px 2px; */
+    /* z-index: 0; */
     position: relative;
     height: 35px;
     width: 27%;
@@ -70,8 +74,8 @@
     border-top: none;
     border-left: none;
     border-right: none;
-    box-shadow: 0px 0px 20px 2px;
-    z-index: 0;
+    /* box-shadow: 0px 0px 20px 2px; */
+    /* z-index: 0; */
     position: relative;
     height: 40px;
     width: 17%;
@@ -86,7 +90,6 @@
     width: 1%;
     z-index: 100;
     display: inline-block;
-    background-color: #F4F9FF;
     position: relative;
     vertical-align: middle;
 

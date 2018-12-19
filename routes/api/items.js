@@ -98,18 +98,46 @@ router.post('/removeIdeaDisliked/', (req, res) => {
   );  
 });
 
-// @route   POST api/items/addedHardToIdea/
+// @route   POST api/items/addHardToIdea/
 // @desc    search for anything
 // @access  Public
-router.post('/addedHardToIdea/', (req, res) => {   
+router.post('/addHardToIdea/', (req, res) => {   
   var ideaID = req.body.idea._id;
-  console.log("addedHardToIdea: updating idea" + ideaID);
+  console.log("addHardToIdea: updating idea" + ideaID);
   console.log("ideaID: " + ideaID + ", userID: " + req.body.userID)
 
   Item.findOneAndUpdate({ _id: ideaID },
     { "$push": { "addedHard": req.body.userID } })
   .then(items => res.json(items));
   console.log("updated idea hard " + ideaID);
+});
+
+// @route   POST api/items/removeHardFromIdea/
+// @desc    search for anything
+// @access  Public
+router.post('/removeHardFromIdea/', (req, res) => {   
+  var ideaID = req.body.idea._id;
+  console.log("removeHardFromIdea: updating idea" + ideaID);
+  console.log("ideaID: " + ideaID + ", userID: " + req.body.userID)
+
+  Item.findOneAndUpdate({ _id: ideaID },
+    { "$pull": { "addedHard": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea hard " + ideaID);
+});
+
+// @route   POST api/items/removeHardFromIdea/
+// @desc    search for anything
+// @access  Public
+router.post('/removeEasyFromIdea/', (req, res) => {   
+  var ideaID = req.body.idea._id;
+  console.log("removeEasyFromIdea: updating idea" + ideaID);
+  console.log("ideaID: " + ideaID + ", userID: " + req.body.userID)
+
+  Item.findOneAndUpdate({ _id: ideaID },
+    { "$pull": { "addedEasy": req.body.userID } })
+  .then(items => res.json(items));
+  console.log("updated idea easy " + ideaID);
 });
 
 // @route   POST api/items/addedEasyToIdea/
@@ -211,7 +239,7 @@ router.post('/search/', (req, res) => {
   .then(items => res.json(items));
 });
 
-// @route   POST api/items/addedHardToIdea/
+// @route   POST api/items/addHardToIdea/
 // @desc    search for anything
 // @access  Public
 router.post('/addIdeaToUserCreatedIdeas/', (req, res) => {   
