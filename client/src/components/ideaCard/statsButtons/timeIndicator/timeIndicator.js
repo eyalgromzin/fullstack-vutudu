@@ -88,7 +88,7 @@ class TimeIndicator extends Component {
   }
 
   isClickedTimePlus = () => {
-    if(!(this.props.idea === undefined)){
+    if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.addedLong === undefined)){
       return this.props.idea.addedLong.includes(this.props.userID) || this.state.addedTimePlus;
     }
 
@@ -96,7 +96,7 @@ class TimeIndicator extends Component {
   }
 
   isClickedTimeMinus = () => {
-    if(!(this.props.idea === undefined)){
+    if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.addedShort === undefined)){
       return this.props.idea.addedShort.includes(this.props.userID) || this.state.addedTimeMinus;
     }
     return false;

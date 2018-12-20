@@ -94,7 +94,7 @@ class LikeDislike extends Component {
   }
 
   isClickedLike = () => {
-    if(!this.props.idea === undefined){
+    if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.liked === undefined)){
       return this.props.idea.liked.includes(this.props.userID) || this.state.clickedLike;
     }
 
@@ -102,7 +102,7 @@ class LikeDislike extends Component {
   }
 
   isClickedDislike = () => {
-    if(!this.props.idea === undefined){
+    if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.liked === undefined)){
       return this.props.idea.disliked.includes(this.props.userID) || this.state.clickedDislike;
     }
 
