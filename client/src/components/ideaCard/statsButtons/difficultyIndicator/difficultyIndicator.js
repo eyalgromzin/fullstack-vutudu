@@ -87,11 +87,19 @@ class DifficultyIndicator extends Component {
   }
 
   isAddedHard = () => {
-    return this.props.idea.addedHard.includes(this.props.userID) || this.state.addedHard;
+    //needed for user page where idea is not defined at the begining
+    if(!this.props.idea === undefined){
+      return this.props.idea.addedHard.includes(this.props.userID) || this.state.addedHard;
+    }
+
+    return false;
   }
 
   isAddedEasy = () => {
-    return this.props.idea.addedEasy.includes(this.props.userID) || this.state.addedEasy;
+    if(!this.props.idea === undefined){
+      return this.props.idea.addedEasy.includes(this.props.userID) || this.state.addedEasy;
+    }
+    return false;
   }
 
   render() {

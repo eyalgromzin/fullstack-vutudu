@@ -21,21 +21,19 @@
         - on indicators - only 1 click
     
     - put hard coded startup decisions to place and more for auto suggestion like: house , kitchen, park, bus_station, bus
+        - created a places list in the mail
     
-    - loading icon when searching
+    - loading gif when searching
 
-    - animations
-        - after load, when the idea pops up , do it slower.
-        - on indicator click, highlight it for half a second
-        - login screen should show slower. when it pops up
+    - enable user to delete created ideas - check if it still works - 
 
-    - enable user to delete created ideas
+    - create animation for when an idea is deleted from the user screen.
 
     - on user edit idea & on create idea, the idea is updated only on next login. need it to be immidiate. 
         probably the redux is not good.
 
     - no results found screen, in case no results were found
-
+    
     more:
     - change the top text in user page "place" , "num of people" to icons
     - change the like idea to 1 post request instead of 2 - home.

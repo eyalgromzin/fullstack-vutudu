@@ -89,11 +89,18 @@ class TimeIndicator extends Component {
   }
 
   isClickedTimePlus = () => {
-    return this.props.idea.addedLong.includes(this.props.userID) || this.state.addedTimePlus;
+    if(!this.props.idea === undefined){
+      return this.props.idea.addedLong.includes(this.props.userID) || this.state.addedTimePlus;
+    }
+
+    return false;
   }
 
   isClickedTimeMinus = () => {
-    return this.props.idea.addedShort.includes(this.props.userID) || this.state.addedTimeMinus;
+    if(!this.props.idea === undefined){
+      return this.props.idea.addedShort.includes(this.props.userID) || this.state.addedTimeMinus;
+    }
+    return false;
   }
 
   render() {

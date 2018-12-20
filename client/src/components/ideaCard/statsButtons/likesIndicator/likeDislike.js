@@ -17,9 +17,10 @@ class LikeDislike extends Component {
   constructor(props){
     super(props);
 
+    //dont need this. needed in the past. not now.
     this.state = {
       clickedLike: false,
-      clickedDisike: false
+      clickedDislike: false
     }
   }
 
@@ -93,11 +94,19 @@ class LikeDislike extends Component {
   }
 
   isClickedLike = () => {
-    return this.props.idea.liked.includes(this.props.userID) || this.state.clickedLike;
+    if(!this.props.idea === undefined){
+      return this.props.idea.liked.includes(this.props.userID) || this.state.clickedLike;
+    }
+
+    return false;
   }
 
   isClickedDislike = () => {
-    return this.props.idea.disliked.includes(this.props.userID) || this.state.clickedDisike;
+    if(!this.props.idea === undefined){
+      return this.props.idea.disliked.includes(this.props.userID) || this.state.clickedDislike;
+    }
+
+    return false;
   }
 
   render() {

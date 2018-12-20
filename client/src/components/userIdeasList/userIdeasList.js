@@ -7,8 +7,6 @@ import {SET_USER_CURRENT_PREVIEWED_IDEA, SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT
 import { connect } from 'react-redux';
 
 class UserIdeasList extends Component {
-  //this.props.ideas
-
   constructor(props){
     super();
 

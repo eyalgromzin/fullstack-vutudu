@@ -12,7 +12,7 @@ import {  SET_LOGGED_IN_USER_ID,
           SET_USER_CURRENT_PREVIEWED_IDEAS,
           USER_SET_SELECTED_DROPDOWN_TYPE,
           SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
-          UPDATE_PREVIEWED_IDEA,  
+          UPDATE_PREVIEWED_IDEAS,  
           USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
           USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
           UPDATE_LIKED_IDEAS_IDEA,
@@ -22,7 +22,7 @@ import {  SET_LOGGED_IN_USER_ID,
           REMOVE_CREATED_IDEA_FROM_USER,
           CLEAR_USER_PAGE_IDEA,
           EMPTY_USER_PREVIEWED_IDEA,
-          // ADD_USER_TO_LIKED_OF_CREATED_IDEA,
+          UPDATE_CURRENT_PREVIEWED_USER_IDEA,
 
         } from 'reducers/types'
         import {idea} from 'models/idea'
@@ -148,13 +148,6 @@ function reducer(state = initialState, action) {
         ...state,
         currentPreviewedIdeas: action.payload
       }
-    // case UPDATE_USER_CURRENT_PREVIEWED_IDEAS:
-    //   return {
-    //     userCurrentPreviewedIdeas = 
-
-    //     ...state,
-    //     currentPreviewedIdeas: action.payload
-    //   }
     case SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT:
       return {
         ...state,
@@ -165,8 +158,18 @@ function reducer(state = initialState, action) {
         ...state,
         currentPreviewedIdea: action.payload
       }
-    case UPDATE_PREVIEWED_IDEA:
+    case UPDATE_CURRENT_PREVIEWED_USER_IDEA:
+      let currentPreviewedIdea = dcopy(state.currentPreviewedIdea)
+      currentPreviewedIdea.title = action.payload.title
+      currentPreviewedIdea.content = action.payload.content
+
+      return {
+        ...state,
+        currentPreviewedIdea: currentPreviewedIdea
+      }
+    case UPDATE_PREVIEWED_IDEAS:
       var newPreviewedIdeas = updateIdeaInArray(state.currentPreviewedIdeas, action.payload);
+
       return {
         ...state,
         currentPreviewedIdeas: newPreviewedIdeas,

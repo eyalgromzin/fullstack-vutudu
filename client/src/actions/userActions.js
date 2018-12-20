@@ -6,12 +6,13 @@ import {
   SET_LOGGED_IN_USER_FIRST_NAME, 
   SET_LOGGED_IN_USER_ID, 
   SET_LOGGED_IN_USER_LAST_NAME, 
-  UPDATE_PREVIEWED_IDEA,
+  UPDATE_PREVIEWED_IDEAS,
   CHANGE_LOGGED_IN_STATE,
   SET_USER_LIKED_IDEAS,
   UPDATE_USER_CREATED_IDEA,
   SET_USER_CREATED_IDEAS,
-  EMPTY_USER_PREVIEWED_IDEA
+  EMPTY_USER_PREVIEWED_IDEA,
+  UPDATE_CURRENT_PREVIEWED_USER_IDEA
 } from 'reducers/types'
 import store from 'store'
 
@@ -139,7 +140,11 @@ export const updateIdea = (ideaID, title, content, userID) => dispatch => {
     {
       console.log('got reply: /api/items/updateIdea');
       dispatch({
-        type: UPDATE_PREVIEWED_IDEA,
+        type: UPDATE_PREVIEWED_IDEAS,
+        payload: {ideaID, title, content}
+      });
+      dispatch({
+        type: UPDATE_CURRENT_PREVIEWED_USER_IDEA,
         payload: {ideaID, title, content}
       });
     }
