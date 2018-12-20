@@ -24,8 +24,7 @@ router.post('/createIdea/', (req, res) => {
     content: req.body.idea.content,
     createdBy: req.body.idea.createdBy,
     place: req.body.idea.place,
-    minTime: req.body.idea.minTime,
-    maxTime: req.body.idea.maxTime,
+    time: req.body.idea.time,
     minNumOfPeople: req.body.idea.minNumOfPeople,
     maxNumOfPeople: req.body.idea.maxNumOfPeople,
     tags: req.body.idea.tags,
@@ -215,10 +214,7 @@ router.get('/search/:place/:time/:numOfPeople', (req, res) => {   //
   Item.find({
     $and:[
       {place: req.params.place},
-      {$and:[
-        {minTime: {$lte: req.params.time}},
-        {maxTime: {$gte: req.params.time}}
-      ]},
+      {time: req.params.time},
       {$and:[
         {minNumOfPeople: {$lte: req.params.numOfPeople}},
         {maxNumOfPeople: {$gte: req.params.numOfPeople}}
@@ -234,10 +230,7 @@ router.get('/search/:place/:time/:numOfPeople', (req, res) => {   //
 router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {   //
   Item.find({
     place: req.params.place,
-    $and:[
-      {minTime: {$lte: req.params.time}},
-      {maxTime: {$gte: req.params.time}}
-    ],
+    time: req.params.time,
     $and:[
       {minNumOfPeople: {$lte: req.params.numOfPeople}},
       {maxNumOfPeople: {$gte: req.params.numOfPeople}}

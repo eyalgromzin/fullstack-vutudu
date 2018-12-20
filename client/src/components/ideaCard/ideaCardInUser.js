@@ -69,8 +69,7 @@ function mapStateToProps(state) {
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
     currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
     place: state.userPageReducer.currentPreviewedIdea.place,
-    minTime: state.userPageReducer.currentPreviewedIdea.minTime,
-    maxTime: state.userPageReducer.currentPreviewedIdea.maxTime,
+    time: state.userPageReducer.currentPreviewedIdea.time,
     minNumOfPeople: state.userPageReducer.currentPreviewedIdea.minNumOfPeople,
     maxNumOfPeople: state.userPageReducer.currentPreviewedIdea.maxNumOfPeople,
   };

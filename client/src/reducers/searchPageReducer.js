@@ -1,7 +1,6 @@
 import { SAVE_IDEAS,
   CHANGE_CURRENT_IDEA_INDEX,
   ADD_TIME,
-  REDUCE_TIME,
   ADD_DIFFICULTY,
   REDUCE_DIFFICULTY, 
   ADD_USER_TO_CURRENT_IDEA_LIKES,
@@ -32,8 +31,7 @@ const initialState = {
     title: 'click Search',
     content: 'To find ideas of what to do',
     place: 'fill place',
-    minTime: 0,
-    maxTime: 0,
+    time: 0,
     minNumOfPeople: 0,
     maxNumOfPeople: 0,
     liked: [],
@@ -69,22 +67,6 @@ function reducer(state = initialState, action) {
           ...state,
           currentIdeaIndex: action.payload,
         };
-    case ADD_TIME:
-      var currentIdea = getCopyOfCurrentIdea(state);
-      currentIdea.maxTime = currentIdea.maxTime -1 + 2;
-      
-      return { 
-        ...state,
-        currentIdea
-      }
-    case REDUCE_TIME:
-      var currentIdea = getCopyOfCurrentIdea(state);
-      currentIdea.minTime = currentIdea.minTime - 1;
-    
-    return { 
-      ...state,
-      currentIdea
-    }
     case ADD_DIFFICULTY:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.hardCount = currentIdea.hardCount + 1;

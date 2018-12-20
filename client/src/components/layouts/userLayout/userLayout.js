@@ -5,14 +5,10 @@ import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
 import UserIdeasList from 'components/userIdeasList/userIdeasList'
 import IdeaCardInUser from 'components/ideaCard/ideaCardInUser'
-// import {getLikedIdeas} from 'actions/userActions'
-import EditIdeaCard from 'components/ideaCard/editIdeaCard'
 import EditCardInUser from 'components/ideaCard/editCardInUser';
 import { 
-  USER_SET_SELECTED_DROPDOWN_TYPE,
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
-  SET_USER_CURRENT_PREVIEWED_IDEAS,
   } from "reducers/types";
 
 class userLayout extends Component {

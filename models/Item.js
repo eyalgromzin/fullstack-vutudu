@@ -32,11 +32,7 @@ const ItemSchema = new Schema({
     required: false,
     default: 'place',
   },
-  minTime: {
-    type: Number,
-    required: false,
-  },
-  maxTime: {
+  time: {
     type: Number,
     required: false,
   },

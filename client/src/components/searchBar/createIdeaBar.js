@@ -15,14 +15,10 @@ class CreateIdeaBar extends Component {
   }
 
   placeOnChangeEvent = (e) => {
-    var x;
-    x++;
     this.props.dispatch({type: EDITED_IDEA_SET_PLACE, payload: e.target.value});
   }
 
   timeOnChangeEvent = (e) => {
-    var x;
-    x++;
     this.props.dispatch({type: EDITED_IDEA_SET_TIME, payload: Number(e.target.value)});
     
   }
@@ -31,10 +27,12 @@ class CreateIdeaBar extends Component {
     return (
       <div id="createBar">
         <div id="createBarButtons">
-          <span className="topBarName" > CREATE: </span>
-          <PlaceSelector tagID="createBarPlaceSelector" cssClass="createBarTextBox" onChangeEvent={this.placeOnChangeEvent} />
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" />
-          <NumOfPeopleCreator cssClass="createBarDropDown" />        
+          {this.props.showTitle == true || this.props.showTitle === undefined? <span className="topBarName" > CREATE: </span> : "" }
+          <PlaceSelector tagID="createBarPlaceSelector" cssClass="createBarTextBox" onChangeEvent={this.placeOnChangeEvent} 
+            place={this.props.place} />
+          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} />
+          <NumOfPeopleCreator cssClass="createBarDropDown" 
+            minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
         </div>
       </div> 
     )

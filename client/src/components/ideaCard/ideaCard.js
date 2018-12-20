@@ -45,8 +45,7 @@ function mapStateToProps(state) {
     title: state.searchPageReducer.currentIdea.title,
     content: state.searchPageReducer.currentIdea.content,
     place: state.searchPageReducer.currentIdea.place,
-    minTIme: state.searchPageReducer.currentIdea.minTIme,
-    maxTime: state.searchPageReducer.currentIdea.maxTime,
+    time: state.searchPageReducer.currentIdea.time,
     minNumOfPeople: state.searchPageReducer.currentIdea.minNumOfPeople,
     maxNumOfPeople: state.searchPageReducer.currentIdea.maxNumOfPeople
   };

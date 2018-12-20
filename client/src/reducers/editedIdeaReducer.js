@@ -17,8 +17,7 @@ const initialState = {
     title: '',
     content: '',
     place: '',
-    minTime: 5,
-    maxTime: 5,
+    time: 5,
     minNumOfPeople: 2,
     maxNumOfPeople: 4,
 };
@@ -43,8 +42,7 @@ function reducer(state = initialState, action) {
     case EDITED_IDEA_SET_TIME:
     return {
       ...state,
-      minTime: action.payload,
-      maxTime: action.payload,
+      time: action.payload,
     };
     case EDITED_IDEA_SET_TITLE:
     return {

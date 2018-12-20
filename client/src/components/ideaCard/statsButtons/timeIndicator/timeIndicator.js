@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './timeIndicator.css'
 import { connect } from 'react-redux';
-import {ADD_TIME, REDUCE_TIME} from 'reducers/types'
 import {
   ADD_USER_TO_IDEA_ADDED_LONG, 
   ADD_USER_TO_IDEA_ADDED_SHORT,
@@ -89,7 +88,7 @@ class TimeIndicator extends Component {
   }
 
   isClickedTimePlus = () => {
-    if(!this.props.idea === undefined){
+    if(!(this.props.idea === undefined)){
       return this.props.idea.addedLong.includes(this.props.userID) || this.state.addedTimePlus;
     }
 
@@ -97,7 +96,7 @@ class TimeIndicator extends Component {
   }
 
   isClickedTimeMinus = () => {
-    if(!this.props.idea === undefined){
+    if(!(this.props.idea === undefined)){
       return this.props.idea.addedShort.includes(this.props.userID) || this.state.addedTimeMinus;
     }
     return false;
@@ -112,9 +111,9 @@ class TimeIndicator extends Component {
         <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image"/>
         <img src={addedTimeMinus? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="decreaseTime" className="bottomButton hoverClickHand" onClick={this.addTimeMinusClick} alt="decrease time"/>
         <span>{this.props.idea  === undefined || this.props.idea.addedShort  === undefined ? 
-          0 : this.props.idea.minTime - this.props.idea.addedShort.length} - 
+          0 : this.props.idea.time - this.props.idea.addedShort.length} - 
           {this.props.idea  === undefined || this.props.idea.addedLong  === undefined? 
-          0 : this.props.idea.maxTime + this.props.idea.addedLong.length}</span>
+          0 : this.props.idea.time + this.props.idea.addedLong.length}</span>
         <img src={addedTimePlus ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} id="incrementTime" className="bottomButton hoverClickHand" onClick={this.handleAddAddTimeClick} alt="increase time"/>
       </div>
     )
@@ -123,12 +122,11 @@ class TimeIndicator extends Component {
 
 function mapStateToProps(state) {
   return {
-    addedShort: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedShort,
-    addedLong: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedLong,
-    initialMinTime: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].minTime,
-    initialMaxTime: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].maxTime,
+    // addedShort: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedShort,
+    // addedLong: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].addedLong,
+    // initialTime: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex].time,
+    // ideaID: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex]._id,
     userID: state.userPageReducer.loggedInUserID,
-    ideaID: state.searchPageReducer.ideas[state.searchPageReducer.currentIdeaIndex]._id,
     loggedIn: state.commonReducer.loggedIn,
   };
 }

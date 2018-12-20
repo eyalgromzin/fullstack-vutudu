@@ -54,7 +54,7 @@ const updateIdeaInArray = (ideasArray, idea) => {
   var newIdeasArray = dcopy(ideasArray);
   
   newIdeasArray.forEach(ideaI => {
-    if(ideaI != null && ideaI !== undefined && ideaI._id == idea._id){
+    if(ideaI != null && ideaI !== undefined && ideaI._id == idea.ideaID){
       ideaI.title = idea.title;
       ideaI.content = idea.content
     }
