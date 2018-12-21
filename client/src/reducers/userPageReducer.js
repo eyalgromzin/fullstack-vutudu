@@ -173,12 +173,20 @@ function reducer(state = initialState, action) {
       }
     case UPDATE_CURRENT_PREVIEWED_USER_IDEA:
       let currentPreviewedIdea = dcopy(state.currentPreviewedIdea)
-      currentPreviewedIdea.title = action.payload.title
-      currentPreviewedIdea.content = action.payload.content
-      currentPreviewedIdea.place = action.payload.content
-      currentPreviewedIdea.time = action.payload.content
-      currentPreviewedIdea.minNumOfPeople = action.payload.content
-      currentPreviewedIdea.maxNumOfPeople = action.payload.content
+
+      if(action.payload.place !== undefined && action.payload.time !== undefined && 
+        action.payload.minNumOfPeople !== undefined && action.payload.maxNumOfPeople !== undefined ){
+        
+        currentPreviewedIdea.title = action.payload.title
+        currentPreviewedIdea.content = action.payload.content
+        currentPreviewedIdea.place = action.payload.place
+        currentPreviewedIdea.time = action.payload.time
+        currentPreviewedIdea.minNumOfPeople = action.payload.minNumOfPeople
+        currentPreviewedIdea.maxNumOfPeople = action.payload.maxNumOfPeople
+      }else if(action.payload.title !== undefined && action.payload.content !== undefined ){
+        currentPreviewedIdea.title = action.payload.title
+        currentPreviewedIdea.content = action.payload.content
+      }
 
       return {
         ...state,
