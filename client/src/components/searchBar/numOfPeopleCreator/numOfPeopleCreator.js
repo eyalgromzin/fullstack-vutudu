@@ -18,7 +18,9 @@ class NumOfPeopleCreator extends Component {
     return (
       <div className="searchBarChooserContainer middleSearchBarBox" > 
         <div id="createBarNumOfPeopleCreator">
-            <select id="minNumOfPeopleChooser" className="numOfPeopleCreatorDropDown" onChange={this.minNumOfPeopleChange}>
+            <select id="minNumOfPeopleChooser" value={this.props.minNumOfPeople} 
+              className="numOfPeopleCreatorDropDown" onChange={this.minNumOfPeopleChange}>
+
               <option value="9999999" className="timeChooserOption" >Min # of ppl</option>
               <option value="0" className="timeChooserOption" >0</option>
               <option value="1" className="timeChooserOption" >1</option>
@@ -31,8 +33,12 @@ class NumOfPeopleCreator extends Component {
               <option value="7" className="timeChooserOption" >7</option>
               <option value="8000" className="timeChooserOption" >7+</option>
             </select>
+
             <span className="createBarMiddlePlaceHolder"> - </span>
-            <select id="maxNumOfPeopleChooser" className="numOfPeopleCreatorDropDown" onChange={this.maxNumOfPeopleChange}>
+            
+            <select id="maxNumOfPeopleChooser" value={this.props.maxNumOfPeople} 
+              className="numOfPeopleCreatorDropDown" onChange={this.maxNumOfPeopleChange}>
+
               <option value="9999999" className="timeChooserOption">Max # of ppl</option>
               <option value="0" className="timeChooserOption">0</option>
               <option value="1" className="timeChooserOption">1</option>

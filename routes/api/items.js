@@ -302,7 +302,7 @@ router.post('/addIdeaToUserCreatedIdeas/', (req, res) => {
 //   console.log("deleted idea: " + req.params.id);
 // });
 
-// @route   POST api/items/updateIdea/
+// @route   POST api/items/deleteIdea/
 // @desc    update idea 
 // @access  Public
 router.post('/deleteIdea/', (req, res) => {   
@@ -311,15 +311,46 @@ router.post('/deleteIdea/', (req, res) => {
   .then(item => item.remove().then(() => res.json({ success: true })))
 });
 
-// @route   POST api/items/updateIdea/
+// @route   POST api/items/updateIdeaBasic/
 // @desc    update idea 
 // @access  Public
-router.post('/updateIdea/', (req, res) => {   
+router.post('/updateIdeaBasic/', (req, res) => {   
   console.log("updating idea: " + req.body.ideaID);
   console.log("new title: " + req.body.title);
   console.log("new content: " + req.body.content);
   Item.findOneAndUpdate({ _id: req.body.ideaID }, 
     {$set: {title: req.body.title, content: req.body.content, tags: req.body.tags}}, {new: true})
+  .then( 
+    items => {
+      console.log("updated idea: " + req.body.ideaID);
+      return res.json(items);
+    }
+  );
+});
+
+// @route   POST api/items/updateIdeaAllFields/
+// @desc    update idea 
+// @access  Public
+router.post('/updateIdeaAllFields/', (req, res) => {   
+  console.log("updating idea: " + req.body.ideaID);
+  console.log("new title: " + req.body.title);
+  console.log("new content: " + req.body.content);
+  console.log("new place: " + req.body.place);
+  console.log("new time: " + req.body.time);
+  console.log("new minNumOfPeople: " + req.body.minNumOfPeople);
+  console.log("new maxNumOfPeople: " + req.body.maxNumOfPeople);
+  Item.findOneAndUpdate({ _id: req.body.ideaID }, 
+    {$set: 
+      {
+        title: req.body.title, 
+        content: req.body.content, 
+        tags: req.body.tags, 
+        place: req.body.place, 
+        time: req.body.time, 
+        minNumOfPeople: req.body.minNumOfPeople, 
+        maxNumOfPeople: req.body.maxNumOfPeople, 
+    }}, 
+    {new: true})
   .then( 
     items => {
       console.log("updated idea: " + req.body.ideaID);

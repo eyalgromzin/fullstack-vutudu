@@ -1,8 +1,6 @@
-import React from 'react';
-import { combineReducers } from "redux";
-import update from "react-addons-update";
-import { EDITED_IDEA_SET_MIN_PEOPLE, EDITED_IDEA_SET_MAX_PEOPLE } from 'reducers/types'
 import { 
+  EDITED_IDEA_SET_MIN_PEOPLE, 
+  EDITED_IDEA_SET_MAX_PEOPLE,
   EDITED_IDEA_SET_TIME,
   EDITED_IDEA_SET_TITLE,
   EDITED_IDEA_SET_CONTENT ,
@@ -10,6 +8,7 @@ import {
   EDITED_IDEA_SET_PLACE,
   EDITED_IDEA_SET_ID,
   EDITED_IDEA_SET_TAGS,
+  UPDATE_EDITED_IDEA,
 } from 'reducers/types'
 
 const initialState = {
@@ -63,6 +62,18 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       id: action.payload,
+    };
+  case UPDATE_EDITED_IDEA:
+    //get a full idea, and updates the edited idea
+    return {
+      ...state,
+      id: action.payload._id,
+      title: action.payload.title,
+      content: action.payload.content,
+      place: action.payload.place,
+      time: action.payload.time,
+      minNumOfPeople: action.payload.minNumOfPeople,
+      maxNumOfPeople: action.payload.maxNumOfPeople,
     };
     case CLEAR_EDITED_IDEA:
       return {

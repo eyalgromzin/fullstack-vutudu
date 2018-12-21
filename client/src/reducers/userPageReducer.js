@@ -57,6 +57,19 @@ const updateIdeaInArray = (ideasArray, idea) => {
     if(ideaI != null && ideaI !== undefined && ideaI._id == idea.ideaID){
       ideaI.title = idea.title;
       ideaI.content = idea.content
+      
+      if(idea.place !== undefined){
+        ideaI.place = idea.place
+      }
+      if(idea.time !== undefined){
+        ideaI.place = idea.place
+      }
+      if(idea.minNumOfPeople !== undefined){
+        ideaI.maxNumOfPeople = idea.maxNumOfPeople
+      }
+      if(idea.maxNumOfPeople !== undefined){
+        ideaI.maxNumOfPeople = idea.maxNumOfPeople
+      }
     }
   });
 
@@ -162,6 +175,10 @@ function reducer(state = initialState, action) {
       let currentPreviewedIdea = dcopy(state.currentPreviewedIdea)
       currentPreviewedIdea.title = action.payload.title
       currentPreviewedIdea.content = action.payload.content
+      currentPreviewedIdea.place = action.payload.content
+      currentPreviewedIdea.time = action.payload.content
+      currentPreviewedIdea.minNumOfPeople = action.payload.content
+      currentPreviewedIdea.maxNumOfPeople = action.payload.content
 
       return {
         ...state,

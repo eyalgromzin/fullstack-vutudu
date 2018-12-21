@@ -12,7 +12,8 @@ import {
   UPDATE_USER_CREATED_IDEA,
   SET_USER_CREATED_IDEAS,
   EMPTY_USER_PREVIEWED_IDEA,
-  UPDATE_CURRENT_PREVIEWED_USER_IDEA
+  UPDATE_CURRENT_PREVIEWED_USER_IDEA,
+  // UPDATE_CREATED_IDEA_IN_USER,
 } from 'reducers/types'
 import store from 'store'
 
@@ -133,34 +134,78 @@ export const getUserFromDB = userID => dispatch => {
 }
 
 //e.g. 
-export const updateIdea = (ideaID, title, content, userID) => dispatch => {
+export const updateIdea = (userID, ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople) => dispatch => {
   console.log('sending post: api/items/updateIdea: ideaID: ' + ideaID + ', title: ' + title + ', content: ' + content);
-  axios.post(`/api/items/updateIdea`,{ideaID, title, content})
-  .then(res =>
-    {
-      console.log('got reply: /api/items/updateIdea');
-      dispatch({
-        type: UPDATE_PREVIEWED_IDEAS,
-        payload: {ideaID, title, content}
+  if(place === undefined || time === undefined || minNumOfPeople === undefined){
+    axios.post(`/api/items/updateIdeaBasic`,{ideaID, title, content})
+    .then(res =>
+      {
+        console.log('got reply: /api/items/updateIdeaBasic');
+        dispatch({
+          type: UPDATE_PREVIEWED_IDEAS,
+          payload: {ideaID, title, content}
+        });
+        dispatch({
+          type: UPDATE_CURRENT_PREVIEWED_USER_IDEA,
+          payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
+        });
+        
+
       });
-      dispatch({
-        type: UPDATE_CURRENT_PREVIEWED_USER_IDEA,
-        payload: {ideaID, title, content}
+
+    axios.post(`/api/items/updateIdeaBasic`,{ideaID, title, content})
+    .then(res =>
+      {
+        console.log('got reply: /api/items/updateIdeaBasic');
+        dispatch({
+          type: UPDATE_PREVIEWED_IDEAS,
+          payload: {ideaID, title, content}
+        });
+        dispatch({
+          type: UPDATE_CURRENT_PREVIEWED_USER_IDEA,
+          payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
+        });
+        
+        axios.post(`/api/user/updateUserCreatedIdeaBasic`,{ideaID, title, content})
+        .then(res => {
+          dispatch({
+            type: UPDATE_USER_CREATED_IDEA,
+            payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
+          });
+        });
+
       });
-    }
-  );
-  
-  console.log('sending post: api/user/updateUserCreatedIdea: userID: ' + userID + ', ideaID: ' + ideaID + ', title: ' + title + ', content: ' + content);
-  axios.post(`/api/user/updateUserCreatedIdea`,{userID, ideaID, title, content})
-  .then(res =>
-    {
-      console.log('got reply: /api/user/updateUserCreatedIdea');
-      dispatch({
-        type: UPDATE_USER_CREATED_IDEA,
-        payload: res.data
+  }
+
+  else if(userID !== undefined && ideaID  !== undefined && title !== undefined &&
+      content !== undefined && place !== undefined && time !== undefined &&
+       minNumOfPeople !== undefined &&  maxNumOfPeople !== undefined){
+
+
+        axios.post(`/api/items/updateIdeaAllFields`,{ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople})
+        .then(res =>
+      {
+        console.log('got reply from: /api/items/updateIdeaAllFields');
+        dispatch({
+          type: UPDATE_PREVIEWED_IDEAS,
+          payload: {ideaID, title, content}
+        });
+        dispatch({
+          type: UPDATE_CURRENT_PREVIEWED_USER_IDEA,
+          payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
+        });
+        
+
       });
-    }
-  );
+
+    axios.post(`/api/user/updateUserCreatedIdeaAllFields`,{ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople})
+      .then(res => {
+        dispatch({
+          type: UPDATE_USER_CREATED_IDEA,
+          payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
+        });
+      });
+  }
 }
 
 export const addUserToUserLikedIdea = (userIDToUpdate, ideaID, userIDToAdd) => dispatch => {
@@ -168,7 +213,7 @@ export const addUserToUserLikedIdea = (userIDToUpdate, ideaID, userIDToAdd) => d
   axios.post(`/api/user/addUserToUserLikedIdea`,{userIDToUpdate, ideaID, userIDToAdd})
   .then(res =>
     {
-      console.log('got reply: /api/user/updateUserCreatedIdea');
+      console.log('got reply: /api/user/addUserToUserLikedIdea');
       dispatch({
         type: UPDATE_USER_CREATED_IDEA,
         payload: res.data

@@ -25,17 +25,21 @@ constructor(props){
     //to update the list
 
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});
-    this.props.dispatch({type: EDITED_IDEA_SET_ID, payload: this.props.currentPreviewedIdea._id});
-    this.props.dispatch({type: EDITED_IDEA_SET_TITLE, payload: this.props.currentPreviewedIdea.title});
-    this.props.dispatch({type: EDITED_IDEA_SET_CONTENT, payload: this.props.currentPreviewedIdea.content});
+    // this.props.dispatch({type: EDITED_IDEA_SET_ID, payload: this.props.currentPreviewedIdea._id});
+    // this.props.dispatch({type: EDITED_IDEA_SET_TITLE, payload: this.props.currentPreviewedIdea.title});
+    // this.props.dispatch({type: EDITED_IDEA_SET_CONTENT, payload: this.props.currentPreviewedIdea.content});
 
     store.dispatch({type: CHANGE_UPDATE_TOGGLE});
 
     this.props.updateIdea(
+      this.props.userID, 
       this.props.currentPreviewedIdea._id,
       this.props.newTitle,
       this.props.newContent,
-      this.props.userID);
+      this.props.newPlace,
+      this.props.newTime,
+      this.props.newMinNumOfPeople,
+      this.props.newMaxNumOfPeople);
   }
 
   render() {
@@ -73,6 +77,10 @@ function mapStateToProps(state) {
     isIdeaEdited: state.userPageReducer.isIdeaEdited,
     userID: state.userPageReducer.loggedInUserID,
     updateToggle: state.userPageReducer.updateToggle,
+    newTime: state.editedIdeaReducer.time,
+    newPlace: state.editedIdeaReducer.place,
+    newMinNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
+    newMaxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
 
   };
 }

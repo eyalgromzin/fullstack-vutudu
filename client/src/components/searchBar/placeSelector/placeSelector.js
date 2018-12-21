@@ -26,7 +26,8 @@ export default class PlaceSelector extends Component {
   render() {
     return (
       <React.Fragment >
-        <input id={this.props.tagID} className={this.props.cssClass} onKeyUp={this.placeSelectorKeyUp} placeholder="Place" type="text" onChange={this.handleOnChange}  />
+        <input id={this.props.tagID} value={this.props.place} 
+          className={this.props.cssClass} onKeyUp={this.placeSelectorKeyUp} placeholder="Place" type="text" onChange={this.handleOnChange}  />
       </React.Fragment >
     )
   }

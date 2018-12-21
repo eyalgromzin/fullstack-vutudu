@@ -220,14 +220,33 @@ router.post('/removeTimeMinusFromIdeaCreator', (req, res) => {   //works
   console.log("removed user id to time minus of the idea of the creator. userID: " + req.body.userID);
 });
 
-// @route   POST api/user/updateUserCreatedIdea/
+// @route   POST api/user/updateUserCreatedIdeaBasic/
 // @get userID, ideaID, title, content
 // @desc    update idea in user 
 // @access  Public
-router.post('/updateUserCreatedIdea', (req, res) => {   //works
+router.post('/updateUserCreatedIdeaBasic', (req, res) => {   //works
   console.log("updating " + req.body.userID);
   User.findOneAndUpdate({ id: req.body.userID, "created._id": req.body.ideaID},
     { "$set": { "created.$.title": req.body.title, "created.$.content": req.body.content }})
+  .then(users => res.json(users));
+  console.log("updated " + req.body.userID);
+});
+
+// @route   POST api/user/updateUserCreatedIdeaAllFields/
+// @get userID, ideaID, title, content, place, time, minppl, max ppl
+// @desc    update idea in user 
+// @access  Public
+router.post('/updateUserCreatedIdeaAllFields', (req, res) => {   //works
+  console.log("updating " + req.body.userID);
+  User.findOneAndUpdate({ id: req.body.userID, "created._id": req.body.ideaID},
+    { "$set": { 
+      "created.$.title": req.body.title, 
+      "created.$.content": req.body.content,
+      "created.$.place": req.body.place,
+      "created.$.time": req.body.time,
+      "created.$.minNumOfPeople": req.body.minNumOfPeople,
+      "created.$.maxNumOfPeople": req.body.maxNumOfPeople,
+    }})
   .then(users => res.json(users));
   console.log("updated " + req.body.userID);
 });
