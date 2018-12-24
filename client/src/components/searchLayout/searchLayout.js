@@ -19,9 +19,14 @@ class searchLayout extends Component {
       <React.Fragment>
         <div className="searchMainContent">
           <SearchBar />
-          {
-            this.props.searched ? <IdeaCard idea={this.props.idea} refresh={this.state.refresh} enabled={true} /> : <TopTable />
-          }
+          <div class="mainContent">
+            { 
+              this.props.searched ? 
+                <IdeaCard idea={this.props.idea} refresh={this.state.refresh} enabled={true} /> 
+                : 
+                <TopTable /> 
+            }
+          </div>
         </div>
       </React.Fragment>
     )
