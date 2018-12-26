@@ -16,13 +16,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          
-          {/* <AppNavbar /> */}
           <Layout />
-          {/* <Container> */}
-            {/* <ItemModal /> */}
-            {/* <ShoppingList /> */}
-          {/* </Container> */}
         </div>
       </Provider>
     );

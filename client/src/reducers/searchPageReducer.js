@@ -35,8 +35,10 @@ const initialState = {
     minNumOfPeople: 0,
     maxNumOfPeople: 0,
     liked: [],
+    likedCount: 0,
     disliked: [],
     addedHard: [],
+    hardCount: 0,
     addedEasy: [],
     addedLong: [],
     addedShort: [],
@@ -86,7 +88,8 @@ function reducer(state = initialState, action) {
     case ADD_USER_TO_CURRENT_IDEA_LIKES:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.liked.push(action.payload);
-      
+      currentIdea.likedCount++
+
       return {
         ...state,
         currentIdea
@@ -125,6 +128,7 @@ function reducer(state = initialState, action) {
     case ADD_USER_TO_IDEA_ADDED_HARD:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.addedHard = [action.payload,...currentIdea.addedHard]
+      currentIdea.hardCount++
 
       return {
         ...state,

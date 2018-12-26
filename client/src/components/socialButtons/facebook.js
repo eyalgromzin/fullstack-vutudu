@@ -1,20 +1,11 @@
-import ReactDOM from 'react-dom';
 import FacebookLogin from 'react-facebook-login';
-import { commonReducer } from 'reducers/commonReducer'
-import {CHANGE_LOGGED_IN_STATE} from 'reducers/types'
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { createUserIfNotExists } from 'actions/userActions'
 import { bindActionCreators } from 'redux';
-import store from 'store'
-
-import {
-  SET_USER_LIKED_IDEAS,
-  SET_USER_CREATED_IDEAS
-} from 'reducers/types' 
 
 
-class facebook6 extends Component {
+class facebook extends Component {
   responseFacebook = (response) => {
     if (response.accessToken) {
       
@@ -30,6 +21,7 @@ class facebook6 extends Component {
       }
 
       this.props.createUserIfNotExists(user);
+      
 
     } else {
       console.log('User cancelled login or did not fully authorize.');
@@ -67,4 +59,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(facebook6); 
+export default connect(mapStateToProps,mapDispatchToProps)(facebook); 

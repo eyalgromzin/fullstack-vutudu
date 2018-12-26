@@ -92,6 +92,8 @@ export const searchItems = (place,time,numOfPeople) => dispatch => {
   );
 };
 
+
+
 export const updateTags = (tags) => dispatch => {
   tags.forEach(tag => {
     //update the 1 letter 
@@ -111,6 +113,30 @@ const addTagToLettersBucketIfNotExists = (firstLetters, tag) => {
   axios.post('/api/tags/update_bucket', {firstLetters,tag})
   .then(res => {
     console.log('tags added to their bucket');
+  })
+};
+
+const updateTopIdeas = () => {
+  axios.post('/api/ideas/updateTopIdeasView')
+  .then(res => {
+    console.log('tags added to their bucket');
+
+    dispatch({
+      type: SAVE_TOP_IDEAS,
+      payload: idea
+    });
+  })
+};
+
+const getTopIdeas = () => {
+  axios.post('/api/ideas/getTopIdeas')
+  .then(res => {
+    console.log('tags added to their bucket');
+
+    dispatch({
+      type: SAVE_TOP_IDEAS,
+      payload: idea
+    });
   })
 };
 

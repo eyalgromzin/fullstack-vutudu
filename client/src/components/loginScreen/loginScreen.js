@@ -2,11 +2,9 @@ import React, { Component } from 'react'
 import './loginScreen.css'
 // import FacebookButton from 'components/socialButtons/facebook'
 import GoogleButton from 'components/socialButtons/google'
-import FacebookButton from 'components/socialButtons/facebook6'
+import FacebookButton from 'components/socialButtons/facebook'
 import { connect } from 'react-redux';
 import { hideLogInScreen } from 'actions/commonActions'
-import { updateUserLikedIdeas,updateUserCreatedIdeas } from 'actions/userActions'
-import { bindActionCreators } from 'redux';
 
 class LoginScreen extends Component {
     closeLoginScreen = () => {
