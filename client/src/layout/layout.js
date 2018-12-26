@@ -7,17 +7,13 @@ import createLayout from '../components/createCopmonent/createLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userLayout from '../components/layouts/userLayout/userLayout';
 import SideBar from 'components/sideBar'
-import { getTopIdeas } from 'actions/ideaActions';
-
-
-// export const showIdeaPage = 'SHOW_IDEAS';
+import { updateTopIdeas } from 'actions/ideaActions';
+import { bindActionCreators } from 'redux';
 
 class Layout extends Component {
   componentWillMount(){
     //get top table results
-    this.props.getTopIdeas();
-    //update top table
-    
+    this.props.updateTopIdeas();
   }
   
   render() {
@@ -40,7 +36,7 @@ class Layout extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getTopIdeas: bindActionCreators (getTopIdeas, dispatch),
+    updateTopIdeas: bindActionCreators (updateTopIdeas, dispatch),
     dispatch,
   }
 }

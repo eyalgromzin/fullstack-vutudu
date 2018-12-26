@@ -16,7 +16,7 @@ const initialState = {
     title: '',
     content: '',
     place: '',
-    time: 5,
+    time: 0,
     minNumOfPeople: 2,
     maxNumOfPeople: 4,
 };

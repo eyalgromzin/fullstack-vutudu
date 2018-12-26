@@ -15,6 +15,8 @@ import { SAVE_IDEAS,
   REMOVE_USER_FROM_IDEA_ADDED_EASY,
   REMOVE_USER_FROM_IDEA_ADDED_SHORT,
   REMOVE_USER_FROM_IDEA_ADDED_LONG,
+  SAVE_TOP_LIKED_IDEAS,
+  SAVE_TOP_HARD_IDEAS,
   SET_CURRENT_IDEA } from './types'
 // import dcopy from 'deep-copy'
 var dcopy = require('deep-copy')
@@ -26,6 +28,8 @@ const initialState = {
   currentIdeaIndex: 0,
   currentIdea: {  
   },
+  topHardIdeas: [],
+  topLikedIdeas: [],
   ideas: ([{
     _id: '000',
     title: 'click Search',
@@ -49,6 +53,12 @@ function getCopyOfCurrentIdea (state){
   return dcopy(state.currentIdea);
 }
 
+function arrayRemove(arr, value) {
+  return arr.filter(function(ele){
+      return ele != value;
+  });
+}
+
 function reducer(state = initialState, action) {
   let userID = '';
   let removedArray = '';
@@ -65,9 +75,13 @@ function reducer(state = initialState, action) {
         currentIdea: action.payload,
       };
     case CHANGE_CURRENT_IDEA_INDEX:
+      var currentIdeaIndex = action.payload;
+      var currentIdeaCopy = dcopy(state.ideas[currentIdeaIndex])
+
       return{
           ...state,
           currentIdeaIndex: action.payload,
+          currentIdea: currentIdeaCopy,
         };
     case ADD_DIFFICULTY:
       var currentIdea = getCopyOfCurrentIdea(state);
@@ -90,6 +104,11 @@ function reducer(state = initialState, action) {
       currentIdea.liked.push(action.payload);
       currentIdea.likedCount++
 
+      //also find the idea in the ideas and add it to it too.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      ideaInIdeas.liked = [action.payload,...currentIdea.liked]
+
       return {
         ...state,
         currentIdea
@@ -99,7 +118,11 @@ function reducer(state = initialState, action) {
       var currentIdea = getCopyOfCurrentIdea(state);
       removedArray = _.remove(currentIdea.liked, (idea) => userID == idea._id);
       currentIdea.liked = removedArray
-      // currentIdea.liked.pull(action.payload);
+      
+      //also find the idea in the ideas and update it.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      _.remove(ideaInIdeas.liked, (userid) => userid == userID);
       
       return {
         ...state,
@@ -108,6 +131,11 @@ function reducer(state = initialState, action) {
     case ADD_USER_TO_IDEA_DISLIKES:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.disliked.push(action.payload);
+
+      //also find the idea in the ideas and add it to it too.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      ideaInIdeas.disliked = [action.payload,...currentIdea.disliked]
 
       return {
         ...state,
@@ -121,6 +149,11 @@ function reducer(state = initialState, action) {
       removedArray = _.remove(currentIdea.disliked, (idea) => userID == idea._id);
       currentIdea.disliked = removedArray
 
+      //also find the idea in the ideas and update it.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      _.remove(ideaInIdeas.disliked, (userid) => userid == userID);
+
       return {
         ...state,
         currentIdea
@@ -129,10 +162,16 @@ function reducer(state = initialState, action) {
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.addedHard = [action.payload,...currentIdea.addedHard]
       currentIdea.hardCount++
+      
+      //also find the idea in the ideas and add it to it too.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      ideaInIdeas.addedHard = [action.payload,...currentIdea.addedHard]
 
       return {
         ...state,
-        currentIdea
+        currentIdea,
+        ideas: ideas
       };
     case REMOVE_USER_FROM_IDEA_ADDED_HARD:
       userID = action.payload;
@@ -140,9 +179,15 @@ function reducer(state = initialState, action) {
       removedArray = _.remove(currentIdea.addedHard, (idea) => userID == idea._id);
       currentIdea.addedHard = removedArray
 
+      //also find the idea in the ideas and update it.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      _.remove(ideaInIdeas.addedHard, (userid) => userid == userID);
+
       return {
         ...state,
-        currentIdea
+        currentIdea,
+        ideas: ideas
       };
     case REMOVE_USER_FROM_IDEA_ADDED_EASY:
       userID = action.payload;
@@ -150,14 +195,24 @@ function reducer(state = initialState, action) {
       removedArray = _.remove(currentIdea.addedEasy, (idea) => userID == idea._id);
       currentIdea.addedEasy = removedArray
 
+      //also find the idea in the ideas and update it.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      _.remove(ideaInIdeas.addedEasy, (userid) => userid == userID);
+
       return {
         ...state,
         currentIdea
       };
 
     case ADD_USER_TO_IDEA_ADDED_EASY:
-    var currentIdea = getCopyOfCurrentIdea(state);
-    currentIdea.addedEasy = [action.payload,...currentIdea.addedEasy]
+      var currentIdea = getCopyOfCurrentIdea(state);
+      currentIdea.addedEasy = [action.payload,...currentIdea.addedEasy]
+
+      //also find the idea in the ideas and add it to it too.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      ideaInIdeas.addedEasy = [action.payload,...currentIdea.addedEasy]
 
       return {
         ...state,
@@ -166,6 +221,11 @@ function reducer(state = initialState, action) {
     case ADD_USER_TO_IDEA_ADDED_LONG:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.addedLong = [action.payload,...currentIdea.addedLong]
+
+      //also find the idea in the ideas and add it to it too.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      ideaInIdeas.addedLong = [action.payload,...currentIdea.addedLong]
 
       return {
         ...state,
@@ -178,6 +238,11 @@ function reducer(state = initialState, action) {
       removedArray = _.remove(currentIdea.addedLong, (idea) => userID == idea._id);
       currentIdea.addedLong = removedArray
 
+      //also find the idea in the ideas and update it.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      _.remove(ideaInIdeas.addedLong, (userid) => userid == userID);
+
       return {
         ...state,
         currentIdea
@@ -189,6 +254,11 @@ function reducer(state = initialState, action) {
       removedArray = _.remove(currentIdea.addedShort, (idea) => userID == idea._id);
       currentIdea.addedShort = removedArray
 
+      //also find the idea in the ideas and update it.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      _.remove(ideaInIdeas.addedShort, (userid) => userid == userID);
+
       return {
         ...state,
         currentIdea
@@ -197,9 +267,24 @@ function reducer(state = initialState, action) {
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.addedShort = [action.payload,...currentIdea.addedShort]
 
+      //also find the idea in the ideas and add it to it too.
+      var ideas = dcopy(state.ideas)
+      var ideaInIdeas = ideas.filter(ele => ele._id == currentIdea._id)[0]
+      ideaInIdeas.addedShort = [action.payload,...currentIdea.addedShort]
+
       return {
         ...state,
         currentIdea
+      };
+    case SAVE_TOP_HARD_IDEAS:
+      return {
+        ...state,
+        topHardIdeas: action.payload
+      };
+    case SAVE_TOP_LIKED_IDEAS:
+      return {
+        ...state,
+        topLikedIdeas: action.payload
       };
     default:
       return state;

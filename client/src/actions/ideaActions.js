@@ -6,7 +6,9 @@ import {
   NO_ITEMS_FOUND, 
   SET_CURRENT_IDEA,
   CHANGE_SEARCHED_STATE,
-  REMOVE_CREATED_IDEA_FROM_USER
+  REMOVE_CREATED_IDEA_FROM_USER,
+  SAVE_TOP_HARD_IDEAS,
+  SAVE_TOP_LIKED_IDEAS
 } from 'reducers/types'
 import { emptyUserPreviewedIdea } from 'actions/userActions'
 import { USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS } from '../reducers/types';
@@ -45,7 +47,7 @@ export const updateIdeaIndicator = (loggedInUserID,idea,userPostUrl,addToUserRed
         console.log(`idea was updated`);
         dispatch({
           type: addToIdeaReduxTypeName,
-          payload: idea._id
+          payload: loggedInUserID
         })
       }
     );
@@ -116,26 +118,24 @@ const addTagToLettersBucketIfNotExists = (firstLetters, tag) => {
   })
 };
 
-const updateTopIdeas = () => {
-  axios.post('/api/ideas/updateTopIdeasView')
+export const updateTopIdeas = () => dispatch => {
+  axios.post('/api/items/getTopHardIdeas')
   .then(res => {
     console.log('tags added to their bucket');
 
     dispatch({
-      type: SAVE_TOP_IDEAS,
-      payload: idea
+      type: SAVE_TOP_HARD_IDEAS,
+      payload: res.data
     });
   })
-};
 
-const getTopIdeas = () => {
-  axios.post('/api/ideas/getTopIdeas')
+  axios.post('/api/items/getTopLikedIdeas')
   .then(res => {
     console.log('tags added to their bucket');
 
     dispatch({
-      type: SAVE_TOP_IDEAS,
-      payload: idea
+      type: SAVE_TOP_LIKED_IDEAS,
+      payload: res.data
     });
   })
 };

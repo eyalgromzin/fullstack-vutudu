@@ -8,7 +8,7 @@ import { EDITED_IDEA_SET_TIME } from 'reducers/types'
 import { connect } from 'react-redux';
 import './searchBarCommonStyles.css'
 
-class CreateIdeaBar extends Component {
+class EditIdeaBar extends Component {
   constructor(props){
     super(props);
   }
@@ -43,4 +43,4 @@ function mapStateToProps(state) {
     };
   }
 
-export default connect(mapStateToProps)(CreateIdeaBar);
+export default connect(mapStateToProps)(EditIdeaBar);

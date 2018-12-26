@@ -8,17 +8,6 @@ import { connect } from 'react-redux'
 import { search } from 'components/searchBar/searchBarCommon'
 
 class SearchButton extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      place: 'bus station',
-      time: 5,
-      numOfPeople: 1,
-      more: '#productive',      
-    }
-  }
-
   handleSearchClick = () => {
     search();
   }
@@ -30,13 +19,4 @@ class SearchButton extends Component {
   }
 }
 
-function mapStateToProps(state) {
-    return {
-      place: state.searchBarReducer.place,
-      time: state.searchBarReducer.time,
-      numOfPeople: state.searchBarReducer.numOfPeople,
-      more: state.searchBarReducer.more,
-    };
-  }
-
-  export default connect(mapStateToProps, {searchItems})(SearchButton);
+export default connect()(SearchButton);

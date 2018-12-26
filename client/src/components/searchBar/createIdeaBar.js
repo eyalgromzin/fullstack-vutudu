@@ -39,4 +39,11 @@ class CreateIdeaBar extends Component {
   }
 }
 
-export default connect()(CreateIdeaBar);
+function mapStateToProps(state) {
+  return {
+    time: state.editedIdeaReducer.time,
+  };
+}
+
+
+export default connect(mapStateToProps)(CreateIdeaBar);

@@ -1,5 +1,4 @@
     - create lists, and put them in the main page. - at the bottom of the search page - home 
-        - each user login, first get the view of top things. then update it. 
         - hardest 
         - most liked
     
@@ -28,12 +27,12 @@
 
     - create animation for when an idea is deleted from the user screen.
 
-    - on user edit idea & on create idea, the idea is updated only on next login. need it to be immidiate. 
+    - on user edit idea & on create idea, the idea is updated only on next login. need it to be immediate. 
         probably the redux is not good.
 
     - no results found screen, in case no results were found
 
-    - 
+    - make all the searches and ideas work from the url , so the users will be able to save them to favorites
     
     more:
     - change the top text in user page "place" , "num of people" to icons

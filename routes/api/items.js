@@ -292,15 +292,12 @@ router.post('/updateIdeaBasic/', (req, res) => {
 // @route   POST api/items/updateIdeaBasic/
 // @desc    update idea 
 // @access  Public
-router.post('/getTopIdeas/', (req, res) => {   
+router.post('/getTopHardIdeas/', (req, res) => {   
   console.log("getting top ideas");
-  item.find().sort({viewCount: -1}).limit(5).exec( 
-    function(err, projects) {
-        ...
-    }
+  Item.find().sort({hardCount: -1}).limit(5)
   .then( 
     items => {
-      console.log("updated idea: " + req.body.ideaID);
+      console.log("got top hard ideas");
       return res.json(items);
     }
   );
@@ -309,12 +306,12 @@ router.post('/getTopIdeas/', (req, res) => {
 // @route   POST api/items/updateIdeaBasic/
 // @desc    update idea 
 // @access  Public
-router.post('/updateTopIdeasView/', (req, res) => {   
-  console.log("updating top ideas view");
-  item.findOne()
+router.post('/getTopLikedIdeas/', (req, res) => {   
+  console.log("getting top ideas");
+  Item.find().sort({likeCount: -1}).limit(5)
   .then( 
     items => {
-      console.log("updated idea: " + req.body.ideaID);
+      console.log("got top liked ideas");
       return res.json(items);
     }
   );

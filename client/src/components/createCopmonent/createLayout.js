@@ -8,7 +8,7 @@ export default class createLayout extends Component {
   render() {
     return (
       <div className="createMainContent">
-        <CreateIdeaBar />
+        <CreateIdeaBar time={0} />
         <EditIdeaCard existingTitle="" existingContent="" existingID="" />
         <CreateIdeaButton />
       </div>

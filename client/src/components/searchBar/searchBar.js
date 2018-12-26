@@ -32,7 +32,7 @@ class SearchBar extends Component {
           {/* <span className="topBarName" > SEARCH: </span> */}
           <PlaceSelector tagID="searchBarPlaceSelector" onChangeEvent={this.placeOnChangeEvent} cssClass="searchBarTextSquare" />
           <div className="middlePlaceHolder" />
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="searchBarDropDownSquare" />
+          <TimePicker onChangeEvent={this.timeOnChangeEvent} time={this.props.time} cssClass="searchBarDropDownSquare" />
           <div className="middlePlaceHolder" />
           <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
           <div className="middlePlaceHolder" />
@@ -44,4 +44,10 @@ class SearchBar extends Component {
   }
 }
 
-export default connect()(SearchBar);
+function mapStateToProps(state) {
+  return {
+    time: state.searchBarReducer.time
+  };
+}
+
+export default connect(mapStateToProps)(SearchBar);

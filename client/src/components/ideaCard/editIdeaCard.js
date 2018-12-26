@@ -47,7 +47,7 @@ class EditIdeaCard extends Component {
     return (
       <React.Fragment>
         <div id="createIdeaContainer">
-          <div id="createideaCard"> 
+          <div id="createIdeaCard"> 
             <div id="createIdeaCardContent">
               <input type="text" id="newIdeaTitle" value={this.props.title == null? "" : this.props.title } placeholder="<title>" onChange={this.handleOnTitleChange}/>
               <textarea type="text" id="newIdeaContent" value={this.props.content == null ? "" : this.props.content } placeholder="<content>" onChange={this.handleOnContentChange}/>

@@ -57,11 +57,4 @@ class NumOfPeopleCreator extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    minNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
-    maxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
-  };
-}
-
 export default connect()(NumOfPeopleCreator); //mapStateToProps

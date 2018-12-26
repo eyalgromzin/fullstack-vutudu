@@ -15,21 +15,24 @@ class DifficultyIndicator extends Component {
   constructor(props){
     super(props)
 
-    this.state = {
-      addedHard: false,
-      addedEasy: false
-    }
+    // this.state = {
+    //   addedHard: false,
+    //   addedEasy: false
+    // }
   }
 
   addHard = () => {
-    this.setState({addedHard: true});
+    // this.setState({addedHard: true});
+    // this.props.addedHard = true;
+
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
       '/api/user/addHardToIdeaCreator/',null,    //dont add difficult ideas to user
       'api/items/addHardToIdea/',ADD_USER_TO_IDEA_ADDED_HARD);
   }
 
   removeHard = () => {
-    this.setState({addedHard: false});
+    // this.setState({addedHard: false});
+    // this.props.addedHard = false
 
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
       '/api/user/removeHardFromIdeaCreator/',null,    //dont add difficult ideas to user
@@ -37,7 +40,8 @@ class DifficultyIndicator extends Component {
   }
 
   removeEasy = () => {
-    this.setState({addedEasy: false});
+    // this.setState({addedEasy: false});
+    // this.props.addedEasy = false
 
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
       '/api/user/removeEasyFromIdeaCreator/',null,    //dont add difficult ideas to user
@@ -45,7 +49,8 @@ class DifficultyIndicator extends Component {
   }
 
   addEasy = () => {
-    this.setState({addedEasy: true});
+    // this.setState({addedEasy: true});
+    // this.props.addEasy = true
 
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
       '/api/user/addEasyToIdeaCreator/',null,    //dont add easy ideas to user
@@ -89,7 +94,7 @@ class DifficultyIndicator extends Component {
   isAddedHard = () => {
     //needed for user page where idea is not defined at the begining
     if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.addedHard === undefined)){
-      return this.props.idea.addedHard.includes(this.props.userID) || this.state.addedHard;
+      return this.props.idea.addedHard.includes(this.props.userID) ;  //|| this.state.addedHard
     }
 
     return false;
@@ -97,7 +102,7 @@ class DifficultyIndicator extends Component {
 
   isAddedEasy = () => {
     if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.addedEasy === undefined)){
-      return this.props.idea.addedEasy.includes(this.props.userID) || this.state.addedEasy;
+      return this.props.idea.addedEasy.includes(this.props.userID) ;  //|| this.state.addedEasy
     }
     return false;
   }
