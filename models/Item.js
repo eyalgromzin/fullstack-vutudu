@@ -49,7 +49,7 @@ const ItemSchema = new Schema({
     required: false,
     default: [],
   },
-  likedCount: {
+  likeCount: {
     type: Number,
     required: false,
     default: 0,

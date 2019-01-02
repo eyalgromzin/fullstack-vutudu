@@ -42,7 +42,8 @@ router.post('/ideaLiked/', (req, res) => {
   console.log("ideaLiked: updating idea " + ideaID);
 
   Item.findOneAndUpdate( {_id: ideaID},     
-    { "$push": { "liked": req.body.userID } },
+    { "$push": { "liked": req.body.userID },
+      "$inc" : { "likeCount": 1 } } ,
     {new: true})
   .then(
     items => res.json(items)
@@ -57,8 +58,9 @@ router.post('/removeIdeaLiked/', (req, res) => {
   console.log("ideaLiked: updating idea " + ideaID);
 
   Item.findOneAndUpdate( {_id: ideaID},      //{'_id': ObjectID(ideaID)}
-    { "$pull": { "liked": req.body.userID } },
-    {new: true})
+    { "$pull": { "liked": req.body.userID },
+      "$inc" : { "likeCount": -1 } },
+    {new: true} )
   .then(
     items => res.json(items)
   );
@@ -108,8 +110,7 @@ router.post('/addHardToIdea/', (req, res) => {
 
   Item.findOneAndUpdate({ _id: ideaID },
     { "$push": { "addedHard": req.body.userID },
-      "$inc" : { "hardCount": 1 } } 
-  )
+      "$inc" : { "hardCount": 1 } } )
   .then(items => res.json(items));
   console.log("updated idea hard " + ideaID);
 });

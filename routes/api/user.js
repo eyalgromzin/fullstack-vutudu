@@ -98,7 +98,7 @@ router.post('/removeUserLiked', (req, res) => {   //works
   console.log("removed userID to the liked idea in the created user: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/userAddedHard/
 // @desc    search for anything
 // @access  Public
 router.post('/userAddedHard', (req, res) => {   //works
@@ -110,7 +110,7 @@ router.post('/userAddedHard', (req, res) => {   //works
   console.log("added user id to the liked idea in the created user: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/userDisliked/
 // @desc    search for anything
 // @access  Public
 router.post('/userDisliked', (req, res) => {   //works
@@ -121,7 +121,7 @@ router.post('/userDisliked', (req, res) => {   //works
   console.log("added user id to the liked idea in the created user: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/removeUserDisliked/
 // @desc    search for anything
 // @access  Public
 router.post('/removeUserDisliked', (req, res) => {   //works
@@ -132,7 +132,7 @@ router.post('/removeUserDisliked', (req, res) => {   //works
   console.log("removed user id from  the disliked idea in the created user: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/addHardToIdeaCreator/
 // @desc    search for anything
 // @access  Public
 router.post('/addHardToIdeaCreator', (req, res) => {   //works
@@ -143,7 +143,7 @@ router.post('/addHardToIdeaCreator', (req, res) => {   //works
   console.log("added user id to the idea of the creator. userID: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/removeHardFromIdeaCreator/
 // @desc    search for anything
 // @access  Public
 router.post('/removeHardFromIdeaCreator', (req, res) => {   //works
@@ -154,7 +154,7 @@ router.post('/removeHardFromIdeaCreator', (req, res) => {   //works
   console.log("added user id to the idea of the creator. userID: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/addEasyToIdeaCreator/
 // @desc    search for anything
 // @access  Public
 router.post('/addEasyToIdeaCreator', (req, res) => {   //works
@@ -165,7 +165,7 @@ router.post('/addEasyToIdeaCreator', (req, res) => {   //works
   console.log("added user id to the idea of the creator. userID: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/removeEasyFromIdeaCreator/
 // @desc    search for anything
 // @access  Public
 router.post('/removeEasyFromIdeaCreator', (req, res) => {   //works
@@ -176,7 +176,7 @@ router.post('/removeEasyFromIdeaCreator', (req, res) => {   //works
   console.log("added user id to the idea of the creator. userID: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/addTimePlusToIdeaCreator/
 // @desc    search for anything
 // @access  Public
 router.post('/addTimePlusToIdeaCreator', (req, res) => {   //works
@@ -187,7 +187,7 @@ router.post('/addTimePlusToIdeaCreator', (req, res) => {   //works
   console.log("added user id to time plus of the idea of the creator. userID: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/removeTimePlusFromIdeaCreator/
 // @desc    search for anything
 // @access  Public
 router.post('/removeTimePlusFromIdeaCreator', (req, res) => {   //works
@@ -198,7 +198,7 @@ router.post('/removeTimePlusFromIdeaCreator', (req, res) => {   //works
   console.log("removed user id to time plus of the idea of the creator. userID: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/addTimeMinusToIdeaCreator/
 // @desc    search for anything
 // @access  Public
 router.post('/addTimeMinusToIdeaCreator', (req, res) => {   //works
@@ -209,7 +209,7 @@ router.post('/addTimeMinusToIdeaCreator', (req, res) => {   //works
   console.log("added user id to time minus of the idea of the creator. userID: " + req.body.userID);
 });
 
-// @route   POST api/user/userLiked/
+// @route   POST api/user/removeTimeMinusFromIdeaCreator/
 // @desc    search for anything
 // @access  Public
 router.post('/removeTimeMinusFromIdeaCreator', (req, res) => {   //works

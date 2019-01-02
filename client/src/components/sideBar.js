@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import {showLogInScreen} from 'actions/commonActions'
 import { 
   SET_TOP_TABLE_IS_IDEA_CLICKED,
+  CHANGE_SEARCHED_STATE,
 } from 'reducers/types'
 
 class SideBar extends Component {
@@ -23,6 +24,7 @@ class SideBar extends Component {
 
   searchClick = (history) => {
     this.props.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: false});
+    this.props.dispatch({type: CHANGE_SEARCHED_STATE, payload: false});
     return history.push('/search')
   }
     
@@ -34,7 +36,7 @@ class SideBar extends Component {
             <Route render={({history}) => (
               <React.Fragment>
                 <img id="searchIdeasButton" src={require("images/search_white.png")} className="leftBarIcon verticalMiddleAlign" 
-                  onClick={this.searchClick(history)}    // () => { history.push('/search') } 
+                  onClick={() => this.searchClick(history)}    // () => { history.push('/search') } 
                 />
                 <img id="newIdeaButton" src={require("images/writeWhite.png")} className="leftBarIcon verticalMiddleAlign"
                   onClick={() =>  this.showNewIdeaScreen(history) }    //() => { history.push('/create') }

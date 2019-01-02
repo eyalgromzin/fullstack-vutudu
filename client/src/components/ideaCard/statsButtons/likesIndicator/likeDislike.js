@@ -16,12 +16,6 @@ import {showLogInScreen} from 'actions/commonActions'
 class LikeDislike extends Component {
   constructor(props){
     super(props);
-
-    //dont need this. needed in the past. not now.
-    this.state = {
-      clickedLike: false,
-      clickedDislike: false
-    }
   }
 
   addLike = () => {
@@ -58,36 +52,40 @@ class LikeDislike extends Component {
   }
 
   handleDislikeClick = () => {
-    if(!this.props.loggedIn){
-      console.log("showing login screen");
-      showLogInScreen();
-    }else{    
-      if(this.props.enabled) {
-        console.log("showing send like request");
-        if(this.isClickedLike()){
-          this.removeLike();
-          this.addDislike();
-        }else if (this.isClickedDislike()){
-            this.removeDislike();
-        }else{
+    if(this.props.enabled){
+      if(!this.props.loggedIn){
+        console.log("showing login screen");
+        showLogInScreen();
+      }else{    
+        if(this.props.enabled) {
+          console.log("showing send like request");
+          if(this.isClickedLike()){
+            this.removeLike();
             this.addDislike();
+          }else if (this.isClickedDislike()){
+              this.removeDislike();
+          }else{
+              this.addDislike();
+          }
         }
       }
     }
   }
 
   handleLikeClick = () => {
-    if(!this.props.loggedIn){
-      showLogInScreen();
-    }else{   
-      if(this.props.enabled) {
-        if(this.isClickedDislike()){
-          this.removeDislike();
-          this.addLike();
-        }else if(this.isClickedLike()){
-          this.removeLike();
-        }else{
-          this.addLike();
+    if(this.props.enabled){
+      if(!this.props.loggedIn){
+        showLogInScreen();
+      }else{   
+        if(this.props.enabled) {
+          if(this.isClickedDislike()){
+            this.removeDislike();
+            this.addLike();
+          }else if(this.isClickedLike()){
+            this.removeLike();
+          }else{
+            this.addLike();
+          }
         }
       }
     }
@@ -95,15 +93,15 @@ class LikeDislike extends Component {
 
   isClickedLike = () => {
     if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.liked === undefined)){
-      return this.props.idea.liked.includes(this.props.userID) || this.state.clickedLike;
+      return this.props.idea.liked.includes(this.props.userID);
     }
 
     return false;
   }
 
   isClickedDislike = () => {
-    if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.liked === undefined)){
-      return this.props.idea.disliked.includes(this.props.userID) || this.state.clickedDislike;
+    if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.disliked === undefined)){
+      return this.props.idea.disliked.includes(this.props.userID);
     }
 
     return false;

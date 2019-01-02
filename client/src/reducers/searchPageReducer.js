@@ -1,7 +1,6 @@
 import { SAVE_IDEAS,
   CHANGE_CURRENT_IDEA_INDEX,
   ADD_TIME,
-  ADD_DIFFICULTY,
   REDUCE_DIFFICULTY, 
   ADD_USER_TO_CURRENT_IDEA_LIKES,
   ADD_USER_TO_IDEA_DISLIKES ,
@@ -38,7 +37,7 @@ const initialState = {
     minNumOfPeople: 0,
     maxNumOfPeople: 0,
     liked: [],
-    likedCount: 0,
+    likeCount: 0,
     disliked: [],
     addedHard: [],
     hardCount: 0,
@@ -83,14 +82,6 @@ function reducer(state = initialState, action) {
           currentIdeaIndex: action.payload,
           currentIdea: currentIdeaCopy,
         };
-    case ADD_DIFFICULTY:
-      var currentIdea = getCopyOfCurrentIdea(state);
-      currentIdea.hardCount = currentIdea.hardCount + 1;
-      
-      return { 
-        ...state,
-        currentIdea
-      }
     case REDUCE_DIFFICULTY:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.easy.push(action.payload);
@@ -102,7 +93,7 @@ function reducer(state = initialState, action) {
     case ADD_USER_TO_CURRENT_IDEA_LIKES:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.liked.push(action.payload);
-      currentIdea.likedCount++
+      currentIdea.likeCount++
 
       //also find the idea in the ideas and add it to it too.
       var ideas = dcopy(state.ideas)

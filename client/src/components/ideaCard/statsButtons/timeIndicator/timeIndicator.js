@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './timeIndicator.css'
+// import './timeIndicator.css'
 import { connect } from 'react-redux';
 import {
   ADD_USER_TO_IDEA_ADDED_LONG, 
@@ -13,11 +13,6 @@ import {showLogInScreen} from 'actions/commonActions'
 class TimeIndicator extends Component {
   constructor(props){
     super(props)
-
-    this.state = {
-      addedTimePlus: false,
-      addedTimeMinus: false
-    }
   }
 
   addTimePlus = () => {
@@ -53,35 +48,39 @@ class TimeIndicator extends Component {
   }
 
   handleAddAddTimeClick = () => {
-    if(!this.props.loggedIn){
-      showLogInScreen();
-    }else{    
-      if(this.props.enabled) {
-        if(this.isClickedTimeMinus()){
-          this.removeTimeMinus();
-          this.addTimePlus();
-        }else if(this.isClickedTimePlus()){
-          this.removeTimePlus();
-        }else{
-          this.addTimePlus();
+    if(this.props.enabled){
+      if(!this.props.loggedIn){
+        showLogInScreen();
+      }else{    
+        if(this.props.enabled) {
+          if(this.isClickedTimeMinus()){
+            this.removeTimeMinus();
+            this.addTimePlus();
+          }else if(this.isClickedTimePlus()){
+            this.removeTimePlus();
+          }else{
+            this.addTimePlus();
+          }
         }
       }
-    }
+    } 
   }
 
   //this doesnt work
   addTimeMinusClick = () => {
-    if(!this.props.loggedIn){
-      showLogInScreen();
-    }else{  
-      if(this.props.enabled) {
-        if(this.isClickedTimePlus()){
-          this.removeTimePlus();
-          this.addTimeMinus();
-        }else if (this.isClickedTimeMinus()){
-            this.removeTimeMinus();
-        }else{
+    if(this.props.enabled){
+      if(!this.props.loggedIn){
+        showLogInScreen();
+      }else{  
+        if(this.props.enabled) {
+          if(this.isClickedTimePlus()){
+            this.removeTimePlus();
             this.addTimeMinus();
+          }else if (this.isClickedTimeMinus()){
+              this.removeTimeMinus();
+          }else{
+              this.addTimeMinus();
+          }
         }
       }
     }
@@ -89,7 +88,7 @@ class TimeIndicator extends Component {
 
   isClickedTimePlus = () => {
     if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.addedLong === undefined)){
-      return this.props.idea.addedLong.includes(this.props.userID) || this.state.addedTimePlus;
+      return this.props.idea.addedLong.includes(this.props.userID);
     }
 
     return false;
@@ -97,7 +96,7 @@ class TimeIndicator extends Component {
 
   isClickedTimeMinus = () => {
     if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.addedShort === undefined)){
-      return this.props.idea.addedShort.includes(this.props.userID) || this.state.addedTimeMinus;
+      return this.props.idea.addedShort.includes(this.props.userID);
     }
     return false;
   }
@@ -109,12 +108,16 @@ class TimeIndicator extends Component {
     return (
       <div className="bottomIndicator">
         <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image"/>
-        <img src={addedTimeMinus? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} id="decreaseTime" className="bottomButton hoverClickHand" onClick={this.addTimeMinusClick} alt="decrease time"/>
+        <img src={addedTimeMinus? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} 
+          id="decreaseTime" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} 
+          onClick={this.addTimeMinusClick} alt="decrease time"/>
         <span>{this.props.idea  === undefined || this.props.idea.addedShort  === undefined ? 
           0 : this.props.idea.time - this.props.idea.addedShort.length} - 
           {this.props.idea  === undefined || this.props.idea.addedLong  === undefined? 
           0 : this.props.idea.time + this.props.idea.addedLong.length}</span>
-        <img src={addedTimePlus ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} id="incrementTime" className="bottomButton hoverClickHand" onClick={this.handleAddAddTimeClick} alt="increase time"/>
+        <img src={addedTimePlus ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} 
+          id="incrementTime" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} 
+          onClick={this.handleAddAddTimeClick} alt="increase time"/>
       </div>
     )
   }
