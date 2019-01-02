@@ -7,8 +7,8 @@ import {
   SET_CURRENT_IDEA,
   CHANGE_SEARCHED_STATE,
   REMOVE_CREATED_IDEA_FROM_USER,
-  SAVE_TOP_HARD_IDEAS,
-  SAVE_TOP_LIKED_IDEAS
+  SET_TOP_HARD_IDEAS,
+  SET_TOP_LIKED_IDEAS
 } from 'reducers/types'
 import { emptyUserPreviewedIdea } from 'actions/userActions'
 import { USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS } from '../reducers/types';
@@ -124,7 +124,7 @@ export const updateTopIdeas = () => dispatch => {
     console.log('tags added to their bucket');
 
     dispatch({
-      type: SAVE_TOP_HARD_IDEAS,
+      type: SET_TOP_HARD_IDEAS,
       payload: res.data
     });
   })
@@ -134,7 +134,7 @@ export const updateTopIdeas = () => dispatch => {
     console.log('tags added to their bucket');
 
     dispatch({
-      type: SAVE_TOP_LIKED_IDEAS,
+      type: SET_TOP_LIKED_IDEAS,
       payload: res.data
     });
   })

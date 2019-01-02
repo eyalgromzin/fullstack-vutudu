@@ -15,8 +15,9 @@ import { SAVE_IDEAS,
   REMOVE_USER_FROM_IDEA_ADDED_EASY,
   REMOVE_USER_FROM_IDEA_ADDED_SHORT,
   REMOVE_USER_FROM_IDEA_ADDED_LONG,
-  SAVE_TOP_LIKED_IDEAS,
-  SAVE_TOP_HARD_IDEAS,
+  SET_TOP_LIKED_IDEAS,
+  SET_TOP_HARD_IDEAS,
+  SET_TOP_TABLE_IS_IDEA_CLICKED,
   SET_CURRENT_IDEA } from './types'
 // import dcopy from 'deep-copy'
 var dcopy = require('deep-copy')
@@ -28,8 +29,6 @@ const initialState = {
   currentIdeaIndex: 0,
   currentIdea: {  
   },
-  topHardIdeas: [],
-  topLikedIdeas: [],
   ideas: ([{
     _id: '000',
     title: 'click Search',
@@ -74,6 +73,7 @@ function reducer(state = initialState, action) {
         ...state,
         currentIdea: action.payload,
       };
+    
     case CHANGE_CURRENT_IDEA_INDEX:
       var currentIdeaIndex = action.payload;
       var currentIdeaCopy = dcopy(state.ideas[currentIdeaIndex])
@@ -275,16 +275,6 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         currentIdea
-      };
-    case SAVE_TOP_HARD_IDEAS:
-      return {
-        ...state,
-        topHardIdeas: action.payload
-      };
-    case SAVE_TOP_LIKED_IDEAS:
-      return {
-        ...state,
-        topLikedIdeas: action.payload
       };
     default:
       return state;

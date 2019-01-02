@@ -22,7 +22,7 @@ class searchLayout extends Component {
           <div class="mainContent">
             { 
               this.props.searched ? 
-                <IdeaCard idea={this.props.idea} refresh={this.state.refresh} enabled={true} /> 
+                <IdeaCard idea={this.props.idea} enabled={true} showNextPreviousButtons={true}/> 
                 : 
                 <TopTable /> 
             }

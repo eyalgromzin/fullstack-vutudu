@@ -4,7 +4,9 @@ import './layout.css'
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {showLogInScreen} from 'actions/commonActions'
-
+import { 
+  SET_TOP_TABLE_IS_IDEA_CLICKED,
+} from 'reducers/types'
 
 class SideBar extends Component {
   showLogin = () => {
@@ -19,6 +21,11 @@ class SideBar extends Component {
     }
   }
 
+  searchClick = (history) => {
+    this.props.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: false});
+    return history.push('/search')
+  }
+    
   render() {
     return (
     <React.Fragment>
@@ -27,7 +34,7 @@ class SideBar extends Component {
             <Route render={({history}) => (
               <React.Fragment>
                 <img id="searchIdeasButton" src={require("images/search_white.png")} className="leftBarIcon verticalMiddleAlign" 
-                  onClick={() => { history.push('/search') }}
+                  onClick={this.searchClick(history)}    // () => { history.push('/search') } 
                 />
                 <img id="newIdeaButton" src={require("images/writeWhite.png")} className="leftBarIcon verticalMiddleAlign"
                   onClick={() =>  this.showNewIdeaScreen(history) }    //() => { history.push('/create') }

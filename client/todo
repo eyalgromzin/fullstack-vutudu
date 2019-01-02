@@ -41,3 +41,5 @@
     - enable to remove indicator. to remove like / dislike / hard/ easy / +time / -time
     - on idea delete, move to the next idea if exists
     - on idea created , make some animation with the user side bar button, to indicate it was added there.
+
+    - add a view to mongo, for top liked and hard ideas.

@@ -40,7 +40,7 @@ class userLayout extends Component {
               { this.props.isIdeaEdited? 
                 <EditCardInUser />
                 :
-                <IdeaCardInUser enabled={false} />
+                <IdeaCardInUser enabled={false} showNextPreviousButtons={true}/>
               }
             </div>
           </div>

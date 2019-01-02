@@ -3,15 +3,10 @@ import './ideaCard.css'
 import LikeDislike from './statsButtons/likesIndicator/likeDislike'
 import DifficultyIndicator from './statsButtons/difficultyIndicator/difficultyIndicator'
 import TimeIndicator from './statsButtons/timeIndicator/timeIndicator'
-import IdeaPreviousNextButtons from './cardButtons/nextPreviousButtons/nextPreviousButtons'
-import CardCountInfo from './cardButtons/cardCountInfo/cardCountInfo'
-import IdeaAttachmentsButton from './cardButtons/ideaAttachmentsButton/ideaAttachmentButton'
-import IdeaPlaceButton from './cardButtons/placeButton/placeButton'
 import { connect } from 'react-redux';
 import Linkify from 'react-linkify';
 // import { Button } from 'react-bootstrap';
 import 'commonCss.css'
-import { SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT } from 'reducers/types'
 import EditIdeaButton from './editIdeaButton' 
 import DeleteIdeaButton from './deleteIdeaButton' 
 

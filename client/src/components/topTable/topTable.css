@@ -1,0 +1,30 @@
+.listRow{
+    background-color: azure;
+}
+
+.listRow:hover{
+    background-color: pink;
+    cursor: pointer;
+}
+
+#topLikedTable{
+    width: 45%;
+    display: inline-block;
+}
+
+#topHardTable{
+    width: 45%;
+    display: inline-block;
+}
+
+#topTableIdea{
+    display: table-cell;
+    width: 80%;
+    padding: 0 10%;
+}
+
+#topTableLists{
+    display: table-cell;
+    width: 20%;
+    float: left;
+}
