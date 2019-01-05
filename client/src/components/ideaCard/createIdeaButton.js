@@ -6,34 +6,45 @@ import Notifications, {notify} from 'react-notify-toast';
 
 
 class createIdeaButton extends Component {
+  getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
+    var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
+    var matches = [];
+    var match;
+
+    while ((match = regex.exec(inputText))) {
+        matches.push(match[1]);
+    }
+
+    return matches;
+  }
+
+  handleCreateIdeaClick = (event) => {
+      this.error = "";
+      this.isHasError = false;
+      
+      var tags = this.getTagsFromContent(this.props.content);
+
+      //add validation for empty fields / wrong
+      if(!this.isHasError){
+        const newItem = {
+          // name: this.props.title,
+          title: this.props.title,
+          content: this.props.content,
+          createdBy: this.props.userID,
+          place: this.props.place,
+          time: this.props.time,
+          minNumOfPeople: this.props.minNumOfPeople,
+          maxNumOfPeople: this.props.maxNumOfPeople,
+          tags: tags,
+        };
   
+        let myColor = { background: '#0E1717', text: "#FFFFFF" };
+        notify.show('Idea Created!', "success", 1000, myColor);
 
-    handleCreateIdeaClick = (event) => {
-        this.error = "";
-        this.isHasError = false;
-        
-        //add validation for empty fields / wrong
-    
-        if(!this.isHasError){
-          const newItem = {
-            // name: this.props.title,
-            title: this.props.title,
-            content: this.props.content,
-            createdBy: this.props.userID,
-            place: this.props.place,
-            time: this.props.time,
-            minNumOfPeople: this.props.minNumOfPeople,
-            maxNumOfPeople: this.props.maxNumOfPeople,
-            tags: [],
-          };
-    
-          let myColor = { background: '#0E1717', text: "#FFFFFF" };
-          notify.show('Idea Created!', "success", 1000, myColor);
-
-          // Add item via createItem action
-          this.props.addIdeaToDB(newItem, this.props.userID);
-        }
+        // Add item via createItem action
+        this.props.addIdeaToDB(newItem, this.props.userID);
       }
+    }
 
     
 

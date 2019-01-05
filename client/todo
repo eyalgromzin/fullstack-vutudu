@@ -1,34 +1,26 @@
     - support #, more - 
-            - on first letter typing, get all first letter hashtags
-            - on 2nd letter typing, get all 2 letters hashtags
-            - when user creates text, each word that starts with hashtag will be save to tags 
-                field in the idea.
-            - on search, will search the idea has tags also.
-            - tags - not mandatory.
-            - update tags on edit.
-            - update tag on create
-        - check # works in search
+        - on create idea, upsert tags:
+            - place
+            - hashtags
+        - on search, will search the idea has tags also
+        - update idea tags on edit, add the new tags also.
+        - check search works with tags
     
     - add validations and alerts 
-        - on create, must fill all 
-        - on search - 1 work for more and place
-        - on indicators - only 1 click
+        - on create, must fill all fields
+        - on search - must fill place
+        - a field that will not be filled, will be highlighted with red!
     
-    - put hard coded startup decisions to place and more for auto suggestion like: house , kitchen, park, bus_station, bus
-        - created a places list in the mail
+    - put hard coded startup decisions - ones that will show without the need for typing. 
+        will show it on focus. 
+        add to to place and more fields 
+        suggestions like: house , kitchen, park, bus_station, bus
+        already created a places list in the mail
     
     - loading gif when searching
 
-    - enable user to delete created ideas - check if it still works - 
-
-    - create animation for when an idea is deleted from the user screen.
-
-    - on user edit idea & on create idea, the idea is updated only on next login. need it to be immediate. 
-        probably the redux is not good.
-
     - no results found screen, in case no results were found
 
-    - make all the searches and ideas work from the url , so the users will be able to save them to favorites
     
     more:
     - change the top text in user page "place" , "num of people" to icons
@@ -37,5 +29,10 @@
     - enable to remove indicator. to remove like / dislike / hard/ easy / +time / -time
     - on idea delete, move to the next idea if exists
     - on idea created , make some animation with the user side bar button, to indicate it was added there.
+    - create animation for when an idea is deleted from the user screen.
 
+    - make all the searches and ideas work from the url , so the users will be able to save them to favorites
+    
     - add a view to mongo, for top liked and hard ideas.
+
+    - because there are more like clickes then created idea, remove the save of the created idea to ther user.

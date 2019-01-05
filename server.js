@@ -6,6 +6,8 @@ const path = require('path');
 
 const items = require('./routes/api/items');
 const user = require('./routes/api/user');
+const placeNames = require('./routes/api/placeNames');
+const hashTagNames = require('./routes/api/hashTagNames');
 
 const app = express();
 
@@ -24,6 +26,8 @@ mongoose
 // Use Routes
 app.use('/api/items', items);
 app.use('/api/user', user);
+app.use('/api/placeNames', placeNames);
+app.use('/api/hashTagNames', hashTagNames);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
