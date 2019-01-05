@@ -1,10 +1,6 @@
     - support #, more - 
-        - on create idea, upsert tags:
-            - place
-            - hashtags
-        - on search, will search the idea has tags also
         - update idea tags on edit, add the new tags also.
-        - check search works with tags
+        - on search, will search the idea has tags also
     
     - add validations and alerts 
         - on create, must fill all fields

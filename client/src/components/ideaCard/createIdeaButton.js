@@ -3,7 +3,8 @@ import { addIdeaToDB, updateTags } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Notifications, {notify} from 'react-notify-toast';
-
+import { addHashTagsToDB } from 'actions/tagsActions'
+import { addPlaceToDBIfNotExists } from 'actions/placeNameActions'
 
 class createIdeaButton extends Component {
   getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
@@ -43,6 +44,8 @@ class createIdeaButton extends Component {
 
         // Add item via createItem action
         this.props.addIdeaToDB(newItem, this.props.userID);
+        this.props.addHashTagsToDB(tags)
+        this.props.addPlaceToDBIfNotExists(this.props.place)
       }
     }
 
@@ -62,6 +65,8 @@ const mapDispatchToProps = dispatch => {
     return {
       addIdeaToDB: bindActionCreators (addIdeaToDB, dispatch),
       updateTags: bindActionCreators (updateTags, dispatch),
+      addHashTagsToDB: bindActionCreators (addHashTagsToDB, dispatch),
+      addPlaceToDBIfNotExists: bindActionCreators (addPlaceToDBIfNotExists, dispatch),
       dispatch,
     }
   }
