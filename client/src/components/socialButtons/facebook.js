@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { createUserIfNotExists } from 'actions/userActions'
 import { bindActionCreators } from 'redux';
+import './socialButtons.css'
 
 
 class facebook extends Component {
@@ -35,10 +36,11 @@ class facebook extends Component {
   render() {
     return (
       <div>
-        <FacebookLogin
+        <FacebookLogin  //https://github.com/keppelen/react-facebook-login
             appId="1886935948065131"
             autoLoad={true}
             disabled={false}
+            cssClass="facebookButton"
             fields="name,email,picture"
             onClick={this.componentClicked}
             callback={this.responseFacebook} />
