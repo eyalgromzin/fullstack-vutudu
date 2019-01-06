@@ -14,5 +14,4 @@ export const addPlaceToDBIfNotExists = placeName => dispatch => {
     .then(res => {
         console.log('tags added to their bucket');
     })
-    .catch
   }

@@ -5,9 +5,6 @@ import './ideaCard.css'
 import {
   SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
   CHANGE_UPDATE_TOGGLE,
-  EDITED_IDEA_SET_ID ,
-  EDITED_IDEA_SET_TITLE,
-  EDITED_IDEA_SET_CONTENT
 } from 'reducers/types'
 import { updateIdea } from 'actions/userActions'
 import store from 'store';
@@ -25,9 +22,6 @@ constructor(props){
     //to update the list
 
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});
-    // this.props.dispatch({type: EDITED_IDEA_SET_ID, payload: this.props.currentPreviewedIdea._id});
-    // this.props.dispatch({type: EDITED_IDEA_SET_TITLE, payload: this.props.currentPreviewedIdea.title});
-    // this.props.dispatch({type: EDITED_IDEA_SET_CONTENT, payload: this.props.currentPreviewedIdea.content});
 
     store.dispatch({type: CHANGE_UPDATE_TOGGLE});
 

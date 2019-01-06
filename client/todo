@@ -1,5 +1,4 @@
     - support #, more - 
-        - update idea tags on edit, add the new tags also.
         - on search, will search the idea has tags also
     
     - add validations and alerts 

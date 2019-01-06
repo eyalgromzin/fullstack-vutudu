@@ -318,6 +318,25 @@ router.post('/getTopLikedIdeas/', (req, res) => {
   );
 });
 
+// @route   POST api/items/upsertTagsToIdea/
+// @desc    update idea 
+// @access  Public
+router.post('/updateIdeaTags/', (req, res) => {   
+  Item.findOneAndUpdate({ _id: req.body.ideaID }, 
+    {$set: 
+      {
+        tags: req.body.tags, 
+      }
+    }, 
+    {new: true})
+  .then( 
+    items => {
+      console.log("updated idea tags");
+      return res.json(items);
+    }
+  );
+});
+
 // @route   POST api/items/updateIdeaAllFields/
 // @desc    update idea 
 // @access  Public

@@ -5,7 +5,12 @@ import TimePicker from './timePicker/timePicker'
 import MoreChooser from './moreChooser/moreChooser'
 import SearchButton from './searchButton/searchButton'
 import { connect } from 'react-redux';
-import {SET_TIME, SEARCH_SET_TIME, SEARCH_SET_PLACE, SET_PLACE} from 'reducers/types'
+import {
+  SET_TIME, 
+  SEARCH_SET_TIME, 
+  SEARCH_SET_PLACE, 
+  SEARCH_SET_MORE,
+} from 'reducers/types'
 import './searchBarCommonStyles.css'
 import 'commonCss.css'
 
@@ -21,6 +26,10 @@ class SearchBar extends Component {
     this.props.dispatch({type: SEARCH_SET_PLACE, payload: e.target.value});
   }
 
+  moreOnChangeEvent = (e) => {
+    this.props.dispatch({type: SEARCH_SET_MORE, payload: e.target.value});
+  }
+
   timeOnChangeEvent = (e) => {
     this.props.dispatch({type: SEARCH_SET_TIME, payload: e.target.value});
   }
@@ -30,13 +39,14 @@ class SearchBar extends Component {
       <div id="searchBar" className="mainContent">
         <div id="searchBarButtons">
           {/* <span className="topBarName" > SEARCH: </span> */}
-          <PlaceSelector tagID="searchBarPlaceSelector" onChangeEvent={this.placeOnChangeEvent} cssClass="searchBarTextSquare" />
+          <PlaceSelector tagID="searchBarPlaceSelector" onChangeEvent={this.placeOnChangeEvent} 
+            cssClass="searchBarTextSquare" />
           <div className="middlePlaceHolder" />
           <TimePicker onChangeEvent={this.timeOnChangeEvent} time={this.props.time} cssClass="searchBarDropDownSquare" />
           <div className="middlePlaceHolder" />
           <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
           <div className="middlePlaceHolder" />
-          <MoreChooser  cssClass="searchBarTextSquare" />
+          <MoreChooser  cssClass="searchBarTextSquare" onChangeEvent={this.moreOnChangeEvent} />
           <SearchButton  cssClass="searchBarTextSquare" />
         </div>
       </div>

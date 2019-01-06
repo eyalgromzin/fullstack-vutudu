@@ -206,6 +206,45 @@ export const updateIdea = (userID, ideaID, title, content, place, time, minNumOf
         });
       });
   }
+
+  //upsert tags to db
+  var tagNames = getTagsFromContent(content)
+  axios.post(`/api/hashTagNames/create`, {tagNames} )
+    .then(res =>
+      {
+        console.log('tag added to db')
+      }
+    );
+
+  //set idea tags
+  axios.post(`/api/items/updateIdeaTags`, {ideaID: ideaID, tags: tagNames} )
+    .then(res =>
+      {
+        console.log('idea tag were updated')
+      }
+    );
+  
+  //upsert place name to db
+  console.log('in addPlaceToDBIfNotExists')
+  var placeNameObject = {placeName: place}
+
+  axios.post('/api/placeNames/create',placeNameObject)
+  .then(res => {
+      console.log('place upserted to db');
+  })
+  
+}
+
+const getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
+  var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
+  var matches = [];
+  var match;
+
+  while ((match = regex.exec(inputText))) {
+      matches.push(match[1]);
+  }
+
+  return matches;
 }
 
 export const addUserToUserLikedIdea = (userIDToUpdate, ideaID, userIDToAdd) => dispatch => {

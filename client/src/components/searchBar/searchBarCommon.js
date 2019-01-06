@@ -9,6 +9,6 @@ export const search = () => {
     var numOfPeople = store.getState().searchBarReducer.numOfPeople
     var more = store.getState().searchBarReducer.more
 
-    store.dispatch(searchItems(place, time, numOfPeople));
+    store.dispatch(searchItems(place, time, numOfPeople, more));
 }
 
