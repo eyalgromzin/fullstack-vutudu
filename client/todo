@@ -1,4 +1,5 @@
     - auto complete - 
+        - when auto complete is empty with focus, show last searches.
         - place
         - more
 
@@ -14,8 +15,8 @@
         already created a places list in the mail
     
     - loading gif when searching
-
-    - no results found screen, in case no results were found
+    - on any buttons hover, tilt them. to rotate little left, then right. then to middle.
+    - on any button click, make it smaller and then larger.
 
     - make num of people - default 2
     
