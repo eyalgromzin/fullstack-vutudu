@@ -28,7 +28,7 @@ const initialState = {
   currentIdeaIndex: 0,
   currentIdea: {  
   },
-  ideas: ([{
+  ideas: [{
     _id: '000',
     title: 'click Search',
     content: 'To find ideas of what to do',
@@ -44,7 +44,8 @@ const initialState = {
     addedEasy: [],
     addedLong: [],
     addedShort: [],
-  }]),  
+  }], 
+  itemsFound: false,
 };
 
 function getCopyOfCurrentIdea (state){

@@ -1,6 +1,11 @@
-    - support #, more - 
-        - on search, will search the idea has tags also
-    
+    - check search - 
+        - place , time , num of people
+        - place time num of people, more
+
+    - auto complete - 
+        - place
+        - more
+
     - add validations and alerts 
         - on create, must fill all fields
         - on search - must fill place
@@ -16,6 +21,7 @@
 
     - no results found screen, in case no results were found
 
+    - make num of people - default 2
     
     more:
     - change the top text in user page "place" , "num of people" to icons

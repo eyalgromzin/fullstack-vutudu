@@ -4,6 +4,7 @@ import IdeaCard from '../ideaCard/ideaCard'
 import TopTable from 'components/topTable/topTable'
 import 'commonCss.css'
 import { connect } from 'react-redux';
+import NoResultsFound from './noResultsFound'
 
 class searchLayout extends Component {
   constructor(props){
@@ -19,14 +20,19 @@ class searchLayout extends Component {
       <React.Fragment>
         <div className="searchMainContent">
           <SearchBar />
-          <div class="mainContent">
-            { 
-              this.props.searched ? 
-                <IdeaCard idea={this.props.idea} enabled={true} showNextPreviousButtons={true}/> 
-                : 
-                <TopTable /> 
-            }
-          </div>
+            
+              <div class="mainContent">
+                {
+                this.props.ideas.length == 0 && this.props.searched ?
+                  <NoResultsFound />
+                  :
+                    this.props.searched ? 
+                      <IdeaCard idea={this.props.idea} enabled={true} showNextPreviousButtons={true}/> 
+                      : 
+                      <TopTable /> 
+                }
+              </div>
+          }
         </div>
       </React.Fragment>
     )
@@ -37,6 +43,7 @@ function mapStateToProps(state) {
   return {
     searched: state.commonReducer.searched,
     idea: state.searchPageReducer.currentIdea,
+    ideas: state.searchPageReducer.ideas,
   };
 }
 

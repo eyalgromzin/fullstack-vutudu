@@ -10,7 +10,7 @@ const initialState = {
     place: 'place',
     time: 5,
     numOfPeople: 1,
-    more: 'more'
+    more: ''
   };
 
   function searchBarReducer(state = initialState, action) {

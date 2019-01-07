@@ -3,7 +3,6 @@ import {
   ADD_CREATED_IDEA_TO_USER,
   SAVE_IDEAS,
   CLEAR_EDITED_IDEA,
-  NO_ITEMS_FOUND, 
   SET_CURRENT_IDEA,
   CHANGE_SEARCHED_STATE,
   REMOVE_CREATED_IDEA_FROM_USER,
@@ -74,24 +73,39 @@ export const addIdeaToUserCreatedIdeas = (userID, idea) => dispatch => {
   );
 }
 
-export const searchItems = (place,time,numOfPeople) => dispatch => {
-  axios
-  .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
-  .then(res =>{ 
-    if(res.data.length > 0){
-      console.log('got ideas from db');
-      dispatch({ type: SET_CURRENT_IDEA, payload: res.data[0] })
-      dispatch({ type: SAVE_IDEAS, payload: res.data });
-      dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
-      
-    }else{
-      console.log('got 0 items from db');
-      dispatch({
-        type: NO_ITEMS_FOUND
-      })
-    }
+export const searchItems = (place,time,numOfPeople,more) => dispatch => {
+  if(more === undefined || more == ''){
+    axios
+    .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
+    .then(res =>{ 
+      if(res.data.length > 0){
+        console.log('got ideas from db');
+        dispatch({ type: SET_CURRENT_IDEA, payload: res.data[0] })
+        dispatch({ type: SAVE_IDEAS, payload: res.data });
+        dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
+        
+      }else{
+        console.log('got 0 items from db');
+        dispatch({ type: SAVE_IDEAS, payload: [] });
+      }
+    });
+  }else{
+    axios
+      .get(`/api/items/search/${place}/${time}/${numOfPeople}/${more}`)
+      .then(res =>{ 
+        if(res.data.length > 0){
+          console.log('got ideas from db');
+          dispatch({ type: SET_CURRENT_IDEA, payload: res.data[0] })
+          dispatch({ type: SAVE_IDEAS, payload: res.data });
+          dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
+          
+        }else{
+          console.log('got 0 items from db');
+          dispatch({ type: SAVE_IDEAS, payload: [] });
+        }
+      });
   }
-  );
+  
 };
 
 

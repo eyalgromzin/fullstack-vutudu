@@ -212,7 +212,7 @@ router.post('/removeShortFromIDea/', (req, res) => {
   console.log("updated idea" + req.body.ideaID);
 });
 
-// @route   GET api/search/:place/:time/:numOfPeople/:more
+// @route   GET api/search/:place/:time/:numOfPeople/
 // @desc    search for anything
 // @access  Public
 router.get('/search/:place/:time/:numOfPeople', (req, res) => {   //
@@ -232,15 +232,15 @@ router.get('/search/:place/:time/:numOfPeople', (req, res) => {   //
 // @route   GET api/search/:place/:time/:numOfPeople/:more
 // @desc    search for anything
 // @access  Public
-router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {   //
+router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {   
   Item.find({
     place: req.params.place,
     time: req.params.time,
     $and:[
       {minNumOfPeople: {$lte: req.params.numOfPeople}},
       {maxNumOfPeople: {$gte: req.params.numOfPeople}}
-    ]
-    // more: req.params.more
+    ],
+    more: req.params.more
   })
   .then(items => res.json(items));
 });
