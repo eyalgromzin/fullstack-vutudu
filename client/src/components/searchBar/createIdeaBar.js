@@ -28,7 +28,8 @@ class CreateIdeaBar extends Component {
       <div id="createBar">
         <div id="createBarButtons">
           {this.props.showTitle == true || this.props.showTitle === undefined? <span className="topBarName" > CREATE: </span> : "" }
-          <PlaceSelector tagID="createBarPlaceSelector" cssClass="createBarTextBox" onChangeEvent={this.placeOnChangeEvent} 
+          <PlaceSelector tagID="createBarPlaceSelector" cssClass="createBarTextBox" 
+            onChangeEvent={this.placeOnChangeEvent} 
             place={this.props.place} />
           <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} />
           <NumOfPeopleCreator cssClass="createBarDropDown" 

@@ -1,11 +1,11 @@
 #searchButton{
     padding: 7px;
-    height: 5%;
-    width: 4%;
+    height: 30px;
+    width: 30px;
     background-color:rgb(180, 170, 255);
     display: inline-block;
     vertical-align: middle;
-    margin-left: 2%;
+    margin-left: 10px;
     border-width: 2px;
     border-color: rgb(255, 255, 255);
     border-style: solid;

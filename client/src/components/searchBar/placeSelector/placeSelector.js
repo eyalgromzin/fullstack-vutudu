@@ -5,16 +5,6 @@ import { search } from 'components/searchBar/searchBarCommon'
 import store from 'store'
 
 export default class PlaceSelector extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      place: ''
-    }
-
-    this.handleOnChange = props.onChangeEvent;  
-  }
-
   placeSelectorKeyUp = (event) => {
     if (event.keyCode === 13) {
       // Trigger the button element with a click
@@ -27,7 +17,8 @@ export default class PlaceSelector extends Component {
     return (
       <React.Fragment >
         <input id={this.props.tagID} value={this.props.place} 
-          className={this.props.cssClass} onKeyUp={this.placeSelectorKeyUp} placeholder="Place" type="text" onChange={this.handleOnChange}  />
+          className={this.props.cssClass} onKeyUp={this.placeSelectorKeyUp} placeholder="Place" 
+          type="text" onChange={this.props.onChangeEvent}  />
       </React.Fragment >
     )
   }

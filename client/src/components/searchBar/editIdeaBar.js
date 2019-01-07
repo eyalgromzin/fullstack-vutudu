@@ -26,7 +26,8 @@ class EditIdeaBar extends Component {
     return (
       <div id="createBar">
         <div id="editBarButtons">
-          <PlaceSelector tagID="ideaBarPlaceSelector" cssClass="createBarTextBox" onChangeEvent={this.placeOnChangeEvent} 
+          <PlaceSelector tagID="ideaBarPlaceSelector" cssClass="createBarTextBox" 
+            onChangeEvent={this.placeOnChangeEvent} 
             place={this.props.place} />
           <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} />
           <NumOfPeopleCreator cssClass="createBarDropDown" 

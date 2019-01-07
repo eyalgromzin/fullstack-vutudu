@@ -21,7 +21,7 @@ class searchLayout extends Component {
         <div className="searchMainContent">
           <SearchBar />
             
-              <div class="mainContent">
+              <div className="mainContent">
                 {
                 this.props.ideas.length == 0 && this.props.searched ?
                   <NoResultsFound />

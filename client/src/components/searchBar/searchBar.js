@@ -46,8 +46,8 @@ class SearchBar extends Component {
           <div className="middlePlaceHolder" />
           <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
           <div className="middlePlaceHolder" />
-          <MoreChooser  cssClass="searchBarTextSquare" onChangeEvent={this.moreOnChangeEvent} />
-          <SearchButton  cssClass="searchBarTextSquare" />
+          <MoreChooser cssClass="searchBarTextSquare" onChangeEvent={this.moreOnChangeEvent} />
+          <SearchButton cssClass="searchBarTextSquare" />
         </div>
       </div>
     )

@@ -57,7 +57,7 @@ class topTable extends Component {
         <div id="topTableLists">
           <div id="topTableClicked">
             <div id="topLikedTableClicked">
-            <span class="topTableHeader">top liked  </span>
+            <span className="topTableHeader">top liked  </span>
               <ReactList
                       itemRenderer={this.renderLikedItem}
                       length={this.props == null || this.props.topLikedIdeas == null? 0 : this.props.topLikedIdeas.length}
@@ -65,7 +65,7 @@ class topTable extends Component {
                     />
             </div>
             <div id="topHardTableClicked">
-              <span class="topTableHeader"> top hard </span>
+              <span className="topTableHeader"> top hard </span>
               <ReactList
                       itemRenderer={this.renderHardItem}
                       length={this.props == null || this.props.topHardIdeas == null? 0 : this.props.topHardIdeas.length}
@@ -83,7 +83,7 @@ class topTable extends Component {
       <React.Fragment>
         <div id="topTable">
           <div id="topLikedTable">
-          <span class="topTableHeader">top liked</span>
+          <span className="topTableHeader">top liked</span>
             <ReactList
                     itemRenderer={this.renderLikedItem}
                     length={this.props == null || this.props.topLikedIdeas == null? 0 : this.props.topLikedIdeas.length}
@@ -91,7 +91,7 @@ class topTable extends Component {
                   />
           </div>
           <div id="topHardTable">
-          <span class="topTableHeader">top hard</span>
+          <span className="topTableHeader">top hard</span>
             <ReactList
                     itemRenderer={this.renderHardItem}
                     length={this.props == null || this.props.topHardIdeas == null? 0 : this.props.topHardIdeas.length}

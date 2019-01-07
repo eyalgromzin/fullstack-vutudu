@@ -212,10 +212,31 @@ router.post('/removeShortFromIDea/', (req, res) => {
   console.log("updated idea" + req.body.ideaID);
 });
 
+// @route   GET api/search/:place/:time/:numOfPeople/:more
+// @desc    search for anything
+// @access  Public
+router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {   
+  console.log('finding more: ' + req.params.more)
+  Item.find({
+    $and:[
+      {place: req.params.place},
+      {time: req.params.time},
+      {$and:[
+        {minNumOfPeople: {$lte: req.params.numOfPeople}},
+        {maxNumOfPeople: {$gte: req.params.numOfPeople}}
+      ]},
+      {tags: req.params.more}
+    ]
+  })
+  .then(items => res.json(items));
+});
+
 // @route   GET api/search/:place/:time/:numOfPeople/
 // @desc    search for anything
 // @access  Public
 router.get('/search/:place/:time/:numOfPeople', (req, res) => {   //
+  console.log('finding without more')
+
   Item.find({
     $and:[
       {place: req.params.place},
@@ -229,40 +250,24 @@ router.get('/search/:place/:time/:numOfPeople', (req, res) => {   //
   .then(items => res.json(items));
 });
 
-// @route   GET api/search/:place/:time/:numOfPeople/:more
-// @desc    search for anything
-// @access  Public
-router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {   
-  Item.find({
-    place: req.params.place,
-    time: req.params.time,
-    $and:[
-      {minNumOfPeople: {$lte: req.params.numOfPeople}},
-      {maxNumOfPeople: {$gte: req.params.numOfPeople}}
-    ],
-    more: req.params.more
-  })
-  .then(items => res.json(items));
-});
-
 // @route   POST api/items/search/:place/:time/:numOfPeople/:more
 // @desc    search for anything
 // @access  Public
-router.post('/search/', (req, res) => {
-  Item.find({     //works
-    // place: req.body.place
-    // minTime: 30,
-    // $and:[
-    //   {minTime: {$lte: req.body.time}},
-    //   {maxTime: {$gte: req.body.time}}
-    // ],
-    $and:[
-      {minNumOfPeople: {$lte: req.body.time}},
-      {maxNumOfPeople: {$gte: req.body.time}}
-    ]
-  })
-  .then(items => res.json(items));
-});
+// router.post('/search/', (req, res) => {
+//   Item.find({     //works
+//     // place: req.body.place
+//     // minTime: 30,
+//     // $and:[
+//     //   {minTime: {$lte: req.body.time}},
+//     //   {maxTime: {$gte: req.body.time}}
+//     // ],
+//     $and:[
+//       {minNumOfPeople: {$lte: req.body.time}},
+//       {maxNumOfPeople: {$gte: req.body.time}}
+//     ]
+//   })
+//   .then(items => res.json(items));
+// });
 
 // @route   POST api/items/deleteIdea/
 // @desc    update idea 
