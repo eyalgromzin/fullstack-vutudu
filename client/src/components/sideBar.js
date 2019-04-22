@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import 'commonCss.css'
+import 'cssAnimations.css'
 import './layout.css'
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -35,19 +36,19 @@ class SideBar extends Component {
       
             <Route render={({history}) => (
               <React.Fragment>
-                <img id="searchIdeasButton" src={require("images/search_white.png")} className="leftBarIcon verticalMiddleAlign" 
+                <img id="searchIdeasButton" src={require("images/search_white.png")} className="leftBarIcon verticalMiddleAlign tilt clickAnimation" 
                   onClick={() => this.searchClick(history)}    // () => { history.push('/search') } 
                 />
-                <img id="newIdeaButton" src={require("images/writeWhite.png")} className="leftBarIcon verticalMiddleAlign"
+                <img id="newIdeaButton" src={require("images/writeWhite.png")} className="leftBarIcon verticalMiddleAlign tilt clickAnimation"
                   onClick={() =>  this.showNewIdeaScreen(history) }    //() => { history.push('/create') }
                 />
 
                 {
                   this.props.loggedIn?
-                  <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle"
+                  <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle tilt clickAnimation"
                   onClick={() => { history.push('/user') }} />
                   :
-                  <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle"
+                  <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle tilt clickAnimation"
                   onClick={this.showLogin} />
                 }
 

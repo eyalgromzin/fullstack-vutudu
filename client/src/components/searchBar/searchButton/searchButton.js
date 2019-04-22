@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './searchButton.css'
 import '../searchBarCommonStyles.css'
+import 'cssAnimations.css'
 import { searchItems } from 'actions/ideaActions'
 import { connect } from 'react-redux'
 // import { CHANGE_SEARCHED_STATE, } from 'reducers/types'
@@ -14,7 +15,7 @@ class SearchButton extends Component {
 
   render() {
     return (
-        <img src={require("images/search.png")} id="searchButton" onClick={this.handleSearchClick} />
+        <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton" onClick={this.handleSearchClick} />
     )
   }
 }

@@ -1,7 +1,10 @@
+    - loading gif when searching - 
+        on click: chance the icon of the search to loading gif, and disable the hover animation
+
     - auto complete - 
         - when auto complete is empty with focus, show last searches.
-        - place
-        - more
+        - add auto complete to place
+        - add auto complete to more
 
     - add validations and alerts 
         - on create, must fill all fields
@@ -14,11 +17,7 @@
         suggestions like: house , kitchen, park, bus_station, bus
         already created a places list in the mail
     
-    - loading gif when searching
-    - on any buttons hover, tilt them. to rotate little left, then right. then to middle.
-    - on any button click, make it smaller and then larger.
 
-    - make num of people - default 2
     
     more:
     - change the top text in user page "place" , "num of people" to icons

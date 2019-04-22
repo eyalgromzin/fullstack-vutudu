@@ -9,7 +9,7 @@ import {
 const initialState = {
     place: 'place',
     time: 5,
-    numOfPeople: 1,
+    numOfPeople: 2,
     more: ''
   };
 

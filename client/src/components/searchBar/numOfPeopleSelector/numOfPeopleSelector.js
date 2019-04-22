@@ -26,7 +26,7 @@ class NumOfPeopleSelector extends Component {
   render() {
     return (
       <React.Fragment>
-            <select id="numOfPeopleChooser" className={this.props.cssClass} value={1}
+            <select id="numOfPeopleChooser" className={this.props.cssClass} value={2}
               onKeyUp={this.placeSelectorKeyUp} onChange={this.handleChange}>
               <option value="1" className="timeChooserOption">1</option>
               <option value="2" className="timeChooserOption">2</option>

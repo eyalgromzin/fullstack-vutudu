@@ -1,5 +1,5 @@
 .listRow{
-    background-color: azure;
+    /* background-color: azure; */
 }
 
 .listRow:hover{
@@ -27,4 +27,11 @@
     display: table-cell;
     width: 20%;
     float: left;
+}
+
+#topTableHeader{
+    font-size: 35px;
+    font-family: "Arial Black";
+    margin-bottom: 10px;
+    
 }

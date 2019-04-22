@@ -1,0 +1,27 @@
+.tilt:hover{
+    animation-duration: 0.3s;
+    animation-name: tiltAnimation;
+    animation-direction: alternate;
+}
+
+@keyframes tiltAnimation {
+    50%{
+        transform-origin: center; 
+        transform: rotate(15deg);
+    }
+    100%{
+        transform-origin: center;
+        transform: rotate(-15deg);
+    } 
+  }
+
+.clickAnimation:active{
+    animation-duration: 0.3s;
+    animation-name: clickAnimationFrames;
+}
+
+@keyframes clickAnimationFrames {
+    50%{
+        transform: scale(0.7);
+    }
+  }
