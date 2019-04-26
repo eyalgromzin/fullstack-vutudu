@@ -1,35 +1,36 @@
+
+    - add validations and alerts 
+        - on create, must fill all fields
+
     - loading gif when searching - 
         on click: chance the icon of the search to loading gif, and disable the hover animation
-
+    
+    - when the top table is previewed, and you click search , and you dont find anything, it doesnt show that 0 results were found, its still presenting the top table.
+    
     - auto complete - 
         - when auto complete is empty with focus, show last searches.
         - add auto complete to place
         - add auto complete to more
-
-    - add validations and alerts 
-        - on create, must fill all fields
-        - on search - must fill place
-        - a field that will not be filled, will be highlighted with red!
     
-    - put hard coded startup decisions - ones that will show without the need for typing. 
+    - in auto complete - put hard coded startup decisions - ones that will show without the need for typing. 
         will show it on focus. 
-        add to to place and more fields 
+        add it to place, more
         suggestions like: house , kitchen, park, bus_station, bus
         already created a places list in the mail
     
-
+    - create an "i" icon in the create idea, for explanation on hashtags and maybe more things
     
-    more:
+    - make all the searches and ideas work from the url , so the users will be able to save them to favorites
+
     - change the top text in user page "place" , "num of people" to icons
-    - change the like idea to 1 post request instead of 2 - home.
-    - change user idea edit icon to use thesame outline as the side bar
-    - enable to remove indicator. to remove like / dislike / hard/ easy / +time / -time
-    - on idea delete, move to the next idea if exists
+
+    - change user idea edit icon to use the same outline as the side bar
+    - on idea delete, open the next idea if exists
     - on idea created , make some animation with the user side bar button, to indicate it was added there.
     - create animation for when an idea is deleted from the user screen.
-
-    - make all the searches and ideas work from the url , so the users will be able to save them to favorites
     
-    - add a view to mongo, for top liked and hard ideas.
 
-    - because there are more like clickes then created idea, remove the save of the created idea to ther user.
+    - because there are more like clicks than created idea, remove the save of the created idea to the user. 
+    - add a view to mongo, for top liked and hard ideas.
+    - on bad fields, and search click, make search button red animation
+    - change the like idea to 1 post request instead of 2 - home.

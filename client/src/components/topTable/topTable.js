@@ -56,16 +56,19 @@ class topTable extends Component {
       <React.Fragment>
         <div id="topTableLists">
           <div id="topTableClicked">
+            <div id="topTableHeader">
+              Top Ideas
+            </div>
             <div id="topLikedTableClicked">
-            <span className="topTableHeader">Top Liked Ideas</span>
-              <ReactList
-                      itemRenderer={this.renderLikedItem}
-                      length={this.props == null || this.props.topLikedIdeas == null? 0 : this.props.topLikedIdeas.length}
-                      type='uniform'
-                    />
+              <span className="topTableHeader">Liked</span>
+                <ReactList
+                        itemRenderer={this.renderLikedItem}
+                        length={this.props == null || this.props.topLikedIdeas == null? 0 : this.props.topLikedIdeas.length}
+                        type='uniform'
+                      />
             </div>
             <div id="topHardTableClicked">
-              <span className="topTableHeader">Top Hard Ideas</span>
+              <span className="topTableHeader">Hard</span>
               <ReactList
                       itemRenderer={this.renderHardItem}
                       length={this.props == null || this.props.topHardIdeas == null? 0 : this.props.topHardIdeas.length}

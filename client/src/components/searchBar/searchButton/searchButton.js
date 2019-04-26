@@ -7,10 +7,34 @@ import { connect } from 'react-redux'
 // import { CHANGE_SEARCHED_STATE, } from 'reducers/types'
 // import store from 'store'
 import { search } from 'components/searchBar/searchBarCommon'
+import {
+  SET_IS_PLACE_DIRTY,
+  SET_MORE_IS_DIRTY,
+  SET_IS_CLICKED_SEARCH,
+  CHANGE_SEARCHED_STATE
+} from 'reducers/types'
 
 class SearchButton extends Component {
+  constructor(props){
+    super(props);
+  
+    //run those validation methods on click
+    this.state={
+      searchControlsValidationMethods:props.searchControlsValidationMethods,      
+    }
+  }
+
   handleSearchClick = () => {
-    search();
+    if (this.props.isSearchEnabled){
+      search();
+      
+    }else{
+      //make search button red animation!!!
+    }
+
+    this.props.dispatch({type: SET_IS_PLACE_DIRTY, payload: false});
+    this.props.dispatch({type: SET_MORE_IS_DIRTY, payload: false});
+    this.props.dispatch({type: SET_IS_CLICKED_SEARCH, payload: true});
   }
 
   render() {
@@ -20,4 +44,10 @@ class SearchButton extends Component {
   }
 }
 
-export default connect()(SearchButton);
+function mapStateToProps(state) {
+  return {
+    isSearchEnabled: state.searchBarReducer.isSearchEnabled,
+  };
+}
+
+export default connect(mapStateToProps)(SearchButton);

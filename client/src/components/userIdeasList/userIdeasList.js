@@ -18,7 +18,8 @@ class UserIdeasList extends Component {
   
 
   renderItem = (index, key) => {  //key is running number
-    return <div key={key} onClick={ () => 
+    var random = Math.random();
+    return <div key={random} onClick={ () => 
       { 
         this.userIdeaClicked(this.props.ideas[index]._id) 
       } 

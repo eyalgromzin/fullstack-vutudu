@@ -9,16 +9,13 @@ class PlaceComponent extends Component {
     this.state = {
       place: ''
     }
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSetPlaceClick = this.handleSetPlaceClick.bind(this);
   }
 
   handleSetPlaceClick = () => {
     this.props.dispatch({ type: SET_PLACE, payload: this.state.place });
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     this.setState({place: event.target.value});
   }
 

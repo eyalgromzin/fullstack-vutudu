@@ -11,7 +11,13 @@
   padding: 0 20%;
 }
 
+.errorText{
+    /* width: 27%; */
+}
 
+.invisible{
+    opacity: 0;
+}
 
 .userLayoutMainContent{
     padding: 0 0;
@@ -19,6 +25,10 @@
 
 .hoverClickHand{
     cursor: pointer;
+}
+
+.inlineBlock{
+    display: inline-block;
 }
 
 .createMainContent{

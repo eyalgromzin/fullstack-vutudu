@@ -78,12 +78,11 @@ export const searchItems = (place,time,numOfPeople,more) => dispatch => {
     axios
     .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
     .then(res =>{ 
+      dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
       if(res.data.length > 0){
         console.log('got ideas from db');
         dispatch({ type: SET_CURRENT_IDEA, payload: res.data[0] })
         dispatch({ type: SAVE_IDEAS, payload: res.data });
-        dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
-        
       }else{
         console.log('got 0 items from db');
         dispatch({ type: SAVE_IDEAS, payload: [] });

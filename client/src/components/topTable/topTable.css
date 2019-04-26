@@ -17,6 +17,10 @@
     display: inline-block;
 }
 
+#topLikedTableClicked{
+    margin-bottom: 20px;
+}
+
 #topTableIdea{
     display: table-cell;
     width: 80%;
