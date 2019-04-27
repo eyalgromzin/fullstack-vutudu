@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import { search } from 'components/searchBar/searchBarCommon'
 import {
   SET_IS_PLACE_DIRTY,
-  SET_MORE_IS_DIRTY,
+  SET_IS_MORE_DIRTY,
   SET_IS_CLICKED_SEARCH,
   CHANGE_SEARCHED_STATE
 } from 'reducers/types'
@@ -33,7 +33,7 @@ class SearchButton extends Component {
     }
 
     this.props.dispatch({type: SET_IS_PLACE_DIRTY, payload: false});
-    this.props.dispatch({type: SET_MORE_IS_DIRTY, payload: false});
+    this.props.dispatch({type: SET_IS_MORE_DIRTY, payload: false});
     this.props.dispatch({type: SET_IS_CLICKED_SEARCH, payload: true});
   }
 

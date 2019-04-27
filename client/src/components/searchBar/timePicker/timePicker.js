@@ -6,20 +6,6 @@ import store from 'store'
 import 'commonCss.css'
 
 export default class TimePicker extends Component {
-  constructor(props){
-    super();
-
-    this.handleOnChange = props.onChangeEvent;  
-  }
-
-  placeSelectorKeyUp = (event) => {
-    if (event.keyCode === 13) {
-      // Trigger the button element with a click
-      console.log("enter clicked on place input")
-      search(store);
-    }
-  }
-
   render() {
     let selectedValue = 0
     if(!(this.props.time === undefined)){
@@ -29,7 +15,7 @@ export default class TimePicker extends Component {
     return (
       <React.Fragment>
         <div className="inlineBlock">
-          <select id="timeChooser" value={selectedValue} onChange={this.handleOnChange} onKeyDown={this.placeSelectorKeyUp} className={this.props.cssClass}>
+          <select id="timeChooser" value={selectedValue} onChange={this.props.onChangeEvent} onKeyDown={this.placeSelectorKeyUp} className={this.props.cssClass}>
             {/* <option value="0" className="timeChooserOption">Time</option> */}
             <option value="5" className="timeChooserOption">5 minutes</option>
             <option value="10" className="timeChooserOption">10 minutes</option>

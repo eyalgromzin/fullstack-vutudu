@@ -20,20 +20,6 @@ import 'commonCss.css'
 class SearchBar extends Component {
   constructor(props){
     super(props);
-
-    //create refs of all components
-
-    //on validate, run the validation method on the refs
-
-    //each ref will have its own validation and error message
-
-    //each will implement the error sign as pleased
-  }
-
- 
-
-  moreOnChangeEvent = (e) => {
-    this.props.dispatch({type: SEARCH_SET_MORE, payload: e.target.value});
   }
 
   timeOnChangeEvent = (e) => {
@@ -45,6 +31,15 @@ class SearchBar extends Component {
   }
 
   // pass fields + validation method + error text
+
+  moreOnChangeEvent = (e) => {
+    this.state.text = e.target.value
+    var isMoreValid = this.isMoreValid()
+
+    this.props.dispatch({type: SEARCH_SET_MORE, payload: e.target.value});
+    this.props.dispatch({type: SET_IS_MORE_VALID, payload: isMoreValid});
+    this.props.dispatch({type: SET_IS_CLICKED_SEARCH, payload: false});
+  }
 
   render() {
     return (

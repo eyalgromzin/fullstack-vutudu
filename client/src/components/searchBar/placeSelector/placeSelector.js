@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './placeSelector.css';
 import '../searchBarCommonStyles.css'
 import { search } from 'components/searchBar/searchBarCommon'
-import store from 'store'
 import { connect } from 'react-redux';
 import 'commonCss.css'
 import {
@@ -11,6 +10,7 @@ import {
   SET_IS_CLICKED_SEARCH,
 } from 'reducers/types'
 import { SET_IS_PLACE_DIRTY } from '../../../reducers/types';
+
 
 class PlaceSelector extends Component {
 constructor(props){
@@ -25,7 +25,7 @@ constructor(props){
     if (event.keyCode === 13) {
       // Trigger the button element with a click
       console.log("enter clicked on place input")
-      search(store);
+      // search(store);
     }
   }
 

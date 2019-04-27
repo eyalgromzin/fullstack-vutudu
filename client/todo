@@ -2,6 +2,8 @@
     - add validations and alerts 
         - on create, must fill all fields
 
+    - if search is empty, the top table does not disappear.
+
     - loading gif when searching - 
         on click: chance the icon of the search to loading gif, and disable the hover animation
     
