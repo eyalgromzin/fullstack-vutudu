@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EditIdeaCard from 'components/ideaCard/editIdeaCard'
+import EditableIdeaCard from 'components/ideaCard/editableIdeaCard'
 import UserSaveIdeaButton from 'components/ideaCard/saveIdeaButton';
 import { connect } from 'react-redux';
 import EditIdeaBar from 'components/searchBar/editIdeaBar'
@@ -14,7 +14,7 @@ class EditCardInUser extends Component {
           minNumOfPeople={this.props.minNumOfPeople}
           maxNumOfPeople={this.props.maxNumOfPeople} 
         />
-        <EditIdeaCard existingTitle={this.props.title} existingContent={this.props.content} /> 
+        <EditableIdeaCard  existingTitle={this.props.title} existingContent={this.props.content} /> 
         <UserSaveIdeaButton />
       </div>
     )
@@ -23,12 +23,12 @@ class EditCardInUser extends Component {
 
 function mapStateToProps(state) {
   return {
-    title: state.editedIdeaReducer.title,
-    content: state.editedIdeaReducer.content,
-    time: state.editedIdeaReducer.time,
-    place: state.editedIdeaReducer.place,
-    minNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
-    maxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
+    title: state.editableIdeaReducer.title,
+    content: state.editableIdeaReducer.content,
+    time: state.editableIdeaReducer.time,
+    place: state.editableIdeaReducer.place,
+    minNumOfPeople: state.editableIdeaReducer.minNumOfPeople,
+    maxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
   };
 }
 

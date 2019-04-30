@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PlaceSelector from './placeSelector/placeSelector'
+import PlaceField from './placeField/placeField'
 import NumOfPeopleSelector from './numOfPeopleSelector/numOfPeopleSelector'
 import TimePicker from './timePicker/timePicker'
 import MoreChooser from './moreChooser/moreChooser'
@@ -10,18 +10,14 @@ import {
   SEARCH_SET_TIME, 
   SEARCH_SET_PLACE, 
   SEARCH_SET_MORE,
+  SEARCH_SET_IS_MORE_VALID,
+  SEARCH_SET_IS_CLICKED_SEARCH,
+  SEARCH_SET_IS_PLACE_VALID,
 } from 'reducers/types'
 import './searchBarCommonStyles.css'
 import 'commonCss.css'
 
-// const searchBarSearch = "SEARCH_BAR_SEARCH";
-// const searchBarCreate = "SEARCH_BAR_CREATE";
-
 class SearchBar extends Component {
-  constructor(props){
-    super(props);
-  }
-
   timeOnChangeEvent = (e) => {
     this.props.dispatch({type: SEARCH_SET_TIME, payload: e.target.value});
   }
@@ -30,30 +26,45 @@ class SearchBar extends Component {
     return this.target.value.length > 3
   }
 
-  // pass fields + validation method + error text
+  isMoreValid = () => {
+    return this.state.text.length == 0 || this.state.text.length >= 1
+  }
 
   moreOnChangeEvent = (e) => {
     this.state.text = e.target.value
-    var isMoreValid = this.isMoreValid()
-
+    
     this.props.dispatch({type: SEARCH_SET_MORE, payload: e.target.value});
-    this.props.dispatch({type: SET_IS_MORE_VALID, payload: isMoreValid});
-    this.props.dispatch({type: SET_IS_CLICKED_SEARCH, payload: false});
+    this.props.dispatch({type: SEARCH_SET_IS_MORE_VALID, payload: isMoreValid});
+    this.props.dispatch({type: SEARCH_SET_IS_CLICKED_SEARCH, payload: false});
+    
+    var isMoreValid = this.isMoreValid()
   }
 
-  render() {
+  isPlaceValid = (place) => {
+    return place.length >= 1
+  }
+
+  placeOnChangeEvent = (e) => {
+    var isPlaceValid = this.isPlaceValid(e.target.value)
+    
+    this.props.dispatch({type: SEARCH_SET_PLACE, payload: e.target.value});
+    this.props.dispatch({type: SEARCH_SET_IS_PLACE_VALID, payload: isPlaceValid});
+    this.props.dispatch({type: SEARCH_SET_IS_CLICKED_SEARCH, payload: false});
+  }
+
+  render(){
     return (
       <div id="searchBar" className="mainContent">
         <div id="searchBarButtons">
-          <PlaceSelector tagID="searchBarPlaceSelector" cssClass="searchBarTextSquare" validationMethod={this.isNotEmpty} />
+          <PlaceField tagID="searchBarPlaceSelector" isClickedButton={this.props.isClickedSearch}
+          placeOnChangeEvent={this.placeOnChangeEvent} validationMethod={this.isNotEmpty} />
           <div className="middlePlaceHolder" />
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} time={this.props.time} cssClass="searchBarDropDownSquare" />          
+          <TimePicker onChangeEvent={this.timeOnChangeEvent} time={10} cssClass="searchBarDropDownSquare" />          
           <div className="middlePlaceHolder" />
           <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
           <div className="middlePlaceHolder" />
-          <MoreChooser cssClass="searchBarTextSquare" onChangeEvent={this.moreOnChangeEvent} validationMethod={this.isNotEmpty} />
-          {/* {this.props.isMoreValid? '' : <div>Fill More (at least 2 letters)</div>} */}
-          <SearchButton cssClass="searchBarTextSquare" />
+          <MoreChooser isClickedButton={this.props.isClickedSearch} onChangeEvent={this.moreOnChangeEvent} validationMethod={this.isNotEmpty} />
+          <SearchButton />
         </div>
       </div>
     )
@@ -64,7 +75,8 @@ function mapStateToProps(state) {
   return {
     time: state.searchBarReducer.time,
     isMoreValid: state.searchBarReducer.isMoreValid,
-    isPlaceValid: state.searchBarReducer.isPlaceValid
+    isPlaceValid: state.searchBarReducer.isPlaceValid,
+    isClickedSearch: state.searchBarReducer.isClickedSearch
   };
 }
 

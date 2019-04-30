@@ -4,6 +4,7 @@
     width: 100%;
     background-color: grey;
     z-index: 100;
+    padding-bottom: 10%;
 }
 
 #loginXButton{

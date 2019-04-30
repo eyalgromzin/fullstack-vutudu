@@ -34,6 +34,7 @@ class topTable extends Component {
         this.showLikedIdea(this.props.topLikedIdeas[index]) 
       } 
     } 
+    key={Math.random()}
     className="listRow">   
       {this.props.topLikedIdeas[index].title}
     </div>;
@@ -45,6 +46,7 @@ class topTable extends Component {
         this.showHardIdea(this.props.topHardIdeas[index]) 
       } 
     } 
+    key={Math.random()}
     className="listRow">   
       {this.props.topHardIdeas[index].title}
     </div>

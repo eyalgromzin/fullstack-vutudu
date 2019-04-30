@@ -42,4 +42,4 @@ function mapStateToProps(state) {
     }
   }
 
-export default connect(mapStateToProps,mapDispatchToProps)(DeleteIdeaButton)    //mapDispatchToProps
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteIdeaButton)    //mapDispatchToProps

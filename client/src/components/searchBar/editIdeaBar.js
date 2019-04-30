@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-import PlaceSelector from './placeSelector/placeSelector'
+import PlaceSelector from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
 import TimePicker from './timePicker/timePicker'
-import { EDITED_IDEA_SET_PLACE } from 'reducers/types'
-import { EDITED_IDEA_SET_TIME } from 'reducers/types'
+import { EDITABLE_IDEA_SET_PLACE } from 'reducers/types'
+import { EDITABLE_IDEA_SET_TIME } from 'reducers/types'
 import { connect } from 'react-redux';
 import './searchBarCommonStyles.css'
 
@@ -14,11 +14,11 @@ class EditIdeaBar extends Component {
   }
 
   placeOnChangeEvent = (e) => {
-    this.props.dispatch({type: EDITED_IDEA_SET_PLACE, payload: e.target.value});
+    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: e.target.value});
   }
 
   timeOnChangeEvent = (e) => {
-    this.props.dispatch({type: EDITED_IDEA_SET_TIME, payload: Number(e.target.value)});
+    this.props.dispatch({type: EDITABLE_IDEA_SET_TIME, payload: Number(e.target.value)});
     
   }
 
@@ -40,7 +40,7 @@ class EditIdeaBar extends Component {
 
 function mapStateToProps(state) {
     return {
-      time: state.editedIdeaReducer.time,
+      time: state.editableIdeaReducer.time,
     };
   }
 

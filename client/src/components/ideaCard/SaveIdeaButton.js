@@ -63,18 +63,18 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   return {
     // currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
-    newTitle: state.editedIdeaReducer.title,
-    newContent: state.editedIdeaReducer.content,
-    newTags: state.editedIdeaReducer.tags,
+    newTitle: state.editableIdeaReducer.title,
+    newContent: state.editableIdeaReducer.content,
+    newTags: state.editableIdeaReducer.tags,
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdeas
-                          .filter (idea => {return state.editedIdeaReducer.id == idea._id})[0],
+                          .filter (idea => {return state.editableIdeaReducer.id == idea._id})[0],
     isIdeaEdited: state.userPageReducer.isIdeaEdited,
     userID: state.userPageReducer.loggedInUserID,
     updateToggle: state.userPageReducer.updateToggle,
-    newTime: state.editedIdeaReducer.time,
-    newPlace: state.editedIdeaReducer.place,
-    newMinNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
-    newMaxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
+    newTime: state.editableIdeaReducer.time,
+    newPlace: state.editableIdeaReducer.place,
+    newMinNumOfPeople: state.editableIdeaReducer.minNumOfPeople,
+    newMaxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
 
   };
 }

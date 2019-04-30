@@ -11,6 +11,11 @@
   padding: 0 20%;
 }
 
+.alignRight{
+    float: right;
+    text-align: right;
+}
+
 .errorText{
     /* width: 27%; */
 }

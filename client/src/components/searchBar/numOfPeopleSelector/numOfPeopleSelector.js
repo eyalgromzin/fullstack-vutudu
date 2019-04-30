@@ -3,7 +3,7 @@ import './numOfPeopleSelector.css'
 import '../searchBarCommonStyles.css'
 import {SEARCH_SET_NUM_OF_PEOPLE} from 'reducers/types'
 import { connect } from 'react-redux';
-import { search } from 'components/searchBar/searchBarCommon'
+import { search } from '../searchBarCommon'
 import store from 'store'
 import 'commonCss.css'
 
@@ -16,7 +16,7 @@ class NumOfPeopleSelector extends Component {
     this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: event.target.value });
   }
 
-  placeSelectorKeyUp = (event) => {
+  placeFieldKeyUp = (event) => {
     if (event.keyCode === 13) {
       // Trigger the button element with a click
       console.log("enter clicked on place input")
@@ -29,7 +29,7 @@ class NumOfPeopleSelector extends Component {
       <React.Fragment>
         <div className="inlineBlock">
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={2}
-            onKeyUp={this.placeSelectorKeyUp} onChange={this.handleChange}>
+            onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
             <option value="1" className="timeChooserOption">1</option>
             <option value="2" className="timeChooserOption">2</option>
             <option value="20000" className="timeChooserOption">couple</option>

@@ -1,37 +1,49 @@
 import React, { Component } from 'react'
 
-import PlaceSelector from './placeSelector/placeSelector'
+import PlaceSelector from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
 import TimePicker from './timePicker/timePicker'
 import MoreChooser from './moreChooser/moreChooser'
-import { EDITED_IDEA_SET_PLACE } from 'reducers/types'
-import { EDITED_IDEA_SET_TIME } from 'reducers/types'
+import {
+  CREATE_IDEA_SET_TIME,
+  EDITABLE_IDEA_SET_PLACE,
+  EDITABLE_IDEA_SET_IS_PLACE_VALID
+} from 'reducers/types'
+import { EDITABLE_IDEA_SET_TIME } from 'reducers/types'
 import { connect } from 'react-redux';
 import './searchBarCommonStyles.css'
 
 class CreateIdeaBar extends Component {
-  constructor(props){
-    super(props);
+  timeOnChangeEvent = (e) => {
+    this.props.dispatch({type: CREATE_IDEA_SET_TIME, payload: Number(e.target.value)});
+  }
+
+  isPlaceValid = (placeText) => {
+    return placeText.length >= 1
   }
 
   placeOnChangeEvent = (e) => {
-    this.props.dispatch({type: EDITED_IDEA_SET_PLACE, payload: e.target.value});
-  }
+    var isPlaceValid = this.isPlaceValid(e.target.value)
 
-  timeOnChangeEvent = (e) => {
-    this.props.dispatch({type: EDITED_IDEA_SET_TIME, payload: Number(e.target.value)});
-    
+    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: e.target.value});
+    this.props.dispatch({type: EDITABLE_IDEA_SET_IS_PLACE_VALID, payload: isPlaceValid});
   }
 
   render() {
     return (
       <div id="createBar">
         <div id="createBarButtons">
-          {this.props.showTitle == true || this.props.showTitle === undefined? <span className="topBarName" > CREATE: </span> : "" }
-          <PlaceSelector tagID="createBarPlaceSelector" cssClass="createBarTextBox" 
-            onChangeEvent={this.placeOnChangeEvent} 
+          {this.props.showTitle == true || this.props.showTitle === undefined ? 
+            <span className="topBarName"> 
+              CREATE: 
+              <div></div>
+            </span> : "" }
+          <PlaceSelector tagID="createBarPlaceSelector" 
+            cssClass="createBarTextBox" 
+            placeOnChangeEvent={this.placeOnChangeEvent} 
+            isClickedButton={this.props.isClickedButton} 
             place={this.props.place} />
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} />
+          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={0} />
           <NumOfPeopleCreator cssClass="createBarDropDown" 
             minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
         </div>
@@ -42,7 +54,7 @@ class CreateIdeaBar extends Component {
 
 function mapStateToProps(state) {
   return {
-    time: state.editedIdeaReducer.time,
+    isClickedButton: state.editableIdeaReducer.isClickedButton
   };
 }
 

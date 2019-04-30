@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   ADD_CREATED_IDEA_TO_USER,
   SAVE_IDEAS,
-  CLEAR_EDITED_IDEA,
+  CLEAR_EDITABLE_IDEA,
   SET_CURRENT_IDEA,
   CHANGE_SEARCHED_STATE,
   REMOVE_CREATED_IDEA_FROM_USER,
@@ -171,7 +171,7 @@ export const addIdeaToDB = (idea,userID) => dispatch => {
           });
 
           dispatch({
-            type: CLEAR_EDITED_IDEA,
+            type: CLEAR_EDITABLE_IDEA,
           })
 
           console.log('added ideaID to user created array');

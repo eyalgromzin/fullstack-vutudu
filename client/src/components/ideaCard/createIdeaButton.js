@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import Notifications, {notify} from 'react-notify-toast';
 import { addHashTagsToDB } from 'actions/tagsActions'
 import { addPlaceToDBIfNotExists } from 'actions/placeNameActions'
+import { 
+  EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
+} from 'reducers/types'
 
 class createIdeaButton extends Component {
   getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
@@ -21,12 +24,11 @@ class createIdeaButton extends Component {
 
   handleCreateIdeaClick = (event) => {
       this.error = "";
-      this.isHasError = false;
-      
+      this.props.dispatch({ type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, payload: true });
       var tags = this.getTagsFromContent(this.props.content);
 
       //add validation for empty fields / wrong
-      if(!this.isHasError){
+      if(this.props.isCreateButtonEnabled){
         const newItem = {
           // name: this.props.title,
           title: this.props.title,
@@ -38,7 +40,7 @@ class createIdeaButton extends Component {
           maxNumOfPeople: this.props.maxNumOfPeople,
           tags: tags,
         };
-  
+
         let myColor = { background: '#0E1717', text: "#FFFFFF" };
         notify.show('Idea Created!', "success", 1000, myColor);
 
@@ -73,15 +75,17 @@ const mapDispatchToProps = dispatch => {
 
   function mapStateToProps(state) {
     return {
-      title: state.editedIdeaReducer.title,
-      content: state.editedIdeaReducer.content,
+      title: state.editableIdeaReducer.title,
+      content: state.editableIdeaReducer.content,
       createdBy: state.userPageReducer.loggedInUserID,
-      place: state.editedIdeaReducer.place,
-      time: state.editedIdeaReducer.time,
-      minNumOfPeople: state.editedIdeaReducer.minNumOfPeople,
-      maxNumOfPeople: state.editedIdeaReducer.maxNumOfPeople,
+      place: state.editableIdeaReducer.place,
+      time: state.editableIdeaReducer.time,
+      minNumOfPeople: state.editableIdeaReducer.minNumOfPeople,
+      maxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
       userID: state.userPageReducer.loggedInUserID,
-      tags: state.editedIdeaReducer.tags,
+      tags: state.editableIdeaReducer.tags,
+      isCreateButtonEnabled: state.editableIdeaReducer.isCreateButtonEnabled,
+      
     };
   }
 

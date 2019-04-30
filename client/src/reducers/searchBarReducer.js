@@ -4,10 +4,10 @@ import {
   SEARCH_SET_PLACE, 
   SEARCH_SET_MORE,
   SEARCH_SET_NUM_OF_PEOPLE,
-  SET_SEARCH_MORE_VALIDATION,
-  SET_IS_PLACE_VALID,
-  SET_IS_MORE_VALID,
-  SET_IS_CLICKED_SEARCH,
+  SEARCH_SET_SEARCH_MORE_VALIDATION,
+  SEARCH_SET_IS_PLACE_VALID,
+  SEARCH_SET_IS_MORE_VALID,
+  SEARCH_SET_IS_CLICKED_SEARCH,
 } from 'reducers/types'
 
 const initialState = {
@@ -43,25 +43,25 @@ const initialState = {
           ...state,
           more: action.payload,          
         };
-      case SET_SEARCH_MORE_VALIDATION:
+      case SEARCH_SET_SEARCH_MORE_VALIDATION:
         return {
           ...state,
           isMoreValid: action.payload,   
           isSearchEnabled: action.payload && state.isPlaceValid
         };
-      case SET_IS_PLACE_VALID:
+      case SEARCH_SET_IS_PLACE_VALID:
         return {
           ...state,
           isPlaceValid: action.payload,   
           isSearchEnabled: state.isMoreValid && action.payload
         };
-      case SET_IS_MORE_VALID:
+      case SEARCH_SET_IS_MORE_VALID:
         return {
           ...state,
           isMoreValid: action.payload,   
           isSearchEnabled: state.isPlaceValid && action.payload
         };
-      case SET_IS_CLICKED_SEARCH:
+      case SEARCH_SET_IS_CLICKED_SEARCH:
         return {
           ...state,
           isClickedSearch: action.payload,      

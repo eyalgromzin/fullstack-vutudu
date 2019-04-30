@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { 
   SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
-  UPDATE_EDITED_IDEA,
+  UPDATE_EDITABLE_IDEA,
   CHANGE_UPDATE_TOGGLE
 } from 'reducers/types'
 import { connect } from 'react-redux';
@@ -13,7 +13,7 @@ class EditIdeaButton extends Component {
       console.log('edit idea clicked');
       //make the fields to text boxes to edit the fields
       this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: true});
-      this.props.dispatch({type: UPDATE_EDITED_IDEA, payload: this.props.currentPreviewedIdea});
+      this.props.dispatch({type: UPDATE_EDITABLE_IDEA, payload: this.props.currentPreviewedIdea});
       this.props.dispatch({type: CHANGE_UPDATE_TOGGLE});
     }
 
