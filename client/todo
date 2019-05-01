@@ -5,7 +5,7 @@
     
     - in auto complete - put hard coded startup decisions - ones that will show without the need for typing. 
         will show it on focus. 
-        add it to place, more
+        add it to place, more.
         suggestions like: house , kitchen, park, bus_station, bus
         already created a places list in the mail
     
@@ -16,11 +16,15 @@
     - change the top text in user page "place" , "num of people" to icons
 
     - change user idea edit icon to use the same outline as the side bar
+    
     - on idea delete, open the next idea if exists
-    - on idea created , make some animation with the user side bar button, to indicate it was added there.
-    - create animation for when an idea is deleted from the user screen.
+
+    - create animation for when an idea is deleted from the user screen. - list animation
 
     - because there are more like clicks than created idea, remove the save of the created idea to the user. 
+
     - add a view to mongo, for top liked and hard ideas.
+    
     - on bad fields, and search click, make search button red animation
+
     - change the like idea to 1 post request instead of 2 - home.
