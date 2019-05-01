@@ -7,7 +7,8 @@ import {
   CHANGE_SEARCHED_STATE,
   REMOVE_CREATED_IDEA_FROM_USER,
   SET_TOP_HARD_IDEAS,
-  SET_TOP_LIKED_IDEAS
+  SET_TOP_LIKED_IDEAS,
+  SET_IS_SEARCHING,
 } from 'reducers/types'
 import { emptyUserPreviewedIdea } from 'actions/userActions'
 import { USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS } from '../reducers/types';
@@ -74,10 +75,12 @@ export const addIdeaToUserCreatedIdeas = (userID, idea) => dispatch => {
 }
 
 export const searchItems = (place,time,numOfPeople,more) => dispatch => {
+  dispatch({ type: SET_IS_SEARCHING, payload: true });
   if(more === undefined || more == ''){
     axios
     .get(`/api/items/search/${place}/${time}/${numOfPeople}`)
     .then(res =>{ 
+      dispatch({ type: SET_IS_SEARCHING, payload: false });
       dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
       if(res.data.length > 0){
         console.log('got ideas from db');
@@ -92,6 +95,7 @@ export const searchItems = (place,time,numOfPeople,more) => dispatch => {
     axios
       .get(`/api/items/search/${place}/${time}/${numOfPeople}/${more}`)
       .then(res =>{ 
+        dispatch({ type: SET_IS_SEARCHING, payload: false });
         if(res.data.length > 0){
           console.log('got ideas from db');
           dispatch({ type: SET_CURRENT_IDEA, payload: res.data[0] })
@@ -104,6 +108,7 @@ export const searchItems = (place,time,numOfPeople,more) => dispatch => {
         }
       });
   }
+
   
 };
 

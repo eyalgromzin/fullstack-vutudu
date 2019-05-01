@@ -14,9 +14,7 @@ import { SAVE_IDEAS,
   REMOVE_USER_FROM_IDEA_ADDED_EASY,
   REMOVE_USER_FROM_IDEA_ADDED_SHORT,
   REMOVE_USER_FROM_IDEA_ADDED_LONG,
-  SET_TOP_LIKED_IDEAS,
-  SET_TOP_HARD_IDEAS,
-  SET_TOP_TABLE_IS_IDEA_CLICKED,
+  SET_IS_SEARCHING,
   SET_CURRENT_IDEA } from './types'
 // import dcopy from 'deep-copy'
 var dcopy = require('deep-copy')
@@ -46,6 +44,7 @@ const initialState = {
     addedShort: [],
   }], 
   itemsFound: false,
+  isSearching: false,
 };
 
 function getCopyOfCurrentIdea (state){
@@ -72,6 +71,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         currentIdea: action.payload,
+      };
+    case SET_IS_SEARCHING:
+      return {
+        ...state,
+        isSearching: action.payload,
       };
     
     case CHANGE_CURRENT_IDEA_INDEX:

@@ -1,14 +1,3 @@
-
-    - add validations and alerts 
-        - on create, must fill all fields
-
-    - if search is empty, the top table does not disappear.
-
-    - loading gif when searching - 
-        on click: chance the icon of the search to loading gif, and disable the hover animation
-    
-    - when the top table is previewed, and you click search , and you dont find anything, it doesnt show that 0 results were found, its still presenting the top table.
-    
     - auto complete - 
         - when auto complete is empty with focus, show last searches.
         - add auto complete to place
@@ -30,7 +19,6 @@
     - on idea delete, open the next idea if exists
     - on idea created , make some animation with the user side bar button, to indicate it was added there.
     - create animation for when an idea is deleted from the user screen.
-    
 
     - because there are more like clicks than created idea, remove the save of the created idea to the user. 
     - add a view to mongo, for top liked and hard ideas.

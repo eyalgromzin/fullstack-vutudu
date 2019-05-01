@@ -39,7 +39,13 @@ class SearchButton extends Component {
 
   render() {
     return (
-        <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton" onClick={this.handleSearchClick} />
+      <React.Fragment>
+        {this.props.isSearching? 
+          <img src={require("images/loading.gif")} id="loadingSearchButton" />
+          : 
+          <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton" onClick={this.handleSearchClick} /> 
+        }
+      </React.Fragment>
     )
   }
 }
@@ -47,6 +53,7 @@ class SearchButton extends Component {
 function mapStateToProps(state) {
   return {
     isSearchEnabled: state.searchBarReducer.isSearchEnabled,
+    isSearching: state.searchPageReducer.isSearching,
   };
 }
 
