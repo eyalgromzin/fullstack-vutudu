@@ -101,7 +101,7 @@ class PlaceSelector extends Component {
             onChange={this.handlePlaceChange} 
             onBlur={this.onBlur}
           />
-          <div className="invisible">error</div>
+          { isShowError ? <div className="errorText"> *3+ letters </div> : <div className="invisible"> error </div> }
         </div>
       </React.Fragment>
     )

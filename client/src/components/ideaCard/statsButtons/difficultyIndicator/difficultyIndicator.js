@@ -111,7 +111,7 @@ class DifficultyIndicator extends Component {
     let addedEasy = this.isAddedEasy();
 
     return (
-      <div className="bottomIndicator">
+      <div id="difficultyIndicator">
         <img src={require("images/difficulty.png")} id="difficultyImage" className="bottomButton"/>
         <img src={addedHard ? require("images/upArrowHighlighted.png"): require("images/upArrow.png")} 
           id="increaseDifficulty" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleAddHardClick}/>
