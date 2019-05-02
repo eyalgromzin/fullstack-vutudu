@@ -6,6 +6,7 @@ import searchPageReducer from './searchPageReducer'
 import editableIdeaReducer from './editableIdeaReducer'
 import userPageReducer from './userPageReducer'
 import topTableReducer from './topTableReducer'
+import suggestionsReducer from './suggestionsReducer'
 
 const rootReducer = combineReducers({
   searchBarReducer: searchBarReducer,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   searchPageReducer: searchPageReducer,
   editableIdeaReducer: editableIdeaReducer,
   userPageReducer: userPageReducer,
-  topTableReducer: topTableReducer
+  topTableReducer: topTableReducer,
+  suggestionsReducer: suggestionsReducer,
 })
  
 export default rootReducer

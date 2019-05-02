@@ -40,6 +40,7 @@ class CreateIdeaBar extends Component {
             </span> : "" }
           <PlaceSelector tagID="createBarPlaceSelector" 
             cssClass="createBarTextBox" 
+            placeSuggestions={[]}
             placeOnChangeEvent={this.placeOnChangeEvent} 
             isClickedButton={this.props.isClickedButton} 
             place={this.props.place} />

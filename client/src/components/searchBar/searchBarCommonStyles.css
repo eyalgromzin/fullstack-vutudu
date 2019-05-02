@@ -68,12 +68,14 @@
 }
 
 .searchBarTextSquare{
-    /* box-shadow: 0px 0px 20px 2px; */
-    /* z-index: 0; */
-    position: relative;
-    height: 35px;
-    /* width: 27%; */
-    margin-right: 10px;
+    width: 240px;
+    height: 30px;
+    padding: 10px 20px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
 }
 
 
@@ -82,12 +84,14 @@
 }
 
 .searchBarDropDownSquare{
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    position: relative;
-    height: 40px;
-    width: 85px;
+    width: 150px;
+    height: 52px;
+    padding: 10px 20px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
 }
 
 .createBarMiddlePlaceHolder{

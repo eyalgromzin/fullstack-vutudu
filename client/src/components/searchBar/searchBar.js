@@ -41,13 +41,17 @@ class SearchBar extends Component {
   }
 
   isPlaceValid = (place) => {
+    if (place === undefined){
+      return false
+    }
+    
     return place.length >= 1
   }
 
-  placeOnChangeEvent = (e) => {
-    var isPlaceValid = this.isPlaceValid(e.target.value)
+  placeOnChangeEvent = (placeValue) => {
+    var isPlaceValid = this.isPlaceValid(placeValue)
     
-    this.props.dispatch({type: SEARCH_SET_PLACE, payload: e.target.value});
+    this.props.dispatch({type: SEARCH_SET_PLACE, payload: placeValue});
     this.props.dispatch({type: SEARCH_SET_IS_PLACE_VALID, payload: isPlaceValid});
     this.props.dispatch({type: SEARCH_SET_IS_CLICKED_SEARCH, payload: false});
   }
@@ -57,7 +61,7 @@ class SearchBar extends Component {
       <div id="searchBar" className="mainContent">
         <div id="searchBarButtons">
           <PlaceField tagID="searchBarPlaceSelector" isClickedButton={this.props.isClickedSearch}
-          placeOnChangeEvent={this.placeOnChangeEvent} validationMethod={this.isNotEmpty} />
+          placeOnChangeEvent={this.placeOnChangeEvent} validationMethod={this.isNotEmpty} placeSuggestions={[]}/>
           <div className="middlePlaceHolder" />
           <TimePicker onChangeEvent={this.timeOnChangeEvent} time={10} cssClass="searchBarDropDownSquare" />          
           <div className="middlePlaceHolder" />

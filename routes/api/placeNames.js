@@ -39,4 +39,20 @@ router.post('/create', (req, res) => {
     })
 });
 
+// @route   POST api/placeNames/create
+// @desc    get all place names starting with 'placeName'
+// @access  Public
+router.post('/get', (req, res) => {
+  var regexp = new RegExp("^"+ req.body.placeName);
+
+  placeNames.find({ name: regexp})
+  .then(
+    placeNames => 
+    res.json(placeNames)
+    )
+  .catch(error => {
+      console.error('error while creating place name: ', error);
+  })
+});
+
 module.exports = router;

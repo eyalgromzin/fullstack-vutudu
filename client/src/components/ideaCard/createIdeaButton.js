@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Notifications, {notify} from 'react-notify-toast';
 import { addHashTagsToDB } from 'actions/tagsActions'
-import { addPlaceToDBIfNotExists } from 'actions/placeNameActions'
+import { addPlaceToDBIfNotExists } from 'actions/autoSuggestActions'
 import { 
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
 } from 'reducers/types'
