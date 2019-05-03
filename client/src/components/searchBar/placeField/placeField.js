@@ -62,7 +62,7 @@ class PlaceSelector extends Component {
 
   onSuggestionsFetchRequested = ({value}) => {
     if (value == ""){
-      const places = [ 'home','kitchen', 'bus station', 'park', 'beach']
+      const places = [ 'home','kitchen', 'bus station', 'park', 'beach', '...']
 
       store.dispatch({type: SET_PLACE_SUGGESTIONS, payload: places})
     }else{
@@ -96,6 +96,7 @@ class PlaceSelector extends Component {
     return (
       <React.Fragment >
         <div id="placeField" className="inlineBlock">
+          <div class="fieldHeader">Place</div>
           <Autosuggest
             id="placeSelector"
             suggestions={this.props.placeSuggestions}

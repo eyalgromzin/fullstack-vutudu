@@ -46,8 +46,10 @@ class IdeaCardInUser extends Component {
                   <DifficultyIndicator enabled={false} idea={this.props.currentPreviewedIdea} />
                 </div>
               </div>
-              <EditIdeaButton />
-              <DeleteIdeaButton idea={this.props.currentPreviewedIdea} />
+              <div id="ideaActionButtonsInUser">
+                <EditIdeaButton />
+                <DeleteIdeaButton idea={this.props.currentPreviewedIdea} />
+              </div>
           </div>
         </div>
         :

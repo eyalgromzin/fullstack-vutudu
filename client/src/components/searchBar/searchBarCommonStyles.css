@@ -19,21 +19,35 @@
 }
 
 #createBarNumOfPeopleCreator{
-    
+    margin-right: 10px;
+}
+
+#createBar{
+    float:left;
 }
 
 .createBarDropDown{
-    height: 40px;
-    width: 100px;
-    /* box-shadow: 0px 0px 20px 2px; */
-    margin-right: 20px;
+    width: 145px;
+    height: 47px;
+    margin-right: 10px;
+    padding: 10px 10px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
 }
 
 .numOfPeopleCreatorDropDown{
-    height: 40px;
-    width: 60px;
-    box-shadow: 0px 0px 20px -15px;
-    border: none;
+    width: 145px;
+    height: 47px;
+    /* margin-right: 10px; */
+    padding: 10px 10px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
 }
 
  .searchBarChooserContainer{
@@ -42,12 +56,8 @@
     mergin-right: 10px;
 } 
 
-.middleSearchBarBox{
-    margin-left: 10px;
-}
-
 #searchBar{
-    margin-bottom: 40px; 
+    margin-bottom: 35px; 
     margin-top: 20px;
     background-color: darkgray;
     padding-top: 10px;
@@ -86,6 +96,7 @@
 .searchBarDropDownSquare{
     width: 145px;
     height: 47px;
+    margin-right: 10px;
     padding: 10px 10px;
     font-family: Helvetica, sans-serif;
     font-weight: 300;
@@ -95,7 +106,8 @@
 }
 
 .createBarMiddlePlaceHolder{
-    z-index: 100;
+    font-size: 30px;
+    margin: -5px;
 }
 
 .middlePlaceHolder{
@@ -110,4 +122,9 @@
 
 #searchBarButtons{
     margin-top: 10px;
+}
+
+.fieldHeader{
+    font-size: 23px;
+    margin-left: 5px;
 }

@@ -6,7 +6,6 @@ import MoreChooser from './moreChooser/moreChooser'
 import SearchButton from './searchButton/searchButton'
 import { connect } from 'react-redux';
 import {
-  SET_TIME, 
   SEARCH_SET_TIME, 
   SEARCH_SET_PLACE, 
   SEARCH_SET_MORE,
@@ -53,11 +52,8 @@ class SearchBar extends Component {
         <div id="searchBarButtons">
           <PlaceField tagID="searchBarPlaceSelector" isClickedButton={this.props.isClickedSearch}
           placeOnChangeEvent={this.placeOnChangeEvent} validationMethod={this.isNotEmpty} placeSuggestions={[]}/>
-          <div className="middlePlaceHolder" />
           <TimePicker onChangeEvent={this.timeOnChangeEvent} time={10} cssClass="searchBarDropDownSquare" />          
-          <div className="middlePlaceHolder" />
           <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
-          <div className="middlePlaceHolder" />
           <MoreChooser isClickedButton={this.props.isClickedSearch} tagSuggestions={[]}
             onChangeEvent={this.moreOnChangeEvent} validationMethod={this.isNotEmpty} />
           <SearchButton />

@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-
 import PlaceSelector from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
 import TimePicker from './timePicker/timePicker'
-import MoreChooser from './moreChooser/moreChooser'
 import {
   CREATE_IDEA_SET_TIME,
   EDITABLE_IDEA_SET_PLACE,
   EDITABLE_IDEA_SET_IS_PLACE_VALID
 } from 'reducers/types'
-import { EDITABLE_IDEA_SET_TIME } from 'reducers/types'
 import { connect } from 'react-redux';
 import './searchBarCommonStyles.css'
+import 'commonCss.css'
 
 class CreateIdeaBar extends Component {
   timeOnChangeEvent = (e) => {
@@ -31,13 +29,8 @@ class CreateIdeaBar extends Component {
 
   render() {
     return (
-      <div id="createBar">
+      <div id="createBar" class="inlineBlock">
         <div id="createBarButtons">
-          {this.props.showTitle == true || this.props.showTitle === undefined ? 
-            <span className="topBarName"> 
-              CREATE: 
-              <div></div>
-            </span> : "" }
           <PlaceSelector tagID="createBarPlaceSelector" 
             cssClass="createBarTextBox" 
             placeSuggestions={[]}

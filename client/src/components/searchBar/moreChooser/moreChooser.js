@@ -38,7 +38,7 @@ class MoreChooser extends Component {
 
   onSuggestionsFetchRequested = ({value}) => {
     if (value == ""){
-      const moreFieldExamples = [ 'fun','productive', 'easy', 'fast', 'challenging']
+      const moreFieldExamples = [ 'fun','productive', 'easy', 'fast', 'challenging', '...']
 
       store.dispatch({type: SET_TAG_SUGGESTIONS, payload: moreFieldExamples})
     }else{
@@ -74,6 +74,7 @@ class MoreChooser extends Component {
     return (
       <React.Fragment>
         <div id="placeField" className="inlineBlock">
+          <div class="fieldHeader">More</div>
           <Autosuggest
             id="tagSelector"
             suggestions={this.props.tagSuggestions}

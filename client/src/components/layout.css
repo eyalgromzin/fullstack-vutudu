@@ -14,3 +14,10 @@
     width:60px;
 }
 
+#fullCreateIdeaBar{
+    margin-bottom: 35px;
+    padding-left: 20%;
+    padding-top: 20px;
+    padding-bottom: 25px;
+    background-color: cornflowerblue;
+}

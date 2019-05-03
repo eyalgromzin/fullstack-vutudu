@@ -12,17 +12,22 @@ input:focus {
 }
 
 #newIdeaTitle{
+    background-color: #F4F9FF;
     border: none;
-    width: 100%;
-    margin-bottom: 5px;
+    float: left;
+    width: 97%;
+    margin-bottom: 15px;
+    font-size: 30px;
 }
 
 #newIdeaContent{
+    background-color: #F4F9FF;
     border: none;
     width: 100%;
     resize: none;
     padding: 0px;
     min-height: 400px;
+    font-size: 17px;
 }
 
 .userPageIdeaButton{
@@ -32,11 +37,14 @@ input:focus {
 
 #createIdeaButton{
     display: inline-block;
-    margin-top: 13px;
-    padding: 20px;
-    background-color: cyan;
+    padding: 12px;
+    padding-right: 23px;
+    padding-left: 23px;
+    margin-top: 26px;
+    background-color: bisque;
     font-family: cursive;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .ideaButton{

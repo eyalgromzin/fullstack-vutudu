@@ -3,7 +3,7 @@
 }
 
 .listRow:hover{
-    background-color: pink;
+    background-color: coral;
     cursor: pointer;
 }
 
@@ -42,4 +42,11 @@
 .topTableHeader{
     font-size: 20px;
     font-family: "Arial Black";
+}
+
+#topTable{
+    padding: 45px;
+    padding-bottom: 80px;
+    background-color: blanchedalmond;
+    border-radius: 4px;
 }

@@ -37,7 +37,8 @@
 }
 
 .createMainContent{
-    margin: 25px 15%;
+    /* margin: 25px 15%; */
+    margin-top: 20px
 }
 
 #mainLogo{

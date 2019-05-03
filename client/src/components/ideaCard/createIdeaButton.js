@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { addIdeaToDB, updateTags } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import 'commonCss.css'
 import Notifications, {notify} from 'react-notify-toast';
 import { addHashTagsToDB } from 'actions/tagsActions'
 import { addPlaceToDBIfNotExists } from 'actions/autoSuggestActions'
@@ -55,10 +56,12 @@ class createIdeaButton extends Component {
 
   render() {
     return (
-        <div className="alignRight">
-          <div id="createIdeaButton" onClick={this.handleCreateIdeaClick}> create </div>
+        <React.Fragment>
+        {/* // <div className="alignRight"> */}
+          <div id="createIdeaButton" class="inlineBlock" onClick={this.handleCreateIdeaClick}> create </div>
           <Notifications options={{zIndex: 200, top: '35px' , wrapperId:'toastWrapperID', id:'toastID' ,animationDuration: 2000 }} />
-        </div>
+        {/* // </div> */}
+        </React.Fragment>
     )
   }
 }

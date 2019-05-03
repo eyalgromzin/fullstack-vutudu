@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { search } from '../searchBarCommon'
 import store from 'store'
 import 'commonCss.css'
+import '../searchBarCommonStyles.css'
 
 class NumOfPeopleSelector extends Component {
   constructor(){
@@ -27,7 +28,8 @@ class NumOfPeopleSelector extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="inlineBlock">
+        <div id="numOfPeopleSelector" className="inlineBlock">
+          <div class="fieldHeader"># People</div>
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={2}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
             <option value="1" className="timeChooserOption">1</option>

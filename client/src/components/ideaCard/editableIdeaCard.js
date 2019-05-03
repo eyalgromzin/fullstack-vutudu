@@ -15,6 +15,7 @@ import store from 'store'
 import { bindActionCreators } from 'redux';
 import './ideaCard.css'
 import {getTagsFromText} from './methods'
+import Popup from 'reactjs-popup'
 
 class EditableIdeaCard extends Component {
   constructor(props){
@@ -73,17 +74,32 @@ class EditableIdeaCard extends Component {
         <div id="createIdeaContainer">
           <div id="createIdeaCard"> 
             <div id="createIdeaCardContent">
-              <input type="text" 
-                id="newIdeaTitle" 
-                value={this.props.title == null? "" : this.props.title } 
-                placeholder="<title>" 
-                onBlur={this.onTitleBlur}
-                onChange={this.handleOnTitleChange}/>
-              {isShowTitleError? <span> *min 10 letter </span> : "" }
+              <div>
+                <input type="text" 
+                  id="newIdeaTitle" 
+                  value={this.props.title == null? "" : this.props.title } 
+                  placeholder="Title..." 
+                  onBlur={this.onTitleBlur}
+                  onChange={this.handleOnTitleChange}/>
+                {isShowTitleError? <span> *min 10 letter </span> : "" }
+                <Popup
+                  trigger={<img src={require("images/info.png")} id="createInfoButton"/>}
+                  position="right top"
+                  on="hover">
+                  <div id="infoButton">
+                    <div id="infoButtonTitle">Tips </div>
+                    <div id="infoContent">
+                      <div>* be specific</div>
+                      <div>* be brief</div>
+                      <div>* add links or images</div>
+                    </div>
+                  </div>
+                </Popup>
+              </div>
               <textarea 
               type="text" id="newIdeaContent" 
               value={this.props.content == null ? "" : this.props.content }
-              placeholder="<content>" 
+              placeholder="Content..." 
               onBlur={this.onContentBlur}
               onChange={this.handleOnContentChange}/>
               {isShowContentError? <span> *min 10 letter</span> : '' }
