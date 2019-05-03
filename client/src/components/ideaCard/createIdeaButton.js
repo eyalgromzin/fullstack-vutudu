@@ -85,7 +85,6 @@ const mapDispatchToProps = dispatch => {
       userID: state.userPageReducer.loggedInUserID,
       tags: state.editableIdeaReducer.tags,
       isCreateButtonEnabled: state.editableIdeaReducer.isCreateButtonEnabled,
-      
     };
   }
 

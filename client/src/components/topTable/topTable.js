@@ -62,7 +62,7 @@ class topTable extends Component {
               Top Ideas
             </div>
             <div id="topLikedTableClicked">
-              <span className="topTableHeader">Liked</span>
+              <div className="inlineBlock topTableHeader">Liked</div>
                 <ReactList
                         itemRenderer={this.renderLikedItem}
                         length={this.props == null || this.props.topLikedIdeas == null? 0 : this.props.topLikedIdeas.length}

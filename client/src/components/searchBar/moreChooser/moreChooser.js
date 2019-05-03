@@ -3,12 +3,14 @@ import './moreChooser.css'
 import 'commonCss.css'
 import { search } from '../searchBarCommon'
 import {
-  SEARCH_SET_MORE, 
-  SET_IS_MORE_VALID, 
-  SET_IS_CLICKED_SEARCH,
+  SET_TAG_SUGGESTIONS,
 } from 'reducers/types'
 import '../searchBarCommonStyles.css'
 import { connect } from 'react-redux';
+import Autosuggest from 'react-autosuggest';
+import { getTagsStartingWith } from 'actions/autoSuggestActions'
+import store from 'store'
+
 
 class MoreChooser extends Component {
   constructor(props){
@@ -20,8 +22,6 @@ class MoreChooser extends Component {
     }
   }
 
-
-
   placeFieldKeyUp = (event) => {
     if (event.keyCode === 13) {
       // Trigger the button element with a click
@@ -30,20 +30,62 @@ class MoreChooser extends Component {
     }
   }
 
+  renderSuggestion = suggestion => (
+    <div>
+      {suggestion}
+    </div>
+  );
 
+  onSuggestionsFetchRequested = ({value}) => {
+    if (value == ""){
+      const moreFieldExamples = [ 'fun','productive', 'easy', 'fast', 'challenging']
+
+      store.dispatch({type: SET_TAG_SUGGESTIONS, payload: moreFieldExamples})
+    }else{
+      this.props.getTagsStartingWith(value)
+    }
+  } 
+
+  onSuggestionsClearRequested = () => {
+    this.setState({tagSuggestions:[]})
+  }
+
+  getSuggestionValue = (suggestion) => {
+    return suggestion 
+  }
+
+  handleChange = (e, { newValue }) => {
+    this.setState({text: newValue})
+    this.setState({isPlaceValid: true})
+    this.props.onChangeEvent(newValue)
+  }
+
+  shouldRenderSuggestions = () => {
+    return true;
+  }
   
   render() {
-    //in case the more field is less than 2 letters
-    var isShowError = this.props.isClickedButton && !this.props.isMoreValid
+    const inputProps = {
+      placeholder: '#easy / #fun / #productive ...',
+      value: this.state.text,
+      onChange: this.handleChange,
+    };
 
     return (
       <React.Fragment>
-        <div id="moreSelector" className="inlineBlock">
-          <div className="inlineBlock">
-            <input type="text" id="moreChooser" className="searchBarTextSquare" 
-            placeholder="#MoreInfo" onChange={this.moreOnChangeEvent} value={this.props.more} />
-            { isShowError ? <div className="errorText">plz fill More (3+ letters)</div> : <div className="invisible"> error </div> }
-          </div>
+        <div id="placeField" className="inlineBlock">
+          <Autosuggest
+            id="tagSelector"
+            suggestions={this.props.tagSuggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={this.getSuggestionValue}
+            renderSuggestion={this.renderSuggestion}
+            shouldRenderSuggestions={this.shouldRenderSuggestions}
+            inputProps={inputProps}
+            onChange={this.handleChange} 
+          />
+          <div className="invisible"> error </div>
         </div>
       </React.Fragment>
     )
@@ -53,7 +95,18 @@ class MoreChooser extends Component {
 function mapStateToProps(state) {
   return {
     isMoreValid: state.searchBarReducer.isMoreValid,
+    tagSuggestions: state.suggestionsReducer.tagSuggestions,
   };
 }
 
-export default connect(mapStateToProps)(MoreChooser);
+export default connect(mapStateToProps,{getTagsStartingWith})(MoreChooser);
+
+
+
+  //  {/* <div id="moreSelector" className="inlineBlock">
+  //           <div className="inlineBlock">
+  //             <input type="text" id="moreChooser" className="searchBarTextSquare" 
+  //             placeholder="#MoreInfo" onChange={this.moreOnChangeEvent} value={this.props.more} />
+  //             { isShowError ? <div className="errorText">plz fill More (3+ letters)</div> : <div className="invisible"> error </div> }
+  //           </div>
+  //         </div> */}

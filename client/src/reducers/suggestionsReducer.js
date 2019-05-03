@@ -1,9 +1,11 @@
 import {
   SET_PLACE_SUGGESTIONS,
+  SET_TAG_SUGGESTIONS,
 } from 'reducers/types'
 
 const initialState = {
   placeSuggestions: [],
+  tagSuggestions: [],
 };
 
 function suggestionsReducer(state = initialState, action) {
@@ -12,6 +14,11 @@ function suggestionsReducer(state = initialState, action) {
       return {
         ...state,
         placeSuggestions: action.payload,          
+      };
+    case SET_TAG_SUGGESTIONS:
+      return {
+        ...state,
+        tagSuggestions: action.payload,          
       };
     default:
       return state;

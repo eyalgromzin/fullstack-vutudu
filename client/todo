@@ -1,16 +1,3 @@
-    - auto complete - 
-        - when auto complete is empty with focus, show last searches.
-        - add auto complete to place
-        - add auto complete to more
-    
-    - in auto complete - put hard coded startup decisions - ones that will show without the need for typing. 
-        will show it on focus. 
-        add it to place, more.
-        suggestions like: house , kitchen, park, bus_station, bus
-        already created a places list in the mail
-    
-    - make all the website beautiful. refine the css!!!! make it professional looking.
-
     - create an "i" icon in the create idea, for explanation on hashtags and maybe more things
     
     - make all the searches and ideas work from the url , so the users will be able to save them to favorites
@@ -30,3 +17,16 @@
     - on bad fields, and search click, make search button red animation
 
     - change the like idea to 1 post request instead of 2 - home.
+
+    - add tooltips:
+        - place
+        - more
+        
+    - when auto complete is empty with focus, show last searches.       
+    
+    - make all the website beautiful. refine the css!!!! make it professional looking.
+
+    - create loading screen till the top ideas will load
+    - on focus: in case of field empty: show last searches
+    
+    - on login screen, remove the X button , and close it on blur.

@@ -10,7 +10,6 @@ import {
   SEARCH_SET_TIME, 
   SEARCH_SET_PLACE, 
   SEARCH_SET_MORE,
-  SEARCH_SET_IS_MORE_VALID,
   SEARCH_SET_IS_CLICKED_SEARCH,
   SEARCH_SET_IS_PLACE_VALID,
 } from 'reducers/types'
@@ -26,18 +25,10 @@ class SearchBar extends Component {
     return this.target.value.length > 3
   }
 
-  isMoreValid = () => {
-    return this.state.text.length == 0 || this.state.text.length >= 1
-  }
-
-  moreOnChangeEvent = (e) => {
-    this.state.text = e.target.value
-    
-    this.props.dispatch({type: SEARCH_SET_MORE, payload: e.target.value});
-    this.props.dispatch({type: SEARCH_SET_IS_MORE_VALID, payload: isMoreValid});
+  moreOnChangeEvent = (moreText) => {
+    this.props.dispatch({type: SEARCH_SET_MORE, payload: moreText});
     this.props.dispatch({type: SEARCH_SET_IS_CLICKED_SEARCH, payload: false});
     
-    var isMoreValid = this.isMoreValid()
   }
 
   isPlaceValid = (place) => {
@@ -67,7 +58,8 @@ class SearchBar extends Component {
           <div className="middlePlaceHolder" />
           <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
           <div className="middlePlaceHolder" />
-          <MoreChooser isClickedButton={this.props.isClickedSearch} onChangeEvent={this.moreOnChangeEvent} validationMethod={this.isNotEmpty} />
+          <MoreChooser isClickedButton={this.props.isClickedSearch} tagSuggestions={[]}
+            onChangeEvent={this.moreOnChangeEvent} validationMethod={this.isNotEmpty} />
           <SearchButton />
         </div>
       </div>

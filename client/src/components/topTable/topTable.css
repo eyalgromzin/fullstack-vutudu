@@ -37,5 +37,9 @@
     font-size: 35px;
     font-family: "Arial Black";
     margin-bottom: 10px;
-    
+}
+
+.topTableHeader{
+    font-size: 20px;
+    font-family: "Arial Black";
 }

@@ -22,10 +22,10 @@ class CreateIdeaBar extends Component {
     return placeText.length >= 1
   }
 
-  placeOnChangeEvent = (e) => {
-    var isPlaceValid = this.isPlaceValid(e.target.value)
+  placeOnChangeEvent = (placeText) => {
+    var isPlaceValid = this.isPlaceValid(placeText)
 
-    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: e.target.value});
+    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: placeText});
     this.props.dispatch({type: EDITABLE_IDEA_SET_IS_PLACE_VALID, payload: isPlaceValid});
   }
 

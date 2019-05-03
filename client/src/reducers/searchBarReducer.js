@@ -6,7 +6,6 @@ import {
   SEARCH_SET_NUM_OF_PEOPLE,
   SEARCH_SET_SEARCH_MORE_VALIDATION,
   SEARCH_SET_IS_PLACE_VALID,
-  SEARCH_SET_IS_MORE_VALID,
   SEARCH_SET_IS_CLICKED_SEARCH,
 } from 'reducers/types'
 
@@ -54,12 +53,6 @@ const initialState = {
           ...state,
           isPlaceValid: action.payload,   
           isSearchEnabled: state.isMoreValid && action.payload
-        };
-      case SEARCH_SET_IS_MORE_VALID:
-        return {
-          ...state,
-          isMoreValid: action.payload,   
-          isSearchEnabled: state.isPlaceValid && action.payload
         };
       case SEARCH_SET_IS_CLICKED_SEARCH:
         return {

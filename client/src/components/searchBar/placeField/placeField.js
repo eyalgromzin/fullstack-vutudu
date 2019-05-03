@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import './placeField.css';
 import '../searchBarCommonStyles.css'
-import { search } from 'components/searchBar/searchBarCommon'
 import { getPlacesStartingWith } from 'actions/autoSuggestActions'
 import { connect } from 'react-redux';
 import 'commonCss.css'
-import './placesAutoCompleteTheme.css'
+import '../autoCompleteTheme.css'
 import Autosuggest from 'react-autosuggest';
 import {
-  EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
+  SET_PLACE_SUGGESTIONS
 } from 'reducers/types'
-import { SET_IS_PLACE_DIRTY } from '../../../reducers/types';
+import store from 'store'
 
 
 class PlaceSelector extends Component {
@@ -26,6 +25,10 @@ class PlaceSelector extends Component {
     // if (this.props.placeSuggestions !== undefined){
     //   this.setState({placeSuggestions: this.props.placeSuggestions})
     // }
+  }
+
+  shouldRenderSuggestions = () => {
+    return true;
   }
 
   isPlaceValid = () => {
@@ -58,7 +61,13 @@ class PlaceSelector extends Component {
   }
 
   onSuggestionsFetchRequested = ({value}) => {
-    this.props.getPlacesStartingWith(value)
+    if (value == ""){
+      const places = [ 'home','kitchen', 'bus station', 'park', 'beach']
+
+      store.dispatch({type: SET_PLACE_SUGGESTIONS, payload: places})
+    }else{
+      this.props.getPlacesStartingWith(value)
+    }
   } 
  
   getSuggestionValue = (suggestion) => {
@@ -79,12 +88,10 @@ class PlaceSelector extends Component {
     var isShowError = (this.props.isClickedButton && !this.isPlaceValid()) || !this.state.isPlaceValid
 
     const inputProps = {
-      placeholder: '(home / kitchen / beach / bar / lawn / bus Station / ...)',
+      placeholder: 'home / kitchen / beach / bar / lawn / bus Station / ...',
       value: this.state.text,
       onChange: this.handlePlaceChange,
     };
-
-    // this.setState({placeSuggestions: this.props.placeSuggestions})
 
     return (
       <React.Fragment >
@@ -96,8 +103,8 @@ class PlaceSelector extends Component {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}
             renderSuggestion={this.renderSuggestion}
+            shouldRenderSuggestions={this.shouldRenderSuggestions}
             inputProps={inputProps}
-            // theme={} // - optional
             onChange={this.handlePlaceChange} 
             onBlur={this.onBlur}
           />

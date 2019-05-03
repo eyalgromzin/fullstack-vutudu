@@ -24,7 +24,7 @@ router.get('/:tagName', (req, res) => {   //
     }
   });
 
-// @route   POST api/hashTagNames/create
+// @route   POST api/tagNames/create
 // @desc    create tag name
 // @access  Public
 router.post('/create', (req, res) => {
@@ -44,6 +44,22 @@ router.post('/create', (req, res) => {
         })
     })
     
+});
+
+// @route   POST api/tagNames/get
+// @desc    get all place names starting with 'tagName'
+// @access  Public
+router.post('/get', (req, res) => {
+  var regexp = new RegExp("^"+ req.body.tagName);
+
+  hashTags.find({ name: regexp})
+  .then(
+    tagNames => 
+    res.json(tagNames)
+    )
+  .catch(error => {
+      console.error('error while creating place name: ', error);
+  })
 });
 
 module.exports = router;
