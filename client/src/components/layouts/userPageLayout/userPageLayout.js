@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './userLayout.css'
+import './userPageLayout.css'
 import { connect } from 'react-redux';
 import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
@@ -11,7 +11,7 @@ import {
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
   } from "reducers/types";
 
-class userLayout extends Component {
+class userPageLayout extends Component {
   constructor(props){
     super(props);
 
@@ -23,6 +23,7 @@ class userLayout extends Component {
     return (
       <React.Fragment>
         <div id="userLayout" >
+          <div class="pageName">User Data</div>
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
             <div id="UserIdeasTypeDropDown">
               <UserIdeasTypeDropDown />    
@@ -32,7 +33,7 @@ class userLayout extends Component {
                 <UserIdeasList ideas={this.props.currentPreviewedIdeas} updateViewToggle={this.props.updateToggle} />
               </div>
               :
-              "Empty"
+              "Empty Ideas List"
             }
           </div>
           <div id="userIdeaPreviewSide" >
@@ -61,4 +62,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(userLayout) //getLikedIdeas
+export default connect(mapStateToProps)(userPageLayout) //getLikedIdeas

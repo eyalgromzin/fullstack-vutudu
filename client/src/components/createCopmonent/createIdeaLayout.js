@@ -9,13 +9,16 @@ import 'components/layout.css'
 class createIdeaLayout extends Component {
   render() {
     return (
-      <div className="createMainContent">
-        <div id="fullCreateIdeaBar">
-          <CreateIdeaBar isClickedButton={this.props.isClickedButton} />
-          <CreateIdeaButton />
+      <React.Fragment>
+        <div class="pageName">Create</div>
+        <div className="createMainContent">
+          <div id="fullCreateIdeaBar">
+            <CreateIdeaBar isClickedButton={this.props.isClickedButton} />
+            <CreateIdeaButton />
+          </div>
+          <EditableIdeaCard existingTitle="" existingContent="" existingID="" isClickedButton={this.props.isClickedButton} />
         </div>
-        <EditableIdeaCard existingTitle="" existingContent="" existingID="" isClickedButton={this.props.isClickedButton} />
-      </div>
+      </React.Fragment>
     )
   }
 }

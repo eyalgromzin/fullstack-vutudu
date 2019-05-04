@@ -27,7 +27,7 @@
     height: 500px;
 }
 
-.ideaIndicators{
+.ideaStats{
     margin-bottom: 15px;
     margin-left: 30px;
     font-size: 30px;
@@ -72,8 +72,7 @@
     min-height: 350px;
     max-height: 550px;
     width: 95%;   /* acts as 90.00% */
-    margin: auto;
-    
+        display: table-cell;
 }
 
 #statusButtons{
@@ -165,6 +164,25 @@
     border-bottom-width: 1px;
 }
 
-#ideaActionButtonsInUser{
-    margin-left: 30px;
+#userIdeaActionButtonsSection{
+    display: table-cell;
+    height: 100%;
+    width: 5%;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+#userActionButtons{
+
+}
+
+#userIdeaCard{
+    display: table;
+}
+
+.ideaPropertyField{
+    padding: 2px 6px 4px 6px;
+    border: solid;
+    border-width: 1px;
+    background-color: white;
 }

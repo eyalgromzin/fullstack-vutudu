@@ -1,13 +1,16 @@
 prettying:
-    - change the place , time and # ppl indicators in user page look better
 
-    - move the delete and edit buttons to the center of the side of the idea, like in the main page.
+    - change the image to selected image on the side bar click - so it will be intuitive and known were the user is right now.
+    
+    - on bad fields, and search click, make search button red animation
 
     - create animation for when an idea is deleted from the user screen. - make the idea to 0 size animation!
 
-    - on bad fields, and search click, make search button red animation
+    - fix css on edit created idea
 
-    - make login screen prettier - rounded sides, almost white background ...
+    - on user page open, show like a block with the word "empty" in it. or even "select idea"
+        put the text in the middle of the block.
+
 
 functionality:
     - on idea delete, open the next idea if exists

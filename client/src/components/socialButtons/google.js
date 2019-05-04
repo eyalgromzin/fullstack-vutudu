@@ -29,6 +29,7 @@ class GoogleButton extends Component {
                 buttonText="Login with Google"
                 className="socialButton"
                 onSuccess={this.onsuccessGoogleLogin}
+                onFocus={this.props.onLoginScreenFocus}
                 onFailure={this.onFailGoogleLogin}
             />
         </div>

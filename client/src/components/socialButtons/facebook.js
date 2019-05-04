@@ -43,6 +43,7 @@ class facebook extends Component {
             cssClass="facebookButton"
             fields="name,email,picture"
             onClick={this.componentClicked}
+            onFocus={this.props.onLoginScreenFocus}
             callback={this.responseFacebook} />
       </div>
     )

@@ -12,23 +12,27 @@ class LoginScreen extends Component {
         hideLogInScreen();
     }
 
+    onLoginScreenFocus = (e) => {
+        var componentOfFocus = ""
+    }
+
     render() {
         if(!this.props.loggedIn && this.props.showLogin){  
             return (
-                <div id="loginScreen">
+                <div id="loginScreen" onFocus={this.onLoginScreenFocus}>
                     <div id="loginContent">
-                        <div>
+                        {/* <div>
                             <div id="loginXButton" onClick={this.closeLoginScreen}> X </div>
-                        </div>
+                        </div> */}
                         <div id="mainLogoLoginContainer">
                             <div id="loginScreenMainLogo"> Vutudu </div>
                         </div>
                         <div >  
                             <div className="LoginButtonContainer"> 
-                                <FacebookButton />
+                                <FacebookButton onLoginScreenFocus={this.onLoginScreenFocus} />
                             </div>
                             <div className="LoginButtonContainer"> 
-                                <GoogleButton />
+                                <GoogleButton onLoginScreenFocus={this.onLoginScreenFocus} />
                             </div>
                         </div>
                     </div>

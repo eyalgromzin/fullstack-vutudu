@@ -29,19 +29,21 @@ class CreateIdeaBar extends Component {
 
   render() {
     return (
-      <div id="createBar" class="inlineBlock">
-        <div id="createBarButtons">
-          <PlaceSelector tagID="createBarPlaceSelector" 
-            cssClass="createBarTextBox" 
-            placeSuggestions={[]}
-            placeOnChangeEvent={this.placeOnChangeEvent} 
-            isClickedButton={this.props.isClickedButton} 
-            place={this.props.place} />
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={0} />
-          <NumOfPeopleCreator cssClass="createBarDropDown" 
-            minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
-        </div>
-      </div> 
+      <React.Fragment>
+        <div id="createBar" class="inlineBlock">
+          <div id="createBarButtons">
+            <PlaceSelector tagID="createBarPlaceSelector" 
+              cssClass="createBarTextBox" 
+              placeSuggestions={[]}
+              placeOnChangeEvent={this.placeOnChangeEvent} 
+              isClickedButton={this.props.isClickedButton} 
+              place={this.props.place} />
+            <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={0} />
+            <NumOfPeopleCreator cssClass="createBarDropDown" 
+              minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
+          </div>
+        </div> 
+      </React.Fragment>
     )
   }
 }

@@ -3,6 +3,7 @@ import SearchBar from '../searchBar/searchBar'
 import IdeaCard from '../ideaCard/ideaCard'
 import TopTable from 'components/topTable/topTable'
 import 'commonCss.css'
+import 'components/layout.css'
 import { connect } from 'react-redux';
 import NoResultsFound from './noResultsFound'
 
@@ -18,6 +19,7 @@ class searchLayout extends Component {
     
     return (
       <React.Fragment>
+        <div class="pageName">search</div>
         <div className="searchMainContent">
           <SearchBar />
             

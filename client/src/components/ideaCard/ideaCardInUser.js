@@ -20,25 +20,40 @@ class IdeaCardInUser extends Component {
       <React.Fragment>
         {this.props.currentPreviewedIdeas.length > 0 ? 
           <div id="ideaCardWithTopBar">
-            <div className="ideaIndicators" >
+
+            <div className="ideaStats" >
               <div className="userPageIdeaIndicator">
-                place: {this.props.currentPreviewedIdea.place}
+                Place:<span class="ideaPropertyField">{this.props.currentPreviewedIdea.place}</span>
               </div>
               <div className="userPageIdeaIndicator">
-                # of ppl: {this.props.currentPreviewedIdea.minNumOfPeople}-{this.props.currentPreviewedIdea.maxNumOfPeople}
+                # People:
+                <span class="ideaPropertyField">
+                  {this.props.currentPreviewedIdea.minNumOfPeople}-{this.props.currentPreviewedIdea.maxNumOfPeople}
+                </span>
               </div>
             </div>
+
             <div id="ideaCardWithButtonsInUser">
-              <div id="ideaCardInUser"> 
-                <div className="ideaTitle">
-                  {this.props.currentPreviewedIdea.title}
+              <div id="userIdeaCard">
+                <div id="ideaCardInUser"> 
+                  <div className="ideaTitle">
+                    {this.props.currentPreviewedIdea.title}
+                  </div>
+                  <div id="ideaContentText"> 
+                    <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
+                      {this.props.currentPreviewedIdea.content}
+                    </Linkify>
+                  </div>
                 </div>
-                <div id="ideaContentText"> 
-                  <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
-                    {this.props.currentPreviewedIdea.content}
-                  </Linkify>
+
+                <div id="userIdeaActionButtonsSection">
+                  <div id="userActionButtons">
+                    <div><EditIdeaButton /></div>
+                    <div><DeleteIdeaButton idea={this.props.currentPreviewedIdea} /></div>
+                  </div>
                 </div>
               </div>
+
               <div id="cardIndicationButtons">
                 <div id="cardIndicators"> 
                   <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
@@ -46,10 +61,9 @@ class IdeaCardInUser extends Component {
                   <DifficultyIndicator enabled={false} idea={this.props.currentPreviewedIdea} />
                 </div>
               </div>
-              <div id="ideaActionButtonsInUser">
-                <EditIdeaButton />
-                <DeleteIdeaButton idea={this.props.currentPreviewedIdea} />
-              </div>
+
+              
+
           </div>
         </div>
         :
