@@ -38,6 +38,9 @@ class userPageLayout extends Component {
           </div>
           <div id="userIdeaPreviewSide" >
             <div id="userLayoutIdeaPreview">
+              {this.props.currentPreviewedIdeas.length == 0?
+                <div id="userIdeaCardDummy" > <div class="middleVerticalAlign">No Idea Selected </div></div> : ""
+              }
               { this.props.isIdeaEdited? 
                 <EditCardInUser />
                 :

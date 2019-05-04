@@ -41,6 +41,11 @@
     /* margin-top: 20px */
 }
 
+.middleVerticalAlign{
+    text-align: center;
+    margin-top: 200px;
+}
+
 #mainLogo{
     display: inline-block;
     color: white;
