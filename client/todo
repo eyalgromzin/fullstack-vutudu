@@ -1,7 +1,6 @@
 prettying:
-    - on bad fields, and search click, make search button red animation
-
     - create animation for when an idea is deleted from the user screen. - make the idea to 0 size animation!
+    - create better animation for when idea is created 
 
 
 functionality:

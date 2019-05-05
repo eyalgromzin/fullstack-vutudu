@@ -3,7 +3,7 @@ import { addIdeaToDB, updateTags } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import 'commonCss.css'
-import Notifications, {notify} from 'react-notify-toast';
+import {notify} from 'react-notify-toast';
 import { addHashTagsToDB } from 'actions/tagsActions'
 import { addPlaceToDBIfNotExists } from 'actions/autoSuggestActions'
 import { 
@@ -43,7 +43,7 @@ class createIdeaButton extends Component {
         };
 
         let myColor = { background: '#0E1717', text: "#FFFFFF" };
-        notify.show('Idea Created!', "success", 1000, myColor);
+        notify.show('Idea Created!', "Success", 1000, myColor);
 
         // Add item via createItem action
         this.props.addIdeaToDB(newItem, this.props.userID);

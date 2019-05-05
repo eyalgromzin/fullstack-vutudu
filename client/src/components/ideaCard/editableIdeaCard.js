@@ -81,7 +81,6 @@ class EditableIdeaCard extends Component {
                   placeholder="Title..." 
                   onBlur={this.onTitleBlur}
                   onChange={this.handleOnTitleChange}/>
-                {isShowTitleError? <span> *min 10 letter </span> : "" }
                 <Popup
                   trigger={<img src={require("images/info.png")} id="createInfoButton"/>}
                   position="right top"
@@ -96,13 +95,14 @@ class EditableIdeaCard extends Component {
                   </div>
                 </Popup>
               </div>
+              {isShowTitleError? <div class="fieldError"> 10+ letters </div> : "" }
               <textarea 
               type="text" id="newIdeaContent" 
               value={this.props.content == null ? "" : this.props.content }
               placeholder="Content..." 
               onBlur={this.onContentBlur}
               onChange={this.handleOnContentChange}/>
-              {isShowContentError? <span> *min 10 letter</span> : '' }
+              {isShowContentError? <div class="fieldError"> 10+ letters</div> : '' }
             </div>
           </div>
           <div id="newIdeaError"> {this.state.error} </div>

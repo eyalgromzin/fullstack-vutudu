@@ -188,3 +188,10 @@
     border-width: 1px;
     background-color: white;
 }
+
+.fieldError{
+    text-align: left;
+    margin-bottom: 10px;
+    color: red;
+    font-size: 23px;
+}

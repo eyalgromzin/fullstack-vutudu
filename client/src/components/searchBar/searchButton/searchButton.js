@@ -41,7 +41,10 @@ class SearchButton extends Component {
     return (
       <React.Fragment>
         {this.props.isSearching? 
-          <img src={require("images/loading.gif")} id="loadingSearchButton" />
+          <span>
+            <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton" onClick={this.handleSearchClick} /> 
+            <img src={require("images/loading2.gif")} id="loadingSearchButton" />
+          </span>
           : 
           <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton" onClick={this.handleSearchClick} /> 
         }

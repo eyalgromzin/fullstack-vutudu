@@ -1,7 +1,3 @@
-.listRow{
-    /* background-color: azure; */
-}
-
 .listRow:hover{
     background-color: coral;
     cursor: pointer;

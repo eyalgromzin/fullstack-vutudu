@@ -20,16 +20,15 @@ ideasTypeDictionary["Liked"] = "liked";
 ideasTypeDictionary["Created"] = "createdBy";
 
 class UserIdeasTypeDropDown extends Component {
-  
-
   options = [
-    { value: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS, label: 'Liked'},
-    { value: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS, label: 'Created'},
+    { value: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS, type: 'liked', label: 'Liked'},
+    { value: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS, type: 'created', label: 'Created'},
   ]
 
   defaultOption = this.options[0]
 
   componentDidMount() {
+    //for initial state to show 
     this.onChange({value: "USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS", label: "Liked"});
   }
 

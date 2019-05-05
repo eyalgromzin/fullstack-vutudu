@@ -45,13 +45,11 @@ class UserIdeasList extends Component {
       <React.Fragment>
         
           <div style={{overflow: 'auto', height: 525}}>
-            <div className="listOutline">
-              <ReactList
-                itemRenderer={this.renderItem}
-                length={this.props == null || this.props.ideas == null? 0 : this.props.ideas.length}
-                type='uniform'
-              />
-            </div>
+            <ReactList
+              itemRenderer={this.renderItem}
+              length={this.props == null || this.props.ideas == null? 0 : this.props.ideas.length}
+              type='uniform'
+            />
           </div>
       </React.Fragment>
     )
