@@ -91,7 +91,7 @@ class EditableIdeaCard extends Component {
                     <div id="infoContent">
                       <div>* be specific</div>
                       <div>* be brief</div>
-                      <div>* add links or images</div>
+                      <div>* add youtube, image links for clarity</div>
                     </div>
                   </div>
                 </Popup>

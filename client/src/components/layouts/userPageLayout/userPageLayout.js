@@ -5,7 +5,7 @@ import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
 import UserIdeasList from 'components/userIdeasList/userIdeasList'
 import IdeaCardInUser from 'components/ideaCard/ideaCardInUser'
-import EditCardInUser from 'components/ideaCard/editIdeaInUser';
+import EditCardInUser from 'components/ideaCard/editIdeaCardInUser';
 import { 
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
@@ -23,7 +23,7 @@ class userPageLayout extends Component {
     return (
       <React.Fragment>
         <div id="userLayout" >
-          <div class="pageName">User Data</div>
+          {/* <div class="pageName">User Data</div> */}
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
             <div id="UserIdeasTypeDropDown">
               <UserIdeasTypeDropDown />    

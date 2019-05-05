@@ -19,7 +19,7 @@ class searchLayout extends Component {
     
     return (
       <React.Fragment>
-        <div class="pageName">search</div>
+        {/* <div class="pageName">search</div> */}
         <div className="searchMainContent">
           <SearchBar />
             

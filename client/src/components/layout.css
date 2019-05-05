@@ -5,24 +5,50 @@
     height:110%;
     width:75px;
     background-color: black;
+    padding-top: 7px;
 }
 
 .leftBarIcon{
     display: block;
     margin: auto;
-    height:60px;
-    width:60px;
+    height: 50px;
+    width: 50px;
+    border: solid;
+    border-color: white;
+    border-radius: 22px;
+    border-width: 3px;
+    padding: 4px;
+    margin-bottom: 5px;
+}
+
+.leftBarIconSelected{
+    display: block;
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    border: solid;
+    border-color: white;
+    border-radius: 22px;
+    border-width: 3px;
+    padding: 4px;
+    margin-bottom: 5px;
+    background-color: slategrey;
 }
 
 #fullCreateIdeaBar{
     margin-bottom: 35px;
     padding-left: 20%;
     padding-top: 20px;
-    padding-bottom: 25px;
+    padding-bottom: 5px;
+    margin-top: 20px;
+    padding-bottom: 5px;
     background-color: cornflowerblue;
 }
 
 .pageName{
     margin-left: 90px;
     font-size: 30px;
+    border-bottom: solid;
+    display: inline-block;
+    margin-bottom: 7px;
 }

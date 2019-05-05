@@ -11,19 +11,35 @@ import {
 } from 'reducers/types'
 
 class SideBar extends Component {
-  showLogin = () => {
-    showLogInScreen();
+  constructor(props){
+    super(props)
+
+    this.state = {
+      currentPage: "search"
+    }
   }
 
   showNewIdeaScreen = (history) => {
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{  
+      this.setState({currentPage: "newIdea"})
       history.push('/create')
     }
   }
 
+  openUserPage = (history) => {
+    if(!this.props.loggedIn){
+      showLogInScreen();
+    }else{  
+      this.setState({currentPage: "user"})
+      history.push('/user')
+    }
+    
+  }
+
   searchClick = (history) => {
+    this.setState({currentPage: "search"})
     this.props.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: false});
     this.props.dispatch({type: CHANGE_SEARCHED_STATE, payload: false});
     return history.push('/search')
@@ -36,21 +52,24 @@ class SideBar extends Component {
       
             <Route render={({history}) => (
               <React.Fragment>
-                <img id="searchIdeasButton" src={require("images/search_white.png")} className="leftBarIcon verticalMiddleAlign tilt clickAnimation" 
-                  onClick={() => this.searchClick(history)}    // () => { history.push('/search') } 
-                />
-                <img id="newIdeaButton" src={require("images/writeWhite.png")} className="leftBarIcon verticalMiddleAlign tilt clickAnimation"
-                  onClick={() =>  this.showNewIdeaScreen(history) }    //() => { history.push('/create') }
-                />
+                <img id="searchIdeasButton" src={require("images/searchWhiteWithoutBorder.png")} 
+                className={this.state.currentPage == "search"? 
+                  "leftBarIconSelected verticalMiddleAlign tilt clickAnimation" : 
+                  "leftBarIcon verticalMiddleAlign tilt clickAnimation" }
+                  onClick={() => this.searchClick(history)} />
 
-                {
-                  this.props.loggedIn?
-                  <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle tilt clickAnimation"
-                  onClick={() => { history.push('/user') }} />
-                  :
-                  <img id="userButton" src={require("images/userIconWhite.png")} className="leftBarIcon verticalMiddleAlign alignMiddle tilt clickAnimation"
-                  onClick={this.showLogin} />
-                }
+                <img id="newIdeaButton" src={require("images/writeWhiteNoBorder.png")} 
+                className={this.state.currentPage == "newIdea"? 
+                "leftBarIconSelected verticalMiddleAlign tilt clickAnimation" : 
+                "leftBarIcon verticalMiddleAlign tilt clickAnimation" }
+                  onClick={() => this.showNewIdeaScreen(history) } />
+
+                <img id="userButton" src={require("images/userWhiteNoBorder.png")} 
+                className={this.state.currentPage == "user"? 
+                "leftBarIconSelected verticalMiddleAlign tilt clickAnimation" : 
+                "leftBarIcon verticalMiddleAlign tilt clickAnimation" }
+                onClick={() => this.openUserPage(history) 
+                  } />
 
                 <div id="mainLogo" className="vertical-text"> VUTUDU </div> 
 

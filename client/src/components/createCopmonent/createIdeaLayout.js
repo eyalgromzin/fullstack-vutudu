@@ -10,7 +10,7 @@ class createIdeaLayout extends Component {
   render() {
     return (
       <React.Fragment>
-        <div class="pageName">Create</div>
+        {/* <div className="pageName">Create</div> */}
         <div className="createMainContent">
           <div id="fullCreateIdeaBar">
             <CreateIdeaBar isClickedButton={this.props.isClickedButton} />

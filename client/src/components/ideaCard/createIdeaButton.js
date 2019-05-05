@@ -57,10 +57,10 @@ class createIdeaButton extends Component {
   render() {
     return (
         <React.Fragment>
-        {/* // <div className="alignRight"> */}
-          <div id="createIdeaButton" class="inlineBlock" onClick={this.handleCreateIdeaClick}> create </div>
-          <Notifications options={{zIndex: 200, top: '35px' , wrapperId:'toastWrapperID', id:'toastID' ,animationDuration: 2000 }} />
-        {/* // </div> */}
+          <div class="inlineBlock">
+            <div id="createIdeaButton" class="inlineBlock" onClick={this.handleCreateIdeaClick}> create </div>
+            <div class="invisible"> error </div>
+          </div>
         </React.Fragment>
     )
   }
