@@ -52,7 +52,7 @@ class SearchBar extends Component {
         <div id="searchBarButtons">
           <PlaceField tagID="searchBarPlaceSelector" isClickedButton={this.props.isClickedSearch}
           placeOnChangeEvent={this.placeOnChangeEvent} validationMethod={this.isNotEmpty} placeSuggestions={[]}/>
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} time={10} cssClass="searchBarDropDownSquare" />          
+          <TimePicker onChangeEvent={this.timeOnChangeEvent} time={this.props.time} cssClass="searchBarDropDownSquare" />          
           <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
           <MoreChooser isClickedButton={this.props.isClickedSearch} tagSuggestions={[]}
             onChangeEvent={this.moreOnChangeEvent} validationMethod={this.isNotEmpty} />

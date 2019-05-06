@@ -4,6 +4,7 @@ import '../searchBarCommonStyles.css'
 import { search } from '../searchBarCommon'
 import store from 'store'
 import 'commonCss.css'
+import { connect } from 'react-redux'
 
 export default class TimePicker extends Component {
   render() {
@@ -16,7 +17,7 @@ export default class TimePicker extends Component {
       <React.Fragment>
         <div id="timePickerField" className="inlineBlock">
           <div class="fieldHeader">Time</div>
-          <select id="timeChooser" value={selectedValue} onChange={this.props.onChangeEvent} onKeyDown={this.placeFieldKeyUp} className={this.props.cssClass}>
+          <select id="timeChooser" value={this.props.time} onChange={this.props.onChangeEvent} onKeyDown={this.placeFieldKeyUp} className={this.props.cssClass}>
             <option value="5" className="timeChooserOption">5 min</option>
             <option value="10" className="timeChooserOption">10 min</option>
             <option value="15" className="timeChooserOption">15 min</option>

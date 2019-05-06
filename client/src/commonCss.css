@@ -17,7 +17,9 @@
 }
 
 .errorText{
-    /* width: 27%; */
+    color: beige;
+    font-weight: bolder;
+    font-size: 15px;
 }
 
 .invisible{

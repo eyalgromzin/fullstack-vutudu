@@ -7,6 +7,7 @@ import editableIdeaReducer from './editableIdeaReducer'
 import userPageReducer from './userPageReducer'
 import topTableReducer from './topTableReducer'
 import suggestionsReducer from './suggestionsReducer'
+import {reducer as toastrReducer} from 'react-redux-toastr'
 
 const rootReducer = combineReducers({
   searchBarReducer: searchBarReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   userPageReducer: userPageReducer,
   topTableReducer: topTableReducer,
   suggestionsReducer: suggestionsReducer,
+  toastr: toastrReducer
 })
  
 export default rootReducer

@@ -9,10 +9,12 @@ import {
   SET_TOP_HARD_IDEAS,
   SET_TOP_LIKED_IDEAS,
   SET_IS_SEARCHING,
+  USER_PAGE_SHOW_NEXT_CREATED_IDEA,
 } from 'reducers/types'
 import { emptyUserPreviewedIdea } from 'actions/userActions'
-import { USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS } from '../reducers/types';
+import { USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS } from '../reducers/types'
 import store from 'store'
+import { showIdeaInUserCreated } from 'components/uiActions/userPageActions'
 
 export const updateIdeaIndicator = (loggedInUserID,idea,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName) => dispatch => {
   console.log('in ideaActions -> updateIdeaData(userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName)')
@@ -209,8 +211,14 @@ export const deleteIdea = (userID, ideaID) => dispatch => {
         type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
       });
 
+      dispatch({
+        type: USER_PAGE_SHOW_NEXT_CREATED_IDEA,
+      });
+
+      
       //empty current idea in user page
-      emptyUserPreviewedIdea();
+      // emptyUserPreviewedIdea();
+
     })
   })
 

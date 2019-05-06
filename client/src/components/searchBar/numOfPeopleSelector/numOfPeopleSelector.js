@@ -30,7 +30,7 @@ class NumOfPeopleSelector extends Component {
       <React.Fragment>
         <div id="numOfPeopleSelector" className="inlineBlock">
           <div class="fieldHeader"># People</div>
-          <select id="numOfPeopleChooser" className={this.props.cssClass} value={2}
+          <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.props.numOfPeople}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
             <option value="1" className="timeChooserOption">1</option>
             <option value="2" className="timeChooserOption">2</option>
@@ -49,4 +49,10 @@ class NumOfPeopleSelector extends Component {
   }
 }
 
-export default connect()(NumOfPeopleSelector);
+function mapStateToProps(state) {
+  return {
+    numOfPeople: state.searchBarReducer.numOfPeople,
+  };
+}
+
+export default connect(mapStateToProps)(NumOfPeopleSelector);

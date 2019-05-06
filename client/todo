@@ -1,10 +1,5 @@
-prettying:
-    - create animation for when an idea is deleted from the user screen. - make the idea to 0 size animation!
-    - create better animation for when idea is created 
-
-
 functionality:
-    - on idea delete, open the next idea if exists
+    - make title unique?
 
     - create loading screen till the top ideas will load
 

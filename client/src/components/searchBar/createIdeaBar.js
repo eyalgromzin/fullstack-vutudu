@@ -3,7 +3,7 @@ import PlaceSelector from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
 import TimePicker from './timePicker/timePicker'
 import {
-  CREATE_IDEA_SET_TIME,
+  EDITABLE_IDEA_SET_TIME,
   EDITABLE_IDEA_SET_PLACE,
   EDITABLE_IDEA_SET_IS_PLACE_VALID
 } from 'reducers/types'
@@ -13,7 +13,7 @@ import 'commonCss.css'
 
 class CreateIdeaBar extends Component {
   timeOnChangeEvent = (e) => {
-    this.props.dispatch({type: CREATE_IDEA_SET_TIME, payload: Number(e.target.value)});
+    this.props.dispatch({type: EDITABLE_IDEA_SET_TIME, payload: Number(e.target.value)});
   }
 
   isPlaceValid = (placeText) => {
@@ -38,7 +38,7 @@ class CreateIdeaBar extends Component {
               placeOnChangeEvent={this.placeOnChangeEvent} 
               isClickedButton={this.props.isClickedButton} 
               place={this.props.place} />
-            <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={0} />
+            <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} />
             <NumOfPeopleCreator cssClass="createBarDropDown" 
               minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
           </div>
@@ -50,7 +50,8 @@ class CreateIdeaBar extends Component {
 
 function mapStateToProps(state) {
   return {
-    isClickedButton: state.editableIdeaReducer.isClickedButton
+    isClickedButton: state.editableIdeaReducer.isClickedButton,
+    time: state.editableIdeaReducer.time
   };
 }
 

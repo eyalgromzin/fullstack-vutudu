@@ -20,7 +20,7 @@ const initialState = {
     title: '',
     content: '',
     place: '',
-    time: 0,
+    time: 5,
     minNumOfPeople: 2,
     maxNumOfPeople: 4,
     isButtonEnabled: false,   //refers to create / update

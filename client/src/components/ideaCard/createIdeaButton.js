@@ -9,6 +9,7 @@ import { addPlaceToDBIfNotExists } from 'actions/autoSuggestActions'
 import { 
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
 } from 'reducers/types'
+import {toastr} from 'react-redux-toastr'
 
 class createIdeaButton extends Component {
   getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
@@ -43,7 +44,9 @@ class createIdeaButton extends Component {
         };
 
         let myColor = { background: '#0E1717', text: "#FFFFFF" };
-        notify.show('Idea Created!', "Success", 1000, myColor);
+        //
+        // notify.show('Idea Created!', "Success", 1000, myColor);
+        toastr.success('Success', 'Idea Created!')
 
         // Add item via createItem action
         this.props.addIdeaToDB(newItem, this.props.userID);

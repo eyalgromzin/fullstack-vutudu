@@ -5,8 +5,8 @@ import AppNavbar from './components/AppNavbar';
 import { Provider } from 'react-redux';
 import store from 'store'
 import Layout from './layout/layout'
-
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import ReduxToastr from 'react-redux-toastr'
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 import './App.css';
 
 class App extends Component {
@@ -14,11 +14,23 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <div className="App">
-          <Layout />
-        </div>
-      </Provider>
+      <React.Fragment>  
+        <link href="https://diegoddox.github.io/react-redux-toastr/7.1/react-redux-toastr.min.css" rel="stylesheet" type="text/css"></link>    
+        <Provider store={store}>
+          <div className="App">
+            <Layout />
+            <ReduxToastr
+            timeOut={2000}
+            newestOnTop={false}
+            preventDuplicates
+            position="top-center"
+            transitionIn="fadeIn"
+            transitionOut="fadeOut"
+            progressBar
+            closeOnToastrClick/>
+          </div>
+        </Provider>
+      </React.Fragment>
     );
   }
 }

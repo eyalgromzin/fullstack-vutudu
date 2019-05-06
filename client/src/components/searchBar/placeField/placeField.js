@@ -96,7 +96,7 @@ class PlaceSelector extends Component {
     return (
       <React.Fragment >
         <div id="placeField" className="inlineBlock">
-          <div class="fieldHeader">Place</div>
+          <div className="fieldHeader">Place</div>
           <Autosuggest
             id="placeSelector"
             suggestions={this.props.placeSuggestions}
