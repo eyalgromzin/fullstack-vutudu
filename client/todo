@@ -1,11 +1,13 @@
-functionality:
-    - make title unique?
-
+last things:
     - create loading screen till the top ideas will load
 
-    - on login screen, remove the X button , and close it on blur.
-
     - make all the searches and ideas work from the url , so the users will be able to save them to favorites
+
+    - make title unique?
+
+    - design user page again.
+        - remove the shadow 
+        - change css and html on empty liked/created ideas
 
 ---------------------------------------------------- FINISH ---------------------------------------------------------------
 

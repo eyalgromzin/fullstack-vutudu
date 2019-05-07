@@ -19,3 +19,10 @@
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
 }
+
+#mainLoadingScreen{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: beige;
+}

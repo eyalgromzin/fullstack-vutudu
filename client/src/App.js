@@ -17,6 +17,9 @@ class App extends Component {
       <React.Fragment>  
         <link href="https://diegoddox.github.io/react-redux-toastr/7.1/react-redux-toastr.min.css" rel="stylesheet" type="text/css"></link>    
         <Provider store={store}>
+          <div id="mainLoadingScreen">
+            <img src={require("images/loading2.gif")} id="loadingSearchButton" />
+          </div>
           <div className="App">
             <Layout />
             <ReduxToastr
