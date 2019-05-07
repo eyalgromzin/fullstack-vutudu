@@ -10,6 +10,7 @@ import {
   SET_TOP_LIKED_IDEAS,
   SET_IS_SEARCHING,
   USER_PAGE_SHOW_NEXT_CREATED_IDEA,
+  SET_IS_MAIN_LOADING
 } from 'reducers/types'
 import { emptyUserPreviewedIdea } from 'actions/userActions'
 import { USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS } from '../reducers/types'
@@ -146,6 +147,11 @@ export const updateTopIdeas = () => dispatch => {
     dispatch({
       type: SET_TOP_HARD_IDEAS,
       payload: res.data
+    });
+
+    dispatch({
+      type: SET_IS_MAIN_LOADING, 
+      payload: false
     });
   })
 

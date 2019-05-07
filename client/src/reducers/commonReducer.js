@@ -2,7 +2,8 @@ import { CHANGE_SEARCHED_STATE,
   CHANGE_PAGE_TO_CREATE_IDEA,
   CHANGE_PAGE_TO_SHOW_IDEAS,
   CHANGE_LOGGED_IN_STATE,
-  CHANGE_SHOW_LOGIN_STATE
+  CHANGE_SHOW_LOGIN_STATE,
+  SET_IS_MAIN_LOADING
  } from 'reducers/types'
 
 const initialState = {
@@ -10,6 +11,7 @@ const initialState = {
   loggedIn: false,
   searched: false,
   showLogin: false,
+  isMainLoading: false,
 };
 
 
@@ -40,6 +42,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         showLogin: action.payload
+      }
+    case SET_IS_MAIN_LOADING:
+      return {
+        ...state,
+        isMainLoading: action.payload
       }
     default:
       return state;

@@ -9,20 +9,27 @@ import userPageLayout from 'components/layouts/userPageLayout/userPageLayout';
 import SideBar from 'components/sideBar'
 import { updateTopIdeas } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
+import {
+  SET_IS_MAIN_LOADING
+} from 'reducers/types'
 
 class Layout extends Component {
   componentWillMount(){
     //get top table results
+    this.props.dispatch({type: SET_IS_MAIN_LOADING, payload: true})
     this.props.updateTopIdeas();
   }
   
   render() {
     return (
       <React.Fragment>
-        <LoginScreen />
+        {this.props.isMainLoading?
         <div id="mainLoadingScreen">
-          <img src={require("images/loading2.gif")} id="loadingSearchButton"  alt="" />
+          <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
         </div>
+        : ""
+        }
+        <LoginScreen />
         <Router>
           <React.Fragment>
               <SideBar />
@@ -48,6 +55,7 @@ function mapStateToProps(state) {
   return {
     loggedIn: state.commonReducer.loggedIn,
     userID: state.userPageReducer.loggedInUserID,
+    isMainLoading: state.commonReducer.isMainLoading
   };
 }
 

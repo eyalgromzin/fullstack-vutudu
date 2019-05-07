@@ -1,11 +1,9 @@
 last things:
-    - create loading screen till the top ideas will load
+    1 make all the searches and ideas work from the url, so the users will be able to save them to favorites and share the idea.
 
-    - make all the searches and ideas work from the url , so the users will be able to save them to favorites
+    2 make title unique? - so there wont be any duplicates - its a start
 
-    - make title unique?
-
-    - design user page again.
+    3 design user page again.
         - remove the shadow 
         - change css and html on empty liked/created ideas
 

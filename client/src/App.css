@@ -21,8 +21,15 @@
 }
 
 #mainLoadingScreen{
+  z-index: 5;
   position: absolute;
+  top: 0px;
   height: 100%;
   width: 100%;
   background-color: beige;
+  text-align: center;
+}
+
+#mainLoadingImg{
+  margin-top: 25%
 }
