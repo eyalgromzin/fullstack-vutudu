@@ -112,8 +112,8 @@ class DifficultyIndicator extends Component {
 
     return (
       <div id="difficultyIndicator">
-        <img src={require("images/difficulty.png")} id="difficultyImage" className="bottomButton"/>
-        <img src={addedHard ? require("images/upArrowHighlighted.png"): require("images/upArrow.png")} 
+        <img src={require("images/difficulty.png")} id="difficultyImage" alt=""  className="bottomButton"/>
+        <img src={addedHard ? require("images/upArrowHighlighted.png"): require("images/upArrow.png")}   alt="" 
           id="increaseDifficulty" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleAddHardClick}/>
 
         {this.props.idea === undefined || this.props.idea.addedHard === undefined ? 0 : this.props.idea.addedHard.length}

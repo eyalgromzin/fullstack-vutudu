@@ -42,9 +42,6 @@ class LoginScreen extends Component {
             return (
                 <div id="loginScreen">    
                     <div id="loginContent" onClick={this.onLoginBlur} ref={this.setWrapperRef}>
-                        {/* <div>
-                            <div id="loginXButton" onClick={this.closeLoginScreen}> X </div>
-                        </div> */}
                         <div id="mainLogoLoginContainer">
                             <div id="loginScreenMainLogo"> Vutudu </div>
                         </div>
@@ -73,9 +70,9 @@ function mapStateToProps(state) {
         loggedIn: state.commonReducer.loggedIn,
         showLogin: state.commonReducer.showLogin,
         userID: state.userPageReducer.loggedInUserID,
-
     }
 }
+
 
 export default connect(mapStateToProps)(LoginScreen);  //mapStateToProps
 

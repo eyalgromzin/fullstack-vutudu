@@ -113,14 +113,14 @@ class LikeDislike extends Component {
 
     return (
       <div className="bottomIndicator">
-        <img src={require("images/like.png")} id="likeButton" className={"bottomButton"}
+        <img src={require("images/like.png")} id="likeButton" className={"bottomButton"} alt="" 
           onClick={this.handleLikeClick}/>
         {this.props.idea.liked === undefined ? 0 : this.props.idea.liked.length}
-        <img src={clickedLike ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} 
+        <img src={clickedLike ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")}  alt="" 
           onClick={this.handleLikeClick} className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} />
         
         {this.props.idea.disliked === undefined ? 0 : this.props.idea.disliked.length}
-        <img src={clickedDislike ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} 
+        <img src={clickedDislike ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")}  alt="" 
           id="dislikeButton" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleDislikeClick}/>
         
         <span> ({ this.props.idea.liked === undefined || this.props.idea.disliked === undefined ? 0 : Math.round((this.props.idea.liked.length/((this.props.idea.liked.length + this.props.idea.disliked.length) == 0? 1 : (this.props.idea.liked.length + this.props.idea.disliked.length)) * 100))}%)</span>

@@ -20,6 +20,9 @@ class Layout extends Component {
     return (
       <React.Fragment>
         <LoginScreen />
+        <div id="mainLoadingScreen">
+          <img src={require("images/loading2.gif")} id="loadingSearchButton"  alt="" />
+        </div>
         <Router>
           <React.Fragment>
               <SideBar />

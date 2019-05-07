@@ -107,7 +107,7 @@ class TimeIndicator extends Component {
 
     return (
       <div className="bottomIndicator">
-        <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image"/>
+        <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image" />
         <img src={addedTimeMinus? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} 
           id="decreaseTime" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} 
           onClick={this.addTimeMinusClick} alt="decrease time"/>

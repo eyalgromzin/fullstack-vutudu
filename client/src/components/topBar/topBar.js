@@ -20,18 +20,18 @@ class TopBar extends Component {
     return (
       <div id="TopBar mainContent">
         <div className="mainContent"> 
-          <img src={require("images/logo3.png")} className="topBarLogo verticalMiddleAlign" />
+          <img src={require("images/logo3.png")} className="topBarLogo verticalMiddleAlign"  alt="" />
           <div id="mainLogo"> VUTUDU </div> 
             <Route render={({history}) => (
               <React.Fragment>
                 <img id="userButton" src={require("images/user.png")} className="topBarIcon verticalMiddleAlign alignRight"
-                  onClick={() => { history.push('/user') }}
+                  onClick={() => { history.push('/user') }} alt="" 
                 />
                 <img id="newIdeaButton" src={require("images/newIdea.png")} className="topBarIcon verticalMiddleAlign alignRight"
-                  onClick={() => { history.push('/create') }}
+                  onClick={() => { history.push('/create') }} alt="" 
                 />
                 <img id="searchIdeasButton" src={require("images/search.png")} className="topBarIcon verticalMiddleAlign alignRight" 
-                  onClick={() => { history.push('/search') }}
+                  onClick={() => { history.push('/search') }} alt="" 
                 />
               </React.Fragment>
             )} />

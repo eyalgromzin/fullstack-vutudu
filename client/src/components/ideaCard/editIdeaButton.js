@@ -22,7 +22,7 @@ class EditIdeaButton extends Component {
       <React.Fragment>
         { this.props.currentPreviewedIdeaType == "Created" && this.props.currentPreviewedIdea != null 
             && !this.props.isIdeaEdited ? 
-          <img src={require("images/writeBlack.png")} id="editIdeaButton" 
+          <img src={require("images/writeBlack.png")} alt=""  id="editIdeaButton" 
           onClick={() => {
               this.editIdea()
             }}  />  

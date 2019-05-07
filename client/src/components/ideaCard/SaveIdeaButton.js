@@ -41,7 +41,7 @@ constructor(props){
       <React.Fragment>
         {
           this.props.isIdeaEdited ?
-          <img src={require("images/save.png")} id="saveIdeaButton" 
+          <img src={require("images/save.png")} id="saveIdeaButton"  alt="" 
           onClick={() => {
               this.saveIdea()
             }} />  

@@ -82,7 +82,7 @@ class EditableIdeaCard extends Component {
                   onBlur={this.onTitleBlur}
                   onChange={this.handleOnTitleChange}/>
                 <Popup
-                  trigger={<img src={require("images/info.png")} id="createInfoButton"/>}
+                  trigger={<img src={require("images/info.png")} alt="" id="createInfoButton"/>}
                   position="right top"
                   on="hover">
                   <div id="infoButton">

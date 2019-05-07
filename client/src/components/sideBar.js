@@ -55,19 +55,19 @@ class SideBar extends Component {
                 <img id="searchIdeasButton" src={require("images/searchWhiteWithoutBorder.png")} 
                 className={this.state.currentPage == "search"? 
                   "leftBarIconSelected verticalMiddleAlign tilt clickAnimation" : 
-                  "leftBarIcon verticalMiddleAlign tilt clickAnimation" }
+                  "leftBarIcon verticalMiddleAlign tilt clickAnimation" } alt="" 
                   onClick={() => this.searchClick(history)} />
 
                 <img id="newIdeaButton" src={require("images/writeWhiteNoBorder.png")} 
                 className={this.state.currentPage == "newIdea"? 
                 "leftBarIconSelected verticalMiddleAlign tilt clickAnimation" : 
-                "leftBarIcon verticalMiddleAlign tilt clickAnimation" }
+                "leftBarIcon verticalMiddleAlign tilt clickAnimation" } alt="" 
                   onClick={() => this.showNewIdeaScreen(history) } />
 
                 <img id="userButton" src={require("images/userWhiteNoBorder.png")} 
                 className={this.state.currentPage == "user"? 
                 "leftBarIconSelected verticalMiddleAlign tilt clickAnimation" : 
-                "leftBarIcon verticalMiddleAlign tilt clickAnimation" }
+                "leftBarIcon verticalMiddleAlign tilt clickAnimation" } alt="" 
                 onClick={() => this.openUserPage(history) 
                   } />
 
