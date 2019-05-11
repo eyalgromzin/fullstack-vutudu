@@ -19,7 +19,7 @@ class SearchBar extends Component {
   constructor(props){
     super(props)
 
-    console.log('testing redux: in constructor')
+    // console.log('testing redux: in constructor')
   }
 
   timeOnChangeEvent = (value) => {
@@ -53,7 +53,7 @@ class SearchBar extends Component {
   }
 
   render(){
-    console.log('testing redux: in render')
+    // console.log('testing redux: in render')
 
     return (
       <div id="searchBar" className="mainContent">
@@ -74,7 +74,7 @@ class SearchBar extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log('testing redux: in mapStateToProps')
+  // console.log('testing redux: in mapStateToProps')
 
   return {
     isMoreValid: state.searchBarReducer.isMoreValid,

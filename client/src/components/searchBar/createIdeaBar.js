@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux';
 import './searchBarCommonStyles.css'
 import 'commonCss.css'
+import PlaceField from './placeField/placeField'
 
 class CreateIdeaBar extends Component {
   timeOnChangeEvent = (value) => {
@@ -27,18 +28,26 @@ class CreateIdeaBar extends Component {
     this.props.dispatch({type: EDITABLE_IDEA_SET_IS_PLACE_VALID, payload: isPlaceValid});
   }
 
+  isNotEmpty = (e) => {
+    return this.target.value.length > 3
+  }
+
   render() {
     return (
       <React.Fragment>
         <div id="createBar" className="inlineBlock">
           <div id="createBarButtons">
-            <PlaceSelector tagID="createBarPlaceSelector" 
+            {/* <PlaceField type="text" 
+              tagID="createBarPlaceSelector" 
               cssClass="createBarTextBox" 
               placeSuggestions={[]}
               placeOnChangeEvent={this.placeOnChangeEvent} 
               isClickedButton={this.props.isClickedButton} 
-              place={this.props.place} />
-            <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} />
+              place={this.props.place} /> */}
+            <PlaceField tagID="createBarPlaceSelector" isClickedButton={this.props.isClickedButton}
+              placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
+              validationMethod={this.isNotEmpty} placeSuggestions={[]}/>
+            <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} /> 
             <NumOfPeopleCreator cssClass="createBarDropDown" 
               minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
           </div>
@@ -51,7 +60,8 @@ class CreateIdeaBar extends Component {
 function mapStateToProps(state) {
   return {
     isClickedButton: state.editableIdeaReducer.isClickedButton,
-    time: state.editableIdeaReducer.time
+    time: state.editableIdeaReducer.time,
+    place: state.editableIdeaReducer.place,
   };
 }
 

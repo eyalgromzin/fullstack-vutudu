@@ -1,6 +1,4 @@
 last things:
-  - on idea share: will send url, https://localhost:3000/idea/<idea id>
-
   - on idea change, change also the url , so he will be able to just save to favorites.
 
   - make title unique - so there wont be any duplicates

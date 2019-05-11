@@ -16,3 +16,38 @@
     width: 200%;
     margin-left: 18px;
 }
+
+.dialogHeader{
+    padding-bottom: 3px;
+    height: 20px;
+    font-size: 20px;
+    border-bottom: solid;
+    border-bottom-width: 2px;
+    margin-bottom: 10px;
+}
+
+.ReactModal__Overlay{
+    opacity: 0.95;
+}
+
+#shareDialogClose{
+    float: right;
+    margin-right: 20px;
+}
+
+#shareDialogButtonsContainer{
+    margin-bottom: 10px;
+}
+
+.SocialMediaShareButton{
+    display: inline-block;
+}
+
+#shareCloseButton{
+    float: right;
+    padding-bottom: 3px;
+}
+
+#shareDialog{
+    padding: 30px;
+}

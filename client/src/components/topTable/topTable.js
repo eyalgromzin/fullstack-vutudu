@@ -8,6 +8,7 @@ import {
   SET_TOP_TABLE_IS_IDEA_CLICKED,
   SET_TOP_TABLE_IDEA,
 } from 'reducers/types'
+import { SET_CURRENT_IDEA } from '../../reducers/types';
 
 //on click, open the idea in the middle like in search
 //remove table on search
@@ -18,6 +19,7 @@ class topTable extends Component {
 
     //the idea should show in the middle.
     store.dispatch({type: SET_TOP_TABLE_IDEA, payload: likedIdea})
+    store.dispatch({type: SET_CURRENT_IDEA, payload: likedIdea})
   }
 
   showHardIdea = (hardIdea) => {
@@ -26,6 +28,7 @@ class topTable extends Component {
     
     //the idea should show in the middle.
     store.dispatch({type: SET_TOP_TABLE_IDEA, payload: hardIdea})
+    store.dispatch({type: SET_CURRENT_IDEA, payload: hardIdea})
   }
 
   renderLikedItem = (index, key) => {  //key is running number
