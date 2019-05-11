@@ -10,7 +10,7 @@ import {
 
 class NumOfPeopleCreator extends Component {
   minNumOfPeopleChange = (event) => {
-    this.props.dispatch({ type: CREATE_IDEA_SET_MIN_PEOPLE, payload: Number(event.target.value) }); //Number()
+    this.props.dispatch({ type: CREATE_IDEA_SET_MIN_PEOPLE, payload: Number(event.target.value) }); 
   }
 
   maxNumOfPeopleChange = (event) => {

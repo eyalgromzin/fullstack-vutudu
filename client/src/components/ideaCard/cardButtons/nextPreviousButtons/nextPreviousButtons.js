@@ -7,15 +7,11 @@ import CardCountInfo from '../cardCountInfo/cardCountInfo'
 
 
  class IdeaNextPreviousButtons extends Component {
-  constructor(props){
-    super(props);
-
-    this.rightArrowClick = this.rightArrowClick.bind(this);
-    this.leftArrowClick = this.leftArrowClick.bind(this);
-  }
-
-  rightArrowClick(){
+  rightArrowClick = () => {
     var ideasCount = this.props.ideas.length;
+    if(ideasCount <= 1){
+      return 
+    }
     var currentIdeaIndex = this.props.currentIdeaIndex;
     currentIdeaIndex++;
     if(currentIdeaIndex == ideasCount){
@@ -27,8 +23,11 @@ import CardCountInfo from '../cardCountInfo/cardCountInfo'
     this.props.dispatch({ type: CHANGE_CURRENT_IDEA_INDEX, payload: currentIdeaIndex });
   }
 
-  leftArrowClick(){
+  leftArrowClick = () => {
     var ideasCount = this.props.ideas.length;
+    if(ideasCount <= 1){
+      return 
+    }
     var currentIdeaIndex = this.props.currentIdeaIndex;
     currentIdeaIndex--;
     if(currentIdeaIndex == -1){

@@ -12,7 +12,9 @@ import {
   EDITABLE_IDEA_SET_IS_PLACE_VALID,
   EDITABLE_IDEA_SET_IS_TITLE_VALID,
   EDITABLE_IDEA_SET_IS_CONTENT_VALID,
-  EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
+  EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
+  CREATE_IDEA_SET_MAX_PEOPLE,
+  CREATE_IDEA_SET_MIN_PEOPLE,
 } from 'reducers/types'
 
 const initialState = {
@@ -66,12 +68,22 @@ function reducer(state = initialState, action) {
       isTitleValid: action.payload > 2
     };
     case EDITABLE_IDEA_SET_CONTENT:
-    return {
-      ...state,
-      content: action.payload,
-      isCreateButtonEnabled: action.payload.length > 0 && state.title.length > 0 && state.place.length > 2,
-      isContentValid: action.payload.length > 0
-    };
+      return {
+        ...state,
+        content: action.payload,
+        isCreateButtonEnabled: action.payload.length > 0 && state.title.length > 0 && state.place.length > 2,
+        isContentValid: action.payload.length > 0
+      };
+    case CREATE_IDEA_SET_MIN_PEOPLE:
+      return {
+        ...state,
+        minNumOfPeople: action.payload,
+      };
+    case CREATE_IDEA_SET_MAX_PEOPLE:
+      return {
+        ...state,
+        maxNumOfPeople: action.payload,
+      };
     case EDITABLE_IDEA_SET_TAGS:
     return {
       ...state,

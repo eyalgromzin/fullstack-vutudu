@@ -16,25 +16,31 @@ class PlaceSelector extends Component {
   constructor(props){
     super(props)
 
+    var placeText = this.props.place === undefined? '' : this.props.place
+
     this.state = {
-      text: '',
+      placeText: placeText,
       isPlaceValid: true,
       placeSuggestions: props.placeSuggestions
     }
-
-    // if (this.props.placeSuggestions !== undefined){
-    //   this.setState({placeSuggestions: this.props.placeSuggestions})
-    // }
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    if(nextProps.place != this.state.placeText){
+      this.setState({placeText: this.props.place})
+      return true
+    }
+  }  
+  
+  
   shouldRenderSuggestions = () => {
     return true;
   }
-
+  
   isPlaceValid = () => {
-    return this.state.text.length > 1
+    return this.state.placeText.length > 1
   }
-
+  
   placeFieldKeyUp = (event) => {
     if (event.keyCode === 13) {
       // Trigger the button element with a click
@@ -44,16 +50,13 @@ class PlaceSelector extends Component {
   }
 
   handlePlaceChange = (e, { newValue }) => {
-    //gets undefined on new name click
-    // if (e.target.value !== undefined){
-      this.setState({text: newValue})
-      this.setState({isPlaceValid: true})
-      this.props.placeOnChangeEvent(newValue)
-    // }
+    this.setState({placeText: newValue})
+    this.setState({isPlaceValid: true})
+    this.props.placeOnChangeEvent(newValue)
   }
-
+  
   onBlur = (e) => {
-    if (this.state.text.length == 0 || this.isPlaceValid()){
+    if (this.state.placeText.length == 0 || this.isPlaceValid()){
       this.setState({isPlaceValid: true})
     }else{
       this.setState({isPlaceValid: false})
@@ -63,7 +66,7 @@ class PlaceSelector extends Component {
   onSuggestionsFetchRequested = ({value}) => {
     if (value == ""){
       const places = [ 'home','kitchen', 'bus station', 'park', 'beach', '...']
-
+      
       store.dispatch({type: SET_PLACE_SUGGESTIONS, payload: places})
     }else{
       this.props.getPlacesStartingWith(value)
@@ -89,7 +92,7 @@ class PlaceSelector extends Component {
 
     const inputProps = {
       placeholder: 'home / kitchen / beach / bar / lawn / bus Station / ...',
-      value: this.state.text,
+      value: this.state.placeText,
       onChange: this.handlePlaceChange,
     };
 
@@ -117,24 +120,9 @@ class PlaceSelector extends Component {
 }
 
 function mapStateToProps(state) {
-  var s=4;
-
   return {
     placeSuggestions: state.suggestionsReducer.placeSuggestions,
   };
 }
 
 export default connect(mapStateToProps, {getPlacesStartingWith})(PlaceSelector);
-
-
-
-
-//  {/* <input id={this.props.tagID} 
-//             value={this.state.text} 
-//             onChange={this.handlePlaceChange} 
-//             className={isShowError? "searchBarTextSquare errorCss" : "searchBarTextSquare"}
-//             placeholder="Place" 
-//             type="text" 
-//             onBlur={this.onBlur}  />
-//           { isShowError ? <div className="errorText">plz fill place (3+ letters)</div> : <div className="invisible"> error </div> } */
-//         }

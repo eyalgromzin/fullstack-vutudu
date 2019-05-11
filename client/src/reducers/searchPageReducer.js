@@ -15,6 +15,7 @@ import { SAVE_IDEAS,
   REMOVE_USER_FROM_IDEA_ADDED_SHORT,
   REMOVE_USER_FROM_IDEA_ADDED_LONG,
   SET_IS_SEARCHING,
+  SEARCH_SET_CURRENT_IDEA_BY_ID,
   SET_CURRENT_IDEA } from './types'
 // import dcopy from 'deep-copy'
 var dcopy = require('deep-copy')
@@ -95,6 +96,15 @@ function reducer(state = initialState, action) {
         ...state,
         currentIdea
       }
+    case SEARCH_SET_CURRENT_IDEA_BY_ID:
+      var idea = ideas.filter(idea => idea.id == action.payload)
+      var currentIdea = dcopy(idea);
+            
+      return { 
+        ...state,
+        currentIdea
+      }
+
     case ADD_USER_TO_CURRENT_IDEA_LIKES:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.liked.push(action.payload);

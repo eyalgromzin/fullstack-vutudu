@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import './layout.css'
 import { connect } from 'react-redux';
 import LoginScreen from '../components/loginScreen/loginScreen'
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { Link, Redirect, DefaultRoute } from "react-router";
 import createIdeaLayout from '../components/createCopmonent/createIdeaLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userPageLayout from 'components/layouts/userPageLayout/userPageLayout';
@@ -33,10 +34,11 @@ class Layout extends Component {
         <Router>
           <React.Fragment>
               <SideBar />
-              <Redirect from="/" to="/search" />  {/* cause on startup , the url is /, and it shows nothing */}
-              <Route path="/search" component={searchLayout} />
+              <Route path="/" component={searchLayout} exact />
+              <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+              <Route path="/idea/:ideaID" component={searchLayout} /> 
               <Route path="/create" component={createIdeaLayout} />
-              <Route path="/user" component={userPageLayout} />
+              <Route path="/user" component={userPageLayout} /> */}
           </ React.Fragment>
         </Router>
       </React.Fragment>

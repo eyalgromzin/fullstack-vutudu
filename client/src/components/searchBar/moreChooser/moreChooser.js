@@ -16,11 +16,20 @@ class MoreChooser extends Component {
   constructor(props){
     super(props)
 
+    var moreText = this.props.more === undefined? '' : this.props.more
+
     this.state = {
       isValid: true,
-      text: ''
+      text: moreText
     }
   }
+
+  shouldComponentUpdate(nextProps, nextState){
+    if(nextProps.more != this.state.text){
+      this.setState({text: this.props.more})
+      return true
+    }
+  }  
 
   placeFieldKeyUp = (event) => {
     if (event.keyCode === 13) {
@@ -74,18 +83,18 @@ class MoreChooser extends Component {
     return (
       <React.Fragment>
         <div id="placeField" className="inlineBlock">
-          <div class="fieldHeader">More</div>
-          <Autosuggest
-            id="tagSelector"
-            suggestions={this.props.tagSuggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={this.getSuggestionValue}
-            renderSuggestion={this.renderSuggestion}
-            shouldRenderSuggestions={this.shouldRenderSuggestions}
-            inputProps={inputProps}
-            onChange={this.handleChange} 
-          />
+          <div className="fieldHeader">More</div>
+            <Autosuggest
+              id="tagSelector"
+              suggestions={this.props.tagSuggestions}
+              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+              getSuggestionValue={this.getSuggestionValue}
+              renderSuggestion={this.renderSuggestion}
+              shouldRenderSuggestions={this.shouldRenderSuggestions}
+              inputProps={inputProps}
+              onChange={this.handleChange} 
+            />
           <div className="invisible"> error </div>
         </div>
       </React.Fragment>
@@ -101,13 +110,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps,{getTagsStartingWith})(MoreChooser);
-
-
-
-  //  {/* <div id="moreSelector" className="inlineBlock">
-  //           <div className="inlineBlock">
-  //             <input type="text" id="moreChooser" className="searchBarTextSquare" 
-  //             placeholder="#MoreInfo" onChange={this.moreOnChangeEvent} value={this.props.more} />
-  //             { isShowError ? <div className="errorText">plz fill More (3+ letters)</div> : <div className="invisible"> error </div> }
-  //           </div>
-  //         </div> */}

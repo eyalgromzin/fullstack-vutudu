@@ -27,12 +27,12 @@ export const createUserIfNotExists = user => dispatch => {
   var isUserExists = false;
   console.log('sending get request: api/user/' + `${user.id}`);
   
-  axios.get(`api/user/${user.id}`).then(res => {  // => dispatch => 
+  axios.get(`/api/user/${user.id}`).then(res => {  // => dispatch => 
     console.log('in createUserIfNotExists response')
     // return res.data;
     if(res.data.length == 0){
       // dispatch => {
-        console.log('sending post: api/user/create')
+        console.log('sending post: /api/user/create')
         // console.log('userObject: ' + JSON.stringify({firstName: user.firstName, lastName: user.lastName, id: user.id}))
         // axios.post(`/api/user/create`,user)
         // axios.post(`/api/user/create`,{firstName: user.firstName, lastName: user.lastName, id: user.id})

@@ -9,12 +9,19 @@ import 'commonCss.css'
 import '../searchBarCommonStyles.css'
 
 class NumOfPeopleSelector extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
+
+    var numOfPeople = this.props.numOfPeople === undefined? 2 : this.props.numOfPeople
+    
+    this.state = {
+      numOfPeople: Number(numOfPeople)
+    }
   }
 
-  handleChange = (event) => {
-    this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: event.target.value });
+  handleChange = (e) => {
+    this.setState({numOfPeople: e.target.value})
+    this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: e.target.value });
   }
 
   placeFieldKeyUp = (event) => {
@@ -25,12 +32,19 @@ class NumOfPeopleSelector extends Component {
     }
   }
 
+  getSnapshotBeforeUpdate(){
+		var numOfPeople = this.props.numOfPeople === undefined ? 2 : this.props.numOfPeople;
+		if(this.state.numOfPeople != numOfPeople){
+			this.setState({ numOfPeople: Number(numOfPeople) });
+		}
+	}
+
   render() {
     return (
       <React.Fragment>
         <div id="numOfPeopleSelector" className="inlineBlock">
-          <div class="fieldHeader"># People</div>
-          <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.props.numOfPeople}
+          <div className="fieldHeader"># People</div>
+          <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
             <option value="1" className="timeChooserOption">1</option>
             <option value="2" className="timeChooserOption">2</option>
@@ -51,8 +65,7 @@ class NumOfPeopleSelector extends Component {
 
 function mapStateToProps(state) {
   return {
-    numOfPeople: state.searchBarReducer.numOfPeople,
   };
 }
 
-export default connect(mapStateToProps)(NumOfPeopleSelector);
+export default connect()(NumOfPeopleSelector);

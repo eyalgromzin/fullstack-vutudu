@@ -10,7 +10,7 @@ import {
 } from 'reducers/types'
 
 const initialState = {
-    place: 'place',
+    place: '',
     time: 5,
     numOfPeople: 2,
     more: '',

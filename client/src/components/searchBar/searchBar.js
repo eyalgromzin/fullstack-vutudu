@@ -16,8 +16,14 @@ import './searchBarCommonStyles.css'
 import 'commonCss.css'
 
 class SearchBar extends Component {
-  timeOnChangeEvent = (e) => {
-    this.props.dispatch({type: SEARCH_SET_TIME, payload: e.target.value});
+  constructor(props){
+    super(props)
+
+    console.log('testing redux: in constructor')
+  }
+
+  timeOnChangeEvent = (value) => {
+    this.props.dispatch({type: SEARCH_SET_TIME, payload: value});
   }
 
   isNotEmpty = (e) => {
@@ -47,15 +53,19 @@ class SearchBar extends Component {
   }
 
   render(){
+    console.log('testing redux: in render')
+
     return (
       <div id="searchBar" className="mainContent">
         <div id="searchBarButtons">
           <PlaceField tagID="searchBarPlaceSelector" isClickedButton={this.props.isClickedSearch}
-          placeOnChangeEvent={this.placeOnChangeEvent} validationMethod={this.isNotEmpty} placeSuggestions={[]}/>
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} time={this.props.time} cssClass="searchBarDropDownSquare" />          
-          <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" />
+            placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
+            validationMethod={this.isNotEmpty} placeSuggestions={[]}/>
+          <TimePicker onChangeEvent={this.timeOnChangeEvent} time={this.props.time} 
+            cssClass="searchBarDropDownSquare" />          
+          <NumOfPeopleSelector  cssClass="searchBarDropDownSquare" numOfPeople={this.props.numOfPeople} />
           <MoreChooser isClickedButton={this.props.isClickedSearch} tagSuggestions={[]}
-            onChangeEvent={this.moreOnChangeEvent} validationMethod={this.isNotEmpty} />
+            onChangeEvent={this.moreOnChangeEvent} more={this.props.more} validationMethod={this.isNotEmpty} />
           <SearchButton />
         </div>
       </div>
@@ -64,8 +74,9 @@ class SearchBar extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log('testing redux: in mapStateToProps')
+
   return {
-    time: state.searchBarReducer.time,
     isMoreValid: state.searchBarReducer.isMoreValid,
     isPlaceValid: state.searchBarReducer.isPlaceValid,
     isClickedSearch: state.searchBarReducer.isClickedSearch

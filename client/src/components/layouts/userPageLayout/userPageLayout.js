@@ -23,7 +23,7 @@ class userPageLayout extends Component {
     return (
       <React.Fragment>
         <div id="userLayout" >
-          {/* <div class="pageName">User Data</div> */}
+          {/* <div className="pageName">User Data</div> */}
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
             <div id="UserIdeasTypeDropDown">
               <UserIdeasTypeDropDown />    
@@ -39,7 +39,7 @@ class userPageLayout extends Component {
           <div id="userIdeaPreviewSide" >
             <div id="userLayoutIdeaPreview">
               {this.props.currentPreviewedIdeas.length == 0?
-                <div id="userIdeaCardDummy" > <div class="middleVerticalAlign">No Idea Selected </div></div> : ""
+                <div id="userIdeaCardDummy" > <div className="middleVerticalAlign">No Idea Selected </div></div> : ""
               }
               { this.props.isIdeaEdited? 
                 <EditCardInUser />

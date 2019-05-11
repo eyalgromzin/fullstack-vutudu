@@ -12,8 +12,8 @@ import './searchBarCommonStyles.css'
 import 'commonCss.css'
 
 class CreateIdeaBar extends Component {
-  timeOnChangeEvent = (e) => {
-    this.props.dispatch({type: EDITABLE_IDEA_SET_TIME, payload: Number(e.target.value)});
+  timeOnChangeEvent = (value) => {
+    this.props.dispatch({type: EDITABLE_IDEA_SET_TIME, payload: value});
   }
 
   isPlaceValid = (placeText) => {
@@ -30,7 +30,7 @@ class CreateIdeaBar extends Component {
   render() {
     return (
       <React.Fragment>
-        <div id="createBar" class="inlineBlock">
+        <div id="createBar" className="inlineBlock">
           <div id="createBarButtons">
             <PlaceSelector tagID="createBarPlaceSelector" 
               cssClass="createBarTextBox" 

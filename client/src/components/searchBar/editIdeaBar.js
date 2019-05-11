@@ -16,8 +16,8 @@ class EditIdeaBar extends Component {
     this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: e.target.value});
   }
 
-  timeOnChangeEvent = (e) => {
-    this.props.dispatch({type: EDITABLE_IDEA_SET_TIME, payload: Number(e.target.value)});
+  timeOnChangeEvent = (value) => {
+    this.props.dispatch({type: EDITABLE_IDEA_SET_TIME, payload: value});
     
   }
 

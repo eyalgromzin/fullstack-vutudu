@@ -23,11 +23,11 @@ class IdeaCardInUser extends Component {
 
             <div className="ideaStats" >
               <div className="userPageIdeaIndicator">
-                Place:<span class="ideaPropertyField">{this.props.currentPreviewedIdea.place}</span>
+                Place:<span className="ideaPropertyField">{this.props.currentPreviewedIdea.place}</span>
               </div>
               <div className="userPageIdeaIndicator">
                 # People:
-                <span class="ideaPropertyField">
+                <span className="ideaPropertyField">
                   {this.props.currentPreviewedIdea.minNumOfPeople}-{this.props.currentPreviewedIdea.maxNumOfPeople}
                 </span>
               </div>

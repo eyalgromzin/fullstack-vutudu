@@ -28,7 +28,7 @@ class createIdeaButton extends Component {
       this.error = "";
       this.props.dispatch({ type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, payload: true });
       var tags = this.getTagsFromContent(this.props.content);
-
+      
       //add validation for empty fields / wrong
       if(this.props.isCreateButtonEnabled){
         const newItem = {
@@ -60,9 +60,9 @@ class createIdeaButton extends Component {
   render() {
     return (
         <React.Fragment>
-          <div class="inlineBlock">
-            <div id="createIdeaButton" class="inlineBlock" onClick={this.handleCreateIdeaClick}> create </div>
-            <div class="invisible"> error </div>
+          <div className="inlineBlock">
+            <div id="createIdeaButton" className="inlineBlock" onClick={this.handleCreateIdeaClick}> create </div>
+            <div className="invisible"> error </div>
           </div>
         </React.Fragment>
     )
