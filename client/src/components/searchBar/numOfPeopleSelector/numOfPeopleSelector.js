@@ -36,8 +36,14 @@ class NumOfPeopleSelector extends Component {
 		var numOfPeople = this.props.numOfPeople === undefined ? 2 : this.props.numOfPeople;
 		if(this.state.numOfPeople != numOfPeople){
 			this.setState({ numOfPeople: Number(numOfPeople) });
-		}
-	}
+    }
+    
+    return null
+  }
+  
+  componentDidUpdate(){
+
+  }
 
   render() {
     return (

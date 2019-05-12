@@ -12,7 +12,7 @@ import {
 import store from 'store'
 
 
-class PlaceSelector extends Component {
+class PlaceField extends Component {
   constructor(props){
     super(props)
 
@@ -30,6 +30,7 @@ class PlaceSelector extends Component {
       this.setState({placeText: this.props.place})
       return true
     }
+    return false
   }  
   
   
@@ -125,4 +126,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {getPlacesStartingWith})(PlaceSelector);
+export default connect(mapStateToProps, {getPlacesStartingWith})(PlaceField);

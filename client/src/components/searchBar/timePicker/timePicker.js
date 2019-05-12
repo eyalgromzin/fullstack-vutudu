@@ -35,11 +35,17 @@ export default class TimePicker extends Component {
 	// 	};
 	// }
 
-	getSnapshotBeforeUpdate(){
+	getSnapshotBeforeUpdate(prevProps, prevState){
 		var time = this.props.time === undefined ? 10 : this.props.time;
 		if(this.state.time != time){
 			this.setState({ time: Number(time) });
 		}
+
+		return null
+	}
+
+	componentDidUpdate(){
+
 	}
 
   onChangeEvent = (e) => {

@@ -83,27 +83,33 @@ export const addIdeaToUserCreatedIdeas = (userID, idea) => (dispatch) => {
 	});
 };
 
-export const getIdeaByID = (ideaID) => (dispatch) => {
+export const getIdeaByID = (ideaID) => (dispatch) => 
+new Promise(function(resolve, reject) {
 	console.log('ideaActions: getting Idea: ' + ideaID);
 	var postObject = { ideaID: ideaID };
 	axios.post('/api/items/getIdeaByID', postObject).then((res) => {
 		console.log(`idea retrieved`);
-		dispatch({
-			type: SET_CURRENT_IDEA,
-			payload: res.data
-		});
+		dispatch({ type: SET_CURRENT_IDEA, payload: res.data });
 		dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
 
-		dispatch({type: SEARCH_SET_TIME, payload: res.data.time});
-		dispatch({type: SEARCH_SET_PLACE, payload: res.data.place});
-		//there is no num of people in idea, there is min # ppl, and max # ppl
-		dispatch({type: SEARCH_SET_NUM_OF_PEOPLE, payload: res.data.minNumOfPeople});	
-		//same things, there are multiple tag for each idea
-		// dispatch({type: SEARCH_SET_MORE, payload: res.data.more});
-
-
+		dispatch({ type: SEARCH_SET_TIME, payload: res.data.time });
+		dispatch({ type: SEARCH_SET_PLACE, payload: res.data.place });
 	});
-};
+
+	// // Function is expected to return a promise
+    // callUpdateApi(todoId, isDone).then(updatedTodo => {
+	// 	dispatch({
+	// 	  type: 'SET_SAVING',
+	// 	  saving: false
+	// 	});
+  
+	// 	resolve(updatedTodo);
+	//   }).catch(error => {
+	// 	// TBD: Handle errors for Redux
+  
+	// 	reject(error);
+	//   })
+});
 
 export const searchItems = (place, time, numOfPeople, more, ideaID) => (dispatch) => {
 	dispatch({ type: SET_IS_SEARCHING, payload: true });
@@ -201,7 +207,7 @@ export const addIdeaToDB = (idea, userID) => (dispatch) => {
 				type: ON_CREATE_SET_IS_DUPLICATE_TITLE,
 				payload: false
 			});
-			
+
 			axios.post('/api/items/createIdea', { idea, userID }).then((res) => {
 				toastr.success('Success', 'Idea Created!')
 				console.log('added item to mongo: ' + res.data.title);

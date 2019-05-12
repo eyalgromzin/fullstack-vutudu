@@ -1,7 +1,4 @@
 last things:
-  - make the idea work from the url localhost://idea/<ideaID>/<place>/<time>/<num of people>/<more>?
-    so that it will update the search bar accordingly 
-    
   - design search page again.
 
   - design user page again.

@@ -36,7 +36,7 @@ class Layout extends Component {
               <SideBar />
               <Route path="/" component={searchLayout} exact />
               <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-              <Route path="/idea/:ideaID" component={searchLayout} /> 
+              <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
               <Route path="/create" component={createIdeaLayout} />
               <Route path="/user" component={userPageLayout} /> */}
           </ React.Fragment>

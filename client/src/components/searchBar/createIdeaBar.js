@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PlaceSelector from './placeField/placeField'
+import PlaceField from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
 import TimePicker from './timePicker/timePicker'
 import {
@@ -10,7 +10,6 @@ import {
 import { connect } from 'react-redux';
 import './searchBarCommonStyles.css'
 import 'commonCss.css'
-import PlaceField from './placeField/placeField'
 
 class CreateIdeaBar extends Component {
   timeOnChangeEvent = (value) => {

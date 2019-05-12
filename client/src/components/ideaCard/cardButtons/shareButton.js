@@ -49,11 +49,21 @@ class ShareButton extends Component {
   };
   
   createUrlShareUrlText = () => {
-    let domainName = window.location.href;
-    let ideaID = this.props.currentIdea._id
+		let domainName = document.location.origin
+		// https://localhost:3000/search
+		let ideaID = this.props.currentIdea._id
 
-    let shareUrl = domainName + 'idea/' + ideaID
-    return shareUrl
+		//in case the share was clicked on a top table idea 
+		if(this.props.place === undefined || this.props.place == ""){
+			var shareUrl = domainName + '/idea/' + ideaID
+			return shareUrl
+		}
+		//regular idea from search
+		else{ 
+			var shareUrl = domainName + '/idea/' + ideaID + '/' + this.props.place + '/' + String(this.props.time) + '/' + String(this.props.numOfPeople)
+			this.props.more !== undefined? shareUrl += this.props.more : ""
+			return shareUrl
+		}
   }
 
 	render() {
@@ -88,7 +98,11 @@ class ShareButton extends Component {
 function mapStateToProps(state) {
   return {
     currentIdeaIndex: state.searchPageReducer.currentIdeaIndex,
-    currentIdea: state.searchPageReducer.currentIdea
+		currentIdea: state.searchPageReducer.currentIdea,
+		place: state.searchBarReducer.place,
+		time: state.searchBarReducer.time,
+		numOfPeople: state.searchBarReducer.numOfPeople,
+		more: state.searchBarReducer.more
   };
 }
 

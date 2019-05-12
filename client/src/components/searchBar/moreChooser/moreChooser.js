@@ -29,6 +29,7 @@ class MoreChooser extends Component {
       this.setState({text: this.props.more})
       return true
     }
+    return false
   }  
 
   placeFieldKeyUp = (event) => {

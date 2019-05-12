@@ -58,8 +58,6 @@ router.post('/create', (req, res) => {
     newUser => res.json(newUser)
   )
   .catch(function(error){
-    var x=5;
-    x++;
     console.log(error);
   });
 });
