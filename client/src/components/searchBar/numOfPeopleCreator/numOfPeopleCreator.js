@@ -20,7 +20,8 @@ class NumOfPeopleCreator extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="searchBarChooserContainer" > 
+        <div className="searchBarChooserContainer"> 
+          <div className="fieldHeader"># People</div>
           <div id="createBarNumOfPeopleCreator">
               <select id="minNumOfPeopleChooser" value={this.props.minNumOfPeople} 
                 className="numOfPeopleCreatorDropDown" onChange={this.minNumOfPeopleChange}>

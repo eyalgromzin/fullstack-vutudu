@@ -14,10 +14,11 @@
 
 #createIdeaCardContent{
     padding: 10px;
+    background-color: white;
 }
 
 #createIdeaContainer{
-    box-shadow: 0px 0px 20px 5px;
+    box-shadow: 0px 0px 6px 1px;
     margin: 0 18%;
     margin-bottom: 20px;
 }
@@ -57,7 +58,7 @@
 }
 
 #ideaCard{
-    box-shadow: 0px 0px 20px 5px;
+    box-shadow: 0px 0px 6px 1px;
     background-color: white;
     min-height: 350px;
     max-height: 550px;

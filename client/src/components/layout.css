@@ -8,6 +8,20 @@
     padding-top: 7px;
 }
 
+#topBar{
+    /* height: 45px; */
+    background-color: white;
+    border-bottom: solid;
+    border-bottom-color: lightgrey;
+}
+
+#rightSideButtons{
+    height: 15px;
+    text-align: right;
+    margin-right: 5px;
+    padding-top: 5px;
+}
+
 .leftBarIcon{
     display: block;
     margin: auto;
@@ -20,6 +34,33 @@
     padding: 4px;
     margin-bottom: 5px;
 }
+
+.topBarIcon{
+    margin: auto;
+    height: 30px;
+    width: 30px;
+    border: solid;
+    border-color: black;
+    border-radius: 17px;
+    border-width: 2px;
+    padding: 3px;
+    margin-left: 4px;
+}
+
+.topBarIconSelected{
+    margin: auto;
+    height: 30px;
+    width: 30px;
+    border: solid;
+    border-color: black;
+    border-radius: 17px;
+    border-width: 2px;
+    background-color: blanchedalmond;
+    padding: 3px;
+    margin-left: 4px;
+
+}
+
 
 .leftBarIconSelected{
     display: block;
@@ -35,14 +76,13 @@
     background-color: slategrey;
 }
 
-#fullCreateIdeaBar{
+#createIdeaBar{
     margin-bottom: 35px;
-    padding-left: 20%;
     padding-top: 20px;
     padding-bottom: 5px;
     margin-top: 20px;
-    padding-bottom: 5px;
-    background-color: cornflowerblue;
+    padding-bottom: 5px;    
+    text-align: center;
 }
 
 .pageName{
@@ -51,4 +91,8 @@
     border-bottom: solid;
     display: inline-block;
     margin-bottom: 7px;
+}
+
+#createIdeaBarButtons{
+    display: inline-block;
 }

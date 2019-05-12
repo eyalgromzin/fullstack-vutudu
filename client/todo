@@ -1,15 +1,10 @@
-last things:
-  - design search page again.
-
-  - design user page again.
-      - remove the shadow 
-      - change css and html on empty liked/created ideas
-      - make the list in a line in a div container of a line
-
-
-  
-
 ---------------------------------------------------- DEV FINISH ----------------------------------------------------
+
+bugs:
+
+- on create, place field validation text not showing on create click
+
+- in user - on created ideas list - until no idea is selected, dont show the idea card.
 
 - check the search with more works. 
     - search with more 
@@ -29,6 +24,8 @@ AFTER WEBSITE UPLOAD:
     - check cell phone version works.
     
 NTH: 
+  - create for idea action a promise and do something on its end - for learning 
+  
   - on create idea button check for logged in state.
 
   - add a view to mongo, for top liked and hard ideas - so it wont have to search all the DB every time.

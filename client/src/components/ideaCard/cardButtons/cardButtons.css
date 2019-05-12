@@ -20,10 +20,11 @@
 .dialogHeader{
     padding-bottom: 3px;
     height: 20px;
-    font-size: 20px;
+    font-size: 30px;
     border-bottom: solid;
     border-bottom-width: 2px;
     margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .ReactModal__Overlay{
@@ -49,5 +50,5 @@
 }
 
 #shareDialog{
-    padding: 30px;
+    padding: 40px;
 }

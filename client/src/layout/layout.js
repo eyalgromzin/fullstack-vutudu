@@ -8,6 +8,7 @@ import createIdeaLayout from '../components/createCopmonent/createIdeaLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userPageLayout from 'components/layouts/userPageLayout/userPageLayout';
 import SideBar from 'components/sideBar'
+import TopBar from 'components/topBar'
 import { updateTopIdeas } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import {
@@ -24,21 +25,23 @@ class Layout extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.isMainLoading?
+        {/* {this.props.isMainLoading?
         <div id="mainLoadingScreen">
           <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
         </div>
         : ""
-        }
+        } */}
         <LoginScreen />
         <Router>
           <React.Fragment>
-              <SideBar />
+              {/* <SideBar /> */}
+              <TopBar />
               <Route path="/" component={searchLayout} exact />
+              
               <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
               <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
               <Route path="/create" component={createIdeaLayout} />
-              <Route path="/user" component={userPageLayout} /> */}
+              <Route path="/user" component={userPageLayout} />
           </ React.Fragment>
         </Router>
       </React.Fragment>

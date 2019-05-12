@@ -6,13 +6,13 @@
 
 #UserIdeasTypeDropDown{
     margin-bottom: 10px;
-    box-shadow: 0px 0px 20px 1px;
+    box-shadow: 0px 0px 6px 1px;
 }
 
 #userLayoutIdeaPreview{
     position: fixed;
     left: 380px;
-    top: 29px;
+    top: 122px;
     width: 74%;
 }
 
@@ -20,7 +20,16 @@
     margin-top: 35px;
     height: 500px;
     width: 93%;
-    background-color: beige;
-    border: solid;
+    /* background-color: beige; */
+    /* border: solid; */
     border-width: 1px;
+}
+
+#emptyIdeaText{
+    font-size: 25px;
+}
+
+#emptyIdeasList{
+    padding-left: 5px;
+    font-size: 20px;
 }

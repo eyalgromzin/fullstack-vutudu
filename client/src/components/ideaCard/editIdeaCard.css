@@ -12,7 +12,7 @@ input:focus {
 }
 
 #newIdeaTitle{
-    background-color: #F4F9FF;
+    background-color: white;
     border: none;
     float: left;
     width: 97%;
@@ -21,7 +21,7 @@ input:focus {
 }
 
 #newIdeaContent{
-    background-color: #F4F9FF;
+    background-color: white;
     border: none;
     width: 100%;
     resize: none;
@@ -41,10 +41,11 @@ input:focus {
     padding-right: 23px;
     padding-left: 23px;
     margin-top: 26px;
-    background-color: bisque;
+    background-color: aquamarine;
     font-family: cursive;
     cursor: pointer;
     border-radius: 4px;
+    box-shadow: 0px 0px 6px 1px;
 }
 
 .ideaButton{

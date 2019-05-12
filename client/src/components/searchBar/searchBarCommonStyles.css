@@ -59,9 +59,10 @@
 #searchBar{
     margin-bottom: 35px; 
     margin-top: 20px;
-    background-color: darkgray;
+    /* background-color: darkgray; */
     padding-top: 10px;
     padding-bottom: 5px;
+    text-align: center;
 }
 
 #editBarButtons{
@@ -122,6 +123,7 @@
 
 #searchBarButtons{
     margin-top: 10px;
+    display: inline-block;
 }
 
 .fieldHeader{

@@ -12,9 +12,11 @@ class createIdeaLayout extends Component {
       <React.Fragment>
         {/* <div className="pageName">Create</div> */}
         <div className="createMainContent">
-          <div id="fullCreateIdeaBar">
-            <CreateIdeaBar isClickedButton={this.props.isClickedButton} />
-            <CreateIdeaButton />
+          <div id="createIdeaBar">
+            <div id="createIdeaBarButtons">
+              <CreateIdeaBar isClickedButton={this.props.isClickedButton} />
+              <CreateIdeaButton />
+            </div>
           </div>
           <EditableIdeaCard existingTitle="" existingContent="" existingID="" isClickedButton={this.props.isClickedButton} />
         </div>

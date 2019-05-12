@@ -33,13 +33,15 @@ class userPageLayout extends Component {
                 <UserIdeasList ideas={this.props.currentPreviewedIdeas} updateViewToggle={this.props.updateToggle} />
               </div>
               :
-              "Empty Ideas List"
+              <span id="emptyIdeasList">Empty Ideas List...</span>
             }
           </div>
           <div id="userIdeaPreviewSide" >
             <div id="userLayoutIdeaPreview">
               {this.props.currentPreviewedIdeas.length == 0?
-                <div id="userIdeaCardDummy" > <div className="middleVerticalAlign">No Idea Selected </div></div> : ""
+                <div id="userIdeaCardDummy" > 
+                  <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
+                </div> : ""
               }
               { this.props.isIdeaEdited? 
                 <EditCardInUser />

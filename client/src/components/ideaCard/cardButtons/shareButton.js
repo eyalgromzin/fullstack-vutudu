@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './cardButtons.css';
 import 'commonCss.css'
+import 'cssAnimations.css'
 import Modal from 'react-modal';
 import { FacebookShareButton, GooglePlusShareButton, WhatsappShareButton, EmailShareButton } from 'react-share';
 import {
@@ -71,13 +72,13 @@ class ShareButton extends Component {
 
 		return (
 			<React.Fragment>
-				<img src={require('images/share.png')} onClick={this.shareButtonClick} alt="share" id="shareButton" />
+				<img src={require('images/share.png')} className="tilt clickAnimation" onClick={this.shareButtonClick} alt="share" id="shareButton" />
 
 				<Modal isOpen={this.state.showModal} style={customStyles} contentLabel="Share">
 					<div id="shareDialog">
 						<div class="dialogHeader">
               Share
-              <span onClick={this.handleCloseModal} id="shareCloseButton" class="hoverClickHand">x</span>
+              <span onClick={this.handleCloseModal} id="shareCloseButton" className="hoverClickHand">x</span>
             </div> 
 						<div id="shareDialogButtonsContainer">
             <span><FacebookShareButton url={url}> <FacebookIcon size={32} round={true} /> </FacebookShareButton> </span>
