@@ -278,7 +278,7 @@ router.post('/getIdeaByID/', (req, res) => {
 	});
 });
 
-// @route   POST api/items/deleteIdea/
+// @route   POST api/items/getIdeaByTitle/
 // @desc    update idea
 // @access  Public
 router.post('/getIdeaByTitle/', (req, res) => {

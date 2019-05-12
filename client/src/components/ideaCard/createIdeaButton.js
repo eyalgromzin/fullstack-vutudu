@@ -44,13 +44,15 @@ class createIdeaButton extends Component {
         };
 
         let myColor = { background: '#0E1717', text: "#FFFFFF" };
-        //
-        // notify.show('Idea Created!', "Success", 1000, myColor);
-        toastr.success('Success', 'Idea Created!')
+        
+        //show only if there is no idea with the same title
+        // toastr.success('Success', 'Idea Created!')
 
         // Add item via createItem action
         this.props.addIdeaToDB(newItem, this.props.userID);
-        this.props.addHashTagsToDB(tags)
+        if(tags.length > 0){
+          this.props.addHashTagsToDB(tags)
+        }
         this.props.addPlaceToDBIfNotExists(this.props.place)
       }
     }

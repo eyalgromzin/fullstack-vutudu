@@ -15,6 +15,7 @@ import {
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
   CREATE_IDEA_SET_MAX_PEOPLE,
   CREATE_IDEA_SET_MIN_PEOPLE,
+  ON_CREATE_SET_IS_DUPLICATE_TITLE,
 } from 'reducers/types'
 
 const initialState = {
@@ -30,6 +31,7 @@ const initialState = {
     isTitleValid: false,
     isPlaceValid: false,
     isClickedButton: false,   //refers to create / update
+    isDuplicateTitle: false,
 };
 
 function validateCreateButton(state){
@@ -135,6 +137,11 @@ function reducer(state = initialState, action) {
         ...state,
         isClickedButton: action.payload,
         isCreateButtonEnabled: state.content.length > 0 && state.title.length > 0 && state.place.length > 2,
+      };
+    case ON_CREATE_SET_IS_DUPLICATE_TITLE:
+      return {
+        ...state,
+        isDuplicateTitle: action.payload,
       };
     default:
       return state;

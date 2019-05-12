@@ -66,7 +66,9 @@ class EditableIdeaCard extends Component {
   }
 
   render() {
-    var isShowTitleError = ((this.props.isClickedButton && !this.calculateIsTitleValid()) || this.state.isShowTitleErrorOnBlur)
+    var isShowTitleError = ((this.props.isClickedButton && !this.calculateIsTitleValid()) || 
+      this.state.isShowTitleErrorOnBlur) || this.props.isDuplicateTitle
+    var TitleErrorMessage = this.props.isDuplicateTitle? "Title already exists" : "10+ letters"
     var isShowContentError = ((this.props.isClickedButton && !this.calculateIsContentValid()) || this.state.isShowContentErrorOnBlur)
 
     return (
@@ -95,7 +97,7 @@ class EditableIdeaCard extends Component {
                   </div>
                 </Popup>
               </div>
-              {isShowTitleError? <div className="fieldError"> 10+ letters </div> : "" }
+              {isShowTitleError? <div className="fieldError"> {TitleErrorMessage} </div> : "" }
               <textarea 
               type="text" id="newIdeaContent" 
               value={this.props.content == null ? "" : this.props.content }
@@ -120,6 +122,7 @@ function mapStateToProps(state) {
     time: state.editableIdeaReducer.time,
     minNumOfPeople: state.editableIdeaReducer.minNumOfPeople,
     maxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
+    isDuplicateTitle: state.editableIdeaReducer.isDuplicateTitle,
     userID: state.userPageReducer.loggedInUserID,
   };
 }

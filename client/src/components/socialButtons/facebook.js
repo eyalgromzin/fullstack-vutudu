@@ -10,8 +10,15 @@ class facebook extends Component {
   responseFacebook = (response) => {
     if (response.accessToken) {
       
+      
 
       var fullName = response.name;
+
+      if(fullName === undefined){
+        console.log('Connection to facebook timed out');
+        return
+      }
+
       var firstName = fullName.split(" ")[0]; 
       var lastName = fullName.split(" ")[1]; 
 

@@ -1,8 +1,7 @@
 last things:
-  - on idea change, change also the url , so he will be able to just save to favorites.
-
-  - make title unique - so there wont be any duplicates
-
+  - make the idea work from the url localhost://idea/<ideaID>/<place>/<time>/<num of people>/<more>?
+    so that it will update the search bar accordingly 
+    
   - design search page again.
 
   - design user page again.
@@ -11,13 +10,36 @@ last things:
       - make the list in a line in a div container of a line
 
 
----------------------------------------------------- FINISH ---------------------------------------------------------------
+  
 
-NTH: 
-    - add a view to mongo, for top liked and hard ideas - so it wont have to search all the DB every time.
+---------------------------------------------------- DEV FINISH ----------------------------------------------------
 
-    - change the like idea to 1 post request instead of 2 - home.
+- check the search with more works. 
+    - search with more 
+    - search without more.
 
-    - because there are more like clicks than created idea, remove the save of the created idea to the user. 
+AFTER WEBSITE UPLOAD:
+  - check the share works, because of the domain, 
+  - check everything works.
+    - new idea
+    - search
+    - indicators: like, dislike, time+, time- , hard + , hard - 
+    - delete idea
+    - edit idea
+    - top table
+    - check links work.
+    - check share work from cell phone and regular.
+    - check cell phone version works.
     
-    - on focus: in case of field empty: show last searches, if there are none, show the regular suggestions    
+NTH: 
+  - on create idea button check for logged in state.
+
+  - add a view to mongo, for top liked and hard ideas - so it wont have to search all the DB every time.
+
+  - change the like idea to 1 post request instead of 2 - home.
+
+  - because there are more like clicks than created idea, remove the save of the created idea to the user. 
+  
+  - on focus: in case of field empty: show last searches, if there are none, show the regular suggestions    
+
+  - on search click, change the url to show the idea - because more is not mandatorty - dunno how to do it!!!!

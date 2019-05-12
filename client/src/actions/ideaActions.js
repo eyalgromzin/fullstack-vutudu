@@ -15,12 +15,13 @@ import {
 	SEARCH_SET_TIME,
 	SEARCH_SET_PLACE,
 	SEARCH_SET_NUM_OF_PEOPLE,
-	SEARCH_SET_MORE,
-	USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS
+	USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
+	ON_CREATE_SET_IS_DUPLICATE_TITLE,
 } from 'reducers/types';
 import { emptyUserPreviewedIdea } from 'actions/userActions';
 import store from 'store';
 import { showIdeaInUserCreated } from 'components/uiActions/userPageActions';
+import {toastr} from 'react-redux-toastr'
 
 export const updateIdeaIndicator = (
 	loggedInUserID,
@@ -195,26 +196,38 @@ export const addIdeaToDB = (idea, userID) => (dispatch) => {
 
 	var title = idea.title
 	axios.post('/api/items/getIdeaByTitle', { title: title }).then((res) => {
-
-		axios.post('/api/items/createIdea', { idea, userID }).then((res) => {
-			console.log('added item to mongo: ' + res.data.title);
-
-			var idea = res.data;
-			var axiosObj = { userID, idea };
-
-			axios.post('/api/user/addIdeaToUserCreatedIdeas', axiosObj).then((res) => {
-				dispatch({
-					type: ADD_CREATED_IDEA_TO_USER,
-					payload: idea
-				});
-
-				dispatch({
-					type: CLEAR_EDITABLE_IDEA
-				});
-
-				console.log('added ideaID to user created array');
+		if(res.data == null){
+			dispatch({
+				type: ON_CREATE_SET_IS_DUPLICATE_TITLE,
+				payload: false
 			});
-		});
+			
+			axios.post('/api/items/createIdea', { idea, userID }).then((res) => {
+				toastr.success('Success', 'Idea Created!')
+				console.log('added item to mongo: ' + res.data.title);
+
+				var idea = res.data;
+				var axiosObj = { userID, idea };
+
+				axios.post('/api/user/addIdeaToUserCreatedIdeas', axiosObj).then((res) => {
+					dispatch({
+						type: ADD_CREATED_IDEA_TO_USER,
+						payload: idea
+					});
+
+					dispatch({
+						type: CLEAR_EDITABLE_IDEA
+					});
+
+					console.log('added ideaID to user created array');
+				});
+			});
+		}else{
+			dispatch({
+				type: ON_CREATE_SET_IS_DUPLICATE_TITLE,
+				payload: true
+			});
+		}
 	});
 };
 
