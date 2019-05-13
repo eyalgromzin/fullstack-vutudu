@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import EditableIdeaCard from 'components/ideaCard/editableIdeaCard'
-import UserSaveIdeaButton from 'components/ideaCard/saveIdeaButton';
+import UserSaveIdeaButton from './saveIdeaButton';
 import { connect } from 'react-redux';
 import EditIdeaBar from 'components/searchBar/editIdeaBar'
 import { stat } from 'fs';
