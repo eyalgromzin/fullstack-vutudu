@@ -12,10 +12,6 @@ import {updateIdeaIndicator} from 'actions/ideaActions'
 import {showLogInScreen} from 'actions/commonActions'
 
 class DifficultyIndicator extends Component {
-  constructor(props){
-    super(props)
-  }
-
   addHard = () => {
     // this.setState({addedHard: true});
     // this.props.addedHard = true;

@@ -34,10 +34,6 @@ const initialState = {
     isDuplicateTitle: false,
 };
 
-function validateCreateButton(state){
-  return state.content.length > 0 && state.content.length > 0 && state.place.length > 2
-}
-
 function reducer(state = initialState, action) {
   switch(action.type) {
     case EDITABLE_IDEA_SET_MIN_PEOPLE:

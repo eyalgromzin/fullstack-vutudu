@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "axios-debug": "0.0.4",
+    "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "deep-copy": "^1.4.2",
     "lodash": "^4.17.11",
     "react": "^16.5.2",

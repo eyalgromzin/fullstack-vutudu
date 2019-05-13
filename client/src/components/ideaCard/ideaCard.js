@@ -3,7 +3,6 @@ import Linkify from 'react-linkify';
 import './ideaCard.css'
 import IdeaNextButtonsPreviousButtons from './cardButtons/nextPreviousButtons/nextPreviousButtons'
 import { connect } from 'react-redux';
-// import { Button } from 'react-bootstrap';
 import 'commonCss.css'
 import ShareButton from 'components/ideaCard/cardButtons/shareButton'
 import CardIndicators from 'components/ideaCard/cardIndicators'
