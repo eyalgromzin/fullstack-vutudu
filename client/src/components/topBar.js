@@ -60,7 +60,7 @@ class SideBar extends Component {
               "topBarIcon tilt clickAnimation" } alt="" 
               onClick={() => this.searchClick(history)} />
 
-            <img id="newIdeaButton" src={require("images/writeBlackWithoutBorder.png")} 
+            <img id="newIdeaButton" src={require("images/plus.png")} 
             className={this.state.currentPage == "newIdea"? 
             "topBarIconSelected tilt clickAnimation" : 
             "topBarIcon tilt clickAnimation" } alt="" 
