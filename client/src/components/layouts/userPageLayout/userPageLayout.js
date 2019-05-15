@@ -20,6 +20,9 @@ class userPageLayout extends Component {
   }
 
   render() {
+    let isCurrentPreviewedIdeaEmpty = Object.keys(this.props.currentPreviewedIdea).length === 0 &&
+                                      this.props.currentPreviewedIdea.constructor === Object
+
     return (
       <React.Fragment>
         <div id="userLayout" >
@@ -38,15 +41,16 @@ class userPageLayout extends Component {
           </div>
           <div id="userIdeaPreviewSide" >
             <div id="userLayoutIdeaPreview">
-              {this.props.currentPreviewedIdeas.length == 0?
+              {this.props.currentPreviewedIdeas.length == 0 || isCurrentPreviewedIdeaEmpty ?
                 <div id="userIdeaCardDummy" > 
                   <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
                 </div> : ""
               }
-              { this.props.isIdeaEdited? 
+              { this.props.isIdeaEdited && !isCurrentPreviewedIdeaEmpty? 
                 <EditCardInUser />
                 :
-                <IdeaCardInUser enabled={false} showNextPreviousButtons={true}/>
+                !isCurrentPreviewedIdeaEmpty? <IdeaCardInUser enabled={false} showNextPreviousButtons={true}/> : "" 
+                
               }
             </div>
           </div>
@@ -63,6 +67,7 @@ function mapStateToProps(state) {
     userID: state.userPageReducer.loggedInUserID,
     isIdeaEdited: state.userPageReducer.isIdeaEdited,
     currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
+    currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
     updateToggle: state.userPageReducer.updateToggle,
   };
 }

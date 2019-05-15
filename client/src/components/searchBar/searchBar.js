@@ -72,7 +72,6 @@ class SearchBar extends Component {
 					<NumOfPeopleSelector cssClass="searchBarDropDownSquare" numOfPeople={this.props.numOfPeople} />
 					<MoreChooser
 						isClickedButton={this.props.isClickedSearch}
-						tagSuggestions={[]}
 						onChangeEvent={this.moreOnChangeEvent}
 						more={this.props.more}
 						validationMethod={this.isNotEmpty}

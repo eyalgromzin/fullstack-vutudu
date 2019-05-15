@@ -62,11 +62,11 @@ class EditableIdeaCard extends Component {
   }
 
   calculateIsTitleValid = () => {
-    return this.state.titleText.length > 2
+    return this.state.titleText.length >= 5 && this.state.titleText.length <= 50
   }
 
   calculateIsContentValid = () => {
-    return this.state.contentText.length > 2
+    return this.state.contentText.length >= 10 && this.state.contentText.length <= 1000
   }
 
   onTitleBlur = (e) => {
@@ -90,7 +90,7 @@ class EditableIdeaCard extends Component {
   render() {
     var isShowTitleError = ((this.props.isClickedButton && !this.calculateIsTitleValid()) || 
       this.state.isShowTitleErrorOnBlur) || this.props.isDuplicateTitle
-    var TitleErrorMessage = this.props.isDuplicateTitle? "Title already exists" : "10+ letters"
+    var TitleErrorMessage = this.props.isDuplicateTitle? "Title already exists" : "5-50 letters"
     var isShowContentError = ((this.props.isClickedButton && !this.calculateIsContentValid()) || this.state.isShowContentErrorOnBlur)
 
     return (
@@ -115,18 +115,19 @@ class EditableIdeaCard extends Component {
                       <div>* be specific</div>
                       <div>* be brief</div>
                       <div>* add youtube, image links for clarity</div>
+                      <div>* add #hashTags in the content for easier finding</div>
                     </div>
                   </div>
                 </Popup>
               </div>
-              {isShowTitleError? <div className="fieldError"> {TitleErrorMessage} </div> : "" }
+              {isShowTitleError? <div id="createIdeaTitle" className="fieldError"> {TitleErrorMessage} </div> : "" }
               <textarea 
               type="text" id="newIdeaContent" 
               value={this.props.content == null ? "" : this.props.content }
               placeholder="Content..." 
               onBlur={this.onContentBlur}
               onChange={this.handleOnContentChange}/>
-              {isShowContentError? <div className="fieldError"> 10+ letters</div> : '' }
+              {isShowContentError? <div className="fieldError"> 10-1000 letters</div> : '' }
             </div>
           </div>
           <div id="newIdeaError"> {this.state.error} </div>

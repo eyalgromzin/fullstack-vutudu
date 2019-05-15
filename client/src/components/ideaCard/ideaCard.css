@@ -150,6 +150,10 @@
     margin-top: 10px;
 }
 
+#createIdeaTitle{
+    float: left;
+}
+
 #editIdeaButton{
     height: 60px;
     width: 60px;

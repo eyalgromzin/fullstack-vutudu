@@ -26,8 +26,8 @@ class PlaceField extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if(nextProps.place != this.state.placeText){
-      this.setState({placeText: this.props.place})
+    if(nextProps.placeSuggestions != this.state.placeSuggestions){
+      this.setState({placeSuggestions: this.props.placeSuggestions})
       return true
     }
 
@@ -37,7 +37,6 @@ class PlaceField extends Component {
 
     return false
   }  
-  
   
   shouldRenderSuggestions = () => {
     return true;
@@ -73,6 +72,7 @@ class PlaceField extends Component {
     if (value == ""){
       const places = [ 'home','kitchen', 'bus station', 'park', 'beach', '...']
       
+      this.setState({placeSuggestions: places})
       store.dispatch({type: SET_PLACE_SUGGESTIONS, payload: places})
     }else{
       this.props.getPlacesStartingWith(value)
@@ -108,7 +108,7 @@ class PlaceField extends Component {
           <div className="fieldHeader">Place</div>
           <Autosuggest
             id="placeSelector"
-            suggestions={this.props.placeSuggestions}
+            suggestions={this.state.placeSuggestions}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}

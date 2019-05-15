@@ -20,19 +20,29 @@ class MoreChooser extends Component {
 
     this.state = {
       isValid: true,
-      text: moreText
+      text: moreText,
+      tagSuggestions: []
     }
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if(nextProps.more != this.state.text){
-      this.setState({text: this.props.more})
+    if(nextProps.tagSuggestions != this.state.tagSuggestions){
+      this.setState({tagSuggestions: this.props.tagSuggestions})
       return true
     }
+
     return false
   }  
 
-  placeFieldKeyUp = (event) => {
+  shouldRenderSuggestions = () => {
+    return true;
+  }
+
+  isMoreValid = () => {
+    return this.state.placeText.length >= 2
+  }
+  
+  moreFieldKeyUp = (event) => {
     if (event.keyCode === 13) {
       // Trigger the button element with a click
       console.log("enter clicked on place input")
@@ -40,6 +50,20 @@ class MoreChooser extends Component {
     }
   }
 
+  handleChange = (e, { newValue }) => {
+    this.setState({text: newValue})
+    this.setState({isValid: true})
+    this.props.onChangeEvent(newValue)
+  }
+
+  onBlur = (e) => {
+    if (this.state.text.length == 0 || this.isMoreValid()){
+      this.setState({isValid: true})
+    }else{
+      this.setState({isValid: false})
+    }
+  }
+  
   renderSuggestion = suggestion => (
     <div>
       {suggestion}
@@ -50,6 +74,7 @@ class MoreChooser extends Component {
     if (value == ""){
       const moreFieldExamples = [ 'fun','productive', 'easy', 'fast', 'challenging', '...']
 
+      this.setState({tagSuggestions: moreFieldExamples})
       store.dispatch({type: SET_TAG_SUGGESTIONS, payload: moreFieldExamples})
     }else{
       this.props.getTagsStartingWith(value)
@@ -57,22 +82,15 @@ class MoreChooser extends Component {
   } 
 
   onSuggestionsClearRequested = () => {
-    this.setState({tagSuggestions:[]})
+    this.setState({tagSuggestions: []})
   }
 
   getSuggestionValue = (suggestion) => {
     return suggestion 
   }
 
-  handleChange = (e, { newValue }) => {
-    this.setState({text: newValue})
-    this.setState({isPlaceValid: true})
-    this.props.onChangeEvent(newValue)
-  }
 
-  shouldRenderSuggestions = () => {
-    return true;
-  }
+  
   
   render() {
     const inputProps = {
@@ -87,7 +105,7 @@ class MoreChooser extends Component {
           <div className="fieldHeader">More</div>
             <Autosuggest
               id="tagSelector"
-              suggestions={this.props.tagSuggestions}
+              suggestions={this.state.tagSuggestions}
               onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
               onSuggestionsClearRequested={this.onSuggestionsClearRequested}
               getSuggestionValue={this.getSuggestionValue}

@@ -1,8 +1,12 @@
-BUGS:
+improvements:
+  - try to make the search bar the same width as the idea card
+  - change edit idon to + just like in instagram.
+  - user page -> edit idea -> fix css
+  - indicators tooltip
+  - on indicator icon click, show tool tip just like in create idea "i" button
+  - add to top ideas: newest
+  - add to top ideas: most popular? largest most likes + dislikes combined
 
-- limit title to 50 chars
-
-- in user - on created ideas list - until no idea is selected, dont show the idea card.
 
 - SSL:
   - enable it on the website. - tomorrow!

@@ -8,6 +8,7 @@ import {showLogInScreen} from 'actions/commonActions'
 import { 
   SET_TOP_TABLE_IS_IDEA_CLICKED,
   CHANGE_SEARCHED_STATE,
+  EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
 } from 'reducers/types'
 
 class SideBar extends Component {
@@ -23,6 +24,7 @@ class SideBar extends Component {
     if(!this.props.loggedIn){
       showLogInScreen();
     }else{  
+      this.props.dispatch({type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, value: false})
       this.setState({currentPage: "newIdea"})
       history.push('/create')
     }
