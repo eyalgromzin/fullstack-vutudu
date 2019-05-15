@@ -3,7 +3,9 @@
 }
 
 .mainContent{
-  padding: 0 20%;
+  /* padding: 0 20%; */
+  width: 1200px;
+  margin: auto;
 }
 
 html, body {

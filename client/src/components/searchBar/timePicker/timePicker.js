@@ -63,7 +63,7 @@ export default class TimePicker extends Component {
 
 		return (
 			<React.Fragment>
-				<div id="timePickerField" className="inlineBlock">
+				<div id="timePickerField" className="inlineBlock searchBarComboBox">
 					<div className="fieldHeader">Time</div>
 					<select
 						id="timeChooser"

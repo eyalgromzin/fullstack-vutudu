@@ -54,7 +54,7 @@ class SearchBar extends Component {
 		// console.log('testing redux: in render')
 
 		return (
-			<div id="searchBar" className="mainContent">
+			<div id="searchBar">
 				<div id="searchBarButtons">
 					<PlaceField
 						tagID="searchBarPlaceSelector"

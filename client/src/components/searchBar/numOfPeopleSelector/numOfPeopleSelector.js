@@ -48,7 +48,7 @@ class NumOfPeopleSelector extends Component {
   render() {
     return (
       <React.Fragment>
-        <div id="numOfPeopleSelector" className="inlineBlock">
+        <div id="numOfPeopleSelector" className="inlineBlock searchBarComboBox">
           <div className="fieldHeader"># People</div>
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>

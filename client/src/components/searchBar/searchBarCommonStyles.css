@@ -67,10 +67,17 @@
 
 #editBarButtons{
     margin-bottom: 20px;
-    padding-left: 30px;
 }
 
+.searchBarTextField{
+    margin-right: 1%;
+    width: 35%;
+}
 
+.searchBarComboBox{
+    width: 10%;
+    margin-right: 1%;
+}
 
 .topBarName{
     font-size: 50px;
@@ -95,10 +102,10 @@
 }
 
 .searchBarDropDownSquare{
-    width: 145px;
+    width: 100%;
     height: 47px;
-    margin-right: 10px;
-    padding: 10px 10px;
+    /* margin-right: 10px; */
+    /* padding: 10px 10px; */
     font-family: Helvetica, sans-serif;
     font-weight: 300;
     font-size: 20px;
@@ -122,6 +129,7 @@
 }
 
 #searchBarButtons{
+    width: 100%;
     margin-top: 10px;
     display: inline-block;
 }

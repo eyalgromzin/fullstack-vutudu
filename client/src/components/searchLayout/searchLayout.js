@@ -93,13 +93,14 @@ class searchLayout extends Component {
 		return (
 			<React.Fragment>
 				<div className="searchMainContent">
-					<SearchBar
-						place={this.props.place}
-						numOfPeople={this.props.numOfPeople}
-						time={this.props.time}
-						more={this.props.more}
-					/>
+					
 					<div className="mainContent">
+						<SearchBar
+							place={this.props.place}
+							numOfPeople={this.props.numOfPeople}
+							time={this.props.time}
+							more={this.props.more}
+						/>
 						{this.props.ideas.length == 0 && this.props.searched ? (
 							<NoResultsFound />
 						) : this.props.searched ? (

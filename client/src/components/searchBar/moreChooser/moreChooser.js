@@ -101,7 +101,7 @@ class MoreChooser extends Component {
 
     return (
       <React.Fragment>
-        <div id="placeField" className="inlineBlock">
+        <div id="moreField" className="inlineBlock searchBarTextField">
           <div className="fieldHeader">More</div>
             <Autosuggest
               id="tagSelector"

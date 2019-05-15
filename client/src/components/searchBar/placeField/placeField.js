@@ -104,7 +104,7 @@ class PlaceField extends Component {
 
     return (
       <React.Fragment >
-        <div id="placeField" className="inlineBlock">
+        <div id="placeField" className="inlineBlock searchBarTextField">
           <div className="fieldHeader">Place</div>
           <Autosuggest
             id="placeSelector"
