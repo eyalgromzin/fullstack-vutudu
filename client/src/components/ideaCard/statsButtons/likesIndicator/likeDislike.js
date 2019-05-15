@@ -11,6 +11,7 @@ import {
   REMOVE_USER_FROM_IDEA_DISLIKES,
   // ADD_USER_TO_LIKED_OF_CREATED_IDEA
  } from 'reducers/types'
+import Popup from 'reactjs-popup'
 import {showLogInScreen} from 'actions/commonActions'
 
 class LikeDislike extends Component {
@@ -113,8 +114,18 @@ class LikeDislike extends Component {
 
     return (
       <div className="bottomIndicator">
-        <img src={require("images/like.png")} id="likeButton" className={"bottomButton"} alt="" 
-          onClick={this.handleLikeClick}/>
+        
+        <Popup
+          trigger={<img src={require("images/like.png")} id="likeButton" className={"bottomButton"} alt="" 
+                    onClick={this.handleLikeClick}/>}
+          position="top center"
+          on="hover">
+          <div id="infoButton">
+            <div id="infoContent">
+              <div>Vote for like or dislike</div>
+            </div>
+          </div>
+        </Popup>
         {this.props.idea.liked === undefined ? 0 : this.props.idea.liked.length}
         <img src={clickedLike ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")}  alt="" 
           onClick={this.handleLikeClick} className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} />

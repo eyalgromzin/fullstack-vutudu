@@ -10,6 +10,7 @@ import {
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
   } from "reducers/types";
+import {showLogInScreen} from 'actions/commonActions'
 
 class userPageLayout extends Component {
   constructor(props){
@@ -17,6 +18,12 @@ class userPageLayout extends Component {
 
     this.props.dispatch({type: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS});
     this.props.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS});
+  }
+
+  onIdeaTypeDropDownClick = () => {
+    if(!this.props.loggedIn){
+      showLogInScreen();
+    }
   }
 
   render() {
@@ -28,7 +35,7 @@ class userPageLayout extends Component {
         <div id="userLayout" >
           {/* <div className="pageName">User Data</div> */}
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
-            <div id="UserIdeasTypeDropDown">
+            <div id="UserIdeasTypeDropDown" onClick={this.onIdeaTypeDropDownClick}>
               <UserIdeasTypeDropDown />    
             </div>
             {this.props.currentPreviewedIdeas.length > 0 ? 
@@ -69,6 +76,8 @@ function mapStateToProps(state) {
     currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
     updateToggle: state.userPageReducer.updateToggle,
+    loggedIn: state.commonReducer.loggedIn,
+
   };
 }
 

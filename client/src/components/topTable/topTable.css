@@ -26,12 +26,16 @@
     display: table-cell;
     width: 20%;
     float: left;
+    padding-left: 20px;
 }
 
 #topTableHeader{
     font-size: 35px;
     font-family: "Arial Black";
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    background-color: gainsboro;
+    margin-right: 50px;
+    text-align: center;
 }
 
 .topTableHeader{

@@ -30,6 +30,10 @@
     cursor: pointer;
 }
 
+.tooltip{
+    opacity: 0.8;
+}
+
 .inlineBlock{
     display: inline-block;
 }

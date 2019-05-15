@@ -36,13 +36,6 @@ class CreateIdeaBar extends Component {
       <React.Fragment>
         <div id="createBar" className="inlineBlock">
           <div id="createBarButtons">
-            {/* <PlaceField type="text" 
-              tagID="createBarPlaceSelector" 
-              cssClass="createBarTextBox" 
-              placeSuggestions={[]}
-              placeOnChangeEvent={this.placeOnChangeEvent} 
-              isClickedButton={this.props.isClickedButton} 
-              place={this.props.place} /> */}
             <PlaceField tagID="createBarPlaceSelector" isClickedButton={this.props.isClickedButton}
               placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
               validationMethod={this.isNotEmpty} placeSuggestions={[]}/>

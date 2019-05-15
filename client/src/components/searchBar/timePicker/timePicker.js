@@ -17,24 +17,6 @@ export default class TimePicker extends Component {
 		};
 	}
 
-	//not working
-	// shouldComponentUpdate(){
-	// 	var time = this.props.time === undefined ? 10 : this.props.time;
-
-	// 	this.state = {
-	// 		time: Number(time)
-	// 	};
-	// }
-
-	//not working
-	// componentDidUpdate(){
-	// 	var time = this.props.time === undefined ? 10 : this.props.time;
-
-	// 	this.state = {
-	// 		time: Number(time)
-	// 	};
-	// }
-
 	getSnapshotBeforeUpdate(prevProps, prevState){
 		var time = this.props.time === undefined ? 10 : this.props.time;
 		if(this.state.time != time){
@@ -63,7 +45,7 @@ export default class TimePicker extends Component {
 
 		return (
 			<React.Fragment>
-				<div id="timePickerField" className="inlineBlock searchBarComboBox">
+				<div id="timePickerField" className={this.props.cssClass === undefined? "inlineBlock searchBarComboBox" : "inlineBlock createBarComboBox"}>
 					<div className="fieldHeader">Time</div>
 					<select
 						id="timeChooser"

@@ -72,7 +72,7 @@ class ShareButton extends Component {
 
 		return (
 			<React.Fragment>
-				<img src={require('images/share.png')} className="tilt clickAnimation" onClick={this.shareButtonClick} alt="share" id="shareButton" />
+				<img src={require('images/share.png')} className="tilt clickAnimation hoverClickHand" onClick={this.shareButtonClick} alt="share" id="shareButton" />
 
 				<Modal isOpen={this.state.showModal} style={customStyles} contentLabel="Share">
 					<div id="shareDialog">

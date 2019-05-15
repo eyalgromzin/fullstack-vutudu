@@ -10,6 +10,7 @@ import {
 } from 'reducers/types'
 import {updateIdeaIndicator} from 'actions/ideaActions'
 import {showLogInScreen} from 'actions/commonActions'
+import Popup from 'reactjs-popup'
 
 class DifficultyIndicator extends Component {
   addHard = () => {
@@ -108,13 +109,25 @@ class DifficultyIndicator extends Component {
 
     return (
       <div id="difficultyIndicator">
-        <img src={require("images/difficulty.png")} id="difficultyImage" alt=""  className="bottomButton"/>
-        <img src={addedHard ? require("images/upArrowHighlighted.png"): require("images/upArrow.png")}   alt="" 
+        
+        <Popup
+          trigger={<img src={require("images/difficulty.png")} id="difficultyImage" alt="Difficuly Indicator"  
+                  className="bottomButton"/>}
+          position="top center"
+          on="hover">
+          <div id="infoButton">
+            <div id="infoContent">
+              <div>Was it Hard? Easy?</div>
+            </div>
+          </div>
+        </Popup>
+
+        <img src={addedHard ? require("images/upArrowHighlighted.png"): require("images/upArrow.png")}   alt="Click if it was difficult" 
           id="increaseDifficulty" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleAddHardClick}/>
 
         {this.props.idea === undefined || this.props.idea.addedHard === undefined ? 0 : this.props.idea.addedHard.length}
 
-        <img src={addedEasy ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} 
+        <img src={addedEasy ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} alt="Click if it was easy" 
           id="decreaseDifficulty" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleAddEasyClick}/>        
 
         {this.props.idea === undefined || this.props.idea.addedEasy === undefined ? 0 : this.props.idea.addedEasy.length}

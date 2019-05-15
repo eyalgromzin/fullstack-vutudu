@@ -9,6 +9,7 @@ import {
 } from 'reducers/types'
 import {updateIdeaIndicator} from 'actions/ideaActions'
 import {showLogInScreen} from 'actions/commonActions'
+import Popup from 'reactjs-popup'
 
 class TimeIndicator extends Component {
   constructor(props){
@@ -107,7 +108,17 @@ class TimeIndicator extends Component {
 
     return (
       <div className="bottomIndicator">
-        <img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image" />
+        
+        <Popup
+          trigger={<img src={require("images/time.png")} id="timeImage" className="bottomButton" alt="time image" />}
+          position="top center"
+          on="hover">
+          <div id="infoButton">
+            <div id="infoContent">
+              <div>Took longer? or less time than stated?</div>
+            </div>
+          </div>
+        </Popup>
         <img src={addedTimeMinus? require("images/downArrowHighlighted.png") : require("images/downArrow.png")} 
           id="decreaseTime" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} 
           onClick={this.addTimeMinusClick} alt="decrease time"/>
@@ -117,7 +128,7 @@ class TimeIndicator extends Component {
           0 : this.props.idea.time + this.props.idea.addedLong.length}</span>
         <img src={addedTimePlus ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")} 
           id="incrementTime" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} 
-          onClick={this.handleAddAddTimeClick} alt="increase time"/>
+          onClick={this.handleAddAddTimeClick} alt="Time it took"/>
       </div>
     )
   }

@@ -1,11 +1,8 @@
 improvements:
-  - to make the search bar the same width as the idea card - check if it looks better
-  - change edit idon to + just like in instagram.
-  - user page -> edit idea -> fix css
-  - indicators tooltip
-  - on indicator icon click, show tool tip just like in create idea "i" button
   - add to top ideas: newest
   - add to top ideas: most popular? largest most likes + dislikes combined
+  - user page -> edit idea -> fix css
+  - create idea page - fix css
 
 
 - SSL:
