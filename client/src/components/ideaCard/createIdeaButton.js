@@ -9,7 +9,7 @@ import { addPlaceToDBIfNotExists } from 'actions/autoSuggestActions'
 import { 
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
 } from 'reducers/types'
-import {toastr} from 'react-redux-toastr'
+import {showLogInScreen} from 'actions/commonActions'
 
 class createIdeaButton extends Component {
   getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
@@ -25,37 +25,38 @@ class createIdeaButton extends Component {
   }
 
   handleCreateIdeaClick = (event) => {
-      this.error = "";
-      this.props.dispatch({ type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, payload: true });
-      var tags = this.getTagsFromContent(this.props.content);
-      
-      //add validation for empty fields / wrong
-      if(this.props.isCreateButtonEnabled){
-        const newItem = {
-          // name: this.props.title,
-          title: this.props.title,
-          content: this.props.content,
-          createdBy: this.props.userID,
-          place: this.props.place,
-          time: this.props.time,
-          minNumOfPeople: this.props.minNumOfPeople,
-          maxNumOfPeople: this.props.maxNumOfPeople,
-          tags: tags,
-        };
-
-        let myColor = { background: '#0E1717', text: "#FFFFFF" };
-        
-        //show only if there is no idea with the same title
-        // toastr.success('Success', 'Idea Created!')
-
-        // Add item via createItem action
-        this.props.addIdeaToDB(newItem, this.props.userID);
-        if(tags.length > 0){
-          this.props.addHashTagsToDB(tags)
-        }
-        this.props.addPlaceToDBIfNotExists(this.props.place)
-      }
+    if(!this.props.loggedIn){
+      showLogInScreen();
     }
+
+    this.error = "";
+    this.props.dispatch({ type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, payload: true });
+    var tags = this.getTagsFromContent(this.props.content);
+    
+    //add validation for empty fields / wrong
+    if(this.props.isCreateButtonEnabled){
+      const newItem = {
+        // name: this.props.title,
+        title: this.props.title,
+        content: this.props.content,
+        createdBy: this.props.userID,
+        place: this.props.place,
+        time: this.props.time,
+        minNumOfPeople: this.props.minNumOfPeople,
+        maxNumOfPeople: this.props.maxNumOfPeople,
+        tags: tags,
+      };
+
+      let myColor = { background: '#0E1717', text: "#FFFFFF" };
+      
+      // Add item via createItem action
+      this.props.addIdeaToDB(newItem, this.props.userID);
+      if(tags.length > 0){
+        this.props.addHashTagsToDB(tags)
+      }
+      this.props.addPlaceToDBIfNotExists(this.props.place)
+    }
+  }
 
     
 
@@ -92,7 +93,9 @@ const mapDispatchToProps = dispatch => {
       maxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
       userID: state.userPageReducer.loggedInUserID,
       tags: state.editableIdeaReducer.tags,
-      isCreateButtonEnabled: state.editableIdeaReducer.isCreateButtonEnabled,
+      isCreateButtonEnabled: state.editableIdeaReducer.isButtonEnabled,
+      loggedIn: state.commonReducer.loggedIn,
+
     };
   }
 

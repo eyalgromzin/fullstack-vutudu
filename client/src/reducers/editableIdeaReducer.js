@@ -50,7 +50,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         place: action.payload,
-        isCreateButtonEnabled: state.content.length > 0 && state.title.length > 0 && action.payload > 2,
+        isButtonEnabled: state.content.length > 0 && state.title.length > 0 && action.payload > 2,
         isPlaceValid: action.payload.length > 2
       };
     case EDITABLE_IDEA_SET_TIME:
@@ -62,14 +62,14 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       title: action.payload,
-      isCreateButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2,
+      isButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2,
       isTitleValid: action.payload > 2
     };
     case EDITABLE_IDEA_SET_CONTENT:
       return {
         ...state,
         content: action.payload,
-        isCreateButtonEnabled: action.payload.length > 0 && state.title.length > 0 && state.place.length > 2,
+        isButtonEnabled: action.payload.length > 0 && state.title.length > 0 && state.place.length > 2,
         isContentValid: action.payload.length > 0
       };
     case CREATE_IDEA_SET_MIN_PEOPLE:
@@ -114,25 +114,25 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         isPlaceValid: action.payload,
-        isCreateButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
+        isButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
       };
     case EDITABLE_IDEA_SET_IS_TITLE_VALID:
       return {
         ...state,
         isTitleValid: action.payload,
-        isCreateButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
+        isButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
       };
     case EDITABLE_IDEA_SET_IS_CONTENT_VALID:
       return {
         ...state,
         isContentValid: action.payload,
-        isCreateButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
+        isButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
       };
     case EDITABLE_SET_IS_BUTTON_CLICKED_VALUE:
       return {
         ...state,
         isClickedButton: action.payload,
-        isCreateButtonEnabled: state.content.length > 0 && state.title.length > 0 && state.place.length > 2,
+        isButtonEnabled: state.content.length > 0 && state.title.length > 0 && state.place.length > 2,
       };
     case ON_CREATE_SET_IS_DUPLICATE_TITLE:
       return {

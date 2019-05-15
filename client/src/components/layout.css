@@ -10,6 +10,7 @@
 
 #topBar{
     /* height: 45px; */
+    width: 100%;
     background-color: white;
     border-bottom: solid;
     border-bottom-color: lightgrey;

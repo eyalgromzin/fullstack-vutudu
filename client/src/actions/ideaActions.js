@@ -14,9 +14,9 @@ import {
 	SEARCH_SET_CURRENT_IDEA_BY_ID,
 	SEARCH_SET_TIME,
 	SEARCH_SET_PLACE,
-	SEARCH_SET_NUM_OF_PEOPLE,
 	USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
 	ON_CREATE_SET_IS_DUPLICATE_TITLE,
+	EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
 } from 'reducers/types';
 import { emptyUserPreviewedIdea } from 'actions/userActions';
 import store from 'store';
@@ -210,6 +210,13 @@ export const addIdeaToDB = (idea, userID) => (dispatch) => {
 
 			axios.post('/api/items/createIdea', { idea, userID }).then((res) => {
 				toastr.success('Success', 'Idea Created!')
+
+				dispatch({
+					type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
+					payload: false
+				});
+
+
 				console.log('added item to mongo: ' + res.data.title);
 
 				var idea = res.data;

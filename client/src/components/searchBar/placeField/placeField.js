@@ -30,6 +30,11 @@ class PlaceField extends Component {
       this.setState({placeText: this.props.place})
       return true
     }
+
+    if(nextProps.isClickedButton != this.props.isClickedButton){
+      return true
+    }
+
     return false
   }  
   
@@ -39,7 +44,7 @@ class PlaceField extends Component {
   }
   
   isPlaceValid = () => {
-    return this.state.placeText.length > 1
+    return this.state.placeText.length >= 2
   }
   
   placeFieldKeyUp = (event) => {
@@ -113,7 +118,7 @@ class PlaceField extends Component {
             onChange={this.handlePlaceChange} 
             onBlur={this.onBlur}
           />
-          { isShowError ? <div className="errorText"> *3+ letters </div> : <div className="invisible"> error </div> }
+          { isShowError ? <div className="errorText"> *2+ letters </div> : <div className="invisible"> error </div> }
         </div>
       </React.Fragment>
     )

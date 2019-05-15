@@ -17,7 +17,7 @@ class CreateIdeaBar extends Component {
   }
 
   isPlaceValid = (placeText) => {
-    return placeText.length >= 1
+    return placeText.length >= 2
   }
 
   placeOnChangeEvent = (placeText) => {

@@ -27,9 +27,29 @@ class EditableIdeaCard extends Component {
       titleText: '',
       contentText: '',
       isShowTitleErrorOnBlur: false,
-      isShowContentErrorOnBlur: false
+      isShowContentErrorOnBlur: false,
+      isClickedButton: false
     }
   }
+
+  shouldComponentUpdate(nextProps, nextState){
+    if(nextProps.title != this.state.titleText){
+      this.setState({titleText: nextProps.title})
+      return true
+    }
+
+    if(nextProps.content != this.state.contentText){
+      this.setState({contentText: nextProps.content})
+      return true
+    }
+
+    if(nextProps.isClickedButton != this.state.isClickedButton){
+      this.setState({isClickedButton: nextProps.isClickedButton})
+      return true
+    }
+
+    return false
+  }  
 
   handleOnTitleChange = (e) => {
       this.setState({titleText: e.target.value}) 
@@ -58,8 +78,10 @@ class EditableIdeaCard extends Component {
   }
 
   onContentBlur = (e) => {
-    if (this.state.contentText.length == 0 || this.calculateIsContentValid()){
-      this.setState({isShowContentErrorOnBlur: false})
+    if (this.state.contentText === undefined || 
+      this.state.contentText.length == 0 || 
+      this.calculateIsContentValid()){
+        this.setState({isShowContentErrorOnBlur: false})
     }else{
       this.setState({isShowContentErrorOnBlur: true})
     }

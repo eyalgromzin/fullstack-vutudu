@@ -12,7 +12,6 @@
 }
 
 .errorText{
-    color: beige;
     font-weight: bolder;
     font-size: 15px;
     text-align: left;
@@ -45,7 +44,6 @@
 }
 
 #mainLogo{
-    display: inline-block;
     color: black;
     font-size: 65px;
     /* font-family: fantasy; */
@@ -53,7 +51,8 @@
     /* text-align: center; */
     /* padding-top: 100px; */
     text-align: center;
-    margin-left: 40%;
+    /* margin-left: 40%; */
+    text-align: center;
 }
 
 .alignMiddleDiv{
