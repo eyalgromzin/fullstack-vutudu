@@ -45,6 +45,5 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000",
-  "homepage": "http:www.vutudu.com"
+  "proxy": "http://localhost:5000"
 }

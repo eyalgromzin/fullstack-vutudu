@@ -75,7 +75,6 @@ function mapStateToProps(state) {
     newPlace: state.editableIdeaReducer.place,
     newMinNumOfPeople: state.editableIdeaReducer.minNumOfPeople,
     newMaxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
-
   };
 }
 
