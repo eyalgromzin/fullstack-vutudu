@@ -59,6 +59,11 @@ const ItemSchema = new Schema({
     required: false,
     default: [],
   },
+  likeAndDislikeCount: {
+    type: Number,
+    required: false,
+    default: 0,
+  },
   addedEasy: {
     type: [String],
     required: false,

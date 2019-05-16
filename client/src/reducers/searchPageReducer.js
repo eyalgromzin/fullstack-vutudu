@@ -38,6 +38,7 @@ const initialState = {
     liked: [],
     likeCount: 0,
     disliked: [],
+    likeAndDislikeCount: 0,
     addedHard: [],
     hardCount: 0,
     addedEasy: [],
@@ -109,6 +110,7 @@ function reducer(state = initialState, action) {
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.liked.push(action.payload);
       currentIdea.likeCount++
+      currentIdea.likeAndDislikeCount++
 
       //also find the idea in the ideas and add it to it too.
       var ideas = dcopy(state.ideas)

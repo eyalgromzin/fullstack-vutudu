@@ -8,6 +8,8 @@ import {
 	REMOVE_CREATED_IDEA_FROM_USER,
 	SET_TOP_HARD_IDEAS,
 	SET_TOP_LIKED_IDEAS,
+	SET_TOP_POPULAR_IDEAS,
+	SET_TOP_NEWEST_IDEAS,
 	SET_IS_SEARCHING,
 	USER_PAGE_SHOW_NEXT_CREATED_IDEA,
 	SET_IS_MAIN_LOADING,
@@ -174,7 +176,7 @@ const addTagToLettersBucketIfNotExists = (firstLetters, tag) => {
 
 export const updateTopIdeas = () => (dispatch) => {
 	axios.post('/api/items/getTopHardIdeas').then((res) => {
-		console.log('tags added to their bucket');
+		console.log('got top hard ideas');
 
 		dispatch({
 			type: SET_TOP_HARD_IDEAS,
@@ -188,10 +190,28 @@ export const updateTopIdeas = () => (dispatch) => {
 	});
 
 	axios.post('/api/items/getTopLikedIdeas').then((res) => {
-		console.log('tags added to their bucket');
+		console.log('got top liked ideas');
 
 		dispatch({
 			type: SET_TOP_LIKED_IDEAS,
+			payload: res.data
+		});
+	});
+
+	axios.post('/api/items/getTopPopularIdeas').then((res) => {
+		console.log('got top popular ideas');
+
+		dispatch({
+			type: SET_TOP_POPULAR_IDEAS,
+			payload: res.data
+		});
+	});
+
+	axios.post('/api/items/getTopNewestIdeas').then((res) => {
+		console.log('got top newest ideas');
+
+		dispatch({
+			type: SET_TOP_NEWEST_IDEAS,
 			payload: res.data
 		});
 	});

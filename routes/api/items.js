@@ -54,7 +54,8 @@ router.post('/ideaLiked/', (req, res) => {
 		{ _id: ideaID },
 		{
 			$push: { liked: req.body.userID },
-			$inc: { likeCount: 1 }
+			$inc: { likeCount: 1 },
+			$inc: { likeAndDislikeCount: 1 }
 		},
 		{ new: true }
 	).then((items) => res.json(items));
@@ -71,7 +72,8 @@ router.post('/removeIdeaLiked/', (req, res) => {
 		{ _id: ideaID }, //{'_id': ObjectID(ideaID)}
 		{
 			$pull: { liked: req.body.userID },
-			$inc: { likeCount: -1 }
+			$inc: { likeCount: -1 },
+			$inc: { likeAndDislikeCount: -1 }
 		},
 		{ new: true }
 	).then((items) => res.json(items));
@@ -88,7 +90,10 @@ router.post('/ideaDisliked/', (req, res) => {
 
 	Item.findOneAndUpdate(
 		{ _id: ideaID }, //{'_id': ObjectID(ideaID)}
-		{ $push: { disliked: req.body.userID } },
+		{ 	
+			$push: { disliked: req.body.userID },
+			$inc: { likeAndDislikeCount: 1 } 
+		},	
 		{ new: true }
 	).then((items) => res.json(items));
 });
@@ -104,7 +109,10 @@ router.post('/removeIdeaDisliked/', (req, res) => {
 
 	Item.findOneAndUpdate(
 		{ _id: ideaID }, //{'_id': ObjectID(ideaID)}
-		{ $pull: { disliked: req.body.userID } },
+		{ 
+			$pull: { disliked: req.body.userID },
+			$inc: { likeAndDislikeCount: -1 },
+		},
 		{ new: true }
 	).then((items) => res.json(items));
 });
@@ -305,13 +313,35 @@ router.post('/updateIdeaBasic/', (req, res) => {
 	});
 });
 
-// @route   POST api/items/updateIdeaBasic/
+// @route   POST api/items/getTopHardIdeas/
 // @desc    update idea
 // @access  Public
 router.post('/getTopHardIdeas/', (req, res) => {
 	console.log('getting top ideas');
 	Item.find().sort({ hardCount: -1 }).limit(5).then((items) => {
 		console.log('got top hard ideas');
+		return res.json(items);
+	});
+});
+
+// @route   POST api/items/getTopPopularIdeas/
+// @desc    gets the ideas with most likes + dislikes
+// @access  Public
+router.post('/getTopPopularIdeas/', (req, res) => {
+	console.log('getting top popular');
+	Item.find().sort({ likeAndDislikeCount: -1 }).limit(5).then((items) => {
+		console.log('got top popular ideas');
+		return res.json(items);
+	});
+});
+
+// @route   POST api/items/getTopNewestIdeas/
+// @desc    gets the ideas with most likes + dislikes
+// @access  Public
+router.post('/getTopNewestIdeas/', (req, res) => {
+	console.log('getting top newest ideas');
+	Item.find().sort({ 'date' : -1 }).limit(5).then((items) => {
+		console.log('got top newest ideas');
 		return res.json(items);
 	});
 });

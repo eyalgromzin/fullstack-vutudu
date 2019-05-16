@@ -1,10 +1,3 @@
-improvements:
-  - add to top ideas: newest
-  - add to top ideas: most popular - largest likes + dislikes combined
-  - create idea page - fix css
-  - place typing is slow... its strange.
-
-
 - SSL:
   - enable it on the website. - tomorrow!
   - test google login 
@@ -13,6 +6,7 @@ improvements:
 - check the search with more works. 
     - search with more 
     - search without more.
+    - app stopped being responsive - search page - change the inline block to block!!! :/
 
 AFTER WEBSITE UPLOAD:
   - check the share works, because of the domain, 
@@ -28,6 +22,10 @@ AFTER WEBSITE UPLOAD:
     - check cell phone version works.
     
 NTH: 
+  - place typing is slow... its strange.
+
+  - more typing is slow... same issue probably
+
   - create for idea action a promise and do something on its end - for learning 
   
   - on create idea button check for logged in state.

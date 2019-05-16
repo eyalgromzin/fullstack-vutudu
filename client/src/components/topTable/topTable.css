@@ -13,8 +13,23 @@
     display: inline-block;
 }
 
-#topLikedTableClicked{
+#topPopularTable{
+    width: 45%;
+    display: inline-block;
+}
+
+#topNewestTable{
+    width: 45%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#topTableTopRow{
     margin-bottom: 20px;
+}
+
+#topLikedTableClicked{
+    margin-bottom: 30px;
 }
 
 #topTableIdea{

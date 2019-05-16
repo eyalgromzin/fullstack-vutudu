@@ -126,6 +126,7 @@ class LikeDislike extends Component {
             </div>
           </div>
         </Popup>
+        
         {this.props.idea.liked === undefined ? 0 : this.props.idea.liked.length}
         <img src={clickedLike ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")}  alt="" 
           onClick={this.handleLikeClick} className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} />

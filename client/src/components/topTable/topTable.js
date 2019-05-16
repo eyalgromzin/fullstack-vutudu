@@ -13,16 +13,7 @@ import { SET_CURRENT_IDEA } from '../../reducers/types';
 //on click, open the idea in the middle like in search
 //remove table on search
 class topTable extends Component {
-  showLikedIdea = (likedIdea) => {
-    //the ideas list should move to the right side and
-    store.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: true});  //to update ideas list 
-
-    //the idea should show in the middle.
-    store.dispatch({type: SET_TOP_TABLE_IDEA, payload: likedIdea})
-    store.dispatch({type: SET_CURRENT_IDEA, payload: likedIdea})
-  }
-
-  showHardIdea = (hardIdea) => {
+  showIdea = (hardIdea) => {
     //the ideas list should move to the right side and
     store.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: true});  //to update ideas list 
     
@@ -34,7 +25,7 @@ class topTable extends Component {
   renderLikedItem = (index, key) => {  //key is running number
     return <div onClick={ () => 
       { 
-        this.showLikedIdea(this.props.topLikedIdeas[index]) 
+        this.showIdea(this.props.topLikedIdeas[index]) 
       } 
     } 
     key={Math.random()}
@@ -46,18 +37,42 @@ class topTable extends Component {
   renderHardItem = (index, key) => {  //key is running number
     return <div onClick={ () => 
       { 
-        this.showHardIdea(this.props.topHardIdeas[index]) 
+        this.showIdea(this.props.topHardIdeas[index]) 
       } 
     } 
     key={Math.random()}
     className="listRow">   
       {this.props.topHardIdeas[index].title}
     </div>
+  }
 
+  renderPopularItem = (index, key) => {  //key is running number
+    return <div onClick={ () => 
+      { 
+        this.showIdea(this.props.topPopularIdeas[index]) 
+      } 
+    } 
+    key={Math.random()}
+    className="listRow">   
+      {this.props.topPopularIdeas[index].title}
+    </div>
+  }
+
+  renderNewItem = (index, key) => {  //key is running number
+    return <div onClick={ () => 
+      { 
+        this.showIdea(this.props.topNewestIdeas[index]) 
+      } 
+    } 
+    key={Math.random()}
+    className="listRow">   
+      {this.props.topNewestIdeas[index].title}
+    </div>
   }
 
   render() {
     var clickedIdeaElement = 
+
       <React.Fragment>
         <div id="topTableLists">
           <div id="topTableClicked">
@@ -87,27 +102,55 @@ class topTable extends Component {
         </div>
       </React.Fragment>
 
+
+
+
+
     var topTable = 
+
       <React.Fragment>
         <div id="topTable">
           <div id="topTableHeader"> 
             Top Ideas
           </div>
-          <div id="topLikedTable">
-          <span className="topTableHeader">Liked</span>
-            <ReactList
-                    itemRenderer={this.renderLikedItem}
-                    length={this.props == null || this.props.topLikedIdeas == null? 0 : this.props.topLikedIdeas.length}
-                    type='uniform'
-                  />
+
+          <div id="topTableTopRow">
+            <div id="topLikedTable">
+              <span className="topTableHeader">Liked</span>
+                <ReactList
+                        itemRenderer={this.renderLikedItem}
+                        length={this.props == null || this.props.topLikedIdeas == null? 0 : this.props.topLikedIdeas.length}
+                        type='uniform'
+                      />
+            </div>
+            <div id="topHardTable">
+              <span className="topTableHeader">Hard</span>
+                <ReactList
+                        itemRenderer={this.renderHardItem}
+                        length={this.props == null || this.props.topHardIdeas == null? 0 : this.props.topHardIdeas.length}
+                        type='uniform'
+                      />
+            </div>
           </div>
-          <div id="topHardTable">
-          <span className="topTableHeader">Hard</span>
-            <ReactList
-                    itemRenderer={this.renderHardItem}
-                    length={this.props == null || this.props.topHardIdeas == null? 0 : this.props.topHardIdeas.length}
-                    type='uniform'
-                  />
+
+
+          <div id="topTableBottomRow">
+            <div id="topPopularTable">
+              <span className="topTableHeader">Popular</span>
+                <ReactList
+                  itemRenderer={this.renderPopularItem}
+                  length={this.props == null || this.props.topPopularIdeas == null? 0 : this.props.topPopularIdeas.length}
+                  type='uniform'
+                />
+            </div>
+            <div id="topNewestTable">
+              <span className="topTableHeader">Newest</span>
+                <ReactList
+                  itemRenderer={this.renderNewItem}
+                  length={this.props == null || this.props.topNewestIdeas == null? 0 : this.props.topNewestIdeas.length}
+                  type='uniform'
+                />
+            </div>
           </div>
         </div>
       </React.Fragment>
@@ -124,6 +167,8 @@ function mapStateToProps(state) {
   return {
     topLikedIdeas: state.topTableReducer.topLikedIdeas,
     topHardIdeas: state.topTableReducer.topHardIdeas,
+    topPopularIdeas: state.topTableReducer.topPopularIdeas,
+    topNewestIdeas: state.topTableReducer.topNewestIdeas,
     isClickedTopIdea:  state.topTableReducer.isClickedTopIdea,
     idea: state.topTableReducer.idea
   };
