@@ -31,6 +31,10 @@ class MoreChooser extends Component {
       return true
     }
 
+    if(nextState.text != this.state.text){
+      return true
+    }
+
     return false
   }  
 

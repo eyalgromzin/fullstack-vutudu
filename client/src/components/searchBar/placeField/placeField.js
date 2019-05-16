@@ -31,6 +31,10 @@ class PlaceField extends Component {
       return true
     }
 
+    if(nextState.placeText != this.state.placeText){
+      return true
+    }
+
     if(nextProps.isClickedButton != this.props.isClickedButton){
       return true
     }
