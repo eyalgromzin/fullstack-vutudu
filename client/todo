@@ -1,5 +1,6 @@
 - SSL:
-  - enable it on the website. - tomorrow!
+  - generate private key
+  - add it it to the website 
   - test google login 
   - test facebook login
 
@@ -22,10 +23,6 @@ AFTER WEBSITE UPLOAD:
     - check cell phone version works.
     
 NTH: 
-  - place typing is slow... its strange.
-
-  - more typing is slow... same issue probably
-
   - create for idea action a promise and do something on its end - for learning 
   
   - on create idea button check for logged in state.
