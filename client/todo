@@ -23,9 +23,8 @@ AFTER WEBSITE UPLOAD:
     - check cell phone version works.
     
 NTH: 
-  - create for idea action a promise and do something on its end - for learning 
   
-  - on create idea button check for logged in state.
+  - create for idea action a promise and do something on its end - for learning 
 
   - add a view to mongo, for top liked and hard ideas - so it wont have to search all the DB every time.
 

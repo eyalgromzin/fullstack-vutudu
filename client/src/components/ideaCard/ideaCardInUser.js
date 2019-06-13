@@ -9,6 +9,7 @@ import Linkify from 'react-linkify';
 import 'commonCss.css'
 import EditIdeaButton from './editIdeaButton' 
 import DeleteIdeaButton from './deleteIdeaButton' 
+import { convertLinksToThumbNails }  from 'commonUtils'
 
 class IdeaCardInUser extends Component {
   constructor(props){
@@ -41,7 +42,7 @@ class IdeaCardInUser extends Component {
                   </div>
                   <div id="ideaContentText"> 
                     <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
-                      {this.props.currentPreviewedIdea.content}
+                      {this.props.content}
                     </Linkify>
                   </div>
                 </div>
@@ -75,10 +76,13 @@ class IdeaCardInUser extends Component {
 }
 
 function mapStateToProps(state) {
+  var convertedContent = convertLinksToThumbNails(state.userPageReducer.currentPreviewedIdea.content)
+
   return {
     currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
     currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
+    content: convertedContent,
     place: state.userPageReducer.currentPreviewedIdea.place,
     time: state.userPageReducer.currentPreviewedIdea.time,
     minNumOfPeople: state.userPageReducer.currentPreviewedIdea.minNumOfPeople,

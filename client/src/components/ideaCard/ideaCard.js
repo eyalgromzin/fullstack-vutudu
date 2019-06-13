@@ -6,15 +6,17 @@ import { connect } from 'react-redux';
 import 'commonCss.css'
 import ShareButton from 'components/ideaCard/cardButtons/shareButton'
 import CardIndicators from 'components/ideaCard/cardIndicators'
-
+import { convertLinksToThumbNails } from 'commonUtils'
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class IdeaCard extends Component {
   render() {
+    var convertedContent = convertLinksToThumbNails(this.props.idea.content)
+    
     return (
       <React.Fragment>
         <div className="IdeaContent">
           {this.props.showNextPreviousButtons? <IdeaNextButtonsPreviousButtons /> : null}
-          {/* <IdeaNextButtonsPreviousButtons /> */}
           <div id="ideaCardWithButtons">
             <div id="ideaCardWithShare" >
               <div id="ideaCard"> 
@@ -23,7 +25,7 @@ class IdeaCard extends Component {
                 </div>
                 <div id="ideaContentText"> 
                   <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
-                    {this.props.idea.content}
+                    {ReactHtmlParser(convertedContent)}
                   </Linkify>
                 </div>
               </div>
@@ -41,6 +43,7 @@ class IdeaCard extends Component {
 
 function mapStateToProps(state) {
   
+
   return {
     title: state.searchPageReducer.currentIdea.title,
     content: state.searchPageReducer.currentIdea.content,
