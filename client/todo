@@ -1,3 +1,5 @@
+- the conversion to thumbnails deletes ',' and '\n' - need to create my own split or change.
+
 - SSL:
   - generate private key
   - add it it to the website 
@@ -12,7 +14,7 @@
 AFTER WEBSITE UPLOAD:
   - check the share works, because of the domain, 
   - check everything works.
-    - new idea
+    - new idea - X
     - search
     - indicators: like, dislike, time+, time- , hard + , hard - 
     - delete idea
@@ -22,6 +24,7 @@ AFTER WEBSITE UPLOAD:
     - check share work from cell phone and regular.
     - check cell phone version works.
     
+
 NTH: 
   
   - create for idea action a promise and do something on its end - for learning 

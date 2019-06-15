@@ -6,30 +6,88 @@ export const removeIdeaFromArray = (ideasArr, ideaID) => {
     return arrayWithoutIdea;
 }
 
+export const findPreviousSeparatorIndex = (text, startIndex, separators) => {
+  var i = startIndex
+  var foundIndex = 0
+  separators = [' ', '\n', ',']
+  
+  for(i = startIndex; i >= 0; i--){
+    separators.forEach(function(separator) {
+      if (text[i] == separator){
+        foundIndex = i
+        i = -1
+      }
+    });
+  }
+  return foundIndex
+}
+
+const convertLine = (line, endSeparator) => {
+  // doesnt help
+  // if (endSeparator == '\n'){
+  //   endSeparator = '<br />'
+  // }
+  if(line.includes('https://www.youtube.com/watch?v=')){
+    var videoID = line.split("https://www.youtube.com/watch?v=")[1]
+
+    var convertedYoutubeLink = '<div class="youtubeLink"><object width="400" height="315" data="https://www.youtube.com/embed/' + videoID + '" /></div>'
+
+    return convertedYoutubeLink + endSeparator
+  }
+  else if(line.endsWith(".jpg") || line.endsWith(".png") || line.endsWith(".gif") || line.endsWith(".jpeg")){
+    //e.g. https://kidshealth.org/EN/images/illustrations/ASDestab_433x259_enIL.png
+    var convertedYoutubeLink = '<div class="contentImageLink"><a target="_blank" href="' + line + '"><img src="' + line + '" height="315" /></a></div>'
+    return convertedYoutubeLink + endSeparator
+  }
+  else{
+    return line + endSeparator
+  }
+}
+
 export const convertLinksToThumbNails = (text) => {
     if (typeof(text) == 'undefined'){
         return ""
     }
     var convertedText = []
-    var words = text.split(/[\s,\n]+/);
-    words.forEach(function(element){
-      if(element.includes('https://www.youtube.com/watch?v=')){
-        var videoID = element.split("https://www.youtube.com/watch?v=")[1]
+    // var words = text.split(/[\s,\n]+/);
+    var endOfText = text.length
+    var i = 0
+    var symbol = ''
+    var separators = [' ', '\n', ',']
 
-        var convertedYoutubeLink = '<div class="youtubeLink"><object width="400" height="315" data="https://www.youtube.com/embed/' + videoID + '" /></div>'
+    for (i = 0; i <= endOfText; i++){
+      symbol = ''
 
-        convertedText += convertedYoutubeLink + ' '
-      }
-      else if(element.endsWith(".jpg") || element.endsWith(".png") || element.endsWith(".gif") || element.endsWith(".jpeg")){
-        //e.g. https://kidshealth.org/EN/images/illustrations/ASDestab_433x259_enIL.png
-        var imageEndingIndex = element.indexOf(".jpg")
-        var convertedYoutubeLink = '<div class="contentImageLink"><a target="_blank" href="' + element + '"><img src="' + element + '" height="315" /></a></div>'
-        convertedText += convertedYoutubeLink + ' '
-      }
-      else{
-        convertedText += element + ' '
-      }
-    })
+      separators.forEach(function(separator, index) {
+        if (text[i] == separator){
+          symbol = separator;
+        }
+        else if(i == endOfText){
+          symbol = ' '
+        }
+      });
 
-    return convertedText
+      if (symbol == ''){
+        continue;
+      }
+
+      var previousSeparatorIndex = 0
+      if (i == endOfText){
+        previousSeparatorIndex = findPreviousSeparatorIndex(text, i - 1, separators)
+      }else{
+        previousSeparatorIndex = findPreviousSeparatorIndex(text, i - 1, separators)
+      }
+
+      if (previousSeparatorIndex != 0){
+        previousSeparatorIndex += 1
+      }
+
+      var line = text.substring(previousSeparatorIndex, i);
+      var convertedLine = convertLine(line, symbol)
+      
+      convertedText.push(convertedLine)
+    }
+
+    var output = convertedText.join("")
+    return output
 }
