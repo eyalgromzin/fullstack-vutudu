@@ -112,10 +112,11 @@ class EditableIdeaCard extends Component {
                   <div id="tooltip">
                     <div id="infoButtonTitle">Tips </div>
                     <div id="infoContent">
-                      <div>* be specific</div>
-                      <div>* be brief</div>
-                      <div>* add youtube, image links for clarity</div>
-                      <div>* add #hashTags in the content for easier finding</div>
+                      <div>* Be specific</div>
+                      <div>* Be brief</div>
+                      <div>* Add youtube, image links for clarity</div>
+                      <div>* Image and video links are translated to images and videos</div>
+                      <div>* Add #HashTags in the content for easier finding</div>
                     </div>
                   </div>
                 </Popup>

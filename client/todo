@@ -1,16 +1,10 @@
-- the conversion to thumbnails deletes ',' and '\n' - need to create my own split or change.
-
-- SSL:
-  - generate private key
-  - add it it to the website 
-  - test google login 
-  - test facebook login
+how to push to heroku:
+git push heroku master
 
 - check the search with more works. 
-    - search with more 
-    - search without more.
-    - app stopped being responsive - search page - change the inline block to block!!! :/
-
+    - search with more.
+    - search without more. 
+    
 AFTER WEBSITE UPLOAD:
   - check the share works, because of the domain, 
   - check everything works.
@@ -26,6 +20,7 @@ AFTER WEBSITE UPLOAD:
     
 
 NTH: 
+  - app stopped being responsive - search page - change the inline block to block!!! :/
   
   - create for idea action a promise and do something on its end - for learning 
 
