@@ -4,22 +4,22 @@
 }
 
 #topLikedTable{
-    width: 45%;
+    width: 48%;
     display: inline-block;
 }
 
 #topHardTable{
-    width: 45%;
+    width: 48%;
     display: inline-block;
 }
 
 #topPopularTable{
-    width: 45%;
+    width: 48%;
     display: inline-block;
 }
 
 #topNewestTable{
-    width: 45%;
+    width: 48%;
     display: inline-block;
     vertical-align: top;
 }

@@ -72,8 +72,8 @@
     background-color: white;
     min-height: 350px;
     max-height: 550px;
-    width: 95%;   /* acts as 90.00% */
-        display: table-cell;
+    width: 100%;   /* acts as 90.00% */
+    display: table-cell;
 }
 
 #statusButtons{
