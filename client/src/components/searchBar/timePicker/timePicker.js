@@ -54,6 +54,9 @@ export default class TimePicker extends Component {
 						onKeyDown={this.placeFieldKeyUp}
 						className={this.props.cssClass}
 					>
+						<option value="7000" className="timeChooserOption">
+							Any
+						</option>
 						<option value="5" className="timeChooserOption">
 							5 min
 						</option>
