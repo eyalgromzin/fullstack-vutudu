@@ -98,3 +98,8 @@
 #createIdeaBarButtons{
     display: inline-block;
 }
+
+#mainLogoImage{
+    height: 63px;
+    margin-left: 5px; 
+}

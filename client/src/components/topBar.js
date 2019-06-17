@@ -74,7 +74,10 @@ class SideBar extends Component {
               } />
           </div>
           
-          <div id="mainLogo" className=""> VUTUDU </div> 
+          <div id="mainLogo" className=""> 
+            <span id="mainLogoText">VUTUDU</span>
+            <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />            
+          </div> 
           
 
         </React.Fragment> 
