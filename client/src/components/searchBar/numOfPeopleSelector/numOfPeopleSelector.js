@@ -52,6 +52,7 @@ class NumOfPeopleSelector extends Component {
           <div className="fieldHeader"># People</div>
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
+            <option value="9000" className="timeChooserOption" >Any</option>
             <option value="1" className="timeChooserOption">1</option>
             <option value="2" className="timeChooserOption">2</option>
             <option value="20000" className="timeChooserOption">couple</option>

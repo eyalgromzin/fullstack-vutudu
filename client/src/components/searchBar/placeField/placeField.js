@@ -74,7 +74,7 @@ class PlaceField extends Component {
 
   onSuggestionsFetchRequested = ({value}) => {
     if (value == ""){
-      const places = [ 'home','kitchen', 'bus station', 'park', 'beach', '...']
+      const places = [ 'bar', 'home', 'kitchen', 'bus station', 'park', 'beach', '...']
       
       this.setState({placeSuggestions: places})
       store.dispatch({type: SET_PLACE_SUGGESTIONS, payload: places})
@@ -101,7 +101,7 @@ class PlaceField extends Component {
     var isShowError = (this.props.isClickedButton && !this.isPlaceValid()) || !this.state.isPlaceValid
 
     const inputProps = {
-      placeholder: 'home / kitchen / beach / bar / lawn / bus Station / ...',
+      placeholder: 'bar/ home / kitchen / beach / park / bus Station / ...',
       value: this.state.placeText,
       onChange: this.handlePlaceChange,
     };

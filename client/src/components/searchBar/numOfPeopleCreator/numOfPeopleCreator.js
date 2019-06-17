@@ -25,6 +25,7 @@ class NumOfPeopleCreator extends Component {
           <div id="createBarNumOfPeopleCreator">
               <select id="minNumOfPeopleChooser" value={this.props.minNumOfPeople} 
                 className="numOfPeopleCreatorDropDown" onChange={this.minNumOfPeopleChange}>
+                <option value="9000" className="timeChooserOption" >Any</option>
                 <option value="1" className="timeChooserOption" >1</option>
                 <option value="2" className="timeChooserOption" >2</option>
                 <option value="20000" className="timeChooserOption">couple</option>
@@ -40,6 +41,7 @@ class NumOfPeopleCreator extends Component {
               
               <select id="maxNumOfPeopleChooser" value={this.props.maxNumOfPeople} 
                 className="numOfPeopleCreatorDropDown" onChange={this.maxNumOfPeopleChange}>
+                <option value="9000" className="timeChooserOption" >Any</option>
                 <option value="1" className="timeChooserOption">1</option>
                 <option value="2" className="timeChooserOption">2</option>
                 <option value="20000" className="timeChooserOption">couple</option>
