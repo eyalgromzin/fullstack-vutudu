@@ -22,8 +22,6 @@ AFTER WEBSITE UPLOAD:
     
 
 NTH: 
-  - app stopped being responsive - search page - change the inline block to block!!! :/
-  
   - create for idea action a promise and do something on its end - for learning 
 
   - add a view to mongo, for top liked and hard ideas - so it wont have to search all the DB every time.
@@ -33,3 +31,5 @@ NTH:
   - because there are more like clicks than created idea, remove the save of the created idea to the user. 
   
   - on focus: in case of field empty: show last searches, if there are none, show the regular suggestions.
+  
+  - app stopped being responsive - search page - change the inline block to block!!! :/
