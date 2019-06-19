@@ -10,11 +10,9 @@ class DeleteIdeaButton extends Component {
 		this.props.deleteIdea(this.props.loggedInUserID, this.props.idea._id);
 	};
 
-	
-  
-  deleteAndShowNextIdea = () => {
-    this.deleteIdea();
-  }
+	deleteAndShowNextIdea = () => {
+		this.deleteIdea();
+	}
 
 	render() {
 		return (

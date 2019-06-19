@@ -16,6 +16,8 @@ import {
   // UPDATE_CREATED_IDEA_IN_USER,
 } from 'reducers/types'
 import store from 'store'
+import { REMOVE_LIKED_IDEA_FROM_USER, ADD_LIKED_IDEA_TO_USER } from '../reducers/types';
+import { getTagsFromContent } from 'commonUtils'
 
 export const emptyUserPreviewedIdea = () => {
   store.dispatch({type: EMPTY_USER_PREVIEWED_IDEA})
@@ -133,9 +135,45 @@ export const getUserFromDB = userID => dispatch => {
   );
 }
 
+// //'Liked' / 'Created' 
+export const addLikedIdeaToUser = (userID, idea) => dispatch => {
+  axios.post(`/api/user/userLiked`,{userID, idea})
+  .then(res =>
+    {
+      console.log('got response from: api/Items/userLiked');
+      dispatch({
+        type: ADD_LIKED_IDEA_TO_USER,
+        payload: idea
+      })
+    }
+  );
+}
+
+// //'Liked' / 'Created' 
+export const removeUserLikedIdea = (userID, idea) => dispatch => {
+  axios.post(`/api/user/removeUserLiked`,{userID, idea})
+  .then(res =>
+    {
+      console.log('got response from: api/Items/getUserLikedIdeas');
+      dispatch({
+        type: REMOVE_LIKED_IDEA_FROM_USER,
+        payload: idea._id
+      })
+    }
+  );
+}
+
 //e.g. 
 export const updateIdea = (userID, ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople) => dispatch => {
   console.log('sending post: api/items/updateIdea: ideaID: ' + ideaID + ', title: ' + title + ', content: ' + content);
+
+  if(place == '' || place === undefined){
+    console.error('content is empty or undefined!!!!')
+  }else{
+    if(userID == '' || userID === undefined || ideaID == '' || ideaID === undefined){
+      console.error('userID or ideaID are empty or undefined!!!!')
+    }
+  }
 
   //in case of missing fields
   if(place === undefined || time === undefined || minNumOfPeople === undefined){
@@ -218,18 +256,6 @@ export const updateIdea = (userID, ideaID, title, content, place, time, minNumOf
       console.log('place upserted to db');
   })
   
-}
-
-const getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
-  var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
-  var matches = [];
-  var match;
-
-  while ((match = regex.exec(inputText))) {
-      matches.push(match[1]);
-  }
-
-  return matches;
 }
 
 export const addUserToUserLikedIdea = (userIDToUpdate, ideaID, userIDToAdd) => dispatch => {

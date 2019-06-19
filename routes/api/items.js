@@ -43,15 +43,11 @@ router.post('/createIdea/', (req, res) => {
 	newItem.save().then((item) => res.json(item));
 });
 
-// @route   POST api/items/ideaLiked/
-// @desc    search for anything
-// @access  Public
 router.post('/ideaLiked/', (req, res) => {
-	var ideaID = req.body.idea._id;
-	console.log('ideaLiked: updating idea ' + ideaID);
+	console.log('ideaLiked: updating idea ' + req.body.ideaID);
 
 	Item.findOneAndUpdate(
-		{ _id: ideaID },
+		{ _id: req.body.ideaID },
 		{
 			$push: { liked: req.body.userID },
 			$inc: { likeCount: 1 },
@@ -61,7 +57,7 @@ router.post('/ideaLiked/', (req, res) => {
 	).then((items) => res.json(items));
 });
 
-// @route   POST api/items/ideaLiked/
+// @route   POST api/items/removeIdeaLiked/
 // @desc    search for anything
 // @access  Public
 router.post('/removeIdeaLiked/', (req, res) => {
@@ -303,9 +299,10 @@ router.post('/updateIdeaContentAndTitle/', (req, res) => {
 	console.log('updating idea: ' + req.body.ideaID);
 	console.log('new title: ' + req.body.title);
 	console.log('new content: ' + req.body.content);
+
 	Item.findOneAndUpdate(
 		{ _id: req.body.ideaID },
-		{ $set: { title: req.body.title, content: req.body.content, tags: req.body.tags } },
+		{ $set: { title: req.body.title, content: req.body.content } },
 		{ new: true }
 	).then((items) => {
 		console.log('updated idea: ' + req.body.ideaID);
@@ -396,7 +393,7 @@ router.post('/updateIdeaAllFields/', (req, res) => {
 				place: req.body.place,
 				time: req.body.time,
 				minNumOfPeople: req.body.minNumOfPeople,
-				maxNumOfPeople: req.body.maxNumOfPeople
+				maxNumOfPeople: req.body.maxNumOfPeople,
 			}
 		},
 		{ new: true }

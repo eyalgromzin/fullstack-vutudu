@@ -79,15 +79,15 @@ router.post('/userLiked', (req, res) => {   //works
   console.log("added user id to the liked idea in the created user: " + req.body.userID);
 });
 
-// @route   POST api/user/removeUserLiked/
+// @route   POST api/user/removeUserLiked
 // @desc    search for anything
 // @access  Public
 router.post('/removeUserLiked', (req, res) => {   //works
   console.log("updating " + req.body.userID);
   User.findOneAndUpdate({ id: req.body.userID },
     { "$pull": { "liked": {"_id": req.body.idea._id }}})
-  .then(users => res.json(users));
-  console.log("added idea to user: " + req.body.userID);
+  .then(user => res.json(user));
+  console.log("removed idea from user: " + req.body.userID);
   
   //update the idea thats in the user that created the idea.
   User.findOneAndUpdate({ id: req.body.idea.createdBy, "created._id": req.body.idea._id},
@@ -310,8 +310,8 @@ router.post('/getUser', (req, res) => {   //works
     });
 });
 
-// @route   POST api/user/getUser/
-// @desc    search for anything
+// @route   POST api/user/deleteCreatedIdea/
+// @desc    delete created idea
 // @access  Public
 router.post('/deleteCreatedIdea', (req, res) => {   //works
   console.log("removing created idea: " + req.body.userID + " from user: " + req.body.ideaID);
@@ -327,9 +327,25 @@ router.post('/deleteCreatedIdea', (req, res) => {   //works
   .catch(error => {
     console.error('error during delete created idea: ', error);
   })
+});
 
-  
-
+// @route   POST api/user/deleteLikedIdea/
+// @desc    delete created idea
+// @access  Public
+router.post('/deleteLikedIdea', (req, res) => {   //works
+  console.log("removing Liked idea: " + req.body.ideaID + " from user: " + req.body.userID);
+  User.findOneAndUpdate(
+    { id: req.body.userID },
+    { "$pull" : { liked: { _id: req.body.ideaID } } },
+    { new: true }
+  )
+  .then(user => {
+    res.json(user);
+    console.log("removed liked idea from user");
+  })
+  .catch(error => {
+    console.error('error during delete liked idea: ', error);
+  })
 });
 
 

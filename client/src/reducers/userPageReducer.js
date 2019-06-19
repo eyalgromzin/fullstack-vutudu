@@ -93,9 +93,14 @@ function getCopyOfCurrentIdea(state) {
 }
 
 function removeIdea(ideas, ideaID) {
-	const arrayWithoutIdea = ideas.filter((ele) => ele._id != ideaID);
+	var newArray = []
+	ideas.forEach(idea => {
+		if(idea._id != ideaID){
+			newArray.push(idea)
+		}
+	})
 
-	return arrayWithoutIdea;
+	return newArray;
 }
 
 const getNextIdea = (ideas, currentIdeaIndex) => {
@@ -140,10 +145,20 @@ function reducer(state = initialState, action) {
 				loggedInUserLastName: action.payload
 			};
 		case ADD_LIKED_IDEA_TO_USER:
-			return {
-				...state,
-				likedIdeas: [ ...state.likedIdeas, action.payload ]
-			};
+			var isObjectExists = state.likedIdeas.some( idea => { return idea._id == action.payload._id } );
+
+			if(isObjectExists){
+				return {
+					...state,
+					likedIdeas: [ ...state.likedIdeas ]
+				};
+			}
+			else{
+				return {
+					...state,
+					likedIdeas: [ ...state.likedIdeas, action.payload ]
+				};
+			}
 		// case ADD_USER_TO_LIKED_OF_CREATED_IDEA:
 		//   let likedIdeas = dcopy(state.likedIdeas);
 		//   let ideaIndex = likedIdeas.findIndex((idea => idea._id == action.payload.ideaID));

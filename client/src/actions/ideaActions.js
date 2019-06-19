@@ -18,26 +18,28 @@ import {
 	SEARCH_SET_PLACE,
 	USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
 	ON_CREATE_SET_IS_DUPLICATE_TITLE,
-	EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
+	EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
+	REMOVE_LIKED_IDEA_FROM_USER
 } from 'reducers/types';
 import { emptyUserPreviewedIdea } from 'actions/userActions';
 import store from 'store';
 import { showIdeaInUserCreated } from 'components/uiActions/userPageActions';
 import {toastr} from 'react-redux-toastr'
+import { ADD_USER_ID_TO_IDEA_LIKES } from '../reducers/types';
 
 export const updateIdeaIndicator = (
 	loggedInUserID,
 	idea,
 	userPostUrl,
-	addToUserReduxTypeName,
+	userReduxActionName,
 	ideaPostUrl,
-	addToIdeaReduxTypeName
+	ideaReduxActionName
 ) => (dispatch) => {
 	console.log(
 		'in ideaActions -> updateIdeaData(userID,ideaID,userPostUrl,addToUserReduxTypeName,ideaPostUrl,addToIdeaReduxTypeName)'
 	);
-	console.log(`addToIdeaReduxTypeName: ` + addToIdeaReduxTypeName);
-	console.log(`addToUserReduxTypeName: ` + addToUserReduxTypeName);
+	console.log(`addToIdeaReduxTypeName: ` + ideaReduxActionName);
+	console.log(`addToUserReduxTypeName: ` + userReduxActionName);
 
 	//update user - V
 	console.log('ideaActions: adding idea to user: ' + idea._id);
@@ -46,9 +48,9 @@ export const updateIdeaIndicator = (
 		var postObject = { userID: loggedInUserID, idea: idea };
 		axios.post(userPostUrl, postObject).then((res) => {
 			console.log(`user was updated`);
-			if (addToUserReduxTypeName != null && addToUserReduxTypeName != '')
+			if (userReduxActionName != null && userReduxActionName != '')
 				dispatch({
-					type: addToUserReduxTypeName,
+					type: userReduxActionName,
 					payload: res.data
 				});
 		});
@@ -61,7 +63,7 @@ export const updateIdeaIndicator = (
 		axios.post(ideaPostUrl, ideaPostObject).then((res) => {
 			console.log(`idea was updated`);
 			dispatch({
-				type: addToIdeaReduxTypeName,
+				type: ideaReduxActionName,
 				payload: loggedInUserID
 			});
 		});
@@ -70,6 +72,19 @@ export const updateIdeaIndicator = (
 	//update the idea in the user to show immidiately results.
 	// console.log('updating idea in user created ideas, so the stats will be updated.');
 	// store.dispatch({type: updateIdeaInUserReduxName, payload: {loggedInUserID, ideaID: idea._id} })
+};
+
+export const addUserIDToIdeaLikes = (userID, ideaID) => (dispatch) => {
+	//update user - V
+	console.log('addUserIDToIdeaLikes... ');
+	var postObject = { ideaID: ideaID, userID: userID };
+	axios.post('/api/items/ideaLiked/', postObject).then((res) => {
+		console.log(`user was updated`);
+		dispatch({
+			type: ADD_USER_ID_TO_IDEA_LIKES,
+			payload: userID
+		});
+	});
 };
 
 export const addIdeaToUserCreatedIdeas = (userID, idea) => (dispatch) => {
@@ -264,35 +279,45 @@ export const addIdeaToDB = (idea, userID) => (dispatch) => {
 	});
 };
 
+//if the idea doesnt exist in the db, just delete it from the user. 
 export const deleteIdea = (userID, ideaID) => (dispatch) => {
-	console.log('ideaActions: deleting idea: ' + ideaID);
-	axios
-		.post('/api/items/deleteIdea', { ideaID }) //deletes idea but throws 404
-		.then((res) => {
-			console.log('idea deleted from db');
+	console.log('ideaActions: deleting idea from db: ' + ideaID);
+	axios.post('/api/items/deleteIdea', { ideaID }) 
+	.then((res) => {
+		console.log('idea deleted from db');
+	});
 
-			console.log('removing idea from user also:');
-			console.log('{userID, ideaID}: ' + JSON.stringify({ userID, ideaID }));
+	console.log('removing idea from user created also:');
+	console.log('{userID, ideaID}: ' + JSON.stringify({ userID, ideaID }));
 
-			axios.post('/api/user/deleteCreatedIdea', { userID, ideaID }).then((res) => {
-				console.log('idea was removed from user');
+	axios.post('/api/user/deleteCreatedIdea', { userID, ideaID }).then((res) => {
+		console.log('idea was removed from user');
 
-				dispatch({
-					type: REMOVE_CREATED_IDEA_FROM_USER,
-					payload: ideaID
-				});
-
-				//update the drop down list
-				dispatch({
-					type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS
-				});
-
-				dispatch({
-					type: USER_PAGE_SHOW_NEXT_CREATED_IDEA
-				});
-
-				//empty current idea in user page
-				// emptyUserPreviewedIdea();
-			});
+		dispatch({
+			type: REMOVE_CREATED_IDEA_FROM_USER,
+			payload: ideaID
 		});
+
+		//update the drop down list
+		dispatch({
+			type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS
+		});
+
+		dispatch({
+			type: USER_PAGE_SHOW_NEXT_CREATED_IDEA
+		});
+
+		//empty current idea in user page
+		// emptyUserPreviewedIdea();
+	});
+
+	console.log('removing idea from user liked also:');
+	axios.post('/api/user/deleteLikedIdea', { userID, ideaID }).then((res) => {
+		console.log('idea was removed from user');
+
+		dispatch({
+			type: REMOVE_LIKED_IDEA_FROM_USER,
+			payload: ideaID
+		});
+	});
 };

@@ -27,13 +27,13 @@ class userPageLayout extends Component {
   }
 
   render() {
-    let isCurrentPreviewedIdeaEmpty = Object.keys(this.props.currentPreviewedIdea).length === 0 &&
-                                      this.props.currentPreviewedIdea.constructor === Object
+    let isCurrentPreviewedIdeaEmpty = typeof this.props.currentPreviewedIdea === 'undefined' ||
+                                      (Object.keys(this.props.currentPreviewedIdea).length === 0 &&
+                                      this.props.currentPreviewedIdea.constructor === Object)
 
     return (
       <React.Fragment>
         <div id="userLayout" >
-          {/* <div className="pageName">User Data</div> */}
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
             <div id="UserIdeasTypeDropDown" onClick={this.onIdeaTypeDropDownClick}>
               <UserIdeasTypeDropDown />    
@@ -46,6 +46,7 @@ class userPageLayout extends Component {
               <span id="emptyIdeasList">Empty Ideas List...</span>
             }
           </div>
+
           <div id="userIdeaPreviewSide" >
             <div id="userLayoutIdeaPreview">
               {this.props.currentPreviewedIdeas.length == 0 || isCurrentPreviewedIdeaEmpty ?

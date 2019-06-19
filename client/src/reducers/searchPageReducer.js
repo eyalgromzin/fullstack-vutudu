@@ -2,7 +2,7 @@ import { SAVE_IDEAS,
   CHANGE_CURRENT_IDEA_INDEX,
   ADD_TIME,
   REDUCE_DIFFICULTY, 
-  ADD_USER_TO_CURRENT_IDEA_LIKES,
+  ADD_USER_ID_TO_IDEA_LIKES,
   ADD_USER_TO_IDEA_DISLIKES ,
   ADD_USER_TO_IDEA_ADDED_HARD, 
   ADD_USER_TO_IDEA_ADDED_EASY,
@@ -106,7 +106,7 @@ function reducer(state = initialState, action) {
         currentIdea
       }
 
-    case ADD_USER_TO_CURRENT_IDEA_LIKES:
+    case ADD_USER_ID_TO_IDEA_LIKES:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.liked.push(action.payload);
       currentIdea.likeCount++

@@ -10,20 +10,9 @@ import {
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
 } from 'reducers/types'
 import {showLogInScreen} from 'actions/commonActions'
+import { getTagsFromContent } from 'commonUtils'
 
 class createIdeaButton extends Component {
-  getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
-    var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
-    var matches = [];
-    var match;
-
-    while ((match = regex.exec(inputText))) {
-        matches.push(match[1]);
-    }
-
-    return matches;
-  }
-
   handleCreateIdeaClick = (event) => {
     if(!this.props.loggedIn){
       showLogInScreen();
@@ -31,7 +20,7 @@ class createIdeaButton extends Component {
 
     this.error = "";
     this.props.dispatch({ type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, payload: true });
-    var tags = this.getTagsFromContent(this.props.content);
+    var tags = getTagsFromContent(this.props.content);
     
     //add validation for empty fields / wrong
     if(this.props.isCreateButtonEnabled){

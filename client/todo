@@ -1,10 +1,3 @@
-bugs:
-  - delete idea fails
-  - on update user idea, need to update idea tags also
-  - when liking idea - it adds an 'empty title' idea to user likes
-  - when removing like, it removes like from the user in the db, but not from the redux
-  - create idea -> like it -> go to liked ideas -> the ideas title is "untitled"
-
 - check the search with more works. 
     - search with more.
     - search without more. 
@@ -34,7 +27,6 @@ NTH:
   - on focus: in case of field empty: show last searches, if there are none, show the regular suggestions.
   
   - app stopped being responsive - search page - change the inline block to block!!! :/
-
 
 how to push to heroku:
   git push heroku master

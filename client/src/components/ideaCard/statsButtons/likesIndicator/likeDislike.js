@@ -3,13 +3,17 @@ import './likeDislike.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
 import {updateIdeaIndicator} from 'actions/ideaActions'
+import {removeUserLikedIdea} from 'actions/userActions'
+import {addLikedIdeaToUser} from 'actions/userActions'
+import {addUserIDToIdeaLikes} from 'actions/ideaActions'
+import { bindActionCreators } from 'redux';
 import { 
   ADD_LIKED_IDEA_TO_USER, 
-  ADD_USER_TO_CURRENT_IDEA_LIKES,
+  ADD_USER_ID_TO_IDEA_LIKES,
   ADD_USER_TO_IDEA_DISLIKES,
   REMOVE_USER_FROM_IDEA_LIKES,
   REMOVE_USER_FROM_IDEA_DISLIKES,
-  REMOVE_LIKED_IDEA_FROM_USER,
+  SET_USER_LIKED_IDEAS,
   // ADD_USER_TO_LIKED_OF_CREATED_IDEA
  } from 'reducers/types'
 import Popup from 'reactjs-popup'
@@ -24,12 +28,12 @@ class LikeDislike extends Component {
     //add current User  id to the idea likes
     //then add the idea to user liked ideas
     this.props.idea.liked.push(this.props.userID)
-
-    this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
-      '/api/user/userLiked/',ADD_LIKED_IDEA_TO_USER,    
-      '/api/items/ideaLiked/',ADD_USER_TO_CURRENT_IDEA_LIKES
-      );  
     
+    this.props.addLikedIdeaToUser(this.props.userID, this.props.idea)
+    
+    // '/api/items/ideaLiked/',ADD_USER_TO_CURRENT_IDEA_LIKES
+    this.props.addUserIDToIdeaLikes(this.props.userID, this.props.idea._id)
+
     //pop the user id from the liked idea. to remove the duplicate
     this.props.idea.liked.pop(this.props.userID)
 
@@ -37,11 +41,13 @@ class LikeDislike extends Component {
   }
 
   removeLike = () => {
-    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      '/api/user/removeUserLiked/', REMOVE_LIKED_IDEA_FROM_USER,       
+    this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
+      null, null,       
       '/api/items/removeIdeaLiked/',REMOVE_USER_FROM_IDEA_LIKES);  
     
-      this.setState({clickedLike: false});
+    this.props.removeUserLikedIdea(this.props.userID, this.props.idea)
+
+    this.setState({clickedLike: false});
   }
 
   addDislike = () => {
@@ -161,6 +167,16 @@ class LikeDislike extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    updateIdeaIndicator: bindActionCreators (updateIdeaIndicator, dispatch),
+    removeUserLikedIdea: bindActionCreators (removeUserLikedIdea, dispatch),    
+    addUserIDToIdeaLikes: bindActionCreators (addUserIDToIdeaLikes, dispatch),    
+    addLikedIdeaToUser: bindActionCreators (addLikedIdeaToUser, dispatch),    
+    dispatch,
+  }
+}
+
 function mapStateToProps(state) {
   return {
     userID: state.userPageReducer.loggedInUserID,
@@ -169,4 +185,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, {updateIdeaIndicator})(LikeDislike);  //, updateUserIdeaWithLike
+export default connect(mapStateToProps, mapDispatchToProps)(LikeDislike);  //, updateUserIdeaWithLike
