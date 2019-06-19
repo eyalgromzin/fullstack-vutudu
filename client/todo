@@ -1,14 +1,17 @@
-how to push to heroku:
-git push heroku master
-
-- website icon
+bugs:
+  - delete idea fails
+  - on update user idea, need to update idea tags also
+  - when liking idea - it adds an 'empty title' idea to user likes
+  - when removing like, it removes like from the user in the db, but not from the redux
+  - create idea -> like it -> go to liked ideas -> the ideas title is "untitled"
 
 - check the search with more works. 
     - search with more.
     - search without more. 
 
-- add support for any in search. 
-    
+- add support for any in search - like when the time is X and the num of people is Any , 
+  it should give you the results of all people. 
+  
 AFTER WEBSITE UPLOAD:
   - check the share works, because of the domain, 
   - check everything works.
@@ -23,15 +26,15 @@ AFTER WEBSITE UPLOAD:
     - check cell phone version works.
     
 
-NTH: 
-  - create for idea action a promise and do something on its end - for learning 
-
+NTH:  
   - add a view to mongo, for top liked and hard ideas - so it wont have to search all the DB every time.
 
   - change the like idea to 1 post request instead of 2 - home.
 
-  - because there are more like clicks than created idea, remove the save of the created idea to the user. 
-  
   - on focus: in case of field empty: show last searches, if there are none, show the regular suggestions.
   
   - app stopped being responsive - search page - change the inline block to block!!! :/
+
+
+how to push to heroku:
+  git push heroku master

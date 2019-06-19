@@ -245,9 +245,13 @@ router.post('/updateUserCreatedIdeaAllFields', (req, res) => {   //works
       "created.$.minNumOfPeople": req.body.minNumOfPeople,
       "created.$.maxNumOfPeople": req.body.maxNumOfPeople,
     }})
-  .then(users => res.json(users));
-  console.log("updated " + req.body.userID);
-});
+    .then(users => 
+      {
+        console.log("updated " + req.body.userID);
+        return res.json(users);
+      }  
+    );
+  });
 
 // @route   POST api/user/addUserToUserLikedIdea/
 // @get userID, ideaID, title, content

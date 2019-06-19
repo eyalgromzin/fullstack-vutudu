@@ -54,6 +54,8 @@ function mapStateToProps(state) {
     isClickedButton: state.editableIdeaReducer.isClickedButton,
     time: state.editableIdeaReducer.time,
     place: state.editableIdeaReducer.place,
+    minNumOfPeople: state.editableIdeaReducer.minNumOfPeople,
+    maxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
   };
 }
 

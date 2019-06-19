@@ -9,6 +9,7 @@ import {
   ADD_USER_TO_IDEA_DISLIKES,
   REMOVE_USER_FROM_IDEA_LIKES,
   REMOVE_USER_FROM_IDEA_DISLIKES,
+  REMOVE_LIKED_IDEA_FROM_USER,
   // ADD_USER_TO_LIKED_OF_CREATED_IDEA
  } from 'reducers/types'
 import Popup from 'reactjs-popup'
@@ -20,17 +21,24 @@ class LikeDislike extends Component {
   }
 
   addLike = () => {
-    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
+    //add current User  id to the idea likes
+    //then add the idea to user liked ideas
+    this.props.idea.liked.push(this.props.userID)
+
+    this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
       '/api/user/userLiked/',ADD_LIKED_IDEA_TO_USER,    
       '/api/items/ideaLiked/',ADD_USER_TO_CURRENT_IDEA_LIKES
       );  
+    
+    //pop the user id from the liked idea. to remove the duplicate
+    this.props.idea.liked.pop(this.props.userID)
 
       this.setState({clickedLike: true});
   }
 
   removeLike = () => {
     this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      '/api/user/removeUserliked/', null,       
+      '/api/user/removeUserLiked/', REMOVE_LIKED_IDEA_FROM_USER,       
       '/api/items/removeIdeaLiked/',REMOVE_USER_FROM_IDEA_LIKES);  
     
       this.setState({clickedLike: false});
@@ -112,6 +120,16 @@ class LikeDislike extends Component {
     let clickedLike = this.isClickedLike();
     let clickedDislike = this.isClickedDislike();
 
+    let percentageText = "(0%)"
+    if(this.props.idea.liked === undefined || this.props.idea.disliked === undefined){
+      percentageText = "(0%)"
+    }else if(this.props.idea.liked.length + this.props.idea.disliked.length == 0){
+      percentageText = "(100%)"
+    }else{
+      let percentage = Math.round((this.props.idea.liked.length / (this.props.idea.liked.length + this.props.idea.disliked.length)) * 100)
+      percentageText = "(" + percentage + "%)"
+    }
+
     return (
       <div className="bottomIndicator">
         
@@ -128,14 +146,16 @@ class LikeDislike extends Component {
         </Popup>
         
         {this.props.idea.liked === undefined ? 0 : this.props.idea.liked.length}
+        
         <img src={clickedLike ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")}  alt="" 
           onClick={this.handleLikeClick} className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} />
         
         {this.props.idea.disliked === undefined ? 0 : this.props.idea.disliked.length}
+
         <img src={clickedDislike ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")}  alt="" 
           id="dislikeButton" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleDislikeClick}/>
         
-        <span> ({ this.props.idea.liked === undefined || this.props.idea.disliked === undefined ? 0 : Math.round((this.props.idea.liked.length/((this.props.idea.liked.length + this.props.idea.disliked.length) == 0? 1 : (this.props.idea.liked.length + this.props.idea.disliked.length)) * 100))}%)</span>
+        {percentageText}
       </div>
     )
   }

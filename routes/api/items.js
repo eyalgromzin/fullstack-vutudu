@@ -296,10 +296,10 @@ router.post('/getIdeaByTitle/', (req, res) => {
 	});
 });
 
-// @route   POST api/items/updateIdeaBasic/
+// @route   POST api/items/updateIdeaContentAndTitle/
 // @desc    update idea
 // @access  Public
-router.post('/updateIdeaBasic/', (req, res) => {
+router.post('/updateIdeaContentAndTitle/', (req, res) => {
 	console.log('updating idea: ' + req.body.ideaID);
 	console.log('new title: ' + req.body.title);
 	console.log('new content: ' + req.body.content);
@@ -346,7 +346,7 @@ router.post('/getTopNewestIdeas/', (req, res) => {
 	});
 });
 
-// @route   POST api/items/updateIdeaBasic/
+// @route   POST api/items/getTopLikedIdeas/
 // @desc    update idea
 // @access  Public
 router.post('/getTopLikedIdeas/', (req, res) => {

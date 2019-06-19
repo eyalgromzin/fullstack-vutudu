@@ -4,7 +4,7 @@ const router = express.Router();
 // Item Model
 const hashTags = require('../../models/hashTagName');
 
-// @route   GET api/hashTagNames/:tagName
+// @route   GET api/tagNames/:tagName
 // @desc    search for elements with tag name
 // @access  Public
 router.get('/:tagName', (req, res) => {   //

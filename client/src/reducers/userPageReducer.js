@@ -24,7 +24,8 @@ import {
 	REMOVE_CREATED_IDEA_FROM_USER,
 	CLEAR_USER_PAGE_IDEA,
 	EMPTY_USER_PREVIEWED_IDEA,
-	UPDATE_CURRENT_PREVIEWED_USER_IDEA
+	UPDATE_CURRENT_PREVIEWED_USER_IDEA,
+	REMOVE_LIKED_IDEA_FROM_USER
 } from 'reducers/types';
 import { idea } from 'models/idea';
 var dcopy = require('deep-copy');
@@ -62,7 +63,7 @@ const updateIdeaInArray = (ideasArray, idea) => {
 				ideaI.place = idea.place;
 			}
 			if (idea.time !== undefined) {
-				ideaI.place = idea.place;
+				ideaI.place = idea.place;	
 			}
 			if (idea.minNumOfPeople !== undefined) {
 				ideaI.maxNumOfPeople = idea.maxNumOfPeople;
@@ -278,6 +279,17 @@ function reducer(state = initialState, action) {
 				...state,
 				createdIdeas: createdIdeas
 			};
+
+		case REMOVE_LIKED_IDEA_FROM_USER:
+				var likedIdeas = dcopy(state.likedIdeas);
+				var ideaID = action.payload;
+	
+				likedIdeas = removeIdea(likedIdeas, ideaID);
+	
+				return {
+					...state,
+					likedIdeas: likedIdeas
+				};
 		default:
 			return state;
 	}

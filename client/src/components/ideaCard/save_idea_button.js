@@ -19,8 +19,6 @@ constructor(props){
 }
 
   saveIdea = () => {
-    //to update the list
-
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});
 
     store.dispatch({type: CHANGE_UPDATE_TOGGLE});
@@ -41,8 +39,7 @@ constructor(props){
       <React.Fragment>
         {
           this.props.isIdeaEdited ?
-          <img src={require("images/save.png")} id="saveIdeaButton"  alt="" 
-          onClick={() => {
+          <img src={require("images/save.png")} id="saveIdeaButton"  alt="" onClick={() => {
               this.saveIdea()
             }} />  
             : 

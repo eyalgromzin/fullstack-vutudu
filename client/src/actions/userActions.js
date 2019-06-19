@@ -136,11 +136,13 @@ export const getUserFromDB = userID => dispatch => {
 //e.g. 
 export const updateIdea = (userID, ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople) => dispatch => {
   console.log('sending post: api/items/updateIdea: ideaID: ' + ideaID + ', title: ' + title + ', content: ' + content);
+
+  //in case of missing fields
   if(place === undefined || time === undefined || minNumOfPeople === undefined){
-    axios.post(`/api/items/updateIdeaBasic`,{ideaID, title, content})
+    axios.post(`/api/items/updateIdeaContentAndTitle`,{ideaID, title, content})
     .then(res =>
       {
-        console.log('got reply: /api/items/updateIdeaBasic');
+        console.log('got reply: /api/items/updateIdeaContentAndTitle');
         dispatch({
           type: UPDATE_PREVIEWED_IDEAS,
           payload: {ideaID, title, content}
@@ -149,41 +151,25 @@ export const updateIdea = (userID, ideaID, title, content, place, time, minNumOf
           type: UPDATE_CURRENT_PREVIEWED_USER_IDEA,
           payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
         });
-        
-
       });
-
-    axios.post(`/api/items/updateIdeaBasic`,{ideaID, title, content})
-    .then(res =>
-      {
-        console.log('got reply: /api/items/updateIdeaBasic');
-        dispatch({
-          type: UPDATE_PREVIEWED_IDEAS,
-          payload: {ideaID, title, content}
-        });
-        dispatch({
-          type: UPDATE_CURRENT_PREVIEWED_USER_IDEA,
-          payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
-        });
         
-        axios.post(`/api/user/updateUserCreatedIdeaBasic`,{ideaID, title, content})
-        .then(res => {
-          dispatch({
-            type: UPDATE_USER_CREATED_IDEA,
-            payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
-          });
-        });
-
+    axios.post(`/api/user/updateUserCreatedIdeaBasic`,{ideaID, title, content})
+    .then(res => {
+      dispatch({
+        type: UPDATE_USER_CREATED_IDEA,
+        payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
       });
+    });
   }
 
+  //update all fields
   else if(userID !== undefined && ideaID  !== undefined && title !== undefined &&
       content !== undefined && place !== undefined && time !== undefined &&
        minNumOfPeople !== undefined &&  maxNumOfPeople !== undefined){
 
 
-        axios.post(`/api/items/updateIdeaAllFields`,{ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople})
-        .then(res =>
+    axios.post(`/api/items/updateIdeaAllFields`,{ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople})
+      .then(res =>
       {
         console.log('got reply from: /api/items/updateIdeaAllFields');
         dispatch({
@@ -194,12 +180,11 @@ export const updateIdea = (userID, ideaID, title, content, place, time, minNumOf
           type: UPDATE_CURRENT_PREVIEWED_USER_IDEA,
           payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
         });
-        
-
       });
 
-    axios.post(`/api/user/updateUserCreatedIdeaAllFields`,{ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople})
+    axios.post(`/api/user/updateUserCreatedIdeaAllFields`,{userID, ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople})
       .then(res => {
+        console.log('got reply from: /api/items/updateUserCreatedIdeaAllFields');
         dispatch({
           type: UPDATE_USER_CREATED_IDEA,
           payload: {ideaID, title, content, place, time, minNumOfPeople, maxNumOfPeople}
@@ -209,7 +194,7 @@ export const updateIdea = (userID, ideaID, title, content, place, time, minNumOf
 
   //upsert tags to db
   var tagNames = getTagsFromContent(content)
-  axios.post(`/api/hashTagNames/create`, {tagNames} )
+  axios.post(`/api/tagNames/create`, {tagNames} )
     .then(res =>
       {
         console.log('tag added to db')

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PlaceSelector from './placeField/placeField'
+import PlaceField from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
 import TimePicker from './timePicker/timePicker'
 import { EDITABLE_IDEA_SET_PLACE } from 'reducers/types'
@@ -12,8 +12,8 @@ class EditIdeaBar extends Component {
     super(props);
   }
 
-  placeOnChangeEvent = (e) => {
-    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: e.target.value});
+  placeOnChangeEvent = (value) => {
+    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: value});
   }
 
   timeOnChangeEvent = (value) => {
@@ -25,8 +25,8 @@ class EditIdeaBar extends Component {
     return (
       <div id="createBar">
         <div id="editBarButtons">
-          <PlaceSelector tagID="ideaBarPlaceSelector" cssClass="createBarTextBox" 
-            onChangeEvent={this.placeOnChangeEvent} 
+          <PlaceField tagID="ideaBarPlaceSelector" cssClass="createBarTextBox" 
+            placeOnChangeEvent={this.placeOnChangeEvent} 
             place={this.props.place} />
           <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} />
           <NumOfPeopleCreator cssClass="createBarDropDown" 

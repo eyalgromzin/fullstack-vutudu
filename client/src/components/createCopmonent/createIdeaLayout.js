@@ -14,6 +14,7 @@ class createIdeaLayout extends Component {
         <div className="createMainContent">
           <div id="createIdeaBar">
             <div id="createIdeaBarButtons">
+            {/* minNumOfPeople={2} maxNumOfPeople={4} */}
               <CreateIdeaBar isClickedButton={this.props.isClickedButton} />
               <CreateIdeaButton />
             </div>
