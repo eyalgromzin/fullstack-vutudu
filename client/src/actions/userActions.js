@@ -248,7 +248,7 @@ export const updateIdea = (userID, ideaID, title, content, place, time, minNumOf
     );
   
   //upsert place name to db
-  console.log('in addPlaceToDBIfNotExists')
+  console.log('in updateIdea - adding place to db')
   var placeNameObject = {placeName: place}
 
   axios.post('/api/placeNames/create',placeNameObject)

@@ -14,8 +14,11 @@ const app = express();
 // Bodyparser Middleware
 app.use(bodyParser.json());
 
-// DB Config
-const db = require('./config/keys').mongoURI;
+// for mlab
+// const db = require('./config/keys').mongoURI;    
+
+//for atlas
+const db = "mongodb://eyalgromzin:vutuduPassword11@cluster0-shard-00-00-v6pxg.mongodb.net:27017,cluster0-shard-00-01-v6pxg.mongodb.net:27017,cluster0-shard-00-02-v6pxg.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
 
 // Connect to Mongo
 mongoose
