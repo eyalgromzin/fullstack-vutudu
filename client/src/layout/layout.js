@@ -35,38 +35,36 @@ class Layout extends Component {
     const isMobile = this.isClientMobile()
 
     // if(isMobile){
-      return (
+      // return (
+      //   <Router>
+      //     <React.Fragment>
+      //       <Route path="/" component={MobileLayout} exact />
+      //     </ React.Fragment>
+      //   </Router>
+      // ) 
+  //   }else{
+    return (
+      <React.Fragment>
+        {this.props.isMainLoading?
+        <div id="mainLoadingScreen">
+          <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
+        </div>
+        : ""
+        }
+        <LoginScreen />
         <Router>
           <React.Fragment>
-            <Route path="/" component={MobileLayout} exact />
+              {/* <SideBar /> */}
+              <TopBar />
+              <Route path="/" component={searchLayout} exact />
+              <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+              <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+              <Route path="/create" component={createIdeaLayout} />
+              <Route path="/user" component={userPageLayout} />
           </ React.Fragment>
         </Router>
-      ) 
-  //   }else{
-  //     return (
-  //       <React.Fragment>
-  //         {/* {this.props.isMainLoading?
-  //         <div id="mainLoadingScreen">
-  //           <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
-  //         </div>
-  //         : ""
-  //         } */}
-  //         <LoginScreen />
-          // <Router>
-            // <React.Fragment>
-  //               {/* <SideBar /> */}
-  //               <TopBar />
-  //               <Route path="/" component={searchLayout} exact />
-                
-  //               <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-  //               <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-  //               <Route path="/create" component={createIdeaLayout} />
-  //               <Route path="/user" component={userPageLayout} />
-  //           </ React.Fragment>
-  //         </Router>
-  //       </React.Fragment>
-  //     )
-  //   }
+      </React.Fragment>
+    )
   }
 }
 
