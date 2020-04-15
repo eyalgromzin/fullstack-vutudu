@@ -5,7 +5,7 @@ import TimeIndicator from './statsButtons/timeIndicator/timeIndicator'
 
 export default class CardIndicators extends Component {
   render() {
-    return (
+    return ( 
       <React.Fragment>
         <div id="cardIndicationButtons">
               <div id="cardIndicators"> 
