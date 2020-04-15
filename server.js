@@ -34,15 +34,29 @@ app.use('/api/tagNames', tagNames);
 
 
 
+var prdEnv = process.env.NODE_ENV === 'production'
+if (prdEnv) {
+    Router.get('/*', async (ctx, next) => {
+        //judge if it request a normal file,if not ,return the index.html
+        if (parseMime(ctx.url) === 'unknown') {
+            ctx.type = 'text/html'
+            ctx.response.body = fs.readFileSync(path.join(__dirname, '../build/index.html'), 'binary')
+        } else {
+            ctx.type = parseMime(ctx.url)
+            ctx.response.body = fs.readFileSync(path.join(__dirname, '../build/', ctx.url))
+        }
+    })
+}
+
 
 // Serve static assets if in production
 // if (process.env.NODE_ENV === 'production') {
 //   // Set static folder
-  app.use(express.static('client/build'));
+  // app.use(express.static('client/build')); //works only on desktop 
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
+  // app.get('*', (req, res) => { //works only on desktop 
+  //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  // });
 
   // app.get('*', (req, res) => {  //gives that i need to enable javascript 
   //   res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
