@@ -36,7 +36,7 @@ app.use('/api/tagNames', tagNames);
 
 var prdEnv = process.env.NODE_ENV === 'production'
 if (prdEnv) {
-    Router.get('/*', async (ctx, next) => {
+  app.get('/*', async (ctx, next) => {
         //judge if it request a normal file,if not ,return the index.html
         if (parseMime(ctx.url) === 'unknown') {
             ctx.type = 'text/html'
