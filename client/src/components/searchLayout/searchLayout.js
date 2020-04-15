@@ -100,7 +100,7 @@ class searchLayout extends Component {
 							time={this.props.time}
 							more={this.props.more}
 						/>
-						7777
+						88888
 						{this.props.ideas.length == 0 && this.props.searched ? (
 							<NoResultsFound />
 						) : this.props.searched ? (

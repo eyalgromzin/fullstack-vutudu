@@ -43,15 +43,19 @@ app.use('/api/tagNames', tagNames);
 //   app.get('*', (req, res) => {
 //     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 //   });
+
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
+//   });
 // }
 
-app.get("/*", function (req, res) {
-  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-})
-
-// app.get("/*", function (req, res) {
-//   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+// app.get("/*", function (req, res) {  //not working
+//   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
 // })
+
+app.get("/*", function (req, res) {   
+  res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+})
 
 const port = process.env.PORT || 5000;
 
