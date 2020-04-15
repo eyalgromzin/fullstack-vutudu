@@ -52,16 +52,21 @@ if (prdEnv) {
 // Serve static assets if in production
 // if (process.env.NODE_ENV === 'production') {
 //   // Set static folder
-  // app.use(express.static('client/build')); //works only on desktop 
+//   app.use(express.static('client/build')); //works only on desktop 
 
-  // app.get('*', (req, res) => { //works only on desktop 
-  //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  // });
+//   app.get('*', (req, res) => { //works only on desktop 
+//     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//   });
+// }
 
-  // app.get('*', (req, res) => {  //gives that i need to enable javascript 
+// app.get('*', (req, res) => {  //gives that i need to enable javascript 
   //   res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
   // });
-// }
+
+const port = process.env.PORT || 5000;
+
+app.listen(port, () => console.log(`Server started on port ${port}`));
+
 
 // app.get("/*", function (req, res) {  //not working
 //   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
@@ -70,7 +75,3 @@ if (prdEnv) {
 // app.get("/*", function (req, res) {   //not working???
 //   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
 // })
-
-const port = process.env.PORT || 5000;
-
-app.listen(port, () => console.log(`Server started on port ${port}`));
