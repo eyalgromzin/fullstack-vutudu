@@ -32,13 +32,7 @@ app.use('/api/user', user);
 app.use('/api/placeNames', placeNames);
 app.use('/api/tagNames', tagNames);
 
-// app.get("/*", function (req, res) {
-//   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-// })
 
-// app.get("/*", function (req, res) {
-//   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
-// })
 
 
 // Serve static assets if in production
@@ -50,6 +44,14 @@ app.use('/api/tagNames', tagNames);
 //     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 //   });
 // }
+
+app.get("/*", function (req, res) {
+  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+})
+
+// app.get("/*", function (req, res) {
+//   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
+// })
 
 const port = process.env.PORT || 5000;
 
