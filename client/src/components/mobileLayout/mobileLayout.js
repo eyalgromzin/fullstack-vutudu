@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import 'commonCss.css'
 
-
-
 class MobileLayout extends Component {
     render() {
         return (

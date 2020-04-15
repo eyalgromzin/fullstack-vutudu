@@ -34,7 +34,6 @@ class Layout extends Component {
   render() {
     const isMobile = this.isClientMobile()
 
-    // if(isMobile){
       // return (
       //   <Router>
       //     <React.Fragment>
@@ -42,7 +41,6 @@ class Layout extends Component {
       //     </ React.Fragment>
       //   </Router>
       // ) 
-  //   }else{
     return (
       <React.Fragment>
         {this.props.isMainLoading?
