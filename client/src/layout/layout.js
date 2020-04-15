@@ -37,7 +37,7 @@ class Layout extends Component {
     // if(isMobile){
       return (
         <MobileLayout />
-      )
+      ) 
   //   }else{
   //     return (
   //       <React.Fragment>
