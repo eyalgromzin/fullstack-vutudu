@@ -11,7 +11,7 @@ import SideBar from 'components/sideBar'
 import TopBar from 'components/topBar'
 import { updateTopIdeas } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
-import MobileLayout from '../components/mobileLayout/mobileLayout';
+// import MobileLayout from '../components/mobileLayout/mobileLayout';
 import {
   SET_IS_MAIN_LOADING
 } from 'reducers/types'
@@ -23,13 +23,13 @@ class Layout extends Component {
     this.props.updateTopIdeas();
   }
 
-  isClientMobile() {
-    let mql = window.matchMedia('(max-width: 750px)');
-    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && mql.matches ) {
-        return true;
-    }
-    return false;
-  }
+  // isClientMobile() {
+  //   let mql = window.matchMedia('(max-width: 750px)');
+  //   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && mql.matches ) {
+  //       return true;
+  //   }
+  //   return false;
+  // }
   
   render() {
     // const isMobile = this.isClientMobile()
@@ -43,12 +43,12 @@ class Layout extends Component {
       // ) 
     return (
       <React.Fragment>
-        {this.props.isMainLoading?
+        {/* {this.props.isMainLoading?
         <div id="mainLoadingScreen">
           <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
         </div>
         : ""
-        }
+        } */}
         <LoginScreen />
         <Router>
           <React.Fragment>
