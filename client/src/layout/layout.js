@@ -36,7 +36,11 @@ class Layout extends Component {
 
     // if(isMobile){
       return (
-        <MobileLayout />
+        <Router>
+          <React.Fragment>
+            <Route path="/" component={MobileLayout} exact />
+          </ React.Fragment>
+        </Router>
       ) 
   //   }else{
   //     return (
@@ -48,8 +52,8 @@ class Layout extends Component {
   //         : ""
   //         } */}
   //         <LoginScreen />
-  //         <Router>
-  //           <React.Fragment>
+          // <Router>
+            // <React.Fragment>
   //               {/* <SideBar /> */}
   //               <TopBar />
   //               <Route path="/" component={searchLayout} exact />

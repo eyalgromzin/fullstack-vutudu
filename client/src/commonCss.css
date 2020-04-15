@@ -2,9 +2,9 @@
     display: inline-block;
 }
 
-.mainContent{
-  /* padding: 0 20%; */
-}
+/* .mainContent{
+  padding: 0 20%;
+} */
 
 .alignRight{
     float: right;
@@ -38,10 +38,10 @@
     display: inline-block;
 }
 
-.createMainContent{
-    /* margin: 25px 15%; */
-    /* margin-top: 20px */
-}
+/* .createMainContent{
+     margin: 25px 15%; 
+    margin-top: 20px
+} */
 
 .textAlignCenter{
     text-align: center;
@@ -83,10 +83,6 @@
 
 .alignMiddleDiv{
     margin: auto;
-}
-
-.smallZIndex{
-    
 }
 
 .layoutTitle{
