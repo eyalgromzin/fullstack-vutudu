@@ -32,7 +32,7 @@ class Layout extends Component {
   }
   
   render() {
-    const isMobile = this.isClientMobile()
+    // const isMobile = this.isClientMobile()
 
       // return (
       //   <Router>
