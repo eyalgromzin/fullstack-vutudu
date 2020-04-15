@@ -61,8 +61,9 @@ class ShareButton extends Component {
 		}
 		//regular idea from search
 		else{ 
-			var shareUrl = domainName + '/idea/' + ideaID + '/' + this.props.place + '/' + String(this.props.time) + '/' + String(this.props.numOfPeople)
-			this.props.more !== undefined? shareUrl += this.props.more : ""
+			// var shareUrl = domainName + '/idea/' + ideaID + '/' + this.props.place + '/' + String(this.props.time) + '/' + String(this.props.numOfPeople)
+			// this.props.more !== undefined? shareUrl += this.props.more : ""
+			var shareUrl = ""
 			return shareUrl
 		}
   }

@@ -43,9 +43,30 @@
     /* margin-top: 20px */
 }
 
+.textAlignCenter{
+    text-align: center;
+}
+
+.marginTop{
+    margin-top: 25px;
+}
+
+.marginBottom{
+    margin-bottom: 25px;
+}
+
+.middleVerticalAlign2{
+    vertical-align: auto;
+}
+
 .middleVerticalAlign{
     text-align: center;
     margin-top: 200px;
+}
+
+.middleHorizontalAlign{
+    text-align: center;
+    margin: auto;
 }
 
 #mainLogo{

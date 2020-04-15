@@ -11,6 +11,7 @@ import SideBar from 'components/sideBar'
 import TopBar from 'components/topBar'
 import { updateTopIdeas } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
+import MobileLayout from '../components/mobileLayout/mobileLayout';
 import {
   SET_IS_MAIN_LOADING
 } from 'reducers/types'
@@ -21,31 +22,47 @@ class Layout extends Component {
     this.props.dispatch({type: SET_IS_MAIN_LOADING, payload: true})
     this.props.updateTopIdeas();
   }
+
+  isClientMobile() {
+    let mql = window.matchMedia('(max-width: 750px)');
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && mql.matches ) {
+        return true;
+    }
+    return false;
+  }
   
   render() {
-    return (
-      <React.Fragment>
-        {/* {this.props.isMainLoading?
-        <div id="mainLoadingScreen">
-          <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
-        </div>
-        : ""
-        } */}
-        <LoginScreen />
-        <Router>
-          <React.Fragment>
-              {/* <SideBar /> */}
-              <TopBar />
-              <Route path="/" component={searchLayout} exact />
-              
-              <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-              <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-              <Route path="/create" component={createIdeaLayout} />
-              <Route path="/user" component={userPageLayout} />
-          </ React.Fragment>
-        </Router>
-      </React.Fragment>
-    )
+    const isMobile = this.isClientMobile()
+
+    // if(isMobile){
+      return (
+        <MobileLayout />
+      )
+  //   }else{
+  //     return (
+  //       <React.Fragment>
+  //         {/* {this.props.isMainLoading?
+  //         <div id="mainLoadingScreen">
+  //           <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
+  //         </div>
+  //         : ""
+  //         } */}
+  //         <LoginScreen />
+  //         <Router>
+  //           <React.Fragment>
+  //               {/* <SideBar /> */}
+  //               <TopBar />
+  //               <Route path="/" component={searchLayout} exact />
+                
+  //               <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+  //               <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+  //               <Route path="/create" component={createIdeaLayout} />
+  //               <Route path="/user" component={userPageLayout} />
+  //           </ React.Fragment>
+  //         </Router>
+  //       </React.Fragment>
+  //     )
+  //   }
   }
 }
 

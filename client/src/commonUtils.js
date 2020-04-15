@@ -70,6 +70,7 @@ export const convertLinksToThumbNails = (text) => {
     for (i = 0; i <= endOfText; i++){
       symbol = ''
 
+      //check ???
       separators.forEach(function(separator, index) {
         if (text[i] == separator){
           symbol = separator;

@@ -8,10 +8,10 @@
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "deep-copy": "^1.4.2",
     "lodash": "^4.17.11",
-    "react": "^16.5.2",
+    "react": "^16.10.2",
     "react-addons-update": "^15.6.2",
     "react-autosuggest": "^9.4.2",
-    "react-dom": "^16.5.2",
+    "react-dom": "^16.10.2",
     "react-dropdown": "^1.6.2",
     "react-facebook": "^5.0.3",
     "react-facebook-auth": "^1.4.0",
@@ -29,7 +29,7 @@
     "react-redux": "^5.0.7",
     "react-redux-toastr": "^7.4.9",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "3.2.0",
     "react-share": "^2.4.0",
     "react-simple-dropdown": "^3.2.3",
     "react-toasts": "^3.0.3",
@@ -46,5 +46,17 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
