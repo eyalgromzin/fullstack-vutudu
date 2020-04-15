@@ -109,7 +109,7 @@ class searchLayout extends Component {
 							<TopTable />
 						)}
 					</div>
-					}
+					} 
 				</div>
 			</React.Fragment>
 		);
