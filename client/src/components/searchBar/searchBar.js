@@ -63,6 +63,7 @@ class SearchBar extends Component {
 						place={this.props.place}
 						validationMethod={this.isNotEmpty}
 						placeSuggestions={[]}
+						placeFieldLocation="search"
 					/>
 					<TimePicker
 						onChangeEvent={this.timeOnChangeEvent}

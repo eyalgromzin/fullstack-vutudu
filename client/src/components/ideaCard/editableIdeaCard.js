@@ -95,44 +95,40 @@ class EditableIdeaCard extends Component {
 
     return (
       <React.Fragment>
-        <div id="createIdeaContainer">
-          <div id="createIdeaCard"> 
-            <div id="createIdeaCardContent">
-              <div>
-                <input type="text" 
-                  id="newIdeaTitle" 
-                  value={this.props.title == null? "" : this.props.title } 
-                  placeholder="Title..." 
-                  onBlur={this.onTitleBlur}
-                  onChange={this.handleOnTitleChange}/>
-                <Popup
-                  trigger={<img src={require("images/info.png")} alt="" id="createInfoButton"/>}
-                  position="top center"
-                  on="hover">
-                  <div id="tooltip">
-                    <div id="infoButtonTitle">Tips </div>
-                    <div id="infoContent">
-                      <div>* Be specific</div>
-                      <div>* Be brief</div>
-                      <div>* Add youtube, image links for clarity</div>
-                      <div>* Links are translated to images and videos</div>
-                      <div>* Add #HashTags in the content for easier finding</div>
-                    </div>
-                  </div>
-                </Popup>
+        <div id="createIdeaCardContent">
+          <div>
+            <input type="text" 
+              id="newIdeaTitle" 
+              value={this.props.title == null? "" : this.props.title } 
+              placeholder="Title..." 
+              onBlur={this.onTitleBlur}
+              onChange={this.handleOnTitleChange}/>
+            <Popup
+              trigger={<img src={require("images/info.png")} alt="" id="createInfoButton"/>}
+              position="top center"
+              on="hover">
+              <div id="tooltip">
+                <div id="infoButtonTitle">Tips </div>
+                <div id="infoContent">
+                  <div>* Be specific</div>
+                  <div>* Be brief</div>
+                  <div>* Add youtube, image links for clarity</div>
+                  <div>* Links are translated to images and videos</div>
+                  <div>* Add #HashTags in the content for easier finding</div>
+                </div>
               </div>
-              {isShowTitleError? <div id="createIdeaTitle" className="fieldError"> {TitleErrorMessage} </div> : "" }
-              <textarea 
-              type="text" id="newIdeaContent" 
-              value={this.props.content == null ? "" : this.props.content }
-              placeholder="Content..." 
-              onBlur={this.onContentBlur}
-              onChange={this.handleOnContentChange}/>
-              {isShowContentError? <div className="fieldError"> 10-1000 letters</div> : '' }
-            </div>
+            </Popup>
           </div>
-          <div id="newIdeaError"> {this.state.error} </div>
+          {isShowTitleError? <div id="createIdeaTitle" className="fieldError"> {TitleErrorMessage} </div> : "" }
+          <textarea 
+          type="text" id="newIdeaContent" 
+          value={this.props.content == null ? "" : this.props.content }
+          placeholder="Content..." 
+          onBlur={this.onContentBlur}
+          onChange={this.handleOnContentChange}/>
+          {isShowContentError? <div className="fieldError"> 10-1000 letters</div> : '' }
         </div>
+        <div id="newIdeaError"> {this.state.error} </div>
       </React.Fragment>
     )
   }

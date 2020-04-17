@@ -1,16 +1,12 @@
-- make logout button work
-- convert item json to regular text and item
-- load user from db on login
-- fix colors 
-- make corners round
-- remove difficulty indicator
-- remove time indicator
-- change ui - put like next to the idea arrows
+- convert item json to normal item like in the android app
+- make like show small popup with like and dislike
+- search doesnt work
 - enable upload images from pc - put them at the bottom after br
 - convert item to json when saved. 
 - enable google maps content
 - load google maps content
 - load images from cloud when its an image content
+- make logout button work for google
 
 ------------------------------- maybe ---------------------------------------
 

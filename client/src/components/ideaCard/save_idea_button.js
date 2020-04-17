@@ -39,9 +39,10 @@ constructor(props){
       <React.Fragment>
         {
           this.props.isIdeaEdited ?
-          <img src={require("images/save.png")} id="saveIdeaButton"  alt="" onClick={() => {
-              this.saveIdea()
-            }} />  
+          // <img src={require("images/save.png")} id="saveIdeaButton"  alt="" onClick={() => {
+          //     this.saveIdea()
+          //   }} />  
+          <div id="saveIdeaButton" onClick={() => {this.saveIdea() }} > Save Idea </div>
             : 
             <React.Fragment />
         }

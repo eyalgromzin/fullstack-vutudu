@@ -78,13 +78,13 @@
 }
 
 #createIdeaBar{
-    margin: 0px 15%;
+    margin: 0px 10%;
     margin-bottom: 35px;
-    padding-top: 20px;
-    padding-bottom: 5px;
+    padding-top: 10px;
     margin-top: 20px;
-    padding-bottom: 5px;    
     text-align: center;
+    background-color: #b5ead7;
+    border-radius: 20px;
 }
 
 .pageName{
@@ -96,7 +96,7 @@
 }
 
 #createIdeaBarButtons{
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 #mainLogoImage{

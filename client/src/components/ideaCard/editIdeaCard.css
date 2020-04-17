@@ -12,7 +12,7 @@ input:focus {
 }
 
 #newIdeaTitle{
-    background-color: white;
+    background-color: #fff2e2;
     border: none;
     float: left;
     width: 97%;
@@ -21,7 +21,7 @@ input:focus {
 }
 
 #newIdeaContent{
-    background-color: white;
+    background-color: #fff2e2;
     border: none;
     width: 100%;
     resize: none;
@@ -42,10 +42,10 @@ input:focus {
     padding-right: 23px;
     padding-left: 23px;
     margin-top: 26px;
-    background-color: aquamarine;
+    background-color: bisque;
     font-family: cursive;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: 0px 0px 6px 1px;
 }
 

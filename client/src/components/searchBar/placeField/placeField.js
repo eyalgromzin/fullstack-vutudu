@@ -21,7 +21,8 @@ class PlaceField extends Component {
     this.state = {
       placeText: placeText,
       isPlaceValid: true,
-      placeSuggestions: props.placeSuggestions
+      placeSuggestions: props.placeSuggestions,
+      placeFieldLocation: props.placeFieldLocation
     }
   }
 
@@ -108,7 +109,7 @@ class PlaceField extends Component {
 
     return (
       <React.Fragment >
-        <div id="placeField" className="inlineBlock searchBarTextField">
+        <div id="placeField" className={this.state.placeFieldLocation == "search" ? "inlineBlock searchBarTextField" : "inlineBlock createBarTextField"}>
           <div className="fieldHeader">Place</div>
           <Autosuggest
             id="placeSelector"

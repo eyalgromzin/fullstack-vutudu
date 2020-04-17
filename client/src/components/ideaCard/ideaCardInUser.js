@@ -45,18 +45,13 @@ class IdeaCardInUser extends Component {
                   </div>
                 </div>
               </div>
-
+              
               <div id="userCardBottomSection">
-                <div id="cardIndicationButtons">
-                  <div id="cardIndicators"> 
-                    <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
-                  </div>
-                </div>
                 <div id="userActionButtons">
                   <EditIdeaButton />
                   <DeleteIdeaButton idea={this.props.currentPreviewedIdea} />
+                  <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
                 </div>
-                
               </div>
             </div>
 

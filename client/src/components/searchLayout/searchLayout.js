@@ -105,7 +105,8 @@ class searchLayout extends Component {
 						) : this.props.searched ? (
 							<IdeaCard idea={this.props.idea} enabled={true} showNextPreviousButtons={true} />
 						) : (
-							<TopTable />
+							// <TopTable />
+							""
 						)}
 					</div>					 
 				</div>

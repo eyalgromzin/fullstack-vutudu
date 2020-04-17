@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PlaceField from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
-import TimePicker from './timePicker/timePicker'
+import TimeCreator from './timeCreator/timeCreator'
 import {
   EDITABLE_IDEA_SET_TIME,
   EDITABLE_IDEA_SET_PLACE,
@@ -38,8 +38,9 @@ class CreateIdeaBar extends Component {
           <div id="createBarButtons">
             <PlaceField tagID="createBarPlaceSelector" isClickedButton={this.props.isClickedButton}
               placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
-              validationMethod={this.isNotEmpty} placeSuggestions={[]}/>
-            <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} /> 
+              validationMethod={this.isNotEmpty} placeSuggestions={[]}
+              placeFieldLocation="create" />
+            <TimeCreator onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} /> 
             <NumOfPeopleCreator cssClass="createBarDropDown" 
               minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
           </div>

@@ -137,21 +137,25 @@ class LikeDislike extends Component {
     }
 
     return (
-      <div className="bottomIndicator">
+      <React.Fragment>
+        <img src={require("images/like.png")} id="likeButton" className={"bottomButton"} alt="" 
+                    onClick={this.handleLikeClick}/>
+      {/* // <div className="bottomIndicator"> */}
         
-        <Popup
+        {/* <Popup
           trigger={<img src={require("images/like.png")} id="likeButton" className={"bottomButton"} alt="" 
                     onClick={this.handleLikeClick}/>}
           position="top center"
-          on="hover">
-          <div id="infoButton">
+          on="hover"> */}
+          
+          {/* <div id="infoButton">
             <div id="infoContent">
               <div>Vote for like or dislike</div>
             </div>
-          </div>
-        </Popup>
+          </div> */}
+        {/* </Popup> */}
         
-        {this.props.idea.liked === undefined ? 0 : this.props.idea.liked.length}
+        {/* {this.props.idea.liked === undefined ? 0 : this.props.idea.liked.length}
         
         <img src={clickedLike ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")}  alt="" 
           onClick={this.handleLikeClick} className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} />
@@ -159,10 +163,11 @@ class LikeDislike extends Component {
         {this.props.idea.disliked === undefined ? 0 : this.props.idea.disliked.length}
 
         <img src={clickedDislike ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")}  alt="" 
-          id="dislikeButton" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleDislikeClick}/>
+          id="dislikeButton" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleDislikeClick}/> */}
         
         {percentageText}
-      </div>
+      {/* // </div> */}
+      </React.Fragment>
     )
   }
 }

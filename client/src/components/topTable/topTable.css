@@ -48,7 +48,7 @@
     font-size: 35px;
     font-family: "Arial Black";
     margin-bottom: 20px;
-    background-color: gainsboro;
+    background-color: aliceblue;
     margin-right: 50px;
     text-align: center;
     border-radius: 10px;
@@ -62,7 +62,7 @@
 #topTable{
     padding: 45px;
     padding-bottom: 80px;
-    background-color: blanchedalmond;
+    background-color: #fff7eb;
     border-radius: 15px;
     padding-right: 0px;
 }

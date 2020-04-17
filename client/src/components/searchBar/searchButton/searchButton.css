@@ -14,13 +14,28 @@
 }   
 
 #loadingSearchButton{
+    padding: 7px;
+    height: 37px;
+    width: 37px;
+    background-color:rgb(180, 170, 255);
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 20px;
+    border-width: 2px;
+    border-color: rgb(255, 255, 255);
+    border-style: solid;
+    box-shadow: rgb(136, 136, 119) 0px 0px 20px;
+    border-radius: 17px;
+}   
+
+/* #loadingSearchButton{
     height: 30px;
     width: 30px;
     padding: 7px;
     display: inline-block;
     vertical-align: top;
-    margin-top: 25px;
-}
+    margin-top: 25px; 
+}  */
 
 #searchButton :active{
     background-color: #516f83;

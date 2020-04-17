@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './timePicker.css';
+import './timeCreator.css';
 import '../searchBarCommonStyles.css';
 import { search } from '../searchBarCommon';
 import store from 'store';
 import 'commonCss.css';
 import { connect } from 'react-redux';
 
-export default class TimePicker extends Component {
+export default class TimeCreator extends Component {
 	constructor(props) {
 		super(props);
 
@@ -38,10 +38,10 @@ export default class TimePicker extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div id="timePickerField" className="inlineBlock searchBarComboBox">
+				<div id="timeCreatorField" className="inlineBlock createBarComboBox">
 					<div className="fieldHeader">Time</div>
 					<select
-						id="timePicker"
+						id="timeChooser"
 						value={this.state.time}
 						onChange={this.onChangeEvent}
 						onKeyDown={this.placeFieldKeyUp}

@@ -14,13 +14,20 @@
 
 #createIdeaCardContent{
     padding: 10px;
-    background-color: white;
+    background-color: #fff2e2;
+    border-radius: 30px;
+    margin: 0% 10%;
 }
 
 #ideaCardWithButtonsInUser{
 }
 
-#createIdeaContainer{
+/* #createIdeaContainer{
+    box-shadow: 0px 0px 6px 1px;
+    margin-bottom: 20px;     
+} */
+
+#createIdeaCard{
     box-shadow: 0px 0px 6px 1px;
     margin-bottom: 20px;
 }
@@ -115,6 +122,7 @@
 
 #cardIndicationButtons{
     /* margin-top: 10px; */
+    display: inline-block;
     padding-bottom: 5px;
     margin: 10px;
     height: 25px;
@@ -132,10 +140,12 @@
 }
 
 #saveIdeaButton{
-    width: 30px;
-    height: 30px;
+    text-align: center;
     margin-right: 10px;
     float: right;
+    padding: 10px;
+    background-color: aqua;
+    border-radius: 13px;
 }
 
 #ideaMainContentContainer{
@@ -177,6 +187,7 @@
 
 #userActionButtons{
     margin: 10px;
+    float: right;
 }
 
 #userIdeaCard{
@@ -184,8 +195,9 @@
 }
 
 #userCardBottomSection{
-    display: flex;
-    justify-content: space-between;
+    float: right;
+    /* display: flex;
+    justify-content: space-between; */
 }
 
 .ideaPropertyField{

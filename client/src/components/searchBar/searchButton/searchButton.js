@@ -43,8 +43,8 @@ class SearchButton extends Component {
         <div id="searchButtonContainer">
           {this.props.isSearching? 
             <span>
-              <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton"  alt="" onClick={this.handleSearchClick} /> 
-              <img src={require("images/loading2.gif")} id="loadingSearchButton"  alt="" />
+              {/* <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton"  alt="" onClick={this.handleSearchClick} />  */}
+              <img src={require("images/loading2.gif")} id="loadingSearchButton" alt="" />
             </span>
             : 
             <img src={require("images/search.png")}  alt="" className="tilt clickAnimation" id="searchButton" onClick={this.handleSearchClick} /> 

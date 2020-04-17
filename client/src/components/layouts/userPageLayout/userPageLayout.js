@@ -9,6 +9,7 @@ import EditIdeaCardInUser from 'components/ideaCard/editIdeaCardInUser';
 import { 
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
+  CHANGE_LOGGED_IN_STATE,
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
 // const FBSDK = require('react-native-fbsdk');
@@ -32,6 +33,9 @@ class userPageLayout extends Component {
 
   logout = () =>{
     // LoginManager().logOut()
+    var f = 5
+    window.FB.logout()
+    this.props.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: false });
   }
 
   render() {
@@ -44,7 +48,7 @@ class userPageLayout extends Component {
         <div id="userLayout">
           <div id="userNameAndLogourBar">
             <div id="userFullName">Full name {this.props.userFullName}</div>
-            <div id="userLogoutButton" onClick={this.logout}>logout</div>
+            <div id="userLogoutButton" onClick={this.logout} onMouseDown={this.logout} style={{cursor: 'pointer'}}>logout</div>
           </div>
 
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">

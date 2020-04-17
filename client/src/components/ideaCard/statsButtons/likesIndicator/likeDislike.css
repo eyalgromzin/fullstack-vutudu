@@ -1,6 +1,8 @@
 #likeButton{
+    display: inline-block;
     margin-right: 1px;
 }
 #dislikeButton{
+    display: inline-block;
     margin-right: 3px;
 }

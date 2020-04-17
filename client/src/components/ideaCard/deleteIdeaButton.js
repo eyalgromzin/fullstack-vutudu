@@ -21,7 +21,7 @@ class DeleteIdeaButton extends Component {
 				this.props.idea != null &&
 				!this.props.isIdeaEdited ? (
 					<img
-						src={require('images/deleteWithOutline.png')}
+						src={require('images/garbage.png')}
 						className="userPageIdeaButton"
 						id="deleteIdeaButton"
 						onClick={() => {
