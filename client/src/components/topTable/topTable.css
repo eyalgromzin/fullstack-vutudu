@@ -51,6 +51,7 @@
     background-color: gainsboro;
     margin-right: 50px;
     text-align: center;
+    border-radius: 10px;
 }
 
 .topTableHeader{
@@ -62,6 +63,6 @@
     padding: 45px;
     padding-bottom: 80px;
     background-color: blanchedalmond;
-    border-radius: 4px;
+    border-radius: 15px;
     padding-right: 0px;
 }

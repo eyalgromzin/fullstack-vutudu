@@ -4,7 +4,7 @@
 
 .mainContent{
   /* padding: 0 20%; */
-  width: 1200px;
+  /* width: 1200px; */
   margin: auto;
 }
 
@@ -15,4 +15,12 @@ html, body {
     overflow: hidden;
     background-color: #F4F9FF !important; 
     
+}
+
+.searchMainContent{
+  margin: 0% 22%;
+}
+
+.createMainContent{
+  margin: 0% 15%;
 }

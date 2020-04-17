@@ -20,22 +20,20 @@ class IdeaCardInUser extends Component {
     return (
       <React.Fragment>
         {this.props.currentPreviewedIdeas.length > 0 ? 
-          <div id="ideaCardWithTopBar">
-
-            <div className="ideaStats" >
-              <div className="userPageIdeaIndicator">
-                Place:<span className="ideaPropertyField">{this.props.currentPreviewedIdea.place}</span>
-              </div>
-              <div className="userPageIdeaIndicator">
-                # People:
-                <span className="ideaPropertyField">
-                  {this.props.currentPreviewedIdea.minNumOfPeople}-{this.props.currentPreviewedIdea.maxNumOfPeople}
-                </span>
-              </div>
-            </div>
-
-            <div id="ideaCardWithButtonsInUser">
-              <div id="userIdeaCard">
+          <div id="ideaCardWithButtonsInUser">
+            <div id="userIdeaCard">
+              <div id="ideaCardInUserWithStats"> 
+                <div className="ideaStats" >
+                  <div className="userPageIdeaIndicator">
+                    Place:<span className="ideaPropertyField">{this.props.currentPreviewedIdea.place}</span>
+                  </div>
+                  <div className="userPageIdeaIndicator">
+                    # People:
+                    <span className="ideaPropertyField">
+                      {this.props.currentPreviewedIdea.minNumOfPeople}-{this.props.currentPreviewedIdea.maxNumOfPeople}
+                    </span>
+                  </div>
+                </div>
                 <div id="ideaCardInUser"> 
                   <div className="ideaTitle">
                     {this.props.currentPreviewedIdea.title}
@@ -46,29 +44,26 @@ class IdeaCardInUser extends Component {
                     </Linkify>
                   </div>
                 </div>
+              </div>
 
-                <div id="userIdeaActionButtonsSection">
-                  <div id="userActionButtons">
-                    <div><EditIdeaButton /></div>
-                    <div><DeleteIdeaButton idea={this.props.currentPreviewedIdea} /></div>
+              <div id="userCardBottomSection">
+                <div id="cardIndicationButtons">
+                  <div id="cardIndicators"> 
+                    <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
                   </div>
                 </div>
-              </div>
-
-              <div id="cardIndicationButtons">
-                <div id="cardIndicators"> 
-                  <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
-                  <TimeIndicator enabled={false}  idea={this.props.currentPreviewedIdea}  />  
-                  <DifficultyIndicator enabled={false} idea={this.props.currentPreviewedIdea} />
+                <div id="userActionButtons">
+                  <EditIdeaButton />
+                  <DeleteIdeaButton idea={this.props.currentPreviewedIdea} />
                 </div>
+                
               </div>
+            </div>
 
-              
-
+            
           </div>
-        </div>
-        :
-        ""
+          :
+          ""
         }
       </React.Fragment>
     )

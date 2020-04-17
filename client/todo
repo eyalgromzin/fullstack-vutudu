@@ -1,6 +1,6 @@
-- you need to enable javascript to run this app
-- fix login with google
-- fix login with facebook
+- make logout button work
+- convert item json to regular text and item
+- load user from db on login
 - fix colors 
 - make corners round
 - remove difficulty indicator
@@ -8,3 +8,10 @@
 - change ui - put like next to the idea arrows
 - enable upload images from pc - put them at the bottom after br
 - convert item to json when saved. 
+- enable google maps content
+- load google maps content
+- load images from cloud when its an image content
+
+------------------------------- maybe ---------------------------------------
+
+- change idea arrows to be on hover in the idea itself , like carousel

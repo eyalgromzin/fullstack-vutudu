@@ -1,18 +1,38 @@
 #userLayoutIdeasSelectSideBar{
-    width: 220px;
-    margin-left: 120px;
-    margin-top: 30px;
+    display: inline-block;
+    margin-right: 4%;
+    vertical-align: top;
+    width: 22%;
 }
 
 #UserIdeasTypeDropDown{
+    width: 100%;
     margin-bottom: 10px;
     box-shadow: 0px 0px 6px 1px;
 }
 
+#userNameAndLogourBar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffdac1;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+    width: 110%;
+    transform: translateX(-5%);
+}
+
+#userLogoutButton{
+    display: inline-block;
+    text-align: right;
+}
+
+#userLayout{
+    margin: 1% 22%;
+}
+
 #userLayoutIdeaPreview{
-    position: fixed;
-    left: 380px;
-    top: 122px;
+    display: inline-block;
     width: 74%;
 }
 

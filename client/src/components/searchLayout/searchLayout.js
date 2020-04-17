@@ -99,8 +99,7 @@ class searchLayout extends Component {
 							numOfPeople={this.props.numOfPeople}
 							time={this.props.time}
 							more={this.props.more}
-						/>
-						161616
+						/>						
 						{this.props.ideas.length == 0 && this.props.searched ? (
 							<NoResultsFound />
 						) : this.props.searched ? (
@@ -108,8 +107,7 @@ class searchLayout extends Component {
 						) : (
 							<TopTable />
 						)}
-					</div>
-					} 
+					</div>					 
 				</div>
 			</React.Fragment>
 		);

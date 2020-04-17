@@ -7,8 +7,6 @@ import {
 import { connect } from 'react-redux';
 
 class EditIdeaButton extends Component {
-  
-
     editIdea = () => {
       console.log('edit idea clicked');
       //make the fields to text boxes to edit the fields
@@ -22,7 +20,7 @@ class EditIdeaButton extends Component {
       <React.Fragment>
         { this.props.currentPreviewedIdeaType == "Created" && this.props.currentPreviewedIdea != null 
             && !this.props.isIdeaEdited ? 
-          <img src={require("images/writeBlack.png")} alt=""  id="editIdeaButton" 
+          <img src={require("images/writeBlackWithoutBorder.png")} alt=""  id="editIdeaButton" className="userPageIdeaButton" 
           onClick={() => {
               this.editIdea()
             }}  />  

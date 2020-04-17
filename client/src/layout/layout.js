@@ -23,46 +23,49 @@ class Layout extends Component {
     this.props.updateTopIdeas();
   }
 
-  // isClientMobile() {
-  //   let mql = window.matchMedia('(max-width: 750px)');
-  //   if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && mql.matches ) {
-  //       return true;
-  //   }
-  //   return false;
-  // }
+  isClientMobile() {
+    let mql = window.matchMedia('(max-width: 750px)');
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && mql.matches ) {
+        return true;
+    }
+    return false;
+  }
   
   render() {
-    // const isMobile = this.isClientMobile()
+    const isMobile = this.isClientMobile()
 
-    return (
-      <Router>
+    if(isMobile){
+      return (
+        <Router>
+          <React.Fragment>
+            <Route path="/" component={MobileLayout} exact />
+          </ React.Fragment>
+        </Router>
+      ) 
+    }else{
+      return (
         <React.Fragment>
-          <Route path="/" component={MobileLayout} exact />
-        </ React.Fragment>
-      </Router>
-    ) 
-    // return (
-    //   <React.Fragment>
-    //     {/* {this.props.isMainLoading?
-    //     <div id="mainLoadingScreen">
-    //       <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
-    //     </div>
-    //     : ""
-    //     } */}
-    //     <LoginScreen />
-    //     <Router>
-    //       <React.Fragment>
-    //           {/* <SideBar /> */}
-    //           <TopBar />
-    //           <Route path="/" component={searchLayout} exact />
-    //           <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-    //           <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-    //           <Route path="/create" component={createIdeaLayout} />
-    //           <Route path="/user" component={userPageLayout} />
-    //       </ React.Fragment>
-    //     </Router>
-    //   </React.Fragment>
-    // )
+          {this.props.isMainLoading?
+          <div id="mainLoadingScreen">
+            <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
+          </div>
+          : ""
+          }
+          <LoginScreen />
+          <Router>
+            <React.Fragment>
+                {/* <SideBar /> */}
+                <TopBar />
+                <Route path="/" component={searchLayout} exact />
+                <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+                <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+                <Route path="/create" component={createIdeaLayout} />
+                <Route path="/user" component={userPageLayout} />
+            </ React.Fragment>
+          </Router>
+        </React.Fragment>
+      )
+    }
   }
 }
 

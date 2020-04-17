@@ -4,8 +4,6 @@ import './socialButtons.css'
 import { connect } from 'react-redux';
 import { CHANGE_LOGGED_IN_STATE } from 'reducers/types'
 
-
-
 class GoogleButton extends Component {
 
     onsuccessGoogleLogin = (response) => {
@@ -25,7 +23,7 @@ class GoogleButton extends Component {
         return (
         <div>
             <GoogleLogin
-                clientId="961387820511-dv0jhq1vo0nji3meddqop1f58lua25jk.apps.googleusercontent.com"
+                clientId="961387820511-gnr9u3o9qls8663npvioavj8ajk6081r.apps.googleusercontent.com"
                 buttonText="Login with Google"
                 className="socialButton"
                 onSuccess={this.onsuccessGoogleLogin}

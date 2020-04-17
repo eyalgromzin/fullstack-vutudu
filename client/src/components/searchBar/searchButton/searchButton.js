@@ -40,14 +40,17 @@ class SearchButton extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.isSearching? 
-          <span>
-            <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton"  alt="" onClick={this.handleSearchClick} /> 
-            <img src={require("images/loading2.gif")} id="loadingSearchButton"  alt="" />
-          </span>
-          : 
-          <img src={require("images/search.png")}  alt="" className="tilt clickAnimation" id="searchButton" onClick={this.handleSearchClick} /> 
-        }
+        <div id="searchButtonContainer">
+          {this.props.isSearching? 
+            <span>
+              <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton"  alt="" onClick={this.handleSearchClick} /> 
+              <img src={require("images/loading2.gif")} id="loadingSearchButton"  alt="" />
+            </span>
+            : 
+            <img src={require("images/search.png")}  alt="" className="tilt clickAnimation" id="searchButton" onClick={this.handleSearchClick} /> 
+          }
+          <div className="invisible"> error </div>
+        </div>
       </React.Fragment>
     )
   }

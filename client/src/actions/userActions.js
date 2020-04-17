@@ -24,13 +24,13 @@ export const emptyUserPreviewedIdea = () => {
 }
 
 //works till the return
-export const createUserIfNotExists = user => dispatch => {
-  console.log('in createUserIfNotExists beginning:' + user)
+export const loadOrCreateUserIfNotExists = user => dispatch => {
+  console.log('in loadOrCreateUserIfNotExists beginning:' + user)
   var isUserExists = false;
   console.log('sending get request: api/user/' + `${user.id}`);
   
   axios.get(`/api/user/${user.id}`).then(res => {  // => dispatch => 
-    console.log('in createUserIfNotExists response')
+    console.log('in loadOrCreateUserIfNotExists response')
     // return res.data;
     if(res.data.length == 0){
       // dispatch => {

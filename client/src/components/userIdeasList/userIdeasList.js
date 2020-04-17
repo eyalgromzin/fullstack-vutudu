@@ -44,7 +44,7 @@ class UserIdeasList extends Component {
     return (
       <React.Fragment>
         
-          <div style={{overflow: 'auto', height: 525}}>
+          <div style={{overflow: 'auto', height: 460}}>
             <ReactList
               itemRenderer={this.renderItem}
               length={this.props == null || this.props.ideas == null? 0 : this.props.ideas.length}

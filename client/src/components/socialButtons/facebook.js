@@ -1,7 +1,7 @@
 import FacebookLogin from 'react-facebook-login';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { createUserIfNotExists } from 'actions/userActions'
+import { loadOrCreateUserIfNotExists } from 'actions/userActions'
 import { bindActionCreators } from 'redux';
 import './socialButtons.css'
 
@@ -9,27 +9,23 @@ import './socialButtons.css'
 class facebook extends Component {
   responseFacebook = (response) => {
     if (response.accessToken) {
-      
-      
-
       var fullName = response.name;
+      var firstName = fullName.split(" ")[0]
+      var lastName = fullName.split(" ")[1]
+      var userID = response.userID
 
       if(fullName === undefined){
         console.log('Connection to facebook timed out');
         return
       }
 
-      var firstName = fullName.split(" ")[0]; 
-      var lastName = fullName.split(" ")[1]; 
-
       var user = {
         firstName: firstName,
         lastName: lastName,
-        id: response.id
+        id: userID
       }
 
-      this.props.createUserIfNotExists(user);
-      
+      this.props.loadOrCreateUserIfNotExists(user);
 
     } else {
       console.log('User cancelled login or did not fully authorize.');
@@ -60,7 +56,7 @@ class facebook extends Component {
 
 function mapDispatchToProps(dispatch) {
   return({
-    createUserIfNotExists: bindActionCreators (createUserIfNotExists, dispatch),
+    loadOrCreateUserIfNotExists: bindActionCreators (loadOrCreateUserIfNotExists, dispatch),
   })
 }
 

@@ -5,12 +5,16 @@ import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
 import UserIdeasList from 'components/userIdeasList/userIdeasList'
 import IdeaCardInUser from 'components/ideaCard/ideaCardInUser'
-import EditCardInUser from 'components/ideaCard/editIdeaCardInUser';
+import EditIdeaCardInUser from 'components/ideaCard/editIdeaCardInUser';
 import { 
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
+// const FBSDK = require('react-native-fbsdk');
+// const {
+//   LoginManager,
+// } = FBSDK;
 
 class userPageLayout extends Component {
   constructor(props){
@@ -26,6 +30,10 @@ class userPageLayout extends Component {
     }
   }
 
+  logout = () =>{
+    // LoginManager().logOut()
+  }
+
   render() {
     let isCurrentPreviewedIdeaEmpty = typeof this.props.currentPreviewedIdea === 'undefined' ||
                                       (Object.keys(this.props.currentPreviewedIdea).length === 0 &&
@@ -33,8 +41,14 @@ class userPageLayout extends Component {
 
     return (
       <React.Fragment>
-        <div id="userLayout" >
+        <div id="userLayout">
+          <div id="userNameAndLogourBar">
+            <div id="userFullName">Full name {this.props.userFullName}</div>
+            <div id="userLogoutButton" onClick={this.logout}>logout</div>
+          </div>
+
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
+            <div class="fieldHeader">   </div>
             <div id="UserIdeasTypeDropDown" onClick={this.onIdeaTypeDropDownClick}>
               <UserIdeasTypeDropDown />    
             </div>
@@ -47,20 +61,18 @@ class userPageLayout extends Component {
             }
           </div>
 
-          <div id="userIdeaPreviewSide" >
-            <div id="userLayoutIdeaPreview">
-              {this.props.currentPreviewedIdeas.length == 0 || isCurrentPreviewedIdeaEmpty ?
-                <div id="userIdeaCardDummy" > 
-                  <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
-                </div> : ""
-              }
-              { this.props.isIdeaEdited && !isCurrentPreviewedIdeaEmpty? 
-                <EditCardInUser />
+          <div id="userLayoutIdeaPreview">
+            {this.props.currentPreviewedIdeas.length == 0 || isCurrentPreviewedIdeaEmpty ?
+              <div id="userIdeaCardDummy" > 
+                <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
+              </div> 
+              : 
+              this.props.isIdeaEdited && !isCurrentPreviewedIdeaEmpty? 
+              <EditIdeaCardInUser />
                 :
-                !isCurrentPreviewedIdeaEmpty? <IdeaCardInUser enabled={false} showNextPreviousButtons={true}/> : "" 
-                
-              }
-            </div>
+              !isCurrentPreviewedIdeaEmpty? <IdeaCardInUser enabled={false} showNextPreviousButtons={true}/> : ""               
+            }
+            
           </div>
         </div>
       </React.Fragment>

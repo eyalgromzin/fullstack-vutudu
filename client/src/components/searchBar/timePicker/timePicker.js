@@ -45,7 +45,7 @@ export default class TimePicker extends Component {
 
 		return (
 			<React.Fragment>
-				<div id="timePickerField" className={this.props.cssClass === undefined? "inlineBlock searchBarComboBox" : "inlineBlock createBarComboBox"}>
+				<div id="timePickerField" className="inlineBlock searchBarComboBox">
 					<div className="fieldHeader">Time</div>
 					<select
 						id="timeChooser"

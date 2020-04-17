@@ -17,10 +17,16 @@
     background-color: white;
 }
 
+#ideaCardWithButtonsInUser{
+}
+
 #createIdeaContainer{
     box-shadow: 0px 0px 6px 1px;
-    margin: 0 15%;
     margin-bottom: 20px;
+}
+
+#ideaCardWithTopBar{
+    display: inline-block;
 }
 
 #ideaMainContent{
@@ -30,7 +36,7 @@
 
 .ideaStats{
     margin-bottom: 15px;
-    margin-left: 30px;
+    text-align: center;
     font-size: 30px;
 
 }
@@ -60,9 +66,6 @@
 #ideaCard{
     box-shadow: 0px 0px 6px 1px;
     background-color: white;
-    min-height: 350px;
-    max-height: 550px;
-    display: table-cell;
     width: 9000%;   /* acts as 90.00% */
     
 }
@@ -73,7 +76,6 @@
     min-height: 350px;
     max-height: 550px;
     width: 100%;   /* acts as 90.00% */
-    display: table-cell;
 }
 
 #statusButtons{
@@ -109,11 +111,6 @@
 
 #cardIndicators{
     display: inline-block;
-    text-align: center;
-    width: 60%;
-    margin-right: 20%;
-    float: right;
-
 }
 
 #cardIndicationButtons{
@@ -135,9 +132,9 @@
 }
 
 #saveIdeaButton{
-    width: 60px;
-    height: 60px;
-    margin-right: 35px;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
     float: right;
 }
 
@@ -155,8 +152,7 @@
 }
 
 #editIdeaButton{
-    height: 60px;
-    width: 60px;
+    
 }
 
 #createInfoButton{
@@ -180,11 +176,16 @@
 }
 
 #userActionButtons{
-
+    margin: 10px;
 }
 
 #userIdeaCard{
-    display: table;
+    
+}
+
+#userCardBottomSection{
+    display: flex;
+    justify-content: space-between;
 }
 
 .ideaPropertyField{

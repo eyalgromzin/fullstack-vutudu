@@ -2,10 +2,6 @@
     display: inline-block;
 }
 
-/* .mainContent{
-  padding: 0 20%;
-} */
-
 .alignRight{
     float: right;
     text-align: right;
@@ -37,11 +33,6 @@
 .inlineBlock{
     display: inline-block;
 }
-
-/* .createMainContent{
-     margin: 25px 15%; 
-    margin-top: 20px
-} */
 
 .textAlignCenter{
     text-align: center;
