@@ -10,8 +10,6 @@ export default class CardIndicators extends Component {
         <div id="cardIndicationButtons">
           <div id="cardIndicators"> 
             <LikeDislike idea={this.props.idea} enabled={this.props.enabled} />
-            <TimeIndicator idea={this.props.idea} enabled={this.props.enabled} />
-            <DifficultyIndicator idea={this.props.idea} enabled={this.props.enabled} />
           </div>
         </div>
       </React.Fragment>

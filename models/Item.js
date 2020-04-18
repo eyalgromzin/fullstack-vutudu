@@ -32,7 +32,11 @@ const ItemSchema = new Schema({
     required: false,
     default: 'place',
   },
-  time: {
+  minTime: {
+    type: Number,
+    required: false,
+  },
+  maxTime: {
     type: Number,
     required: false,
   },
@@ -49,42 +53,7 @@ const ItemSchema = new Schema({
     required: false,
     default: [],
   },
-  likeCount: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
   disliked: {
-    type: [String],
-    required: false,
-    default: [],
-  },
-  likeAndDislikeCount: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  addedEasy: {
-    type: [String],
-    required: false,
-    default: [],
-  },
-  addedHard: {
-    type: [String],
-    required: false,
-    default: [],
-  },
-  hardCount: {
-    type: Number,
-    required: false,
-    default: 0,
-  },
-  addedShort: {
-    type: [String],
-    required: false,
-    default: [],
-  },
-  addedLong: {
     type: [String],
     required: false,
     default: [],

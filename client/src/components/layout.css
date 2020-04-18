@@ -96,7 +96,7 @@
 }
 
 #createIdeaBarButtons{
-    /* display: inline-block; */
+    text-align: center;
 }
 
 #mainLogoImage{

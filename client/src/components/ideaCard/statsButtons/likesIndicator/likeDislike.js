@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './likeDislike.css'
+import 'commonCss.css'
 import '../../ideaCard.css'
 import { connect } from 'react-redux';
 import {updateIdeaIndicator} from 'actions/ideaActions'
@@ -7,6 +8,7 @@ import {removeUserLikedIdea} from 'actions/userActions'
 import {addLikedIdeaToUser} from 'actions/userActions'
 import {addUserIDToIdeaLikes} from 'actions/ideaActions'
 import { bindActionCreators } from 'redux';
+import Popover from 'react-tiny-popover'
 import { 
   ADD_LIKED_IDEA_TO_USER, 
   ADD_USER_ID_TO_IDEA_LIKES,
@@ -16,12 +18,16 @@ import {
   SET_USER_LIKED_IDEAS,
   // ADD_USER_TO_LIKED_OF_CREATED_IDEA
  } from 'reducers/types'
-import Popup from 'reactjs-popup'
+ import Modal from 'react-modal';
 import {showLogInScreen} from 'actions/commonActions'
 
 class LikeDislike extends Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      isPopoverOpen: false,
+    };
   }
 
   addLike = () => {
@@ -36,7 +42,6 @@ class LikeDislike extends Component {
 
     //pop the user id from the liked idea. to remove the duplicate
     this.props.idea.liked.pop(this.props.userID)
-
       this.setState({clickedLike: true});
   }
 
@@ -67,46 +72,26 @@ class LikeDislike extends Component {
   }
 
   handleDislikeClick = () => {
-    if(this.props.enabled){
-      if(!this.props.loggedIn){
-        console.log("showing login screen");
-        showLogInScreen();
-      }else{    
-        if(this.props.enabled) {
-          console.log("showing send like request");
-          if(this.isClickedLike()){
-            this.removeLike();
-            this.addDislike();
-          }else if (this.isClickedDislike()){
-              this.removeDislike();
-          }else{
-              this.addDislike();
-          }
-        }
-      }
-    }
+    this.togglePopover();
+    this.addDislike();
   }
 
   handleLikeClick = () => {
-    if(this.props.enabled){
-      if(!this.props.loggedIn){
-        showLogInScreen();
-      }else{   
-        if(this.props.enabled) {
-          if(this.isClickedDislike()){
-            this.removeDislike();
-            this.addLike();
-          }else if(this.isClickedLike()){
-            this.removeLike();
-          }else{
-            this.addLike();
-          }
-        }
-      }
-    }
+    this.togglePopover();
+    this.addLike();
   }
+  // if(this.props.enabled) {
+  //   if(this.isClickedDislike()){
+  //     this.removeDislike();
+  //     this.addLike();
+  //   }else if(this.isLiked()){
+  //     this.removeLike();
+  //   }else{
+  //     this.addLike();
+  //   }
+  // }
 
-  isClickedLike = () => {
+  isLiked = () => {
     if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.liked === undefined)){
       return this.props.idea.liked.includes(this.props.userID);
     }
@@ -114,7 +99,21 @@ class LikeDislike extends Component {
     return false;
   }
 
-  isClickedDislike = () => {
+  handleHeartClick = () => {
+    if(this.props.loggedIn){
+      if(this.isLiked()){
+        this.removeLike()
+      } else if(this.isDisliked()){
+        this.removeDislike()
+      }else{
+        this.togglePopover()
+      }
+    }else{
+      showLogInScreen();
+    }
+  }
+
+  isDisliked = () => {
     if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.disliked === undefined)){
       return this.props.idea.disliked.includes(this.props.userID);
     }
@@ -122,51 +121,62 @@ class LikeDislike extends Component {
     return false;
   }
 
-  render() {
-    let clickedLike = this.isClickedLike();
-    let clickedDislike = this.isClickedDislike();
+  togglePopover = () => {
+    // if(this.isLiked()){
+    //   this.removeLike()
+    // } else if(this.isDisliked){
+    //   this.removeDislike()
+    // }else{
+    //   var newState = !this.state.isPopoverOpen
+    //   this.setState({ isPopoverOpen: newState });
+    //   var s = this.state.isPopoverOpen;
+    // }
 
+    var newState = !this.state.isPopoverOpen
+    this.setState({ isPopoverOpen: newState });
+    var s = this.state.isPopoverOpen;
+  }
+
+
+  render() {
     let percentageText = "(0%)"
     if(this.props.idea.liked === undefined || this.props.idea.disliked === undefined){
       percentageText = "(0%)"
     }else if(this.props.idea.liked.length + this.props.idea.disliked.length == 0){
-      percentageText = "(100%)"
+      percentageText = "(0%)"
     }else{
       let percentage = Math.round((this.props.idea.liked.length / (this.props.idea.liked.length + this.props.idea.disliked.length)) * 100)
       percentageText = "(" + percentage + "%)"
     }
 
+    var heartImagePath = ""
+    if(this.isDisliked()){
+      heartImagePath = require("images/dislike.png")
+    }else if(this.isLiked()){
+      heartImagePath = require("images/likeFull.png")
+    }else{
+      heartImagePath = require("images/emptyLike.png")
+    }
+
     return (
       <React.Fragment>
-        <img src={require("images/like.png")} id="likeButton" className={"bottomButton"} alt="" 
-                    onClick={this.handleLikeClick}/>
-      {/* // <div className="bottomIndicator"> */}
-        
-        {/* <Popup
-          trigger={<img src={require("images/like.png")} id="likeButton" className={"bottomButton"} alt="" 
-                    onClick={this.handleLikeClick}/>}
-          position="top center"
-          on="hover"> */}
-          
-          {/* <div id="infoButton">
-            <div id="infoContent">
-              <div>Vote for like or dislike</div>
-            </div>
-          </div> */}
-        {/* </Popup> */}
-        
-        {/* {this.props.idea.liked === undefined ? 0 : this.props.idea.liked.length}
-        
-        <img src={clickedLike ? require("images/upArrowHighlighted.png") : require("images/upArrow.png")}  alt="" 
-          onClick={this.handleLikeClick} className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} />
-        
-        {this.props.idea.disliked === undefined ? 0 : this.props.idea.disliked.length}
+          <Popover
+            isOpen={this.state.isPopoverOpen}
+            position={'top'} // preferred position
+            content={(
+              <div id="likeDislikeContainer" onMouseLeave={this.togglePopover}>
+                <img onClick={this.handleLikeClick} src={require("images/likeFull.png")} className="inlineBlock smallIconSize marginRight10px" />
+                <img onClick={this.handleDislikeClick} src={require("images/dislike.png")} className="inlineBlock smallIconSize" />
+              </div>
+            )}
+          >
 
-        <img src={clickedDislike ? require("images/downArrowHighlighted.png") : require("images/downArrow.png")}  alt="" 
-          id="dislikeButton" className={this.props.enabled? "bottomButton hoverClickHand": "bottomButton"} onClick={this.handleDislikeClick}/> */}
-        
-        {percentageText}
-      {/* // </div> */}
+            <img src={heartImagePath} onClick={this.handleHeartClick} className={"bottomButton"} />
+         
+          </ Popover>
+          
+          {percentageText}
+
       </React.Fragment>
     )
   }

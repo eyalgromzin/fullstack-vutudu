@@ -35,7 +35,6 @@ class CreateIdeaBar extends Component {
     return (
       <React.Fragment>
         <div id="createBar" className="inlineBlock">
-          <div id="createBarButtons">
             <PlaceField tagID="createBarPlaceSelector" isClickedButton={this.props.isClickedButton}
               placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
               validationMethod={this.isNotEmpty} placeSuggestions={[]}
@@ -43,7 +42,6 @@ class CreateIdeaBar extends Component {
             <TimeCreator onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} /> 
             <NumOfPeopleCreator cssClass="createBarDropDown" 
               minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
-          </div>
         </div> 
       </React.Fragment>
     )

@@ -7,6 +7,7 @@ import 'commonCss.css'
 import ShareButton from 'components/ideaCard/cardButtons/shareButton'
 import CardIndicators from 'components/ideaCard/cardIndicators'
 import { convertLinksToThumbNails } from 'commonUtils'
+import LikeDislike from './statsButtons/likesIndicator/likeDislike'
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class IdeaCard extends Component {
@@ -15,8 +16,10 @@ class IdeaCard extends Component {
     
     return (
       <React.Fragment>
-        <div className="IdeaContent">
+        <div id="ideaCardIdeaArrows">
           {this.props.showNextPreviousButtons? <IdeaNextButtonsPreviousButtons /> : null}
+        </div>
+        <div className="IdeaContent">
           <div id="ideaCardWithButtons">
             <div id="ideaCardWithShare" >
               <div id="ideaCard"> 
@@ -29,11 +32,12 @@ class IdeaCard extends Component {
                   </Linkify>
                 </div>
               </div>
-              <div id="shareContainer">
+              <div id="shareAndLikeContainer">
+                <LikeDislike idea={this.props.idea} enabled={this.props.enabled} />
                 <ShareButton />
               </div>
             </div>
-            <CardIndicators idea={this.props.idea} enabled={this.props.enabled} />  {/*enabled={true} */}
+            {/* <CardIndicators idea={this.props.idea} enabled={this.props.enabled} />  //enabled={true} */}
           </div> 
         </div>
       </React.Fragment>

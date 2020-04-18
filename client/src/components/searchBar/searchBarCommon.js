@@ -11,4 +11,3 @@ export const search = () => {
 
     store.dispatch(searchItems(place, time, numOfPeople, more));
 }
-

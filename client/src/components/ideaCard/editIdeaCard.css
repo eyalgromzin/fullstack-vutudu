@@ -30,6 +30,10 @@ input:focus {
     font-size: 17px;
 }
 
+#createIdeaButtonContainer{
+    width: 15%;
+}
+
 .userPageIdeaButton{
     height: 30px;
     width: 30px;
@@ -41,7 +45,6 @@ input:focus {
     padding: 12px;
     padding-right: 23px;
     padding-left: 23px;
-    margin-top: 26px;
     background-color: bisque;
     font-family: cursive;
     cursor: pointer;

@@ -104,3 +104,58 @@ export const convertLinksToThumbNails = (text) => {
     var output = convertedText.join("")
     return output
 }
+
+//ideas - ideas array 
+export const convertIdeasContentJsonToNormal = (ideas) => {
+  var convertedIdeas = []
+
+  ideas.forEach(idea => {
+    try{                    
+      var ideaContentJson = idea.content
+
+      var contentHtml = convertJsonContentToHtml(ideaContentJson)
+
+      if(contentHtml !== undefined){
+        idea.content = contentHtml
+      }
+
+    }catch(e){
+      console.log("failed to parse item json: " + e)
+    }
+  })
+
+  return ideas
+}
+
+export const convertJsonContentToHtml = (ideaContentJson) => {
+  var ideaContentItemsList = JSON.parse(ideaContentJson);
+  var htmlContent = ""
+
+  ideaContentItemsList.forEach(contentItem => {
+    if(contentItem.first == "TEXT"){
+      htmlContent += "<div>" + contentItem.third + "</div>"
+    }else if(contentItem.first == "LINK"){
+      htmlContent += "<div class='centerHorizontally'><a href='" + contentItem.fourth + "'>" + contentItem.third + "</a></div>"
+    }
+    else if(contentItem.first == "IMAGE"){
+      htmlContent += "<div class='centerHorizontally'>image content</div>"
+    }
+    else if(contentItem.first == "IMAGE_URL"){
+      htmlContent += "<div class='centerHorizontally'><img src='" + contentItem.third + "'</div>"
+    }else if(contentItem.first == "LINKED_IMAGE"){
+      htmlContent += "<div class='centerHorizontally'><a href='" + contentItem.fourth + "'><img src=" + require("images/logo.png") + "' /></a></div>"
+    }else if(contentItem.first == "YOUTUBE"){
+      htmlContent += "<div class='centerHorizontally'>" + 
+        "<iframe width='420' height='315' src='" + contentItem.third + "' />" +
+      "</div>"
+    }else if(contentItem.first == "LOCATION"){
+      htmlContent += "<div class='centerHorizontally'>" + 
+        "LOCATION!!!" +
+      "</div>"
+    }
+    
+    htmlContent += ""
+  })
+
+  return htmlContent  
+}

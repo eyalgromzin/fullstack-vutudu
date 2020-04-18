@@ -15,8 +15,14 @@
 #createIdeaCardContent{
     padding: 10px;
     background-color: #fff2e2;
-    border-radius: 30px;
+    border-radius: 20px;
     margin: 0% 10%;
+    border: solid;
+    border-width: 1px;
+}
+
+#ideaCardIdeaArrows{
+    text-align: right;
 }
 
 #ideaCardWithButtonsInUser{
@@ -73,7 +79,7 @@
 #ideaCard{
     box-shadow: 0px 0px 6px 1px;
     background-color: white;
-    width: 9000%;   /* acts as 90.00% */
+    /* width: 9000%;   acts as 90.00% */
     
 }
 
@@ -133,6 +139,10 @@
     height: 100%;
     text-align: center;
     vertical-align: middle;
+}
+
+#shareAndLikeContainer{
+    float: right;
 }
 
 #ideaCardWithShare{

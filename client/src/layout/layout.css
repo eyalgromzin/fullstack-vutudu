@@ -14,13 +14,14 @@ html, body {
     height: 100%;
     overflow: hidden;
     background-color: #F4F9FF !important; 
+    overflow: scroll;
     
 }
 
 .searchMainContent{
-  margin: 0% 22%;
+  margin: 0% 25%;
 }
 
 .createMainContent{
-  margin: 0% 15%;
+  margin: 0% 20%;
 }

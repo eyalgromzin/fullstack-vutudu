@@ -245,10 +245,18 @@ router.get('/search/:place/:time/:numOfPeople', (req, res) => {
 	//
 	console.log('finding without more');
 
+	// var timeInt = parseInt(req.params.time, 10);
+	// var numOfPeopleInt = parseInt(req.params.numOfPeople, 10);
+
 	Item.find({
 		$and: [
 			{ place: req.params.place },
-			{ time: req.params.time },
+			{
+				$and: [
+					{ minTime: { $lte: req.params.time } },
+					{ maxTime: { $gte: req.params.time } }
+				]
+			},
 			{
 				$and: [
 					{ minNumOfPeople: { $lte: req.params.numOfPeople } },
@@ -256,7 +264,10 @@ router.get('/search/:place/:time/:numOfPeople', (req, res) => {
 				]
 			}
 		]
-	}).then((items) => res.json(items));
+	}).then(
+		(items) => 
+		res.json(items)
+		);
 });
 
 // @route   POST api/items/deleteIdea/

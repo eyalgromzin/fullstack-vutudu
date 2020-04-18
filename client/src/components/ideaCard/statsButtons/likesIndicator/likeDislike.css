@@ -6,3 +6,18 @@
     display: inline-block;
     margin-right: 3px;
 }
+
+.popup-content {
+    width: 100%;
+}
+
+.popup-wrapper {
+    width: 100%;
+  }
+  .popup-wrapper > * {
+    width: 50%;
+  }
+
+#likeDislikeContainer{
+    display: inline-block;
+}

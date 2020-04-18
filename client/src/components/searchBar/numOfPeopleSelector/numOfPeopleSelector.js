@@ -52,16 +52,16 @@ class NumOfPeopleSelector extends Component {
           <div className="fieldHeader"># People</div>
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
-            <option value="9000" className="timeChooserOption" >Any</option>
-            <option value="1" className="timeChooserOption">1</option>
-            <option value="2" className="timeChooserOption">2</option>
-            <option value="20000" className="timeChooserOption">couple</option>
-            <option value="3" className="timeChooserOption">3</option>
-            <option value="4" className="timeChooserOption">4</option>
-            <option value="5" className="timeChooserOption">5</option>
-            <option value="6" className="timeChooserOption">6</option>
-            <option value="7" className="timeChooserOption">7</option>
+            <option value="10" className="timeChooserOption">1</option>
+            <option value="20" className="timeChooserOption">2</option>
+            <option value="2" className="timeChooserOption">couple</option>
+            <option value="30" className="timeChooserOption">3</option>
+            <option value="40" className="timeChooserOption">4</option>
+            <option value="50" className="timeChooserOption">5</option>
+            <option value="60" className="timeChooserOption">6</option>
+            <option value="70" className="timeChooserOption">7</option>
             <option value="8000" className="timeChooserOption">7+</option>
+            <option value="9000" className="timeChooserOption" >Any</option>
           </select>
           <div className="invisible">error</div>
         </div>

@@ -3,6 +3,7 @@ import { addIdeaToDB, updateTags } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import 'commonCss.css'
+import './editIdeaCard.css'
 import {notify} from 'react-notify-toast';
 import { addHashTagsToDB } from 'actions/tagsActions'
 import { addPlaceToDBIfNotExists } from 'actions/autoSuggestActions'
@@ -52,7 +53,7 @@ class createIdeaButton extends Component {
   render() {
     return (
         <React.Fragment>
-          <div className="inlineBlock">
+          <div id="createIdeaButtonContainer" className="inlineBlock">
             <div id="createIdeaButton" className="inlineBlock" onClick={this.handleCreateIdeaClick}> create </div>
             <div className="invisible"> error </div>
           </div>

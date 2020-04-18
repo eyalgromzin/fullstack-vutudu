@@ -9,6 +9,7 @@ import NoResultsFound from './noResultsFound';
 import { searchItems } from 'actions/ideaActions';
 import { getIdeaByID } from 'actions/ideaActions';
 import store from 'store';
+import * as commonUtils from 'commonUtils'
 import {
 	SEARCH_SET_TIME,
 	SEARCH_SET_PLACE,
@@ -116,6 +117,8 @@ class searchLayout extends Component {
 }
 
 function mapStateToProps(state) {
+	var convertedIdeas = commonUtils.convertIdeasContentJsonToNormal(state.searchPageReducer.ideas)
+
 	return {
 		searched: state.commonReducer.searched,
 		idea: state.searchPageReducer.currentIdea,

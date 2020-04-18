@@ -9,15 +9,16 @@ import {
   SEARCH_SET_IS_CLICKED_SEARCH,
 } from 'reducers/types'
 
+//default values
 const initialState = {
-    place: '',
+    place: 'place',
     time: 5,
-    numOfPeople: 2,
+    numOfPeople: 30,
     more: '',
     isMoreValid: true,
-    isPlaceValid: false,
+    isPlaceValid: true,
     isClickedSearch: false,    
-    isSearchEnabled: false
+    isSearchEnabled: true
   };
 
   function searchBarReducer(state = initialState, action) {

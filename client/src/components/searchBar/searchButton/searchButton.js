@@ -27,7 +27,6 @@ class SearchButton extends Component {
   handleSearchClick = () => {
     if (this.props.isSearchEnabled){
       search();
-      
     }else{
       //make search button red animation!!!
     }

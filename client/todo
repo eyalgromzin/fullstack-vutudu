@@ -1,12 +1,11 @@
-- convert item json to normal item like in the android app
-- make like show small popup with like and dislike
-- search doesnt work
-- enable upload images from pc - put them at the bottom after br
+- enable upload images from pc - put them at the bottom after br / div
 - convert item to json when saved. 
 - enable google maps content
 - load google maps content
 - load images from cloud when its an image content
 - make logout button work for google
+- change search text "place , time , people - to icons
+- change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
 
 ------------------------------- maybe ---------------------------------------
 
