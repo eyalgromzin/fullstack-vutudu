@@ -7,6 +7,7 @@ import UserIdeasList from 'components/userIdeasList/userIdeasList'
 import IdeaCardInUser from 'components/ideaCard/ideaCardInUser'
 import IdeaCard from 'components/ideaCard/ideaCard'
 import EditIdeaCardInUser from 'components/ideaCard/editIdeaCardInUser';
+// import { loggedInWith } from 'common.js'
 import { 
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
@@ -14,6 +15,7 @@ import {
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
 import ideaCardInUser from '../../ideaCard/ideaCardInUser';
+import { GoogleLogout } from 'react-google-login';
 
 class userPageLayout extends Component {
   constructor(props){
@@ -29,10 +31,15 @@ class userPageLayout extends Component {
     }
   }
 
-  logout = () =>{
-    // LoginManager().logOut()
-    var f = 5
+  facebookLogout = () =>{
+    this.props.history.push('/search')
     window.FB.logout()
+    this.props.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: false });
+  }
+
+  googleLogoutSuccess = () => {
+    this.props.history.push('/search')
+    console.log("signed out of google");
     this.props.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: false });
   }
 
@@ -65,12 +72,20 @@ class userPageLayout extends Component {
       }
     }
 
+    let logoutButton
+    if(this.props.loggedInWith == 'Google'){
+      logoutButton = <span onClick={this.googleLogoutSuccess} >logout</span>
+    }else if(this.props.loggedInWith == 'Facebook'){
+      logoutButton = 
+        <div id="userLogoutButton" onClick={this.facebookLogout} onMouseDown={this.facebookLogout} style={{cursor: 'pointer'}}>logout</div>
+    }
+
     return (
       <React.Fragment>
         <div id="userLayout">
           <div id="userNameAndLogourBar">
             <div id="userFullName">Full name {this.props.userFullName}</div>
-            <div id="userLogoutButton" onClick={this.logout} onMouseDown={this.logout} style={{cursor: 'pointer'}}>logout</div>
+            {logoutButton}
           </div>
 
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
@@ -101,7 +116,7 @@ function mapStateToProps(state) {
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
     updateToggle: state.userPageReducer.updateToggle,
     loggedIn: state.commonReducer.loggedIn,
-
+    loggedInWith: state.userPageReducer.loggedInWith
   };
 }
 

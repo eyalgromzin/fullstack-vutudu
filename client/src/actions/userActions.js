@@ -13,10 +13,11 @@ import {
   SET_USER_CREATED_IDEAS,
   EMPTY_USER_PREVIEWED_IDEA,
   UPDATE_CURRENT_PREVIEWED_USER_IDEA,
-  // UPDATE_CREATED_IDEA_IN_USER,
+  REMOVE_LIKED_IDEA_FROM_USER, 
+  ADD_LIKED_IDEA_TO_USER,
+  CHANGE_LOGGED_IN_TYPE,
 } from 'reducers/types'
 import store from 'store'
-import { REMOVE_LIKED_IDEA_FROM_USER, ADD_LIKED_IDEA_TO_USER } from '../reducers/types';
 import { getTagsFromContent } from 'commonUtils'
 
 export const emptyUserPreviewedIdea = () => {
@@ -115,7 +116,6 @@ export const updateUser = (userID) => {
   store.dispatch(getUserFromDB(userID));
 }
 
-
 // //'Liked' / 'Created' 
 export const getUserFromDB = userID => dispatch => {
   console.log('sending post:  api/user/getUser/, userID: ' + userID)
@@ -133,6 +133,13 @@ export const getUserFromDB = userID => dispatch => {
       })
     }
   );
+}
+
+export const changeLoggedInWithType = (newType) => {
+  store.dispatch({
+    type: CHANGE_LOGGED_IN_TYPE,
+    payload: newType
+  })
 }
 
 // //'Liked' / 'Created' 

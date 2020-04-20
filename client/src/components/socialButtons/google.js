@@ -3,6 +3,8 @@ import GoogleLogin from 'react-google-login';
 import './socialButtons.css'
 import { connect } from 'react-redux';
 import { CHANGE_LOGGED_IN_STATE } from 'reducers/types'
+import { CHANGE_LOGGED_IN_TYPE } from 'reducers/types'
+import {loggedInWith} from 'common'
 
 class GoogleButton extends Component {
 
@@ -11,7 +13,9 @@ class GoogleButton extends Component {
         // If responseType is 'code', callback will return the offline token for use on your server.
 
         console.log(response);
+        this.props.dispatch({type: CHANGE_LOGGED_IN_TYPE, payload: "Google"});
         this.props.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: true });
+        loggedInWith.loggedInWith = 'Google'
     }
 
     onFailGoogleLogin = (response) => {

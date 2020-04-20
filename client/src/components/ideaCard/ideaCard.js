@@ -15,7 +15,7 @@ import IdeaCardContent from 'components/ideaCard/ideaCardContent'
 class IdeaCard extends Component {
   render() {
     if(this.props.idea.content !== undefined){
-      var convertedContentJsx = convertJsonContentToHtml(this.props.idea.content)
+      // var convertedContentJsx = convertJsonContentToHtml(this.props.idea.content)
       // convertedContent = Promise.resolve(convertedContent);
       // var convertedContentJsx = <div> this is an idea card </div>  //works
 
@@ -40,7 +40,9 @@ class IdeaCard extends Component {
                 </div>
                 <div id="shareAndLikeContainer">
                   <LikeDislike idea={this.props.idea} enabled={this.props.enabled} />
-                  <ShareButton />
+                  <div id="shareButtonContainer">
+                    <ShareButton />
+                  </div>
                 </div>
               </div>
               {/* <CardIndicators idea={this.props.idea} enabled={this.props.enabled} />  //enabled={true} */}

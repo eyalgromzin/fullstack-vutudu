@@ -25,7 +25,8 @@ import {
 	CLEAR_USER_PAGE_IDEA,
 	EMPTY_USER_PREVIEWED_IDEA,
 	UPDATE_CURRENT_PREVIEWED_USER_IDEA,
-	REMOVE_LIKED_IDEA_FROM_USER
+	REMOVE_LIKED_IDEA_FROM_USER,
+	CHANGE_LOGGED_IN_TYPE,
 } from 'reducers/types';
 import { idea } from 'models/idea';
 var dcopy = require('deep-copy');
@@ -34,21 +35,16 @@ const initialState = {
 	loggedInUserID: '',
 	loggedInUserFirstName: '',
 	loggedInUserLastName: '',
-	hardIdeas: [],
-	easyIdeas: [],
-	longIdeas: [],
-	shortIdeas: [],
 	likedIdeas: [], //copy here the liked ideas - its ok because the user liked them as they are
-	dislikedIdeas: [],
 	createdIdeas: [], //copy here created ideas - on edit, update the user and the item itself.
-	doneIdeas: [],
 	doneIdeasData: [],
-  currentPreviewedIdea: {},
-  currentPreviewedIdeaIndex: 0,
+	currentPreviewedIdea: {},
+	currentPreviewedIdeaIndex: 0,
 	currentPreviewedIdeas: [],
 	selectedDropDownType: '',
 	isIdeaEdited: false,
-	updateToggle: false
+	updateToggle: false,
+	loggedInWith: "NONE"
 };
 
 const updateIdeaInArray = (ideasArray, idea) => {
@@ -138,6 +134,11 @@ function reducer(state = initialState, action) {
 			return {
 				...state,
 				loggedInUserFirstName: action.payload
+			};
+		case CHANGE_LOGGED_IN_TYPE:
+			return {
+				...state,
+				loggedInWith: action.payload
 			};
 		case SET_LOGGED_IN_USER_LAST_NAME:
 			return {

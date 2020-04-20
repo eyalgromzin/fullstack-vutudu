@@ -160,6 +160,7 @@ class LikeDislike extends Component {
 
     return (
       <React.Fragment>
+        <div id="likeContainer" class="inlineBlock">
           <Popover
             isOpen={this.state.isPopoverOpen}
             position={'top'} // preferred position
@@ -170,13 +171,11 @@ class LikeDislike extends Component {
               </div>
             )}
           >
-
-            <img src={heartImagePath} onClick={this.handleHeartClick} className={"bottomButton"} />
-         
+            <div><img src={heartImagePath} onClick={this.handleHeartClick} className={"bottomButton"} /></div>
           </ Popover>
           
           {percentageText}
-
+        </div>    
       </React.Fragment>
     )
   }

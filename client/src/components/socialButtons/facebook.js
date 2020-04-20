@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { loadOrCreateUserIfNotExists } from 'actions/userActions'
 import { bindActionCreators } from 'redux';
 import './socialButtons.css'
+import {CHANGE_LOGGED_IN_TYPE} from 'reducers/types'
+import store from 'store'
+import {loggedInWith} from 'common'
 
 
 class facebook extends Component {
@@ -18,6 +21,9 @@ class facebook extends Component {
         console.log('Connection to facebook timed out');
         return
       }
+
+      store.dispatch({type: CHANGE_LOGGED_IN_TYPE, payload: "Facebook"});
+      loggedInWith.loggedInWith = 'Facebook'
 
       var user = {
         firstName: firstName,
