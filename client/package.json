@@ -7,6 +7,7 @@
     "axios-debug": "0.0.4",
     "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "deep-copy": "^1.4.2",
+    "firebase": "^7.14.1",
     "lodash": "^4.17.11",
     "react": "^16.10.2",
     "react-addons-update": "^15.6.2",

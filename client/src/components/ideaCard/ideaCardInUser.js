@@ -9,7 +9,10 @@ import Linkify from 'react-linkify';
 import 'commonCss.css'
 import EditIdeaButton from './editIdeaButton' 
 import DeleteIdeaButton from './deleteIdeaButton' 
-import { convertLinksToThumbNails }  from 'commonUtils'
+import { convertLinksToContent }  from 'commonUtils'
+import IdeaCard from './ideaCard'
+import { idea } from 'models/idea';
+import dcopy from 'deep-copy'
 
 class IdeaCardInUser extends Component {
   constructor(props){
@@ -22,40 +25,8 @@ class IdeaCardInUser extends Component {
         {this.props.currentPreviewedIdeas.length > 0 ? 
           <div id="ideaCardWithButtonsInUser">
             <div id="userIdeaCard">
-              <div id="ideaCardInUserWithStats"> 
-                <div className="ideaStats" >
-                  <div className="userPageIdeaIndicator">
-                    Place:<span className="ideaPropertyField">{this.props.currentPreviewedIdea.place}</span>
-                  </div>
-                  <div className="userPageIdeaIndicator">
-                    # People:
-                    <span className="ideaPropertyField">
-                      {this.props.currentPreviewedIdea.minNumOfPeople}-{this.props.currentPreviewedIdea.maxNumOfPeople}
-                    </span>
-                  </div>
-                </div>
-                <div id="ideaCardInUser"> 
-                  <div className="ideaTitle">
-                    {this.props.currentPreviewedIdea.title}
-                  </div>
-                  <div id="ideaContentText"> 
-                    <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
-                      {this.props.content}
-                    </Linkify>
-                  </div>
-                </div>
-              </div>
-              
-              <div id="userCardBottomSection">
-                <div id="userActionButtons">
-                  <EditIdeaButton />
-                  <DeleteIdeaButton idea={this.props.currentPreviewedIdea} />
-                  <LikeDislike enabled={false} idea={this.props.currentPreviewedIdea} />
-                </div>
-              </div>
+              <IdeaCard idea={this.props.currentPreviewedIdea} enabled={true} showNextPreviousButtons={false} />
             </div>
-
-            
           </div>
           :
           ""
@@ -66,7 +37,7 @@ class IdeaCardInUser extends Component {
 }
 
 function mapStateToProps(state) {
-  var convertedContent = convertLinksToThumbNails(state.userPageReducer.currentPreviewedIdea.content)
+  var convertedContent = convertLinksToContent(state.userPageReducer.currentPreviewedIdea.content)
 
   return {
     currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,

@@ -32,23 +32,6 @@ app.use('/api/user', user);
 app.use('/api/placeNames', placeNames);
 app.use('/api/tagNames', tagNames);
 
-
-
-// var prdEnv = process.env.NODE_ENV === 'production'
-// if (prdEnv) {
-//   app.get('/*', async (ctx, next) => {
-//         //judge if it request a normal file,if not ,return the index.html
-//         if (parseMime(ctx.url) === 'unknown') {
-//             ctx.type = 'text/html'
-//             ctx.response.body = fs.readFileSync(path.join(__dirname, '../build/index.html'), 'binary')
-//         } else {
-//             ctx.type = parseMime(ctx.url)
-//             ctx.response.body = fs.readFileSync(path.join(__dirname, '../build/', ctx.url))
-//         }
-//     })
-// }
-
-
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
@@ -59,19 +42,6 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// app.get('*', (req, res) => {  //gives that i need to enable javascript 
-  //   res.sendFile(path.resolve(__dirname, 'client', 'public', 'index.html'));
-  // });
-
 const port = process.env.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
-
-
-// app.get("/*", function (req, res) {  //not working
-//   res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-// })
-
-// app.get("/*", function (req, res) {   //not working???
-//   res.sendFile(path.resolve(__dirname, '../client/public', 'index.html'));
-// })

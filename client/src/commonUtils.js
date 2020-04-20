@@ -1,3 +1,36 @@
+import React, { Component }  from 'react';
+import FirebaseImage from 'components/firebaseImage'
+// Firebase App (the core Firebase SDK) is always required and
+// must be listed before other Firebase SDKs
+
+// import * as firebase from "firebase/app";
+
+// Add the Firebase services that you want to use
+import "firebase/auth";
+import "firebase/storage";
+
+var firebase = require("firebase/app");
+
+// Add the Firebase products that you want to use
+// require("firebase/auth");
+// require("firebase/firestore");
+      
+// databaseURL: '<your-database-url>',
+var firebaseConfig = {
+  apiKey: 'AIzaSyAw3EdNp0ZsUm4v6LDnaVNUXMm0VDxypAk',
+  authDomain: 'https://vutudu-1535457518831.firebaseapp.com',
+  projectId: 'vutudu-1535457518831',
+  storageBucket: 'gs://vutudu-1535457518831.appspot.com'
+};
+
+firebase.initializeApp(firebaseConfig);
+
+firebase.auth().signInAnonymously().catch(function(error) {
+  console.error(error.message);
+});
+
+export var storageRef = firebase.storage().ref()
+
 export const removeIdeaFromArray = (ideasArr, ideaID) => {
     const arrayWithoutIdea = ideasArr.filter(
         ele => ele._id != ideaID
@@ -56,7 +89,7 @@ const convertLine = (line, endSeparator) => {
   }
 }
 
-export const convertLinksToThumbNails = (text) => {
+export const convertLinksToContent = (text) => {
     if (typeof(text) == 'undefined'){
         return ""
     }
@@ -105,57 +138,37 @@ export const convertLinksToThumbNails = (text) => {
     return output
 }
 
-//ideas - ideas array 
-export const convertIdeasContentJsonToNormal = (ideas) => {
-  var convertedIdeas = []
-
-  ideas.forEach(idea => {
-    try{                    
-      var ideaContentJson = idea.content
-
-      var contentHtml = convertJsonContentToHtml(ideaContentJson)
-
-      if(contentHtml !== undefined){
-        idea.content = contentHtml
-      }
-
-    }catch(e){
-      console.log("failed to parse item json: " + e)
-    }
-  })
-
-  return ideas
-}
-
-export const convertJsonContentToHtml = (ideaContentJson) => {
+export const convertJsonContentToHtml = (ideaContentJson, callBack) => {
+  if(ideaContentJson === undefined) {
+    return <div></div>
+  }
+  
+  var contentJsx
+  
   var ideaContentItemsList = JSON.parse(ideaContentJson);
-  var htmlContent = ""
-
   ideaContentItemsList.forEach(contentItem => {
     if(contentItem.first == "TEXT"){
-      htmlContent += "<div>" + contentItem.third + "</div>"
+      contentJsx = <div>{contentItem.third}</div>
     }else if(contentItem.first == "LINK"){
-      htmlContent += "<div class='centerHorizontally'><a href='" + contentItem.fourth + "'>" + contentItem.third + "</a></div>"
+      contentJsx = <div class='centerHorizontally'><a href={contentItem.fourth}>" + contentItem.third + "</a></div>
     }
     else if(contentItem.first == "IMAGE"){
-      htmlContent += "<div class='centerHorizontally'>image content</div>"
+      contentJsx = <div><FirebaseImage firebasePath={contentItem.third} /></div>
     }
-    else if(contentItem.first == "IMAGE_URL"){
-      htmlContent += "<div class='centerHorizontally'><img src='" + contentItem.third + "'</div>"
-    }else if(contentItem.first == "LINKED_IMAGE"){
-      htmlContent += "<div class='centerHorizontally'><a href='" + contentItem.fourth + "'><img src=" + require("images/logo.png") + "' /></a></div>"
-    }else if(contentItem.first == "YOUTUBE"){
-      htmlContent += "<div class='centerHorizontally'>" + 
-        "<iframe width='420' height='315' src='" + contentItem.third + "' />" +
-      "</div>"
-    }else if(contentItem.first == "LOCATION"){
-      htmlContent += "<div class='centerHorizontally'>" + 
-        "LOCATION!!!" +
-      "</div>"
-    }
-    
-    htmlContent += ""
+    // else if(contentItem.first == "IMAGE_URL"){
+    //   htmlContent += "<div class='centerHorizontally'><img src='" + contentItem.third + "'</div>"
+    // }else if(contentItem.first == "LINKED_IMAGE"){
+    //   htmlContent += "<div class='centerHorizontally'><a href='" + contentItem.fourth + "'><img src=" + require("images/logo.png") + "' /></a></div>"
+    // }else if(contentItem.first == "YOUTUBE"){
+    //   htmlContent += "<div class='centerHorizontally'>" + 
+    //     "<iframe width='420' height='315' src='" + contentItem.third + "' />" +
+    //   "</div>"
+    // }else if(contentItem.first == "LOCATION"){
+    //   htmlContent += "<div class='centerHorizontally'>" + 
+    //     "LOCATION!!!" +
+    //   "</div>"
+    // }
   })
 
-  return htmlContent  
+  return contentJsx  
 }

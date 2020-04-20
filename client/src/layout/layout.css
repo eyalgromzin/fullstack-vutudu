@@ -18,6 +18,14 @@ html, body {
     
 }
 
+.contentImage{
+  display: block;
+  max-width:300px;
+  max-height:300px;
+  width: auto;
+  height: auto;
+}
+
 .searchMainContent{
   margin: 0% 25%;
 }

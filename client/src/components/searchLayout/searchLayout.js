@@ -117,7 +117,7 @@ class searchLayout extends Component {
 }
 
 function mapStateToProps(state) {
-	var convertedIdeas = commonUtils.convertIdeasContentJsonToNormal(state.searchPageReducer.ideas)
+	// var convertedIdeas = commonUtils.convertIdeasContentJsonToNormal(state.searchPageReducer.ideas)
 
 	return {
 		searched: state.commonReducer.searched,

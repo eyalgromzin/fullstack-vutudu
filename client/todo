@@ -1,12 +1,42 @@
-- enable upload images from pc - put them at the bottom after br / div
-- convert item to json when saved. 
 - enable google maps content
 - load google maps content
-- load images from cloud when its an image content
 - make logout button work for google
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- create layout -> convert item to json when saved. 
+- enable upload images from pc - put them at the bottom after br / div
 - change search text "place , time , people - to icons
 - change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
-
-------------------------------- maybe ---------------------------------------
-
-- change idea arrows to be on hover in the idea itself , like carousel
+- change idea arrows to be on hover in the idea itself, on the sides, like carousel - bu then where will be the count? same place
