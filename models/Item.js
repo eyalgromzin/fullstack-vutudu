@@ -22,6 +22,11 @@ const ItemSchema = new Schema({
     required: true,
     default: 'john doe'
   },
+  createdIn: {
+    type: String,
+    required: true,
+    default: undefined
+  },
   tags: {
     type: [String],
     required: false,

@@ -45,12 +45,12 @@ class Layout extends Component {
     }else{
       return (
         <React.Fragment>
-          {this.props.isMainLoading?
+          {/* {this.props.isMainLoading?
           <div id="mainLoadingScreen">
             <img src={require("images/loading2.gif")} id="mainLoadingImg"  alt="" />
           </div>
           : ""
-          }
+          } */}
           <LoginScreen />
           <Router>
             <React.Fragment>

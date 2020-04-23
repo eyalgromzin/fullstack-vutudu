@@ -13,7 +13,7 @@
 }
 
 #createIdeaCardContent{
-    padding: 10px;
+    padding: 20px 0px;
     background-color: #fff2e2;
     border-radius: 20px;
     margin: 0% 10%;
@@ -189,7 +189,38 @@
 }
 
 #createInfoButton{
-    width: 3%;
+    width: 20px;
+    height: 20px;
+}
+
+#attachImageButton{
+    width: 20px;
+    height: 20px;
+}
+
+#contentTextAreaWithAttach{
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.jodit_wysiwyg_mode{
+    background-color: red;
+}
+
+.jodit_statusbar{
+    background-color: purple;
+}
+
+.jodit_workplace{
+    background-color: azure;
+}
+
+.jodit_toolbar_container {
+    background-color: red;
+}
+
+.jodit_toolbar {
+    background-color: red;
 }
 
 #infoButton{

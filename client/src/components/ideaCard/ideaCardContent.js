@@ -65,8 +65,16 @@ export default class IdeaCardContent extends Component {
     }
 
     render() {
+        var ideaCardContent = ""
+        if(this.props.createdIn == "web" || this.props.content.includes("<div>")){
+            ideaCardContent = <div className={"className"} 
+                    dangerouslySetInnerHTML={{ __html: this.props.content.replace(/\n/g, '<br />')}} />
+            // <div>{this.props.content}</div>
+        }else{
+            ideaCardContent = this.convertContentJsonToJsx(this.props.content)            
+        }
       return (
-        <div>{this.convertContentJsonToJsx(this.props.content)}</div>
+        <div>{ideaCardContent}</div>
       )
     }
 }

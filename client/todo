@@ -1,5 +1,50 @@
-- enable upload images from pc - put them at the bottom after all other content
-- create layout -> convert item to json when saved. 
-- change idea arrows to be on hover in the idea itself, on the sides, like carousel - bu then where will be the count? same place
-- change search text "place , time , people - to icons
+- edit idea - check it works
+- login layout - redirect page after login
+- ask user if to create duplicate title idea
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- add sorting drop down to search
+- on search - put disliked ideas at the back of the list
+- search layout - change idea arrows to be on hover in the idea itself, on the sides, like carousel - bu then where will be the count? same place
+- search layout - change search text "place , time , people - to icons
+- search layout - create top ideas list on home page
 - change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
+- change all website to bootstrap!!
+- on mobil - parse idea html to show idea normally

@@ -3,7 +3,7 @@ import PlaceField from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
 import TimePicker from './timePicker/timePicker'
 import { EDITABLE_IDEA_SET_PLACE } from 'reducers/types'
-import { EDITABLE_IDEA_SET_TIME } from 'reducers/types'
+import { EDITABLE_IDEA_SET_MIN_TIME } from 'reducers/types'
 import { connect } from 'react-redux';
 import './searchBarCommonStyles.css'
 
@@ -17,7 +17,7 @@ class EditIdeaBar extends Component {
   }
 
   timeOnChangeEvent = (value) => {
-    this.props.dispatch({type: EDITABLE_IDEA_SET_TIME, payload: value});
+    this.props.dispatch({type: EDITABLE_IDEA_SET_MIN_TIME, payload: value});
     
   }
 

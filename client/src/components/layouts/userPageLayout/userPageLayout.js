@@ -74,7 +74,7 @@ class userPageLayout extends Component {
 
     let logoutButton
     if(this.props.loggedInWith == 'Google'){
-      logoutButton = <span onClick={this.googleLogoutSuccess} >logout</span>
+      logoutButton = <span onClick={this.googleLogoutSuccess} style={{cursor: 'pointer'}} >logout</span>
     }else if(this.props.loggedInWith == 'Facebook'){
       logoutButton = 
         <div id="userLogoutButton" onClick={this.facebookLogout} onMouseDown={this.facebookLogout} style={{cursor: 'pointer'}}>logout</div>
@@ -89,7 +89,7 @@ class userPageLayout extends Component {
           </div>
 
           <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
-            <div class="fieldHeader">   </div>
+            <div className="fieldHeader">   </div>
             <div id="UserIdeasTypeDropDown" onClick={this.onIdeaTypeDropDownClick}>
               <UserIdeasTypeDropDown />    
             </div>

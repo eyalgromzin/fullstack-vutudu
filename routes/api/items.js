@@ -29,7 +29,8 @@ router.post('/createIdea/', (req, res) => {
 		content: req.body.idea.content,
 		createdBy: req.body.idea.createdBy,
 		place: req.body.idea.place,
-		time: req.body.idea.time,
+		minTime: req.body.idea.minTime,
+		maxTime: req.body.idea.maxTime,
 		minNumOfPeople: req.body.idea.minNumOfPeople,
 		maxNumOfPeople: req.body.idea.maxNumOfPeople,
 		tags: req.body.idea.tags

@@ -34,7 +34,7 @@ class IdeaCard extends Component {
                   <div id="ideaContentText"> 
                     <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
                       {/* {ReactHtmlParser(convertedContent)} */}
-                      <IdeaCardContent content={this.props.idea.content} />
+                      <IdeaCardContent content={this.props.idea.content} createdIn={this.props.idea.createdIn} />
                     </Linkify>
                   </div>
                 </div>

@@ -26,12 +26,12 @@ class createIdeaButton extends Component {
     //add validation for empty fields / wrong
     if(this.props.isCreateButtonEnabled){
       const newItem = {
-        // name: this.props.title,
         title: this.props.title,
         content: this.props.content,
         createdBy: this.props.userID,
         place: this.props.place,
-        time: this.props.time,
+        minTime: this.props.minTime,
+        maxTime: this.props.maxTime,
         minNumOfPeople: this.props.minNumOfPeople,
         maxNumOfPeople: this.props.maxNumOfPeople,
         tags: tags,
@@ -76,9 +76,9 @@ const mapDispatchToProps = dispatch => {
     return {
       title: state.editableIdeaReducer.title,
       content: state.editableIdeaReducer.content,
-      createdBy: state.userPageReducer.loggedInUserID,
       place: state.editableIdeaReducer.place,
-      time: state.editableIdeaReducer.time,
+      minTime: state.editableIdeaReducer.minTime,
+      maxTime: state.editableIdeaReducer.maxTime,
       minNumOfPeople: state.editableIdeaReducer.minNumOfPeople,
       maxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
       userID: state.userPageReducer.loggedInUserID,

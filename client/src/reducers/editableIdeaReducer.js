@@ -1,7 +1,7 @@
 import { 
   EDITABLE_IDEA_SET_MIN_PEOPLE, 
   EDITABLE_IDEA_SET_MAX_PEOPLE,
-  EDITABLE_IDEA_SET_TIME,
+  EDITABLE_IDEA_SET_MIN_TIME,
   EDITABLE_IDEA_SET_TITLE,
   EDITABLE_IDEA_SET_CONTENT ,
   CLEAR_EDITABLE_IDEA,
@@ -16,6 +16,7 @@ import {
   CREATE_IDEA_SET_MAX_PEOPLE,
   CREATE_IDEA_SET_MIN_PEOPLE,
   ON_CREATE_SET_IS_DUPLICATE_TITLE,
+  EDITABLE_IDEA_SET_MAX_TIME,
 } from 'reducers/types'
 
 const initialState = {
@@ -23,7 +24,8 @@ const initialState = {
     title: '',
     content: '',
     place: '',
-    time: 5,
+    minTime: 5,
+    maxTime: 5,
     minNumOfPeople: 2,
     maxNumOfPeople: 4,
     isButtonEnabled: false,   //refers to create / update
@@ -53,11 +55,16 @@ function reducer(state = initialState, action) {
         isButtonEnabled: state.content.length > 0 && state.title.length > 0 && action.payload > 2,
         isPlaceValid: action.payload.length > 2
       };
-    case EDITABLE_IDEA_SET_TIME:
-    return {
-      ...state,
-      time: action.payload,
-    };
+    case EDITABLE_IDEA_SET_MIN_TIME:
+      return {
+        ...state,
+        minTime: action.payload,
+      };
+    case EDITABLE_IDEA_SET_MAX_TIME:
+      return {
+        ...state,
+        maxTime: action.payload,
+      };
     case EDITABLE_IDEA_SET_TITLE:
     return {
       ...state,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState, createRef  } from 'react'
 import IdeaAttachmentsButton from './cardButtons/addAttachmentButton/addAttachmentButton'
 import './editIdeaCard.css'
 import { connect } from 'react-redux';
@@ -14,12 +14,32 @@ import { addIdeaToDB } from 'actions/ideaActions';
 import store from 'store'
 import { bindActionCreators } from 'redux';
 import './ideaCard.css'
-import {getTagsFromText} from './methods'
 import Popup from 'reactjs-popup'
+import JoditEditor from "jodit-react";
 
 class EditableIdeaCard extends Component {
+  editor = createRef();
+  	
+  // readonly: false, // all options from https://xdsoft.net/jodit/doc/
+	config = {
+    buttons: [ "strikethrough",'underline', 'italic', 'ul', 'ol', 'left', 'center', 'right', 
+                'undo', 'redo', 'image', 'video', 'link', 'fullsize' ],
+    iframeStyle: 'html{margin: 20px; background-color: slategrey;} body{margin: 20px; background-color: red;} ' + 
+                'jodit_statusbar{visibility: hidden;}'
+  }
+  
+  content = ''
+
   constructor(props){
-    super(props);
+    super(props)
+
+    this.editor = null;
+    this.setEditor = element => {
+      this.editor = element;
+      this.editor.buttons = []
+    };
+    
+    
   
     this.state = {
       error:"",
@@ -28,7 +48,9 @@ class EditableIdeaCard extends Component {
       contentText: '',
       isShowTitleErrorOnBlur: false,
       isShowContentErrorOnBlur: false,
-      isClickedButton: false
+      isClickedButton: false,
+      imageFiles: "",
+      imageUrls: "",
     }
   }
 
@@ -77,6 +99,10 @@ class EditableIdeaCard extends Component {
     }
   }
 
+  attachImage = () => {
+    this.uploadFile()
+  }
+
   onContentBlur = (e) => {
     if (this.state.contentText === undefined || 
       this.state.contentText.length == 0 || 
@@ -87,16 +113,53 @@ class EditableIdeaCard extends Component {
     }
   }
 
+  uploadFile = () => {
+    this.refs.fileUploader.click();
+  }
+
+  onChangeFile = (event) => {
+    event.stopPropagation();
+    event.preventDefault();
+    var files = event.target.files;
+    console.log(files)
+    this.setState({imageFiles: files}); /// if you want to upload latter
+
+    for (const file of files) {
+      URL.createObjectURL(file)
+    }
+  }
+
+  async handleSave () {
+    // const savedData = await this.editor.save()
+    // var s = 3
+  }
+
+  componentDidMount() {
+    // this.editor = this.editorInstance
+    // var x = 4
+  }
+
+  setContent = (newContent) => {
+    this.setState({ contentText: newContent}) 
+    store.dispatch({ type: EDITABLE_IDEA_SET_CONTENT, payload: newContent});
+    // this.editor.setEditorValue(newContent + ' some value ')
+  }
+
+  editorValue = "<div> some value </div>"
+
   render() {
     var isShowTitleError = ((this.props.isClickedButton && !this.calculateIsTitleValid()) || 
       this.state.isShowTitleErrorOnBlur) || this.props.isDuplicateTitle
     var TitleErrorMessage = this.props.isDuplicateTitle? "Title already exists" : "5-50 letters"
     var isShowContentError = ((this.props.isClickedButton && !this.calculateIsContentValid()) || this.state.isShowContentErrorOnBlur)
 
+    var data = ""
+
     return (
       <React.Fragment>
+        <input type="file" id="file" ref="fileUploader" onChange={this.onChangeFile} style={{display: "none"}}/>
         <div id="createIdeaCardContent">
-          <div>
+          <div id="createIdeaTitleContainer">
             <input type="text" 
               id="newIdeaTitle" 
               value={this.props.title == null? "" : this.props.title } 
@@ -113,19 +176,27 @@ class EditableIdeaCard extends Component {
                   <div>* Be specific</div>
                   <div>* Be brief</div>
                   <div>* Add youtube, image links for clarity</div>
-                  <div>* Links are translated to images and videos</div>
+                  <div>* Links are translated to images and videos and maps</div>
                   <div>* Add #HashTags in the content for easier finding</div>
                 </div>
               </div>
             </Popup>
           </div>
           {isShowTitleError? <div id="createIdeaTitle" className="fieldError"> {TitleErrorMessage} </div> : "" }
-          <textarea 
-          type="text" id="newIdeaContent" 
-          value={this.props.content == null ? "" : this.props.content }
-          placeholder="Content..." 
-          onBlur={this.onContentBlur}
-          onChange={this.handleOnContentChange}/>
+          <div id="contentTextAreaWithAttach">
+            <div id="contentEditor">
+            <JoditEditor
+              ref={this.editor}
+              value={this.editorValue}
+              config={this.config}
+              tabIndex={1} // tabIndex of textarea
+              onBlur={newContent => this.setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+              onChange={newContent => this.setContent(newContent)}
+            />
+              
+            </div>
+          </div>
+          {/* <div onClick={this.handleSave}> save </div> */}
           {isShowContentError? <div className="fieldError"> 10-1000 letters</div> : '' }
         </div>
         <div id="newIdeaError"> {this.state.error} </div>
@@ -133,6 +204,16 @@ class EditableIdeaCard extends Component {
     )
   }
 }
+
+{/* <TextareaAutosize  
+          type="text" id="newIdeaContent" 
+          value={this.props.content == null ? "" : this.props.content }
+          placeholder="Content..." 
+          onBlur={this.onContentBlur}
+          onChange={this.handleOnContentChange}/>
+          <div className="centerHorizontally">
+            <img src={require("images/plus.png")} id="attachImageButton" onClick={this.attachImage} />
+          </div> */}
 
 function mapStateToProps(state) {
   return {

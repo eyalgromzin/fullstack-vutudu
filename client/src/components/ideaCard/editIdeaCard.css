@@ -20,7 +20,17 @@ input:focus {
     font-size: 30px;
 }
 
+#contentEditor{
+    width: 100%;
+}
+
+#createIdeaTitleContainer{
+    display: flex;
+    margin-bottom: 5px;
+}
+
 #newIdeaContent{
+    display: inline-block;
     background-color: #fff2e2;
     border: none;
     width: 100%;

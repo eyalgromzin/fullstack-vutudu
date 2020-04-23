@@ -1,3 +1,16 @@
 #timeCreator{
     width: 40px;
 }
+
+#timeCreatorField{
+    display: inline-block;
+}
+
+					
+#minTimeCreator{
+    width: 100px;
+}
+
+#maxTimeCreator{
+    width: 100px;
+}

@@ -160,7 +160,7 @@ class LikeDislike extends Component {
 
     return (
       <React.Fragment>
-        <div id="likeContainer" class="inlineBlock">
+        <div id="likeContainer" className="inlineBlock">
           <Popover
             isOpen={this.state.isPopoverOpen}
             position={'top'} // preferred position
