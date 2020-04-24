@@ -1,4 +1,3 @@
-- login layout - redirect page after login
 - edit idea - check it works
 
 
@@ -39,10 +38,43 @@
 
 
 
-- add sorting drop down to search
 - on search - put disliked ideas at the back of the list
+- add sorting drop down to search
 - search layout - change idea arrows to be on hover in the idea itself, on the sides, like carousel - bu then where will be the count? same place
 - search layout - change search text "place , time , people - to icons
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - search layout - create top ideas list on home page
 - change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
 - change all website to bootstrap!!

@@ -11,7 +11,7 @@ import {
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
 } from 'reducers/types'
 
-class SideBar extends Component {
+class TopBar extends Component {
   constructor(props){
     super(props)
 
@@ -20,9 +20,9 @@ class SideBar extends Component {
     }
   }
 
-  showNewIdeaScreen = (history) => {
+  showCreateIdeaScreen = (history) => {
     if(!this.props.loggedIn){
-      showLogInScreen();
+      showLogInScreen('create', history);
     }else{  
       this.props.dispatch({type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, value: false})
       this.setState({currentPage: "newIdea"})
@@ -32,7 +32,7 @@ class SideBar extends Component {
 
   openUserPage = (history) => {
     if(!this.props.loggedIn){
-      showLogInScreen();
+      showLogInScreen('user', history);
     }else{  
       this.setState({currentPage: "user"})
       history.push('/user')
@@ -64,7 +64,7 @@ class SideBar extends Component {
             className={this.state.currentPage == "newIdea"? 
             "topBarIconSelected tilt clickAnimation" : 
             "topBarIcon tilt clickAnimation" } alt="" 
-              onClick={() => this.showNewIdeaScreen(history) } />
+              onClick={() => this.showCreateIdeaScreen(history) } />
 
             <img id="userButton" src={require("images/user.png")} 
             className={this.state.currentPage == "user"? 
@@ -94,4 +94,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(SideBar);
+export default connect(mapStateToProps)(TopBar);

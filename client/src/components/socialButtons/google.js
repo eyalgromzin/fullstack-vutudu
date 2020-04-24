@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { CHANGE_LOGGED_IN_STATE } from 'reducers/types'
 import { CHANGE_LOGGED_IN_TYPE } from 'reducers/types'
 import {loggedInWith} from 'common'
+import { useHistory } from "react-router-dom";
 
 class GoogleButton extends Component {
 
@@ -16,6 +17,12 @@ class GoogleButton extends Component {
         this.props.dispatch({type: CHANGE_LOGGED_IN_TYPE, payload: "Google"});
         this.props.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: true });
         loggedInWith.loggedInWith = 'Google'
+
+        if(this.props.pageAfterLogin !== undefined && this.props.pageAfterLogin != ''){
+            // const history = useHistory();
+            // history.push("/" + this.props.pageAfterLogin);
+            this.context.history.push('/some/path')
+        }
     }
 
     onFailGoogleLogin = (response) => {

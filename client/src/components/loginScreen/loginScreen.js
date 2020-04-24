@@ -19,7 +19,7 @@ class LoginScreen extends Component {
     }
     
     componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+        document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
     setWrapperRef(node) {
@@ -47,10 +47,12 @@ class LoginScreen extends Component {
                         </div>
                         <div >  
                             <div className="LoginButtonContainer"> 
-                                <FacebookButton onLoginScreenFocus={this.onLoginScreenFocus} onLoginBlur={this.onLoginBlur} />
+                                <FacebookButton onLoginScreenFocus={this.onLoginScreenFocus} onLoginBlur={this.onLoginBlur} 
+                                    pageAfterLogin={this.props.pageAfterLogin} />
                             </div>
                             <div className="LoginButtonContainer"> 
-                                <GoogleButton onLoginScreenFocus={this.onLoginScreenFocus} onLoginBlur={this.onLoginBlur} />
+                                <GoogleButton onLoginScreenFocus={this.onLoginScreenFocus} onLoginBlur={this.onLoginBlur} 
+                                    pageAfterLogin={this.props.pageAfterLogin} />
                             </div>
                         </div>
                     </div>
@@ -70,6 +72,7 @@ function mapStateToProps(state) {
         loggedIn: state.commonReducer.loggedIn,
         showLogin: state.commonReducer.showLogin,
         userID: state.userPageReducer.loggedInUserID,
+        pageAfterLogin: state.commonReducer.pageAfterLogin,
     }
 }
 

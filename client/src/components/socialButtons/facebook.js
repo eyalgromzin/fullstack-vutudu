@@ -7,9 +7,24 @@ import './socialButtons.css'
 import {CHANGE_LOGGED_IN_TYPE} from 'reducers/types'
 import store from 'store'
 import {loggedInWith} from 'common'
+// import { useHistory } from "react-router-dom";
+// import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
+import createHistory from "history/createBrowserHistory"
+
 
 
 class facebook extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      isToRedirect: false,
+      redirectPath: "/" + props.pageAfterLogin,
+    }
+  }
+
   responseFacebook = (response) => {
     if (response.accessToken) {
       var fullName = response.name;
@@ -33,6 +48,21 @@ class facebook extends Component {
 
       this.props.loadOrCreateUserIfNotExists(user);
 
+      if(this.props.pageAfterLogin !== undefined && this.props.pageAfterLogin != ''){
+        // const history = useHistory();
+        // history.push("/" + this.props.pageAfterLogin);
+        // this.context.history.push("/" + this.props.pageAfterLogin)
+        // this.props.router.push("/" + this.props.pageAfterLogin)
+        // this.props.history.push("/" + this.props.pageAfterLogin)
+        this.setState({isToRedirect: true})
+        const history = createHistory();
+        history.push("/" + this.props.pageAfterLogin);
+        // in your function then call add the below 
+        // const history = createHistory();
+        // // Use push, replace, and go to navigate around.
+        // history.push("/" + this.props.pageAfterLogin);
+      }
+
     } else {
       console.log('User cancelled login or did not fully authorize.');
     }
@@ -43,6 +73,10 @@ class facebook extends Component {
   }
 
   render() {
+    if (this.state.isToRedirect){
+      return <Redirect to={this.state.redirectPath} />
+    }
+
     return (
       <div>
         <FacebookLogin  //https://github.com/keppelen/react-facebook-login
@@ -59,6 +93,13 @@ class facebook extends Component {
     )
   }
 }
+
+// facebook.propTypes = {
+//   history: PropTypes.shape({
+//     push: PropTypes.func.isRequired
+//   }),
+//   to: PropTypes.string.isRequired
+// };
 
 function mapDispatchToProps(dispatch) {
   return({
