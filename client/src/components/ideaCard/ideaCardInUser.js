@@ -25,7 +25,8 @@ class IdeaCardInUser extends Component {
         {this.props.currentPreviewedIdeas.length > 0 ? 
           <div id="ideaCardWithButtonsInUser">
             <div id="userIdeaCard">
-              <IdeaCard idea={this.props.currentPreviewedIdea} enabled={true} showNextPreviousButtons={false} />
+              <IdeaCard idea={this.props.currentPreviewedIdea} enabled={true} showNextPreviousButtons={false} 
+                editable={this.props.editable} deleteable={true} />
             </div>
           </div>
           :

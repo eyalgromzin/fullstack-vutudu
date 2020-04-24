@@ -284,7 +284,7 @@ export const addIdeaToDB = (idea, userID) => (dispatch) => {
 };
 
 //if the idea doesnt exist in the db, just delete it from the user. 
-export const deleteIdea = (userID, ideaID) => (dispatch) => {
+export const deleteIdea = (userID, ideaID, onSuccess) => (dispatch) => {
 	console.log('ideaActions: deleting idea from db: ' + ideaID);
 	axios.post('/api/items/deleteIdea', { ideaID }) 
 	.then((res) => {
@@ -295,6 +295,8 @@ export const deleteIdea = (userID, ideaID) => (dispatch) => {
 	console.log('{userID, ideaID}: ' + JSON.stringify({ userID, ideaID }));
 
 	axios.post('/api/user/deleteCreatedIdea', { userID, ideaID }).then((res) => {
+		onSuccess()
+
 		console.log('idea was removed from user');
 
 		dispatch({
@@ -311,8 +313,7 @@ export const deleteIdea = (userID, ideaID) => (dispatch) => {
 			type: USER_PAGE_SHOW_NEXT_CREATED_IDEA
 		});
 
-		//empty current idea in user page
-		// emptyUserPreviewedIdea();
+		
 	});
 
 	console.log('removing idea from user liked also:');

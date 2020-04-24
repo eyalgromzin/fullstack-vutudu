@@ -16,6 +16,10 @@
     border-bottom-color: lightgrey;
 }
 
+#mainLogoText{
+    font-size: 35px;
+}
+
 #rightSideButtons{
     height: 15px;
     text-align: right;

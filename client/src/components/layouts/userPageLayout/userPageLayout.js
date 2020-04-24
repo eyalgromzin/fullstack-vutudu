@@ -5,17 +5,13 @@ import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
 import UserIdeasList from 'components/userIdeasList/userIdeasList'
 import IdeaCardInUser from 'components/ideaCard/ideaCardInUser'
-import IdeaCard from 'components/ideaCard/ideaCard'
 import EditIdeaCardInUser from 'components/ideaCard/editIdeaCardInUser';
-// import { loggedInWith } from 'common.js'
 import { 
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
   CHANGE_LOGGED_IN_STATE,
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
-import ideaCardInUser from '../../ideaCard/ideaCardInUser';
-import { GoogleLogout } from 'react-google-login';
 
 class userPageLayout extends Component {
   constructor(props){
@@ -23,6 +19,10 @@ class userPageLayout extends Component {
 
     this.props.dispatch({type: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS});
     this.props.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS});
+
+    this.state = {
+
+    }
   }
 
   onIdeaTypeDropDownClick = () => {
@@ -43,42 +43,50 @@ class userPageLayout extends Component {
     this.props.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: false });
   }
 
-  render() {
+  createLogourButton = () => {
+    if(this.props.loggedInWith == 'Google'){
+      return <span onClick={this.googleLogoutSuccess} style={{cursor: 'pointer'}} >logout</span>
+    }else if(this.props.loggedInWith == 'Facebook'){
+      return <div id="userLogoutButton" onClick={this.facebookLogout} onMouseDown={this.facebookLogout} 
+            style={{cursor: 'pointer'}}>logout</div>
+    }
+  }
+
+  createUserIdeaCard = () => {
     let isCurrentPreviewedIdeaEmpty = typeof this.props.currentPreviewedIdea === 'undefined' ||
                                       (Object.keys(this.props.currentPreviewedIdea).length === 0 &&
                                       this.props.currentPreviewedIdea.constructor === Object)
 
-    let userIdeasList = ""
+    if(this.props.currentPreviewedIdeas.length == 0 || isCurrentPreviewedIdeaEmpty){
+      return  <div id="userIdeaCardDummy" > 
+                <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
+              </div> 
+    }else{
+      if(this.props.isIdeaEdited && !isCurrentPreviewedIdeaEmpty){
+        return <EditIdeaCardInUser />
+      }else{
+        return !isCurrentPreviewedIdeaEmpty? 
+          <IdeaCardInUser enabled={false} showNextPreviousButtons={true} editable={true} /> : ""               
+      }
+    }
+  }
+
+  createUserIdeasList = () => {
     if (this.props.currentPreviewedIdeas.length > 0){
-      userIdeasList = 
-      <div id="userIdeasList">
+      return <div id="userIdeasList">
         <UserIdeasList ideas={this.props.currentPreviewedIdeas} updateViewToggle={this.props.updateToggle} />
       </div>
     }else{
-      userIdeasList = <span id="emptyIdeasList">Empty Ideas List...</span>
+      return <span id="emptyIdeasList">Empty Ideas List...</span>
     }      
-    
-    let userIdeaCard = ""
-    if(this.props.currentPreviewedIdeas.length == 0 || isCurrentPreviewedIdeaEmpty){
-      userIdeaCard = 
-      <div id="userIdeaCardDummy" > 
-        <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
-      </div> 
-    }else{
-      if(this.props.isIdeaEdited && !isCurrentPreviewedIdeaEmpty){
-        userIdeaCard = <EditIdeaCardInUser />
-      }else{
-        userIdeaCard = !isCurrentPreviewedIdeaEmpty? <IdeaCardInUser enabled={false} showNextPreviousButtons={true}/> : ""               
-      }
-    }
+  }
 
-    let logoutButton
-    if(this.props.loggedInWith == 'Google'){
-      logoutButton = <span onClick={this.googleLogoutSuccess} style={{cursor: 'pointer'}} >logout</span>
-    }else if(this.props.loggedInWith == 'Facebook'){
-      logoutButton = 
-        <div id="userLogoutButton" onClick={this.facebookLogout} onMouseDown={this.facebookLogout} style={{cursor: 'pointer'}}>logout</div>
-    }
+  render() {
+    let userIdeasList = this.createUserIdeasList()
+    
+    let userIdeaCard = this.createUserIdeaCard()
+
+    let logoutButton = this.createLogourButton()
 
     return (
       <React.Fragment>
@@ -98,7 +106,6 @@ class userPageLayout extends Component {
 
           <div id="userLayoutIdeaPreview">
             {userIdeaCard}
-            
           </div>
         </div>
       </React.Fragment>

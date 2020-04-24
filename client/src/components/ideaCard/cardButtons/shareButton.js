@@ -82,7 +82,7 @@ class ShareButton extends Component {
               <span onClick={this.handleCloseModal} id="shareCloseButton" className="hoverClickHand">x</span>
             </div> 
 						<div id="shareDialogButtonsContainer">
-            <span><FacebookShareButton url={url}> <FacebookIcon size={32} round={true} /> </FacebookShareButton> </span>
+						<span><FacebookShareButton url={url}> <FacebookIcon size={32} round={true} /> </FacebookShareButton> </span>
 						<span><GooglePlusShareButton url={url}> <GooglePlusIcon size={32} round={true} /> </GooglePlusShareButton> </span>
 							<WhatsappShareButton url={url}> <WhatsappIcon size={32} round={true} /> </WhatsappShareButton> 
 							<EmailShareButton url={url}> <EmailIcon size={32} round={true} /> </EmailShareButton> 

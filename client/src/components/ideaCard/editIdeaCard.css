@@ -45,6 +45,7 @@ input:focus {
 }
 
 .userPageIdeaButton{
+    vertical-align: top;
     height: 30px;
     width: 30px;
     margin-right: 10px;

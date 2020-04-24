@@ -1,43 +1,3 @@
-- edit idea - check it works
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - on search - put disliked ideas at the back of the list
 - add sorting drop down to search
 - search layout - change idea arrows to be on hover in the idea itself, on the sides, like carousel - bu then where will be the count? same place
@@ -75,6 +35,7 @@
 
 
 
+- delete idea - check works
 - search layout - create top ideas list on home page
 - change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
 - change all website to bootstrap!!

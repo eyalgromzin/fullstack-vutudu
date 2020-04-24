@@ -39,8 +39,6 @@ class EditableIdeaCard extends Component {
       this.editor.buttons = []
     };
     
-    
-  
     this.state = {
       error:"",
       isShowErrorOnBlur: false,
@@ -204,16 +202,6 @@ class EditableIdeaCard extends Component {
     )
   }
 }
-
-{/* <TextareaAutosize  
-          type="text" id="newIdeaContent" 
-          value={this.props.content == null ? "" : this.props.content }
-          placeholder="Content..." 
-          onBlur={this.onContentBlur}
-          onChange={this.handleOnContentChange}/>
-          <div className="centerHorizontally">
-            <img src={require("images/plus.png")} id="attachImageButton" onClick={this.attachImage} />
-          </div> */}
 
 function mapStateToProps(state) {
   return {

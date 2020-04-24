@@ -10,7 +10,8 @@ import { convertJsonContentToHtml } from 'commonUtils'
 import LikeDislike from './statsButtons/likesIndicator/likeDislike'
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import IdeaCardContent from 'components/ideaCard/ideaCardContent'
-
+import EditIdeaButton from 'components/ideaCard/editIdeaButton' 
+import DeleteIdeaButton from './deleteIdeaButton';
 
 class IdeaCard extends Component {
   render() {
@@ -39,10 +40,14 @@ class IdeaCard extends Component {
                   </div>
                 </div>
                 <div id="shareAndLikeContainer">
+                  {this.props.deleteable ? <DeleteIdeaButton loggedInUserID={this.props.userID} 
+                                                  idea={this.props.idea} /> : ""}
+                  {this.props.editable ? <EditIdeaButton /> : ""}
                   <LikeDislike idea={this.props.idea} enabled={this.props.enabled} />
                   <div id="shareButtonContainer">
                     <ShareButton />
                   </div>
+                  
                 </div>
               </div>
               {/* <CardIndicators idea={this.props.idea} enabled={this.props.enabled} />  //enabled={true} */}
@@ -63,7 +68,8 @@ function mapStateToProps(state) {
     place: state.searchPageReducer.currentIdea.place,
     time: state.searchPageReducer.currentIdea.time,
     minNumOfPeople: state.searchPageReducer.currentIdea.minNumOfPeople,
-    maxNumOfPeople: state.searchPageReducer.currentIdea.maxNumOfPeople
+    maxNumOfPeople: state.searchPageReducer.currentIdea.maxNumOfPeople,
+    userID: state.userPageReducer.loggedInUserID,
   };
 }
 

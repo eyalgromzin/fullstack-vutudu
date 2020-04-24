@@ -28,7 +28,8 @@ class EditIdeaBar extends Component {
           <PlaceField tagID="ideaBarPlaceSelector" cssClass="createBarTextBox" 
             placeOnChangeEvent={this.placeOnChangeEvent} 
             place={this.props.place} placeFieldLocation="search" />
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" time={this.props.time} />
+          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" minTime={this.props.minTime} 
+            maxTime={this.props.maxTime} />
           <NumOfPeopleCreator cssClass="createBarDropDown" 
             minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
         </div>

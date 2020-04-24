@@ -75,8 +75,8 @@ class TopBar extends Component {
           </div>
           
           <div id="mainLogo" className=""> 
+            <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />     
             <span id="mainLogoText">VUTUDU</span>
-            <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />            
           </div> 
           
 
