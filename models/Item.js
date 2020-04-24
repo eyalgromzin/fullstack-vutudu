@@ -25,7 +25,7 @@ const ItemSchema = new Schema({
   createdIn: {
     type: String,
     required: true,
-    default: undefined
+    default: "web"
   },
   tags: {
     type: [String],

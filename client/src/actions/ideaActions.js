@@ -232,50 +232,54 @@ export const updateTopIdeas = () => (dispatch) => {
 	});
 };
 
-export const addIdeaToDB = (idea, userID) => (dispatch) => {
-	console.log('adding item to mongo: ' + idea.title);
-
-	var title = idea.title
+export const isIdeaTitleExists = (title, callBack) => (dispatch) => {
 	axios.post('/api/items/getIdeaByTitle', { title: title }).then((res) => {
 		if(res.data == null){
-			dispatch({
-				type: ON_CREATE_SET_IS_DUPLICATE_TITLE,
-				payload: false
-			});
+			// dispatch({
+			// 	type: ON_CREATE_SET_IS_DUPLICATE_TITLE,
+			// 	payload: false
+			// });
 
-			axios.post('/api/items/createIdea', { idea, userID }).then((res) => {
-				toastr.success('Success', 'Idea Created!')
-
-				dispatch({
-					type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
-					payload: false
-				});
-
-
-				console.log('added item to mongo: ' + res.data.title);
-
-				var idea = res.data;
-				var axiosObj = { userID, idea };
-
-				axios.post('/api/user/addIdeaToUserCreatedIdeas', axiosObj).then((res) => {
-					dispatch({
-						type: ADD_CREATED_IDEA_TO_USER,
-						payload: idea
-					});
-
-					dispatch({
-						type: CLEAR_EDITABLE_IDEA
-					});
-
-					console.log('added ideaID to user created array');
-				});
-			});
+			callBack(false)
 		}else{
-			dispatch({
-				type: ON_CREATE_SET_IS_DUPLICATE_TITLE,
-				payload: true
-			});
+			// dispatch({
+			// 	type: ON_CREATE_SET_IS_DUPLICATE_TITLE,
+			// 	payload: true
+			// });
+
+			callBack(true)
 		}
+	});
+}
+
+export const addIdeaToDB = (idea, userID) => (dispatch) => {
+	console.log('adding item to mongo: ' + idea.title);
+	axios.post('/api/items/createIdea', { idea, userID }).then((res) => {
+		toastr.success('Success', 'Idea Created!')
+
+		dispatch({
+			type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
+			payload: false
+		});
+
+
+		console.log('added item to mongo: ' + res.data.title);
+
+		var idea = res.data;
+		var axiosObj = { userID, idea };
+
+		axios.post('/api/user/addIdeaToUserCreatedIdeas', axiosObj).then((res) => {
+			dispatch({
+				type: ADD_CREATED_IDEA_TO_USER,
+				payload: idea
+			});
+
+			dispatch({
+				type: CLEAR_EDITABLE_IDEA
+			});
+
+			console.log('added ideaID to user created array');
+		});
 	});
 };
 
