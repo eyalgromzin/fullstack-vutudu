@@ -1,22 +1,12 @@
 import React, { Component } from 'react'
-import './userIdeasList.css'
+import './ideasList.css'
 import ReactList from 'react-list';
 // import { connect } from 'react-redux';
 import store from 'store'
 import {SET_USER_CURRENT_PREVIEWED_IDEA, SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT} from 'reducers/types'
 import { connect } from 'react-redux';
 
-class UserIdeasList extends Component {
-  constructor(props){
-    super();
-
-    this.state = { 
-      updateViewToggle: props.updateViewToggle,
-    }
-  }
-
-  
-
+class IdeasList extends Component {
   renderItem = (index, key) => {  //key is running number
     var random = Math.random();
     return <div key={random} onClick={ () => 
@@ -36,8 +26,8 @@ class UserIdeasList extends Component {
     var clickedIdea = this.props.ideas.filter(obj => {
       return obj._id === id
     })
-    store.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA, payload: clickedIdea[0]});
-    store.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});  //to update ideas list 
+    
+    this.props.onIdeaSelected(clickedIdea[0])
   }
 
   render() {
@@ -58,8 +48,8 @@ class UserIdeasList extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,
+    
   };
 }
 
-export default connect(mapStateToProps)(UserIdeasList); 
+export default connect(mapStateToProps)(IdeasList); 

@@ -3,13 +3,15 @@ import './userPageLayout.css'
 import { connect } from 'react-redux';
 import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
-import UserIdeasList from 'components/userIdeasList/userIdeasList'
+import IdeasList from 'components/ideasList/ideasList'
 import IdeaCardInUser from 'components/ideaCard/ideaCardInUser'
 import EditIdeaCardInUser from 'components/ideaCard/editIdeaCardInUser';
 import { 
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
   CHANGE_LOGGED_IN_STATE,
+  SET_USER_CURRENT_PREVIEWED_IDEA,
+  SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
 
@@ -71,10 +73,15 @@ class userPageLayout extends Component {
     }
   }
 
+  ideaSelected = (idea) => {
+    this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA, payload: idea});
+    this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});  //to update ideas list 
+  }
+
   createUserIdeasList = () => {
     if (this.props.currentPreviewedIdeas.length > 0){
-      return <div id="userIdeasList">
-        <UserIdeasList ideas={this.props.currentPreviewedIdeas} updateViewToggle={this.props.updateToggle} />
+      return <div id="ideasList">
+        <IdeasList ideas={this.props.currentPreviewedIdeas} onIdeaSelected={this.ideaSelected} />
       </div>
     }else{
       return <span id="emptyIdeasList">Empty Ideas List...</span>

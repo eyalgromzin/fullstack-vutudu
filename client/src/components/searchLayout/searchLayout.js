@@ -15,7 +15,9 @@ import {
 	SEARCH_SET_PLACE,
   SEARCH_SET_NUM_OF_PEOPLE,
   SEARCH_SET_MORE,
+  SET_CURRENT_IDEA,
 } from 'reducers/types';
+import IdeasList from '../ideasList/ideasList';
 
 class searchLayout extends Component {
 	fillSearchBar = (idea) => {
@@ -32,32 +34,27 @@ class searchLayout extends Component {
 			more: this.props.more
 		};
 
-    //for getting idea ID
-    //can be also an idea from top table - which will lack the 
-		
 		if(this.props.match.params.ideaID !== undefined &&
             this.props.match.params.place === undefined &&
             this.props.match.params.time === undefined &&
             this.props.match.params.numOfPeople === undefined){
-      var ideaID = this.props.match.params.ideaID
-      store.dispatch(getIdeaByID(ideaID));
 
-    }
-    else if (this.props.match.params.ideaID !== undefined) {
-      var ideaID = this.props.match.params.ideaID;
+			var ideaID = this.props.match.params.ideaID
 			store.dispatch(getIdeaByID(ideaID));
-      
-      this.props.dispatch({ type: SEARCH_SET_TIME, payload: this.props.match.params.time });
-			this.props.dispatch({ type: SEARCH_SET_PLACE, payload: this.props.match.params.place });
-			//there is no num of people in idea, there is min # ppl, and max # ppl
-			this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: this.props.match.params.numOfPeople });
-			// same things, there are multiple tag for each idea
-			if (this.props.match.params.more !== undefined) {
-				this.props.dispatch({ type: SEARCH_SET_MORE, payload: this.props.match.params.more });
-      }
-    }
+   	 	}else if (this.props.match.params.ideaID !== undefined) {
+			var ideaID = this.props.match.params.ideaID;
+					store.dispatch(getIdeaByID(ideaID));
+			
+			this.props.dispatch({ type: SEARCH_SET_TIME, payload: this.props.match.params.time });
+					this.props.dispatch({ type: SEARCH_SET_PLACE, payload: this.props.match.params.place });
+					//there is no num of people in idea, there is min # ppl, and max # ppl
+					this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: this.props.match.params.numOfPeople });
+					// same things, there are multiple tag for each idea
+					if (this.props.match.params.more !== undefined) {
+						this.props.dispatch({ type: SEARCH_SET_MORE, payload: this.props.match.params.more });
+			}
+		}
 
-    //for getting search
 		if (this.props.match.params.ideaID === undefined &&
 			this.props.match.params.place !== undefined &&
 			this.props.match.params.time !== undefined &&
@@ -76,16 +73,16 @@ class searchLayout extends Component {
 		var newPlaceText = this.props.place === undefined ? '' : this.props.place;
 		if (this.state.place != newPlaceText) {
 			this.setState({ place: newPlaceText });
-    }
+    	}
     
-    return null
+    	return null
 	}
 
-  componentDidUpdate(){
+	ideaSelected = (idea) => {
+		this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
+	}
 
-  }
-
-	render() {
+ 	render() {
 		this.state.refresh = !this.state.refresh;
 
 		if (this.props.match.params.numOfPeople === undefined) {
@@ -103,12 +100,18 @@ class searchLayout extends Component {
 						/>						
 						{this.props.ideas.length == 0 && this.props.searched ? (
 							<NoResultsFound />
-						) : this.props.searched ? (
-							<IdeaCard idea={this.props.idea} ideas={this.props.ideas} enabled={true} showNextPreviousButtons={true} />
-						) : (
-							// <TopTable />
+						) : this.props.searched ? 
+							<React.Fragment>
+								<div className="searchIdeasList">
+									<IdeasList ideas={this.props.ideas} onIdeaSelected={this.ideaSelected} />
+								</div>
+								<div id="searchIdeaCard"> 
+									<IdeaCard idea={this.props.idea} ideas={this.props.ideas} enabled={true} showNextPreviousButtons={true} />
+								</div>
+							</React.Fragment>
+						 	: 
 							""
-						)}
+						}
 					</div>					 
 				</div>
 			</React.Fragment>

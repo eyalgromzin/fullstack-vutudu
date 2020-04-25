@@ -18,6 +18,17 @@ html, body {
     
 }
 
+.searchIdeasList{
+  display: inline-block;
+  width: 20%;
+  height: 510px;
+}
+
+#searchIdeaCard{
+  display: inline-block;
+  width: 80%;
+}
+
 .contentImage{
   display: block;
   max-width:300px;

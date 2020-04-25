@@ -63,7 +63,7 @@ class IdeaNextPreviousButtons extends Component {
         <div id="ideaNextPreviousButtons">
         <i id="ideaLeftArrow" className="leftArrowI ideaTopButton hoverClickHand" onClick={this.leftArrowClick}/> {/*img src={require("images/leftArrow.png")} */}
         <div id="cardCountInfo">
-          {this.props.currentIdeaIndex + 1}/{this.props.ideas.length}
+          {this.state.currentIdeaIndex + 1}/{this.props.ideas.length}
         </div>
         <i id="ideaRightArrow" className="rightArrowI ideaTopButton hoverClickHand" onClick={this.rightArrowClick}/>   {/*src={require("images/rightArrow.png")} */}
         </div>
