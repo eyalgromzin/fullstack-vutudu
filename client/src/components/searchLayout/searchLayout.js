@@ -117,12 +117,14 @@ class searchLayout extends Component {
 }
 
 function mapStateToProps(state) {
-	// var convertedIdeas = commonUtils.convertIdeasContentJsonToNormal(state.searchPageReducer.ideas)
+	let unlikedLastIdeas = state.searchPageReducer.ideas.sort(function(a, b) {
+		return a.liked.length - b.liked.length;
+	});
 
 	return {
 		searched: state.commonReducer.searched,
 		idea: state.searchPageReducer.currentIdea,
-		ideas: state.searchPageReducer.ideas,
+		ideas: unlikedLastIdeas,
 		place: state.searchBarReducer.place,
 		time: state.searchBarReducer.time,
 		numOfPeople: state.searchBarReducer.numOfPeople,

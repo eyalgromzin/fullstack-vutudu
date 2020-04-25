@@ -28,6 +28,7 @@ router.post('/createIdea/', (req, res) => {
 		title: req.body.idea.title,
 		content: req.body.idea.content,
 		createdBy: req.body.idea.createdBy,
+		createdIn: req.body.idea.createdIn,
 		place: req.body.idea.place,
 		minTime: req.body.idea.minTime,
 		maxTime: req.body.idea.maxTime,
@@ -72,7 +73,6 @@ router.post('/removeIdeaLiked/', (req, res) => {
 });
 
 // @route   POST api/items/ideaDisliked/
-// @desc    search for anything
 // @access  Public
 // doesnt work
 router.post('/ideaDisliked/', (req, res) => {
@@ -91,7 +91,6 @@ router.post('/ideaDisliked/', (req, res) => {
 });
 
 // @route   POST api/items/ideaDisliked/
-// @desc    search for anything
 // @access  Public
 // doesnt work
 router.post('/removeIdeaDisliked/', (req, res) => {
@@ -110,7 +109,6 @@ router.post('/removeIdeaDisliked/', (req, res) => {
 });
 
 // @route   POST api/items/addHardToIdea/
-// @desc    search for anything
 // @access  Public
 router.post('/addHardToIdea/', (req, res) => {
 	var ideaID = req.body.idea._id;
@@ -128,7 +126,6 @@ router.post('/addHardToIdea/', (req, res) => {
 });
 
 // @route   POST api/items/removeHardFromIdea/
-// @desc    search for anything
 // @access  Public
 router.post('/removeHardFromIdea/', (req, res) => {
 	var ideaID = req.body.idea._id;
@@ -146,7 +143,6 @@ router.post('/removeHardFromIdea/', (req, res) => {
 });
 
 // @route   POST api/items/removeHardFromIdea/
-// @desc    search for anything
 // @access  Public
 router.post('/removeEasyFromIdea/', (req, res) => {
 	var ideaID = req.body.idea._id;
@@ -158,7 +154,6 @@ router.post('/removeEasyFromIdea/', (req, res) => {
 });
 
 // @route   POST api/items/addedEasyToIdea/
-// @desc    search for anything
 // @access  Public
 router.post('/addedEasyToIdea/', (req, res) => {
 	var ideaID = req.body.idea._id;
@@ -170,7 +165,6 @@ router.post('/addedEasyToIdea/', (req, res) => {
 });
 
 // @route   POST api/items/addLongToIdea/
-// @desc    search for anything
 // @access  Public
 router.post('/addLongToIdea/', (req, res) => {
 	var ideaID = req.body.idea._id;
@@ -181,7 +175,6 @@ router.post('/addLongToIdea/', (req, res) => {
 });
 
 // @route   POST api/items/addLongToIdea/
-// @desc    search for anything
 // @access  Public
 router.post('/removeLongFromIdea/', (req, res) => {
 	var ideaID = req.body.idea._id;
@@ -192,7 +185,6 @@ router.post('/removeLongFromIdea/', (req, res) => {
 });
 
 // @route   POST api/items/addedShortToIDea/
-// @desc    search for anything
 // @access  Public
 router.post('/addShortToIDea/', (req, res) => {
 	var ideaID = req.body.idea._id;
@@ -206,8 +198,6 @@ router.post('/addShortToIDea/', (req, res) => {
 });
 
 // @route   POST api/items/addedShortToIDea/
-// @desc    search for anything
-// @access  Public
 router.post('/removeShortFromIDea/', (req, res) => {
 	var ideaID = req.body.idea._id;
 	console.log('removed Short from Idea: ' + ideaID);
@@ -220,56 +210,69 @@ router.post('/removeShortFromIDea/', (req, res) => {
 });
 
 // @route   GET api/search/:place/:time/:numOfPeople/:more
-// @desc    search for anything
-// @access  Public
+// @desc    search with more
 router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {
-	console.log('finding more: ' + req.params.more);
-	Item.find({
-		$and: [
-			{ place: req.params.place },
-			{ time: req.params.time },
-			{
-				$and: [
-					{ minNumOfPeople: { $lte: req.params.numOfPeople } },
-					{ maxNumOfPeople: { $gte: req.params.numOfPeople } }
-				]
-			},
-			{ tags: req.params.more }
-		]
-	}).then((items) => res.json(items));
+	console.log('searching ideas with more');
+	
+	let $and = []
+	
+	if(req.params.place !== undefined && req.params.place != "" && req.params.place != "_"){
+		$and.push({place: req.params.place})
+	}
+	if(req.params.time !== undefined && req.params.time != "" && req.params.time != "_"){
+		$and.push({ minTime: { $lte: req.params.time } }, { maxTime: { $gte: req.params.time } })
+	}
+	if(req.params.numOfPeople !== undefined && req.params.numOfPeople != "" && req.params.numOfPeople != "_"){
+		$and.push({ minNumOfPeople: { $lte: req.params.numOfPeople } }, { maxNumOfPeople: { $gte: req.params.numOfPeople } })
+	}
+	if(req.params.more !== undefined && req.params.more != "" && req.params.more != "_"){
+		$and.push({ tags: req.params.more })
+	}
+
+	var query = {$and}
+	
+	// let query = {
+	// 	$and: [
+	// 		{ place: req.params.place },
+	// 		{ time: req.params.time },
+	// 		{
+	// 			$and: [
+	// 				{ minNumOfPeople: { $lte: req.params.numOfPeople } },
+	// 				{ maxNumOfPeople: { $gte: req.params.numOfPeople } }
+	// 			]
+	// 		},
+	// 		{ tags: req.params.more }
+	// 	]
+	// }
+
+	Item.find(query).then((items) => res.json(items));
 });
 
-// @route   GET api/search/:place/:time/:numOfPeople/
-// @desc    search for anything
-// @access  Public
-router.get('/search/:place/:time/:numOfPeople', (req, res) => {
-	//
-	console.log('finding without more');
+// // @route   GET api/search/:place/:time/:numOfPeople/
+// // @desc    search without more
+// // @access  Public
+// router.get('/search/:place/:time/:numOfPeople', (req, res) => {
+// 	console.log('finding without more');
+	
+// 	let $and = []
+	
+// 	if(req.params.place !== undefined && req.params.place != ""){
+// 		$and.push({place: req.params.place})
+// 	}
+// 	if(req.params.time !== undefined && req.params.time != ""){
+// 		$and.push({ minTime: { $lte: req.params.time } }, { maxTime: { $gte: req.params.time } })
+// 	}
+// 	if(req.params.numOfPeople !== undefined && req.params.numOfPeople != ""){
+// 		$and.push({ minNumOfPeople: { $lte: req.params.numOfPeople } }, { maxNumOfPeople: { $gte: req.params.numOfPeople } })
+// 	}
 
-	// var timeInt = parseInt(req.params.time, 10);
-	// var numOfPeopleInt = parseInt(req.params.numOfPeople, 10);
+// 	var query = {$and}
 
-	Item.find({
-		$and: [
-			{ place: req.params.place },
-			{
-				$and: [
-					{ minTime: { $lte: req.params.time } },
-					{ maxTime: { $gte: req.params.time } }
-				]
-			},
-			{
-				$and: [
-					{ minNumOfPeople: { $lte: req.params.numOfPeople } },
-					{ maxNumOfPeople: { $gte: req.params.numOfPeople } }
-				]
-			}
-		]
-	}).then(
-		(items) => 
-		res.json(items)
-		);
-});
+// 	Item.find(query).then(
+// 		(items) => 
+// 		res.json(items)
+// 		);
+// });
 
 // @route   POST api/items/deleteIdea/
 // @desc    update idea

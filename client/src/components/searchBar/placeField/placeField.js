@@ -99,7 +99,7 @@ class PlaceField extends Component {
   }
 
   render() {
-    var isShowError = (this.props.isClickedButton && !this.isPlaceValid()) || !this.state.isPlaceValid
+    var isShowError = false   //(this.props.isClickedButton && !this.isPlaceValid()) || !this.state.isPlaceValid
 
     const inputProps = {
       placeholder: 'bar/ home / kitchen / beach / park / bus Station / ...',
@@ -110,7 +110,7 @@ class PlaceField extends Component {
     return (
       <React.Fragment >
         <div id="placeField" className={this.state.placeFieldLocation == "search" ? "inlineBlock searchBarTextField" : "inlineBlock createBarTextField"}>
-          <div className="fieldHeader">Place</div>
+          <div className="fieldHeader"><img src={require("images/placeIcon.png")} alt=""  id="editIdeaButton" /></div>
           <Autosuggest
             id="placeSelector"
             suggestions={this.state.placeSuggestions}

@@ -51,6 +51,7 @@ class createIdeaButton extends Component {
       title: this.props.title,
       content: this.props.content,
       createdBy: this.props.userID,
+      createdIn: "web",
       place: this.props.place,
       minTime: this.props.minTime,
       maxTime: this.props.maxTime,
@@ -59,8 +60,6 @@ class createIdeaButton extends Component {
       tags: tags,
     };
 
-    let myColor = { background: '#0E1717', text: "#FFFFFF" };
-    
     // Add item via createItem action
     this.props.addIdeaToDB(newItem, this.props.userID);
     if(tags.length > 0){
