@@ -93,9 +93,6 @@ class MoreChooser extends Component {
     return suggestion 
   }
 
-
-  
-  
   render() {
     const inputProps = {
       placeholder: '#easy / #fun / #productive ...',
@@ -106,7 +103,7 @@ class MoreChooser extends Component {
     return (
       <React.Fragment>
         <div id="moreField" className="inlineBlock searchBarTextField">
-          <div className="fieldHeader"><img src={require("images/more.png")} alt=""  id="editIdeaButton" /></div>
+          <div className="fieldHeader"><img src={require("images/more.png")} alt="" className="searchBarIcon" /></div>
             <Autosuggest
               id="tagSelector"
               suggestions={this.state.tagSuggestions}

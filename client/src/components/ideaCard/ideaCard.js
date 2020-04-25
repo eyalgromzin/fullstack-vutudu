@@ -23,7 +23,7 @@ class IdeaCard extends Component {
       return (
         <React.Fragment>
           <div id="ideaCardIdeaArrows">
-            {this.props.showNextPreviousButtons? <IdeaNextButtonsPreviousButtons /> : null}
+            {this.props.showNextPreviousButtons? <IdeaNextButtonsPreviousButtons ideas={this.props.ideas} /> : null}
           </div>
           <div className="IdeaContent">
             <div id="ideaCardWithButtons">

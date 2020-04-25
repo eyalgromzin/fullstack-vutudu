@@ -1,5 +1,4 @@
 import { SAVE_IDEAS,
-  CHANGE_CURRENT_IDEA_INDEX,
   ADD_TIME,
   REDUCE_DIFFICULTY, 
   ADD_USER_ID_TO_IDEA_LIKES,
@@ -25,8 +24,7 @@ var _ = require('lodash');
 
 const initialState = {
   currentIdeaIndex: 0,
-  currentIdea: {  
-  },
+  currentIdea: { },
   ideas: [{
     _id: '000',
     title: 'click Search',
@@ -80,15 +78,6 @@ function reducer(state = initialState, action) {
         isSearching: action.payload,
       };
     
-    case CHANGE_CURRENT_IDEA_INDEX:
-      var currentIdeaIndex = action.payload;
-      var currentIdeaCopy = dcopy(state.ideas[currentIdeaIndex])
-
-      return{
-          ...state,
-          currentIdeaIndex: action.payload,
-          currentIdea: currentIdeaCopy,
-        };
     case REDUCE_DIFFICULTY:
       var currentIdea = getCopyOfCurrentIdea(state);
       currentIdea.easy.push(action.payload);

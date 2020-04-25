@@ -13,6 +13,13 @@
     width: 120px;
 }
 
+#cardCountInfo{
+    display: inline-block;
+    /* float: right; */
+    font-family: cursive;
+    margin-right: 5px;
+}
+
 .rightArrowI{
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);

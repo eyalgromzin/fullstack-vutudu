@@ -39,6 +39,26 @@ export const removeIdeaFromArray = (ideasArr, ideaID) => {
     return arrayWithoutIdea;
 }
 
+export const moveUnlikedIdeasToBack = (ideas, userID) => {
+  if(ideas === undefined || ideas.length == 0 || userID === undefined || userID == ""){
+    return ideas
+  }
+
+  let dislikedIdeas = []
+  let regularIdeas = []
+  ideas.forEach(function(idea) {
+    if(idea.disliked.includes(userID)){
+      dislikedIdeas.push(idea)
+    }else{
+      regularIdeas.push(idea)
+    }
+  });
+
+  regularIdeas.push(...dislikedIdeas)
+
+  return regularIdeas
+}
+
 export const getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
   var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
   var matches = [];

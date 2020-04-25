@@ -9,7 +9,7 @@ import NoResultsFound from './noResultsFound';
 import { searchItems } from 'actions/ideaActions';
 import { getIdeaByID } from 'actions/ideaActions';
 import store from 'store';
-import * as commonUtils from 'commonUtils'
+import { moveUnlikedIdeasToBack } from 'commonUtils'
 import {
 	SEARCH_SET_TIME,
 	SEARCH_SET_PLACE,
@@ -104,7 +104,7 @@ class searchLayout extends Component {
 						{this.props.ideas.length == 0 && this.props.searched ? (
 							<NoResultsFound />
 						) : this.props.searched ? (
-							<IdeaCard idea={this.props.idea} enabled={true} showNextPreviousButtons={true} />
+							<IdeaCard idea={this.props.idea} ideas={this.props.ideas} enabled={true} showNextPreviousButtons={true} />
 						) : (
 							// <TopTable />
 							""
@@ -117,14 +117,13 @@ class searchLayout extends Component {
 }
 
 function mapStateToProps(state) {
-	let unlikedLastIdeas = state.searchPageReducer.ideas.sort(function(a, b) {
-		return a.liked.length - b.liked.length;
-	});
+	let unlikedIdeasLast = moveUnlikedIdeasToBack(state.searchPageReducer.ideas, state.userPageReducer.loggedInUserID)
 
 	return {
+		userID: state.userPageReducer.loggedInUserID,
 		searched: state.commonReducer.searched,
 		idea: state.searchPageReducer.currentIdea,
-		ideas: unlikedLastIdeas,
+		ideas: unlikedIdeasLast,
 		place: state.searchBarReducer.place,
 		time: state.searchBarReducer.time,
 		numOfPeople: state.searchBarReducer.numOfPeople,

@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { search } from '../searchBarCommon'
 import store from 'store'
 import 'commonCss.css'
-import '../searchBarCommonStyles.css'
 
 class NumOfPeopleSelector extends Component {
   constructor(props){
@@ -49,7 +48,7 @@ class NumOfPeopleSelector extends Component {
     return (
       <React.Fragment>
         <div id="numOfPeopleSelector" className="inlineBlock searchBarComboBox">
-          <div className="fieldHeader"><img src={require("images/time.png")} alt=""  id="editIdeaButton" /></div>
+          <div className="fieldHeader"><img src={require("images/heads_black.png")}  alt="" className="searchBarIcon" id="editIdeaButton" /></div>
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
             <option value="10" className="timeChooserOption">1</option>
