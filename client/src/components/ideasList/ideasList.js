@@ -31,10 +31,13 @@ class IdeasList extends Component {
   }
 
   render() {
+    let listHeight = 460
+    if(this.props.height !== undefined)listHeight = 512
+
     return (
       <React.Fragment>
         
-          <div style={{overflow: 'auto', height: 460}}>
+          <div style={{overflow: 'auto', height: listHeight}}>
             <ReactList
               itemRenderer={this.renderItem}
               length={this.props == null || this.props.ideas == null? 0 : this.props.ideas.length}

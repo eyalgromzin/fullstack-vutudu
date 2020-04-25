@@ -1,4 +1,4 @@
-import { SAVE_IDEAS,
+import { SET_SEARCH_IDEAS,
   ADD_TIME,
   REDUCE_DIFFICULTY, 
   ADD_USER_ID_TO_IDEA_LIKES,
@@ -62,7 +62,7 @@ function reducer(state = initialState, action) {
   let removedArray = '';
 
   switch(action.type) {
-    case SAVE_IDEAS:
+    case SET_SEARCH_IDEAS:
         return {
           ...state,
           ideas: action.payload,

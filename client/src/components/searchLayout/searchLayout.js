@@ -30,7 +30,6 @@ class searchLayout extends Component {
 		this.state = {
 			refresh: false,
 			place: this.props.place,
-			idea: {},
 			more: this.props.more
 		};
 
@@ -85,9 +84,6 @@ class searchLayout extends Component {
  	render() {
 		this.state.refresh = !this.state.refresh;
 
-		if (this.props.match.params.numOfPeople === undefined) {
-		}
-
 		return (
 			<React.Fragment>
 				<div className="searchMainContent">
@@ -102,11 +98,13 @@ class searchLayout extends Component {
 							<NoResultsFound />
 						) : this.props.searched ? 
 							<React.Fragment>
-								<div className="searchIdeasList">
-									<IdeasList ideas={this.props.ideas} onIdeaSelected={this.ideaSelected} />
-								</div>
-								<div id="searchIdeaCard"> 
-									<IdeaCard idea={this.props.idea} ideas={this.props.ideas} enabled={true} showNextPreviousButtons={true} />
+								<div id="searchCardAndList">
+									<div className="searchIdeasList">
+										<IdeasList ideas={this.props.ideas} height={510} onIdeaSelected={this.ideaSelected} />
+									</div>
+									<div id="searchIdeaCard"> 
+										<IdeaCard idea={this.props.idea} ideas={this.props.ideas} enabled={true} showNextPreviousButtons={true} />
+									</div>
 								</div>
 							</React.Fragment>
 						 	: 

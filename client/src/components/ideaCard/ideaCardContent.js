@@ -60,8 +60,6 @@ export default class IdeaCardContent extends Component {
         })
 
         return contentJsx
-
-        // return <div> 123123 </div>
     }
 
     render() {
@@ -70,6 +68,8 @@ export default class IdeaCardContent extends Component {
             ideaCardContent = <div className={"className"} 
                     dangerouslySetInnerHTML={{ __html: this.props.content.replace(/\n/g, '<br />')}} />
             // <div>{this.props.content}</div>
+        }else if(this.props.content == "To find ideas of what to do"){
+            ideaCardContent = this.props.content
         }else{
             ideaCardContent = this.convertContentJsonToJsx(this.props.content)            
         }

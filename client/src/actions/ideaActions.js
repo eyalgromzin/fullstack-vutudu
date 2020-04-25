@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
 	ADD_CREATED_IDEA_TO_USER,
-	SAVE_IDEAS,
+	SET_SEARCH_IDEAS,
 	CLEAR_EDITABLE_IDEA,
 	SET_CURRENT_IDEA,
 	CHANGE_SEARCHED_STATE,
@@ -141,11 +141,11 @@ export const searchItems = (place, time, numOfPeople, more) => (dispatch) => {
 		if (res.data.length > 0) {
 			console.log('got ideas from db');
 			dispatch({ type: SET_CURRENT_IDEA, payload: res.data[0] });
-			dispatch({ type: SAVE_IDEAS, payload: res.data });
+			dispatch({ type: SET_SEARCH_IDEAS, payload: res.data });
 			dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
 		} else {
 			console.log('got 0 items from db');
-			dispatch({ type: SAVE_IDEAS, payload: [] });
+			dispatch({ type: SET_SEARCH_IDEAS, payload: [] });
 		}
 	});
 };

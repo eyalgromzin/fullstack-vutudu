@@ -14,43 +14,114 @@ import EditIdeaButton from 'components/ideaCard/editIdeaButton'
 import DeleteIdeaButton from './deleteIdeaButton';
 
 class IdeaCard extends Component {
-  render() {
-    if(this.props.idea.content !== undefined){
-      // var convertedContentJsx = convertJsonContentToHtml(this.props.idea.content)
-      // convertedContent = Promise.resolve(convertedContent);
-      // var convertedContentJsx = <div> this is an idea card </div>  //works
+  constructor(props){
+    super(props)
+  }
 
+  findIdeaIndex = (idea, ideas) => {
+    let index = ideas.findIndex(ideaI => idea.id == ideaI.id)
+    return index < 0? 0 : index
+  }
+
+  rightArrowClick = () => {
+    var ideasCount = this.props.ideas.length;
+
+    if(ideasCount <= 1){
+      return 
+    }
+    
+    let currentIndex = this.state.currentIdeaIndex
+
+    currentIndex += 1
+    if(currentIndex == ideasCount){
+      this.setState({currentIdeaIndex: 0})
+      currentIndex = 0
+    }else{
+      this.setState({currentIdeaIndex: this.state.currentIdeaIndex +1})
+    }
+
+    var currentIdea = this.props.ideas[currentIndex];
+    
+    this.setState({idea: currentIdea}) 
+  }
+
+  leftArrowClick = () => {
+    var ideasCount = this.props.ideas.length;
+
+    if(ideasCount <= 1){
+      return 
+    }
+
+    let currentIdeaIndex = this.state.currentIdeaIndex
+
+    currentIdeaIndex--;
+    if(currentIdeaIndex == -1){
+      currentIdeaIndex = this.props.ideas.length - 1;
+      this.setState({currentIdeaIndex: this.props.ideas.length - 1})
+    }else{
+      this.setState({currentIdeaIndex: currentIdeaIndex })
+    }
+
+    var currentIdea = this.props.ideas[currentIdeaIndex];
+    
+    this.setState({idea: currentIdea}) 
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    // super(nextProps, nextState)
+    if(nextProps != this.props){
+      if(nextProps != null && nextProps.idea !== undefined){
+
+        this.setState({idea: nextProps.idea,
+          currentIdeaIndex: this.findIdeaIndex(nextProps.idea, nextProps.ideas)})
+      }
+      
+      return true
+    }
+
+    if(nextState != this.state){
+      return true
+    }
+  }
+
+  render() {
+    if(this.state != null && this.state.idea.content !== undefined){
       return (
         <React.Fragment>
-          <div id="ideaCardIdeaArrows">
+          {/* <div id="ideaCardIdeaArrows">
             {this.props.showNextPreviousButtons? <IdeaNextButtonsPreviousButtons ideas={this.props.ideas} /> : null}
-          </div>
+          </div> */}
           <div className="IdeaContent">
             <div id="ideaCardWithButtons">
               <div id="ideaCardWithShare" >
                 <div id="ideaCard"> 
+                  <div id="cardLeftArrowContainer" className="cardHoverArrow" onClick={this.leftArrowClick}>
+                    <img id="ideaCardLeftArrow" src={require("images/leftArrow.png")}  />
+                  </div>
+                  <div id="cardRightArrowContainer" className="cardHoverArrow" onClick={this.rightArrowClick} >
+                    <img id="ideaCardRightArrow" src={require("images/rightArrow.png")} />
+                  </div>
                   <div className="ideaTitle"> 
-                    {this.props.idea.title}
+                    {this.state.idea.title}
                   </div>
                   <div id="ideaContentText"> 
                     <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
                       {/* {ReactHtmlParser(convertedContent)} */}
-                      <IdeaCardContent content={this.props.idea.content} createdIn={this.props.idea.createdIn} />
+                      <IdeaCardContent content={this.state.idea.content} createdIn={this.state.idea.createdIn} />
                     </Linkify>
                   </div>
                 </div>
                 <div id="shareAndLikeContainer">
                   {this.props.deleteable ? <DeleteIdeaButton loggedInUserID={this.props.userID} 
-                                                  idea={this.props.idea} /> : ""}
+                                                  idea={this.state.idea} /> : ""}
                   {this.props.editable ? <EditIdeaButton /> : ""}
-                  <LikeDislike idea={this.props.idea} enabled={this.props.enabled} />
+                  <LikeDislike idea={this.state.idea} enabled={this.props.enabled} />
                   <div id="shareButtonContainer">
-                    <ShareButton />
+                  <ShareButton />
                   </div>
                   
                 </div>
               </div>
-              {/* <CardIndicators idea={this.props.idea} enabled={this.props.enabled} />  //enabled={true} */}
             </div> 
           </div>
         </React.Fragment>

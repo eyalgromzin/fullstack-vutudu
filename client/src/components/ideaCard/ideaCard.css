@@ -184,6 +184,42 @@
     float: left;
 }
 
+#cardLeftArrowContainer{
+    width: 7%;
+    position: absolute;
+}
+
+#ideaCardLeftArrow{
+    vertical-align: middle;
+    height: 35px;
+    width: 20px;
+    margin-top: 223px;
+}
+
+.cardHoverArrow:hover{
+    opacity: 0.3;
+}
+
+.cardHoverArrow{
+    height: 50%;
+    opacity: 0.0;
+    background-color: papayawhip;
+    text-align: center;
+}
+
+#cardRightArrowContainer{
+    width: 6.5%;
+    position: absolute;
+    margin-left: 33%;
+}
+
+#ideaCardRightArrow{
+    vertical-align: middle;
+    height: 35px;
+    width: 20px;
+    margin-top: 223px;
+}
+
 #editIdeaButton{
     vertical-align: top;
 }
