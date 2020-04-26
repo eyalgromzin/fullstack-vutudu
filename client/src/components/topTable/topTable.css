@@ -3,23 +3,34 @@
     cursor: pointer;
 }
 
+#topTableColumnContainer{
+    display: flex;
+}
+
 #topLikedTable{
-    width: 48%;
+    width: 33%;
     display: inline-block;
 }
 
-#topHardTable{
-    width: 48%;
-    display: inline-block;
+#topTableHeaderSelected{
+    font-size: 20px;
+}
+
+#topTableClicked{
+    height: 512px;
+}
+
+.topIdeasTableClicked{
+    margin-bottom: 30px;
 }
 
 #topPopularTable{
-    width: 48%;
+    width: 33%;
     display: inline-block;
 }
 
 #topNewestTable{
-    width: 48%;
+    width: 33%;
     display: inline-block;
     vertical-align: top;
 }
@@ -33,16 +44,34 @@
 }
 
 #topTableIdea{
-    display: table-cell;
+    display: inline-block;
     padding: 0 3%;
+    width: 80%;
 }
 
-#topTableLists{
-    display: table-cell;
+#topTableListsClicked{
+    vertical-align: top;
+    display: inline-block;
     width: 20%;
-    float: left;
     padding-left: 20px;
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
 }
+
+#topTableListsClicked::-webkit-scrollbar {
+    width: 0em;
+  }
+   
+/* #topTableListsClicked::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+#topTableListsClicked::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
+} */
+
 
 #topTableHeader{
     font-size: 35px;

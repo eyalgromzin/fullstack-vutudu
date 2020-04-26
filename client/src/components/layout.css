@@ -18,6 +18,7 @@
 
 #mainLogoText{
     font-size: 35px;
+    vertical-align: bottom;
 }
 
 #rightSideButtons{

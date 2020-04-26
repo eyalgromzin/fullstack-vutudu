@@ -1,7 +1,27 @@
-- search layout - change selected index on left right click
-- search layout - create top ideas list on home page
+- left right buttons in idea card in top bar dont work
+
+UI -
+    search layout - 
+        - make images look nice in top bar
+        - top bar looks like shit - but good color 
+    
+    create layout - looks really like shit. all!!!
+        - idea card - try other 
+    
+    user layout - 
+        - created / liked drop down looks bad 
+        - idea card background is not good there. 
+    
+    - try bootstrap
+    
+    - change all website to bootstrap!!
+
+
+- on user page open - show the first created item automatically
+    
+
+
 - change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
-- change all website to bootstrap!!
 
 
 

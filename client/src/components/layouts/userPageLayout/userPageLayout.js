@@ -14,6 +14,7 @@ import {
   SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
+import IdeaCard from 'components/ideaCard/ideaCard'
 
 class userPageLayout extends Component {
   constructor(props){
@@ -23,7 +24,7 @@ class userPageLayout extends Component {
     this.props.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS});
 
     this.state = {
-
+      selectedIdeaIndex: 0
     }
   }
 
@@ -55,20 +56,30 @@ class userPageLayout extends Component {
   }
 
   createUserIdeaCard = () => {
-    let isCurrentPreviewedIdeaEmpty = typeof this.props.currentPreviewedIdea === 'undefined' ||
-                                      (Object.keys(this.props.currentPreviewedIdea).length === 0 &&
-                                      this.props.currentPreviewedIdea.constructor === Object)
+    let isCurrentPreviewedIdeaExists = typeof this.props.currentPreviewedIdea !== 'undefined' &&
+                                      (Object.keys(this.props.currentPreviewedIdea).length != 0)
 
-    if(this.props.currentPreviewedIdeas.length == 0 || isCurrentPreviewedIdeaEmpty){
+    if(this.props.currentPreviewedIdeas.length == 0 || !isCurrentPreviewedIdeaExists){
       return  <div id="userIdeaCardDummy" > 
                 <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
               </div> 
     }else{
-      if(this.props.isIdeaEdited && !isCurrentPreviewedIdeaEmpty){
+      if(this.props.isIdeaEdited && isCurrentPreviewedIdeaExists){
         return <EditIdeaCardInUser />
       }else{
-        return !isCurrentPreviewedIdeaEmpty? 
-          <IdeaCardInUser enabled={false} showNextPreviousButtons={true} editable={true} /> : ""               
+        return isCurrentPreviewedIdeaExists && !this.props.isIdeaEdited ? 
+          this.props.currentPreviewedIdeas.length > 0 ? 
+            <div id="ideaCardWithButtonsInUser">
+              <div id="userIdeaCard">
+                <IdeaCard idea={this.props.currentPreviewedIdea} enabled={true} showNextPreviousButtons={true} 
+                  editable={this.props.editable} deleteable={true} ideas={this.props.currentPreviewedIdeas}
+                  onSelectedIndexChange={this.onSelectedIndexChange} />
+              </div>
+            </div>
+            :
+            ""
+          : 
+          ""               
       }
     }
   }
@@ -78,10 +89,15 @@ class userPageLayout extends Component {
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});  //to update ideas list 
   }
 
+  onSelectedIndexChange = (newIndex) => {
+		this.setState({selectedIdeaIndex: newIndex})
+	}
+
   createUserIdeasList = () => {
     if (this.props.currentPreviewedIdeas.length > 0){
       return <div id="ideasList">
-        <IdeasList ideas={this.props.currentPreviewedIdeas} onIdeaSelected={this.ideaSelected} />
+        <IdeasList ideas={this.props.currentPreviewedIdeas} onIdeaSelected={this.ideaSelected} 
+          onSelectedIndexChange={this.onSelectedIndexChange} selectedIndex={this.state.selectedIdeaIndex}  />
       </div>
     }else{
       return <span id="emptyIdeasList">Empty Ideas List...</span>

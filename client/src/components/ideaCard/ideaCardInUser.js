@@ -22,16 +22,7 @@ class IdeaCardInUser extends Component {
   render() {
     return (
       <React.Fragment>
-        {this.props.currentPreviewedIdeas.length > 0 ? 
-          <div id="ideaCardWithButtonsInUser">
-            <div id="userIdeaCard">
-              <IdeaCard idea={this.props.currentPreviewedIdea} enabled={true} showNextPreviousButtons={false} 
-                editable={this.props.editable} deleteable={true} />
-            </div>
-          </div>
-          :
-          ""
-        }
+        
       </React.Fragment>
     )
   }

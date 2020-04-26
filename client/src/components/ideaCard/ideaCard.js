@@ -16,6 +16,10 @@ import DeleteIdeaButton from './deleteIdeaButton';
 class IdeaCard extends Component {
   constructor(props){
     super(props)
+
+    this.state = {
+      idea: this.props.idea
+    }
   }
 
   findIdeaIndex = (idea, ideas) => {
@@ -87,7 +91,8 @@ class IdeaCard extends Component {
   }
 
   render() {
-    if(this.state != null && this.state.idea.content !== undefined){
+    // this.state != null && 
+    if(this.state.idea.content !== undefined){
       return (
         <React.Fragment>
           {/* <div id="ideaCardIdeaArrows">
