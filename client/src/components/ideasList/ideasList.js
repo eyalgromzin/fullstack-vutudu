@@ -9,19 +9,24 @@ import { connect } from 'react-redux';
 class IdeasList extends Component {
   renderItem = (index, key) => {  //key is running number
     var random = Math.random();
-    return <div key={random} onClick={ () => 
-      { 
-        this.userIdeaClicked(this.props.ideas[index]._id) 
-      } 
-    } 
-    className="listRow">   
+    let className = "listRow"
+    if(index == this.props.selectedIndex){
+      className = "selectedListRow"
+    }
+    
+    return <div key={random} onClick={ () => { 
+      this.userIdeaClicked(this.props.ideas[index]._id) 
+      this.props.onSelectedIndexChange(index)
+    } } 
+      className={className}>   
       {this.props.ideas == null || this.props.ideas[index] == null 
       || this.props.ideas[index].title == null || this.props.ideas[index].title == "" ? 
       "empty title"  : this.props.ideas[index].title}
     </div>;
+    
   }
 
-  userIdeaClicked = (id) => {  //doesnt work
+  userIdeaClicked = (id) => {  
     console.log("clicked id: " + id);
     var clickedIdea = this.props.ideas.filter(obj => {
       return obj._id === id

@@ -30,7 +30,8 @@ class searchLayout extends Component {
 		this.state = {
 			refresh: false,
 			place: this.props.place,
-			more: this.props.more
+			more: this.props.more,
+			index: 0,
 		};
 
 		if(this.props.match.params.ideaID !== undefined &&
@@ -77,8 +78,13 @@ class searchLayout extends Component {
     	return null
 	}
 
-	ideaSelected = (idea) => {
+	onSelectedIndexChange = (newIndex) => {
+		this.setState({index: newIndex})
+	}
+
+	ideaSelected = (idea, newIndex) => {
 		this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
+		
 	}
 
  	render() {
@@ -100,10 +106,13 @@ class searchLayout extends Component {
 							<React.Fragment>
 								<div id="searchCardAndList">
 									<div className="searchIdeasList">
-										<IdeasList ideas={this.props.ideas} height={510} onIdeaSelected={this.ideaSelected} />
+										<IdeasList ideas={this.props.ideas} height={510} selectedIndex={this.state.index} 
+										onIdeaSelected={this.ideaSelected} onSelectedIndexChange={this.onSelectedIndexChange} />
 									</div>
 									<div id="searchIdeaCard"> 
-										<IdeaCard idea={this.props.idea} ideas={this.props.ideas} enabled={true} showNextPreviousButtons={true} />
+										<IdeaCard idea={this.props.idea} ideas={this.props.ideas} 
+											onSelectedIndexChange={this.onSelectedIndexChange}
+											enabled={true} showNextPreviousButtons={true} />
 									</div>
 								</div>
 							</React.Fragment>

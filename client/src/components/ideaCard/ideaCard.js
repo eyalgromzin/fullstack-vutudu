@@ -30,18 +30,19 @@ class IdeaCard extends Component {
       return 
     }
     
-    let currentIndex = this.state.currentIdeaIndex
+    let currentIdeaIndex = this.state.currentIdeaIndex
 
-    currentIndex += 1
-    if(currentIndex == ideasCount){
+    currentIdeaIndex += 1
+    if(currentIdeaIndex == ideasCount){
       this.setState({currentIdeaIndex: 0})
-      currentIndex = 0
+      currentIdeaIndex = 0
     }else{
       this.setState({currentIdeaIndex: this.state.currentIdeaIndex +1})
     }
 
-    var currentIdea = this.props.ideas[currentIndex];
-    
+    var currentIdea = this.props.ideas[currentIdeaIndex];
+
+    this.props.onSelectedIndexChange(currentIdeaIndex)
     this.setState({idea: currentIdea}) 
   }
 
@@ -64,6 +65,7 @@ class IdeaCard extends Component {
 
     var currentIdea = this.props.ideas[currentIdeaIndex];
     
+    this.props.onSelectedIndexChange(currentIdeaIndex)
     this.setState({idea: currentIdea}) 
   }
 
