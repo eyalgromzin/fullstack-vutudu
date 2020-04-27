@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     background-color: #ffdac1;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     border-radius: 10px;
     padding: 10px;
     width: 110%;
@@ -30,7 +30,11 @@
 }
 
 #userLayout{
-    margin: 1% 22%;
+    margin: 0% 24%;
+}
+
+#userListAndCard{
+
 }
 
 #userLayoutIdeaPreview{

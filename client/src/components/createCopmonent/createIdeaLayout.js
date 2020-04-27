@@ -9,19 +9,17 @@ import 'components/layout.css'
 class createIdeaLayout extends Component {
   render() {
     return (
-      <React.Fragment>
-        {/* <div className="pageName">Create</div> */}
+      <div id="createIdeaLayout">
+        <div id="createIdeaBar">
+          {/* <div id="createIdeaBarButtons"> */}
+            <CreateIdeaBar isClickedButton={this.props.isClickedButton} />
+            <CreateIdeaButton />
+          {/* </div> */}
+        </div>
         <div className="createMainContent">
-          <div id="createIdeaBar">
-            <div id="createIdeaBarButtons">
-            {/* minNumOfPeople={2} maxNumOfPeople={4} */}
-              <CreateIdeaBar isClickedButton={this.props.isClickedButton} />
-              <CreateIdeaButton />
-            </div>
-          </div>
           <EditableIdeaCard existingTitle="" existingContent="" existingID="" isClickedButton={this.props.isClickedButton} />
         </div>
-      </React.Fragment>
+      </div>
     )
   }
 }

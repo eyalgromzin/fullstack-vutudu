@@ -18,6 +18,10 @@ html, body {
     
 }
 
+#layoutContainer{
+  margin-top: 22px;
+}
+
 .searchIdeasList{
   display: inline-block;
   width: 19%;
@@ -43,5 +47,5 @@ html, body {
 }
 
 .createMainContent{
-  margin: 0% 20%;
+  margin: 0% 25%;
 }

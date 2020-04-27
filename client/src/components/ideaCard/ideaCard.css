@@ -14,11 +14,12 @@
 
 #createIdeaCardContent{
     padding: 20px 0px;
-    background-color: #fff2e2;
+    background-color: #b3c4fd2e;
     border-radius: 20px;
     margin: 0% 10%;
     border: solid;
     border-width: 1px;
+    border-color: #a3d8ff;
 }
 
 #ideaCardIdeaArrows{
@@ -237,11 +238,6 @@
 
 #contentTextAreaWithAttach{
     display: flex;
-    margin-bottom: 5px;
-}
-
-.jodit_wysiwyg_mode{
-    background-color: red;
 }
 
 .jodit_statusbar{
@@ -250,6 +246,11 @@
 
 .jodit_workplace{
     background-color: azure;
+    min-height: 150px;
+}
+
+.jodit_wysiwyg{
+    min-height: 150px;
 }
 
 .jodit_toolbar_container {

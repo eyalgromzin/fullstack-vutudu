@@ -9,9 +9,11 @@
 }
 
 #topBar{
-    /* height: 45px; */
+    height: 50px;
     width: 100%;
     background-color: white;
+    display: flex;
+    justify-content: space-between;
     border-bottom: solid;
     border-bottom-color: lightgrey;
 }
@@ -19,10 +21,11 @@
 #mainLogoText{
     font-size: 35px;
     vertical-align: bottom;
+    font-family: cursive;
 }
 
 #rightSideButtons{
-    height: 15px;
+    height: 0px;
     text-align: right;
     margin-right: 5px;
     padding-top: 5px;
@@ -83,13 +86,15 @@
 }
 
 #createIdeaBar{
-    margin: 0px 10%;
+    margin: 0px 25%;
     margin-bottom: 35px;
-    padding-top: 10px;
-    margin-top: 20px;
-    text-align: center;
-    background-color: #b5ead7;
+    border-bottom-width: 2px;
+    background-color: #97d1ff73;
     border-radius: 20px;
+}
+
+#searchCardAndList{
+    margin: 0% 5%;
 }
 
 .pageName{
@@ -100,11 +105,9 @@
     margin-bottom: 7px;
 }
 
-#createIdeaBarButtons{
-    text-align: center;
-}
-
 #mainLogoImage{
-    height: 63px;
+    height: 40px;
     margin-left: 5px; 
+    vertical-align: super;
+    margin-right: 5px;
 }

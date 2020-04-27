@@ -40,12 +40,14 @@ class CreateIdeaBar extends Component {
     return (
       <React.Fragment>
         <div id="createBar" className="inlineBlock">
-            <PlaceField tagID="createBarPlaceSelector" isClickedButton={this.props.isClickedButton}
-              placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
-              validationMethod={this.isNotEmpty} placeSuggestions={[]}
-              placeFieldLocation="create" />
+            <div id="createBarPlaceFieldContainer">
+              <PlaceField tagID="createBarPlaceSelector" isClickedButton={this.props.isClickedButton}
+                placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
+                validationMethod={this.isNotEmpty} placeSuggestions={[]}
+                placeFieldLocation="create" />
+            </div>
             <TimeCreator onMinTimeChangeEvent={this.onMinTimeChangeEvent} onMaxTimeChangeEvent={this.onMaxTimeChangeEvent} 
-              cssClass="createBarDropDown" minTime={this.props.minTime} maxTime={this.props.maxTime} /> 
+              minTime={this.props.minTime} maxTime={this.props.maxTime} /> 
             <NumOfPeopleCreator cssClass="createBarDropDown" 
               minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
         </div> 

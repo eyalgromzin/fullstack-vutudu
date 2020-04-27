@@ -1,68 +1,17 @@
-- left right buttons in idea card in top bar dont work
-
 UI -
-    search layout - 
-        - make images look nice in top bar
-        - top bar looks like shit - but good color 
-    
-    create layout - looks really like shit. all!!!
-        - idea card - try other 
-    
-    user layout - 
-        - created / liked drop down looks bad 
-        - idea card background is not good there. 
-    
-    - try bootstrap
-    
-    - change all website to bootstrap!!
+    - notifications - check they are pretty , if not , change them
+        - create idea
+        - delete idea
+        - edit -> save idea
 
+    animations - 
+        - only login screen - should show gradually
 
+- left right buttons in idea card in top bar dont work
+- user -> created -> not showing edit button
 - on user page open - show the first created item automatically
-    
-
+- when changing tab after login , the color doesnt change in the top bar button
 
 - change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- on mobil - parse idea html to show idea normally
+- on mobile - parse idea html to show idea normally

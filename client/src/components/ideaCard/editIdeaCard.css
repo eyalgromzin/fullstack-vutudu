@@ -12,12 +12,15 @@ input:focus {
 }
 
 #newIdeaTitle{
-    background-color: #fff2e2;
+    background-color: rgba(0,0,255,0.0);
     border: none;
     float: left;
     width: 97%;
     margin-bottom: 10px;
-    font-size: 30px;
+    font-size: 27px;
+    padding-left: 5px;
+    color: #5e6131;
+    border-color: darkcyan;
 }
 
 #contentEditor{
@@ -41,7 +44,9 @@ input:focus {
 }
 
 #createIdeaButtonContainer{
-    width: 15%;
+    width: 18%;
+    text-align: center;
+    margin-right: 2%;
 }
 
 .userPageIdeaButton{
@@ -53,9 +58,10 @@ input:focus {
 
 #createIdeaButton{
     display: inline-block;
-    padding: 12px;
-    padding-right: 23px;
-    padding-left: 23px;
+    height: 36px;
+    padding: 5px;
+    padding-right: 18px;
+    padding-left: 17px;
     background-color: bisque;
     font-family: cursive;
     cursor: pointer;

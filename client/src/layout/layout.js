@@ -51,18 +51,17 @@ class Layout extends Component {
           : ""
           } */}
           
-          
-
           <Router>
-            
             <React.Fragment>
               <LoginScreen />
               <TopBar />
-              <Route path="/" component={searchLayout} exact />
-              <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-              <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
-              <Route path="/create" component={createIdeaLayout} />
-              <Route path="/user" component={userPageLayout} />
+              <div id="layoutContainer">
+                <Route path="/" component={searchLayout} exact />
+                <Route path="/search/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+                <Route path="/idea/:ideaID/:place?/:time?/:numOfPeople?/:more?" component={searchLayout} /> 
+                <Route path="/create" component={createIdeaLayout} />
+                <Route path="/user" component={userPageLayout} />
+              </div>
             </ React.Fragment>
           </Router>
         </React.Fragment>

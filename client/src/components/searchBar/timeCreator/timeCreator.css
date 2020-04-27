@@ -4,13 +4,29 @@
 
 #timeCreatorField{
     display: inline-block;
+    width: 30%;
+    margin-right: 1%;
 }
 
-					
+.timeCreatorCommon{
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+}
+
 #minTimeCreator{
-    width: 100px;
+    width: 46%;
 }
 
 #maxTimeCreator{
-    width: 100px;
+    width: 46%;
+}
+
+#timeCreatorDivider{
+    width: 1%;
+    margin-left: 1%;
+}
+
+#timeCreatorSelectors{
+    text-align: center;
 }

@@ -48,12 +48,12 @@ class NumOfPeopleSelector extends Component {
     return (
       <React.Fragment>
         <div id="numOfPeopleSelector" className="inlineBlock searchBarComboBox">
-          <div className="fieldHeader"><img src={require("images/heads_black.png")}  alt="" className="searchBarIcon" id="editIdeaButton" /></div>
+          <div className="fieldHeader"><img src={require("images/heads_black.png")}  alt="" className="searchBarIcon" /></div>
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
             <option value="10" className="timeChooserOption">1</option>
             <option value="20" className="timeChooserOption">2</option>
-            <option value="2" className="timeChooserOption">couple</option>
+            <option value="2" className="timeChooserOption">Couple</option>
             <option value="30" className="timeChooserOption">3</option>
             <option value="40" className="timeChooserOption">4</option>
             <option value="50" className="timeChooserOption">5</option>

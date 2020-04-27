@@ -119,16 +119,16 @@ class userPageLayout extends Component {
             {logoutButton}
           </div>
 
-          <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
-            <div className="fieldHeader">   </div>
-            <div id="UserIdeasTypeDropDown" onClick={this.onIdeaTypeDropDownClick}>
-              <UserIdeasTypeDropDown />    
+          <div id="userListAndCard">
+            <div id="userLayoutIdeasSelectSideBar" className="userLayoutMainContent">
+              <div id="UserIdeasTypeDropDown" onClick={this.onIdeaTypeDropDownClick}>
+                <UserIdeasTypeDropDown />    
+              </div>
+              {userIdeasList}
             </div>
-            {userIdeasList}
-          </div>
-
-          <div id="userLayoutIdeaPreview">
-            {userIdeaCard}
+            <div id="userLayoutIdeaPreview">
+              {userIdeaCard}
+            </div>
           </div>
         </div>
       </React.Fragment>

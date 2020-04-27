@@ -39,7 +39,7 @@ export default class TimePicker extends Component {
 		return (
 			<React.Fragment>
 				<div id="timePickerField" className="inlineBlock searchBarComboBox">
-					<div className="fieldHeader"><img src={require("images/time.png")} className="searchBarIcon" alt=""  id="editIdeaButton" /></div>
+					<div className="fieldHeader"><img src={require("images/time.png")} className="searchBarIcon" alt="" /></div>
 					<select
 						id="timePicker"
 						value={this.state.time}

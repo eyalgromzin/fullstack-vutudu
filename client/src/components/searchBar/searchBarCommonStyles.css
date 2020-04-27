@@ -1,7 +1,7 @@
 .searchBarIcon{
     height:20px;
     width:20px;
-    margin-right: 5px;
+    vertical-align: bottom;
 }
 
 .searchBarText{
@@ -18,12 +18,10 @@
     box-shadow: 0px 0px 20px 2px;
 }
 
-#createBarNumOfPeopleCreator{
-    margin-right: 10px;
-}
-
 #createBar{
-    width: 80%;
+    width: 78%;
+    text-align: left;
+    margin-left: 2%;
 }
 
 .createBarDropDown{
@@ -38,28 +36,37 @@
     border-radius: 4px;
 }
 
+#searchPlaceFieldContainer{
+    width:33%;
+    display: inline-block;
+    margin-right: 1%;
+}
+
 .numOfPeopleCreatorDropDown{
-    width: 110px;
-    height: 47px;
+    width: 47%;
+    height: 30px;
     /* margin-right: 10px; */
-    padding: 10px 10px;
-    font-family: Helvetica, sans-serif;
-    font-weight: 300;
-    font-size: 20px;
+    /* padding: 10px 10px; */
+    /* font-family: Helvetica, sans-serif; */
+    /* font-weight: 300; */
+    /* font-size: 20px; */
     border: 1px solid #aaa;
     border-radius: 4px;
 }
 
- .searchBarChooserContainer{
+.createBarCommon{
+    font-size: 16px;
+}
+
+ #numOfPeopleCreator{
     display: inline-block;
-    /* background-color: white; */
-    /* margin-right: 10px; */
+    width: 31%;
+    margin-right: 1%;
 } 
 
 #searchBar{
     margin-bottom: 25px; 
-    margin-top: 20px;
-    background-color: #c7ceea;
+    background-color: #c7ceeab3;
     padding-top: 10px;
     /* padding-bottom: 5px; */
     text-align: center;
@@ -72,13 +79,8 @@
 }
 
 .searchBarTextField{
-    margin-right: 1%;
-    width: 30%;
-}
-
-.createBarTextField{
     margin-right: 2%;
-    width: 33%;
+    width: 30%;
 }
 
 .searchBarComboBox{
@@ -86,15 +88,10 @@
     margin-right: 1%;
 }
 
-
-.searchBarIcon{
-    width: 20px;
-    height: 20px;
-}
-
-.createBarComboBox{
-    /* width: 35%; */
+#createBarPlaceFieldContainer{
+    display: inline-block;
     margin-right: 1%;
+    width: 33%;
 }
 
 .topBarName{
@@ -121,19 +118,18 @@
 
 .searchBarDropDownSquare{
     width: 100%;
-    height: 47px;
-    /* margin-right: 10px; */
-    /* padding: 10px 10px; */
+    height: 30px;
+    padding-left: 3px;
     font-family: Helvetica, sans-serif;
     font-weight: 300;
     font-size: 20px;
-    border: 1px solid #aaa;
+    border: none;
     border-radius: 4px;
 }
 
 .createBarMiddlePlaceHolder{
-    font-size: 30px;
-    margin: -5px;
+    width: 1%;
+    margin-left: 1%;
 }
 
 .middlePlaceHolder{
@@ -156,8 +152,9 @@
 }
 
 .fieldHeader{
-    font-size: 21px;
-    margin-left: 5px;
+    height: 30px;
+    /* font-size: 21px; */
+    /* margin-left: 5px; */
     text-align: center;
 }
 

@@ -21,6 +21,8 @@
 
 .invisible{
     opacity: 0;
+    font-size: 7px;
+    height: 10px;
 }
 
 .userLayoutMainContent{
@@ -71,14 +73,14 @@
 
 #mainLogo{
     color: black;
-    font-size: 65px;
-    /* font-family: fantasy; */
+    padding-bottom: 5px;
     font-weight: bold;
+    text-align: center;
+    margin-left: 1%;
+    /* font-family: fantasy; */
     /* text-align: center; */
     /* padding-top: 100px; */
-    text-align: center;
     /* margin-left: 40%; */
-    text-align: center;
 }
 
 .alignMiddleDiv{

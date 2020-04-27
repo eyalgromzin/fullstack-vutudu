@@ -56,14 +56,16 @@ class SearchBar extends Component {
 		return (
 			<div id="searchBar">
 				<div id="searchBarButtons">
-					<PlaceField
-						tagID="searchBarPlaceSelector"
-						isClickedButton={this.props.isClickedSearch}
-						placeOnChangeEvent={this.placeOnChangeEvent}
-						place={this.props.place}
-						placeSuggestions={[]}
-						placeFieldLocation="search"
-					/>
+					<div id="searchPlaceFieldContainer">
+						<PlaceField
+							tagID="searchBarPlaceSelector"
+							isClickedButton={this.props.isClickedSearch}
+							placeOnChangeEvent={this.placeOnChangeEvent}
+							place={this.props.place}
+							placeSuggestions={[]}
+							placeFieldLocation="search"
+						/>
+					</div>
 						{/* validationMethod={this.isNotEmpty} */}
 					<TimePicker
 						onChangeEvent={this.timeOnChangeEvent}

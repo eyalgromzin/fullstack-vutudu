@@ -44,27 +44,28 @@ export default class TimeCreator extends Component {
 				
 				<div id="timeCreatorField" className="inlineBlock createBarComboBox">
 					<div className="fieldHeader">Time</div>
-					<select
-						id="minTimeCreator"
-						value={this.state.minTime}
-						onChange={this.onMinTimeChangeEvent}
-						className={this.props.cssClass}
-					>
-						<option value="5" className="timeChooserOption">5 min</option>
-						<option value="10" className="timeChooserOption">10 min</option>
-						<option value="15" className="timeChooserOption">15 min</option>
-						<option value="30" className="timeChooserOption">30 min</option>
-						<option value="60" className="timeChooserOption">1 hour</option>
-						<option value="180" className="timeChooserOption">3 hours</option>
-						<option value="300" className="timeChooserOption">half day (5h)</option>
-						<option value="480" className="timeChooserOption">full day+ (8h+)</option>
-					</select>
-					<span>- </span>
-					<select
+					<div id="timeCreatorSelectors" >
+						<select
+							id="minTimeCreator"
+							value={this.state.minTime}
+							onChange={this.onMinTimeChangeEvent}
+							className={this.props.cssClass + " timeCreatorCommon"}
+						>
+							<option value="5" className="timeChooserOption">5 min</option>
+							<option value="10" className="timeChooserOption">10 min</option>
+							<option value="15" className="timeChooserOption">15 min</option>
+							<option value="30" className="timeChooserOption">30 min</option>
+							<option value="60" className="timeChooserOption">1 hour</option>
+							<option value="180" className="timeChooserOption">3 hours</option>
+							<option value="300" className="timeChooserOption">half day (5h)</option>
+							<option value="480" className="timeChooserOption">full day+ (8h+)</option>
+						</select>
+						<span id="timeCreatorDivider">- </span>
+						<select
 						id="maxTimeCreator"
 						value={this.state.maxTime}
 						onChange={this.onMaxTimeChangeEvent}
-						className={this.props.cssClass}
+						className={this.props.cssClass + " timeCreatorCommon"}
 					>
 						<option value="5" className="timeChooserOption">5 min</option>
 						<option value="10" className="timeChooserOption">10 min</option>
@@ -75,6 +76,7 @@ export default class TimeCreator extends Component {
 						<option value="300" className="timeChooserOption">half day (5h)</option>
 						<option value="480" className="timeChooserOption">full day+ (8h+)</option>
 					</select>
+					</div>
 					<div className="invisible">error</div>
 				</div>
 			</React.Fragment>

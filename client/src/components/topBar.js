@@ -53,6 +53,12 @@ class TopBar extends Component {
     <div id="topBar">
       <Route render={({history}) => (
         <React.Fragment>
+          <div id="mainLogo" className=""> 
+            <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />     
+            <span id="mainLogoText">VUTUDU</span>
+          </div> 
+
+          
           <div id="rightSideButtons">
             <img id="searchIdeasButton" src={require("images/search.png")} 
             className={this.state.currentPage == "search"? 
@@ -74,10 +80,7 @@ class TopBar extends Component {
               } />
           </div>
           
-          <div id="mainLogo" className=""> 
-            <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />     
-            <span id="mainLogoText">VUTUDU</span>
-          </div> 
+          
           
 
         </React.Fragment> 
