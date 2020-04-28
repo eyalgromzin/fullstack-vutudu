@@ -4,6 +4,7 @@ import IdeaCard from '../ideaCard/ideaCard';
 import TopTable from 'components/topTable/topTable';
 import 'commonCss.css';
 import 'components/layout.css';
+import './searchLayout.css';
 import { connect } from 'react-redux';
 import NoResultsFound from './noResultsFound';
 import { searchItems } from 'actions/ideaActions';
@@ -112,7 +113,9 @@ class searchLayout extends Component {
 										<div id="searchIdeaCard"> 
 											<IdeaCard idea={this.props.ideas[0]} ideas={this.props.ideas} 
 												onSelectedIndexChange={this.onSelectedIndexChange}
-												enabled={true} showNextPreviousButtons={true} />
+												enabled={true} showNextPreviousButtons={true} 
+												cardLeftArrowContainerClassName="searchCardLeftArrowContainer" 
+												cardRightArrowContainerClassName="searchCardRightArrowContainer"/>
 										</div>
 									</div>
 								</React.Fragment>

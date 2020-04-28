@@ -1,0 +1,26 @@
+.searchCardRightArrowContainer{
+    width: 7%;
+    position: absolute;
+    margin-left: 28.5%;
+    text-align: center;
+    height: 56%;
+    background-color: tan;
+    opacity: 0;
+}
+
+.searchCardRightArrowContainer:hover {
+    opacity: 0.2;
+}
+
+.searchCardLeftArrowContainer{
+    width: 7%;
+    position: absolute;
+    height: 56%;
+    background-color: tan;
+    opacity: 0;
+    text-align: center;
+}
+
+.searchCardLeftArrowContainer:hover{
+    opacity: 0.2;
+}

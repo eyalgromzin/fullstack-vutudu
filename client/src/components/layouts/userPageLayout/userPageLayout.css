@@ -13,6 +13,33 @@
     
 }
 
+.userCardLeftArrowContainer{
+    width: 7%;
+    position: absolute;
+    height: 55.5%;
+    background-color: antiquewhite;
+    opacity: 0;
+    text-align: center;
+}
+
+.userCardLeftArrowContainer:hover{
+    opacity: 0.4;   
+}
+
+.userCardRightArrowContainer{
+    width: 7%;
+    position: absolute;
+    margin-left: 31%;
+    height: 55.5%;
+    background-color: antiquewhite;
+    opacity: 0;
+    text-align: center;
+}
+
+.userCardRightArrowContainer:hover{
+    opacity: 0.2;
+}
+
 #userNameAndLogourBar{
     display: flex;
     justify-content: space-between;

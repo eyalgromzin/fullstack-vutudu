@@ -96,3 +96,30 @@ outline: 1px solid slategrey;
     padding-right: 0px;
     margin: 0% 7%;
 }
+
+.topTableCardLeftArrowContainer{
+    width: 7%;
+    position: absolute;
+    height: 56%;
+    background-color: tan;
+    text-align: center;
+    opacity: 0;
+}
+
+.topTableCardLeftArrowContainer:hover{
+    opacity: 0.2;
+}
+
+.topTableCardRightArrowContainer{
+    width: 7%;
+    text-align: center;
+    position: absolute;
+    margin-left: 29.5%;
+    height: 55.5%;
+    background-color: tan;
+    opacity: 0;
+}
+
+.topTableCardRightArrowContainer:hover{
+    opacity: 0.2;
+}

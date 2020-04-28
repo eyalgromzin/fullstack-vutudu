@@ -114,10 +114,10 @@ class IdeaCard extends Component {
             <div id="ideaCardWithButtons">
               <div id="ideaCardWithShare" >
                 <div id="ideaCard"> 
-                  <div id="cardLeftArrowContainer" className="cardHoverArrow" onClick={this.leftArrowClick}>
+                  <div id="cardLeftArrowContainer" className={this.props.cardLeftArrowContainerClassName} onClick={this.leftArrowClick}>
                     <img id="ideaCardLeftArrow" src={require("images/leftArrow.png")}  />
                   </div>
-                  <div id="cardRightArrowContainer" className="cardHoverArrow" onClick={this.rightArrowClick} >
+                  <div id="cardRightArrowContainer" className={this.props.cardRightArrowContainerClassName} onClick={this.rightArrowClick} >
                     <img id="ideaCardRightArrow" src={require("images/rightArrow.png")} />
                   </div>
                   <div className="ideaTitle"> 

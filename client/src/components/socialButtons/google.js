@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import GoogleLogin from 'react-google-login';
 import './socialButtons.css'
 import { connect } from 'react-redux';
-import { CHANGE_LOGGED_IN_STATE } from 'reducers/types'
-import { CHANGE_LOGGED_IN_TYPE } from 'reducers/types'
+import { 
+    CHANGE_LOGGED_IN_STATE,
+    SET_CURRENT_PAGE,
+    CHANGE_LOGGED_IN_TYPE,
+} from 'reducers/types'
 import {loggedInWith} from 'common'
+import store from 'store'
 import { useHistory } from "react-router-dom";
 
 class GoogleButton extends Component {
@@ -22,6 +26,7 @@ class GoogleButton extends Component {
             // const history = useHistory();
             // history.push("/" + this.props.pageAfterLogin);
             this.context.history.push('/some/path')
+            store.dispatch({type: SET_CURRENT_PAGE, payload: this.props.pageAfterLogin});
         }
     }
 

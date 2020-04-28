@@ -10,7 +10,7 @@ import { addPlaceToDBIfNotExists } from 'actions/autoSuggestActions'
 import { 
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
 } from 'reducers/types'
-import {showLogInScreen} from 'actions/commonActions'
+import { showLogInScreen } from 'actions/commonActions'
 import { getTagsFromContent } from 'commonUtils'
 import Dialog from 'react-bootstrap-dialog'
 import Modal from 'react-bootstrap/Modal'

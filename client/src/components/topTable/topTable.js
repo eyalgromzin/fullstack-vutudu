@@ -158,7 +158,9 @@ class topTable extends Component {
         </div>
         <div id="topTableIdea">
           <IdeaCard idea={this.state.idea} ideas={this.state.ideas} 
-              onSelectedIdeaChange={this.onSelectedIdeaChange} enabled={true} showNextPreviousButtons={true} />
+              onSelectedIdeaChange={this.onSelectedIdeaChange} enabled={true} showNextPreviousButtons={true} 
+              cardLeftArrowContainerClassName="topTableCardLeftArrowContainer" 
+              cardRightArrowContainerClassName="topTableCardRightArrowContainer"/>
         </div>
       </div>
     </React.Fragment>

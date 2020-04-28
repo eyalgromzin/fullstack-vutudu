@@ -73,7 +73,8 @@ class userPageLayout extends Component {
               <div id="userIdeaCard">
                 <IdeaCard idea={this.props.currentPreviewedIdea} enabled={true} showNextPreviousButtons={true} 
                   editable={this.props.editable} deleteable={true} ideas={this.props.currentPreviewedIdeas}
-                  onSelectedIndexChange={this.onSelectedIndexChange} />
+                  onSelectedIndexChange={this.onSelectedIndexChange} cardLeftArrowContainerClassName="userCardLeftArrowContainer" 
+                  cardRightArrowContainerClassName="userCardRightArrowContainer" />
               </div>
             </div>
             :

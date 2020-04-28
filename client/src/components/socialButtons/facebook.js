@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import { loadOrCreateUserIfNotExists } from 'actions/userActions'
 import { bindActionCreators } from 'redux';
 import './socialButtons.css'
-import {CHANGE_LOGGED_IN_TYPE} from 'reducers/types'
+import {
+  CHANGE_LOGGED_IN_TYPE,
+  SET_CURRENT_PAGE
+} from 'reducers/types'
 import store from 'store'
 import {loggedInWith} from 'common'
 // import { useHistory } from "react-router-dom";
@@ -57,6 +60,7 @@ class facebook extends Component {
         this.setState({isToRedirect: true})
         const history = createHistory();
         history.push("/" + this.props.pageAfterLogin);
+        store.dispatch({type: SET_CURRENT_PAGE, payload: this.props.pageAfterLogin});
         // in your function then call add the below 
         // const history = createHistory();
         // // Use push, replace, and go to navigate around.
@@ -93,13 +97,6 @@ class facebook extends Component {
     )
   }
 }
-
-// facebook.propTypes = {
-//   history: PropTypes.shape({
-//     push: PropTypes.func.isRequired
-//   }),
-//   to: PropTypes.string.isRequired
-// };
 
 function mapDispatchToProps(dispatch) {
   return({

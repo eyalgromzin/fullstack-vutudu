@@ -9,6 +9,7 @@ import {
   SET_TOP_TABLE_IS_IDEA_CLICKED,
   CHANGE_SEARCHED_STATE,
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
+  SET_CURRENT_PAGE,
 } from 'reducers/types'
 
 class TopBar extends Component {
@@ -25,7 +26,7 @@ class TopBar extends Component {
       showLogInScreen('create', history);
     }else{  
       this.props.dispatch({type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, value: false})
-      this.setState({currentPage: "newIdea"})
+      this.setState({currentPage: "create"})
       history.push('/create')
     }
   }
@@ -48,6 +49,24 @@ class TopBar extends Component {
   }
     
   render() {
+    let selectedTab = ""
+    if(this.state.currentPage == "search") selectedTab = "search" 
+    if(this.state.currentPage == "create") selectedTab = "create" 
+    if(this.state.currentPage == "user") selectedTab = "user" 
+
+    if(this.props.currentPage == "search" && this.state.currentPage != "search") {
+      this.setState({currentPage: "search" })
+      this.props.dispatch({type: SET_CURRENT_PAGE, value: ""})
+    }
+    if(this.props.currentPage == "create" && this.state.currentPage != "create") {
+      this.setState({currentPage: "create" })
+      this.props.dispatch({type: SET_CURRENT_PAGE, value: ""})
+    }
+    if(this.props.currentPage == "user" && this.state.currentPage != "user"){
+      this.setState({currentPage: "user" })
+      this.props.dispatch({type: SET_CURRENT_PAGE, value: ""})
+    } 
+
     return (
     <React.Fragment>
     <div id="topBar">
@@ -57,8 +76,6 @@ class TopBar extends Component {
             <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />     
             <span id="mainLogoText">VUTUDU</span>
           </div> 
-
-          
           <div id="rightSideButtons">
             <img id="searchIdeasButton" src={require("images/search.png")} 
             className={this.state.currentPage == "search"? 
@@ -67,7 +84,7 @@ class TopBar extends Component {
               onClick={() => this.searchClick(history)} />
 
             <img id="newIdeaButton" src={require("images/plus.png")} 
-            className={this.state.currentPage == "newIdea"? 
+            className={this.state.currentPage == "create"? 
             "topBarIconSelected tilt clickAnimation" : 
             "topBarIcon tilt clickAnimation" } alt="" 
               onClick={() => this.showCreateIdeaScreen(history) } />
@@ -94,6 +111,7 @@ class TopBar extends Component {
 function mapStateToProps(state) {
   return {
     loggedIn: state.commonReducer.loggedIn,
+    currentPage: state.commonReducer.currentPage
   };
 }
 

@@ -186,7 +186,7 @@
     float: left;
 }
 
-#cardLeftArrowContainer{
+.cardLeftArrowContainer{
     width: 7%;
     position: absolute;
 }
@@ -203,16 +203,16 @@
 }
 
 .cardHoverArrow{
-    height: 50%;
+    height: 55.5%;
     opacity: 0.0;
     background-color: papayawhip;
     text-align: center;
 }
 
-#cardRightArrowContainer{
-    width: 6.5%;
+.cardRightArrowContainer{
+    width: 7%;
     position: absolute;
-    margin-left: 33%;
+    margin-left: 29.5%;
 }
 
 #ideaCardRightArrow{
