@@ -13,8 +13,8 @@ import {
 	SET_USER_CURRENT_PREVIEWED_IDEAS,
 	USER_SET_SELECTED_DROPDOWN_TYPE,
 	SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
-  UPDATE_PREVIEWED_IDEAS,
-  USER_PAGE_SHOW_NEXT_CREATED_IDEA,
+	UPDATE_PREVIEWED_IDEAS,
+	USER_PAGE_SHOW_NEXT_CREATED_IDEA,
 	USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
 	USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
 	UPDATE_LIKED_IDEAS_IDEA,
@@ -204,15 +204,15 @@ function reducer(state = initialState, action) {
 				...state,
 				isIdeaEdited: action.payload
 			};
-    case SET_USER_CURRENT_PREVIEWED_IDEA:
-      let newPreviewedIdea = action.payload
-			let currentIdeaIndex = state.createdIdeas.findIndex(idea => idea.content == newPreviewedIdea.content && idea.title == newPreviewedIdea.title)
+		case SET_USER_CURRENT_PREVIEWED_IDEA:
+			// let newPreviewedIdea = action.payload
+			// let currentIdeaIndex = state.createdIdeas.findIndex(idea => idea.content == newPreviewedIdea.content && idea.title == newPreviewedIdea.title)
       
 			return {
 				...state,
-        currentPreviewedIdea: action.payload,
-        currentPreviewedIdeaIndex: currentIdeaIndex
+				currentPreviewedIdea: action.payload,
 			};
+		// currentPreviewedIdeaIndex: currentIdeaIndex
 		case UPDATE_CURRENT_PREVIEWED_USER_IDEA:
 			let currentPreviewedIdea = dcopy(state.currentPreviewedIdea);
 

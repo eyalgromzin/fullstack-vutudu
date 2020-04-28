@@ -10,6 +10,7 @@ import {
   } from "reducers/types";
 import { copyUserIdeas } from 'actions/userActions'
 import store from 'store'
+import './userIdeasTypeDropDown.css'
 
 export const LIKED_IDEAS = "LIKED_IDEAS";
 export const DONE_IDEAS = "DONE_IDEAS";
@@ -46,9 +47,9 @@ class UserIdeasTypeDropDown extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="uderIdeasTypeDropDownContainer">
         <Dropdown className='UserIdeasTypeDropDown' options={this.options} onChange={this.onChange} value={this.defaultOption} placeholder="Select an option" />
-      </React.Fragment>
+      </div>
     )
   }
 }

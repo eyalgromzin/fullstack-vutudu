@@ -24,7 +24,6 @@ class IdeaCard extends Component {
       currentIdeaIndex: currentIdeaIndex,
       ideas: props.ideas,
       idea: props.idea,
-      isFoundIndex: false
     }
   }
 
@@ -83,14 +82,10 @@ class IdeaCard extends Component {
       if(nextProps != null && nextProps.idea !== undefined){
         if(nextProps.idea._id != this.props.idea._id){
           let index = findIdeaIndex(nextProps.idea, nextProps.ideas)
-          
-          if(this.state.isFoundIndex == false){
-            this.setState({
-              idea: nextProps.idea,
-              currentIdeaIndex: index,
-              isFoundIndex: true
-            })
-          }
+          this.setState({
+            idea: nextProps.idea,
+            currentIdeaIndex: index,
+          })
         }
       }
       

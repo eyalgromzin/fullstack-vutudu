@@ -22,7 +22,7 @@ const db = "mongodb://eyalgromzin:vutuduPassword11@cluster0-shard-00-00-v6pxg.mo
 
 // Connect to Mongo
 mongoose
-  .connect(db, {useNewUrlParser: true}) // Adding new mongo url parser
+  .connect(db, {useNewUrlParser: true, useUnifiedTopology: true}) // Adding new mongo url parser
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 

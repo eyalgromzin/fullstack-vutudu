@@ -1,4 +1,16 @@
 .UserIdeasTypeDropDown{
-    width: 400px;
+    width: 100%;
     margin-bottom: 30px;
+    border-bottom: solid;
+    margin-bottom: 4px;
+    border-width: 2px;
+}
+
+.uderIdeasTypeDropDownContainer{
+    /* width: 4%; */
+}
+
+.Dropdown-control{
+    border: none;
+    background-color:rgba(0,0,255,0.0);
 }
