@@ -141,7 +141,7 @@ function mapStateToProps(state) {
 		place: state.searchBarReducer.place,
 		time: state.searchBarReducer.time,
 		numOfPeople: state.searchBarReducer.numOfPeople,
-		more: state.searchBarReducer.more
+		more: state.searchBarReducer.more,
 	};
 }
 

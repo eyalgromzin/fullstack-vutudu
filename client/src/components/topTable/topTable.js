@@ -5,7 +5,7 @@ import store from 'store'
 import { connect } from 'react-redux';
 import IdeaCard from 'components/ideaCard/ideaCard'
 import 'components/ideasList/ideasList.css';
-import { SET_CURRENT_IDEA } from '../../reducers/types';
+import { IS_TOP_TABLE_SHOULD_BE_CLEAN } from '../../reducers/types';
 import { findIdeaIndex } from 'commonUtils'
 
 //on click, open the idea in the middle like in search
@@ -18,13 +18,15 @@ class topTable extends Component {
       ideas: [],
       isIdeaClicked: false,
       idea: {},
-      selectedIndex: 0
+      selectedIndex: 0,
     }
   }
 
   ideasCount = 5
 
   showIdea = (idea) => {
+    this.props.dispatch({ type: IS_TOP_TABLE_SHOULD_BE_CLEAN, payload: false })
+
     let ideas = [...this.props.topNewestIdeas,...this.props.topPopularIdeas, ...this.props.topLikedIdeas]
     this.setState({ ideas: ideas })
     this.setState({ idea: idea })
@@ -32,6 +34,7 @@ class topTable extends Component {
 
     let selectredIdeaIndex = findIdeaIndex(idea, ideas)
     this.setState({ selectedIndex: selectredIdeaIndex })
+
   }
 
   renderCombinedItems = (index, key) => {  //key is running number
@@ -166,11 +169,25 @@ class topTable extends Component {
     </React.Fragment>
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    if(nextProps != this.props){
+      return true
+    }
+
+    if(nextState != this.state){
+      return true
+    }
+
+    this.setState({ shouldBeClean: this.props.shouldBeClean })
+  }
+
   render() {
     var selectedTopTable = this.createSelectedTopTable()
     var unselectedTopTable = this.createUnselectedTopTable()
 
-    if(this.state.isIdeaClicked){
+    if(this.props.shouldBeClean){
+      return unselectedTopTable 
+    }else if(this.state.isIdeaClicked){
       return selectedTopTable
     }else{
       return unselectedTopTable 
@@ -183,6 +200,7 @@ function mapStateToProps(state) {
     topLikedIdeas: state.topTableReducer.topLikedIdeas,
     topPopularIdeas: state.topTableReducer.topPopularIdeas,
     topNewestIdeas: state.topTableReducer.topNewestIdeas,
+    shouldBeClean: state.searchPageReducer.isTopTableShouldBeClean
   };
 }
 

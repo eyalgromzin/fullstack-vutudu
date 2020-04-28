@@ -1,5 +1,3 @@
-- if - left side scroller in top table is overflow y, show icon at the bottom of down arrow. 
-- user -> created -> not showing edit button - should be like it :)
 - on top bar search button click , should change the top table back to show all the ideas 
 
 
@@ -33,8 +31,8 @@
 
 
 
+- user -> created -> not showing edit button - should be like it ????
 - change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
-
 - on mobile - parse idea html to show idea normally
 
 - notifications - check they are pretty , if not , change them

@@ -15,6 +15,7 @@ import { SET_SEARCH_IDEAS,
   REMOVE_USER_FROM_IDEA_ADDED_LONG,
   SET_IS_SEARCHING,
   SEARCH_SET_CURRENT_IDEA_BY_ID,
+  IS_TOP_TABLE_SHOULD_BE_CLEAN,
   SET_CURRENT_IDEA } from './types'
 // import dcopy from 'deep-copy'
 var dcopy = require('deep-copy')
@@ -24,6 +25,7 @@ var _ = require('lodash');
 
 const initialState = {
   currentIdeaIndex: 0,
+  isTopTableShouldBeClean: true, 
   currentIdea: { },
   ideas: [{
     _id: '000',
@@ -62,6 +64,11 @@ function reducer(state = initialState, action) {
   let removedArray = '';
 
   switch(action.type) {
+    case IS_TOP_TABLE_SHOULD_BE_CLEAN:
+        return {
+          ...state,
+          isTopTableShouldBeClean: action.payload,
+        };
     case SET_SEARCH_IDEAS:
         return {
           ...state,

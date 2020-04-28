@@ -10,6 +10,7 @@ import {
   CHANGE_SEARCHED_STATE,
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
   SET_CURRENT_PAGE,
+  IS_TOP_TABLE_SHOULD_BE_CLEAN,
 } from 'reducers/types'
 
 class TopBar extends Component {
@@ -45,6 +46,7 @@ class TopBar extends Component {
     this.setState({currentPage: "search"})
     this.props.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: false});
     this.props.dispatch({type: CHANGE_SEARCHED_STATE, payload: false});
+    this.props.dispatch({type: IS_TOP_TABLE_SHOULD_BE_CLEAN, payload: true});
     return history.push('/search')
   }
     

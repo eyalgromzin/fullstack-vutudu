@@ -23,10 +23,10 @@ class EditableIdeaCard extends Component {
   // readonly: false, // all options from https://xdsoft.net/jodit/doc/
 	config = {
     buttons: [ "strikethrough",'underline', 'italic', 'ul', 'ol', 'left', 'center', 'right', 
-                'undo', 'redo', 'image', 'video', 'link', 'fullsize' ],
-    iframeStyle: 'html{margin: 20px; background-color: slategrey;} body{margin: 20px; background-color: red;} ' + 
-                'jodit_statusbar{visibility: hidden;}'
-  }
+                'undo', 'redo', 'image', 'video', 'link', 'fullsize' ]
+              }
+              // iframeStyle: 'html{margin: 20px; background-color: slategrey;} body{margin: 20px; background-color: red;} ' + 
+              //             'jodit_statusbar{visibility: hidden;}'
   
   content = ''
 
@@ -181,7 +181,7 @@ class EditableIdeaCard extends Component {
             </Popup>
           </div>
           {isShowTitleError? <div id="createIdeaTitle" className="fieldError"> {TitleErrorMessage} </div> : "" }
-          <div id="contentTextAreaWithAttach">
+          {/* <div id="contentTextAreaWithAttach"> */}
             <div id="contentEditor">
             <JoditEditor
               ref={this.editor}
@@ -193,7 +193,7 @@ class EditableIdeaCard extends Component {
             />
               
             </div>
-          </div>
+          {/* </div> */}
           {/* <div onClick={this.handleSave}> save </div> */}
           {isShowContentError? <div className="fieldError"> 10-1000 letters</div> : '' }
         </div>
