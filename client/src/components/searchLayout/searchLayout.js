@@ -84,7 +84,6 @@ class searchLayout extends Component {
 
 	ideaSelected = (idea, newIndex) => {
 		this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
-		
 	}
 
  	render() {

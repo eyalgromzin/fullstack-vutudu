@@ -59,6 +59,11 @@ export const moveUnlikedIdeasToBack = (ideas, userID) => {
   return regularIdeas
 }
 
+export const findIdeaIndex = (idea, ideas) => {
+  let index = ideas.findIndex(ideaI => idea._id == ideaI._id)
+  return index < 0? 0 : index
+}
+
 export const getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
   var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
   var matches = [];

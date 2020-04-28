@@ -1,17 +1,17 @@
-UI -
-    - notifications - check they are pretty , if not , change them
-        - create idea
-        - delete idea
-        - edit -> save idea
-
-    animations - 
-        - only login screen - should show gradually
-
-- left right buttons in idea card in top bar dont work
 - user -> created -> not showing edit button
 - on user page open - show the first created item automatically
 - when changing tab after login , the color doesnt change in the top bar button
-
+- if - left side scroller in top table is overflow y, show icon at the bottom of down arrow. 
+- on top bar search button click , should change the top table back to show all the ideas 
 - change mongoose connection - https://github.com/Automattic/mongoose/issues/8156
 
 - on mobile - parse idea html to show idea normally
+
+- notifications - check they are pretty , if not , change them
+    - create idea
+    - delete idea
+    - edit -> save idea
+
+animations - 
+    - only login screen - should show gradually
+

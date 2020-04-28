@@ -6,25 +6,25 @@ import { connect } from 'react-redux';
 import 'commonCss.css'
 import ShareButton from 'components/ideaCard/cardButtons/shareButton'
 import CardIndicators from 'components/ideaCard/cardIndicators'
-import { convertJsonContentToHtml } from 'commonUtils'
+import { findIdeaIndex } from 'commonUtils'
 import LikeDislike from './statsButtons/likesIndicator/likeDislike'
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import IdeaCardContent from 'components/ideaCard/ideaCardContent'
 import EditIdeaButton from 'components/ideaCard/editIdeaButton' 
 import DeleteIdeaButton from './deleteIdeaButton';
 
+
 class IdeaCard extends Component {
   constructor(props){
     super(props)
 
-    this.state = {
-      idea: this.props.idea
-    }
-  }
+    let currentIdeaIndex = findIdeaIndex(props.idea, props.ideas)
 
-  findIdeaIndex = (idea, ideas) => {
-    let index = ideas.findIndex(ideaI => idea.id == ideaI.id)
-    return index < 0? 0 : index
+    this.state = {
+      idea: props.idea,
+      ideas: props.ideas,
+      currentIdeaIndex: currentIdeaIndex
+    }
   }
 
   rightArrowClick = () => {
@@ -37,17 +37,18 @@ class IdeaCard extends Component {
     let currentIdeaIndex = this.state.currentIdeaIndex
 
     currentIdeaIndex += 1
+    
     if(currentIdeaIndex == ideasCount){
-      this.setState({currentIdeaIndex: 0})
       currentIdeaIndex = 0
-    }else{
-      this.setState({currentIdeaIndex: this.state.currentIdeaIndex +1})
     }
 
+    this.setState({currentIdeaIndex: currentIdeaIndex})
+    
     var currentIdea = this.props.ideas[currentIdeaIndex];
-
-    this.props.onSelectedIndexChange(currentIdeaIndex)
     this.setState({idea: currentIdea}) 
+
+    if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(currentIdeaIndex)  //legacy
+    this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)
   }
 
   leftArrowClick = () => {
@@ -60,39 +61,43 @@ class IdeaCard extends Component {
     let currentIdeaIndex = this.state.currentIdeaIndex
 
     currentIdeaIndex--;
+
     if(currentIdeaIndex == -1){
       currentIdeaIndex = this.props.ideas.length - 1;
-      this.setState({currentIdeaIndex: this.props.ideas.length - 1})
-    }else{
-      this.setState({currentIdeaIndex: currentIdeaIndex })
     }
-
-    var currentIdea = this.props.ideas[currentIdeaIndex];
     
-    this.props.onSelectedIndexChange(currentIdeaIndex)
+    this.setState({currentIdeaIndex: currentIdeaIndex })
+    
+    var currentIdea = this.props.ideas[currentIdeaIndex];
     this.setState({idea: currentIdea}) 
+    
+    if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(currentIdeaIndex)  //legacy
+    this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)  
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-    // super(nextProps, nextState)
-    if(nextProps != this.props){
-      if(nextProps != null && nextProps.idea !== undefined){
+  // shouldComponentUpdate(nextProps, nextState){
+  //   // super(nextProps, nextState)
+  //   if(nextProps != this.props){
+  //     if(nextProps != null && nextProps.idea !== undefined){
 
-        this.setState({idea: nextProps.idea,
-          currentIdeaIndex: this.findIdeaIndex(nextProps.idea, nextProps.ideas)})
-      }
+  //       let index = findIdeaIndex(nextProps.idea, nextProps.ideas)
+  //       this.setState({
+  //         idea: nextProps.idea,
+  //         currentIdeaIndex: index 
+  //       })
+  //     }
       
-      return true
-    }
+  //     return true
+  //   }
 
-    if(nextState != this.state){
-      return true
-    }
-  }
+  //   if(nextState != this.state){
+  //     return true
+  //   }
+  // }
 
   render() {
     // this.state != null && 
-    if(this.state.idea.content !== undefined){
+    if(this.state.idea!== undefined && this.state.idea.content !== undefined){
       return (
         <React.Fragment>
           {/* <div id="ideaCardIdeaArrows">

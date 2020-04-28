@@ -4,7 +4,9 @@ import './topTable.css'
 import store from 'store'
 import { connect } from 'react-redux';
 import IdeaCard from 'components/ideaCard/ideaCard'
+import 'components/ideasList/ideasList.css';
 import { SET_CURRENT_IDEA } from '../../reducers/types';
+import { findIdeaIndex } from 'commonUtils'
 
 //on click, open the idea in the middle like in search
 //remove table on search
@@ -15,16 +17,21 @@ class topTable extends Component {
     this.state = {
       ideas: [],
       isIdeaClicked: false,
-      idea: {}
+      idea: {},
+      selectedIndex: 0
     }
   }
 
   ideasCount = 5
 
-  showIdea = (idea, ideas) => {
+  showIdea = (idea) => {
+    let ideas = [...this.props.topNewestIdeas,...this.props.topPopularIdeas, ...this.props.topLikedIdeas]
     this.setState({ ideas: ideas })
     this.setState({ idea: idea })
     this.setState({ isIdeaClicked: true })
+
+    let selectredIdeaIndex = findIdeaIndex(idea, ideas)
+    this.setState({ selectedIndex: selectredIdeaIndex })
   }
 
   renderCombinedItems = (index, key) => {  //key is running number
@@ -37,19 +44,31 @@ class topTable extends Component {
       title = this.props.topLikedIdeas[index - 13].title
     }
 
-    if(index == 0) return <div className="combinedListHeader">liked</div>
+    if(index == 0) return <div className="combinedListHeader">Newest</div>
     if(index == 6) return <div className="combinedListHeader">popular</div>
-    if(index == 12) return <div className="combinedListHeader">newest</div>
+    if(index == 12) return <div className="combinedListHeader">Liked</div>
 
-    return <div onClick={ () => { this.showCombinedIdea(index) } }
-              key={Math.random()}
-              className="listRow" >  
-              {title}
-            </ div>
+    let actualIndex = 0
+    if(this.state.selectedIndex >= 0) actualIndex = this.state.selectedIndex + 1
+    if(this.state.selectedIndex >= 5) actualIndex = this.state.selectedIndex + 2
+    if(this.state.selectedIndex >= 10) actualIndex = this.state.selectedIndex + 3
+
+    if(index == actualIndex){
+      return <div onClick={ () => { this.showCombinedIdea(index) } }
+                key={Math.random()}
+                className="selectedListRow" >  
+                {title}
+              </ div>
+    }else{
+      return <div onClick={ () => { this.showCombinedIdea(index) } }
+                key={Math.random()}
+                className="listRow" >  
+                {title}
+              </ div>
+    }
   }
 
   showCombinedIdea = (index) => {
-    let showIdea = {}
     if(index >= 1 && index <= 5){
       this.showIdea(this.props.topNewestIdeas[index - 1], this.props.topNewestIdeas)
     }else if(index >= 7 && index <= 11){
@@ -120,8 +139,14 @@ class topTable extends Component {
       </React.Fragment>
   }
 
+  onSelectedIdeaChange = (newIdea, newIndex) => {
+    this.setState({idea: newIdea})
+    this.setState({selectedIndex: newIndex})
+	}
+
   createSelectedTopTable = () => {
     let type = "simple"
+
     return <React.Fragment>
       <div id="topTableClicked">
         <div id="topTableListsClicked">
@@ -132,7 +157,8 @@ class topTable extends Component {
           />
         </div>
         <div id="topTableIdea">
-          <IdeaCard idea={this.state.idea} ideas={this.state.ideas}  />
+          <IdeaCard idea={this.state.idea} ideas={this.state.ideas} 
+              onSelectedIdeaChange={this.onSelectedIdeaChange} enabled={true} showNextPreviousButtons={true} />
         </div>
       </div>
     </React.Fragment>
