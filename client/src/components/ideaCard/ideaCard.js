@@ -21,9 +21,10 @@ class IdeaCard extends Component {
     let currentIdeaIndex = findIdeaIndex(props.idea, props.ideas)
 
     this.state = {
-      idea: props.idea,
+      currentIdeaIndex: currentIdeaIndex,
       ideas: props.ideas,
-      currentIdeaIndex: currentIdeaIndex
+      idea: props.idea,
+      isFoundIndex: false
     }
   }
 
@@ -48,7 +49,7 @@ class IdeaCard extends Component {
     this.setState({idea: currentIdea}) 
 
     if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(currentIdeaIndex)  //legacy
-    this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)
+    if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)
   }
 
   leftArrowClick = () => {
@@ -72,28 +73,34 @@ class IdeaCard extends Component {
     this.setState({idea: currentIdea}) 
     
     if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(currentIdeaIndex)  //legacy
-    this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)  
+    if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)  
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   // super(nextProps, nextState)
-  //   if(nextProps != this.props){
-  //     if(nextProps != null && nextProps.idea !== undefined){
+  
 
-  //       let index = findIdeaIndex(nextProps.idea, nextProps.ideas)
-  //       this.setState({
-  //         idea: nextProps.idea,
-  //         currentIdeaIndex: index 
-  //       })
-  //     }
+  shouldComponentUpdate(nextProps, nextState){
+    if(nextProps != this.props){
+      if(nextProps != null && nextProps.idea !== undefined){
+        if(nextProps.idea._id != this.props.idea._id){
+          let index = findIdeaIndex(nextProps.idea, nextProps.ideas)
+          
+          if(this.state.isFoundIndex == false){
+            this.setState({
+              idea: nextProps.idea,
+              currentIdeaIndex: index,
+              isFoundIndex: true
+            })
+          }
+        }
+      }
       
-  //     return true
-  //   }
+      return true
+    }
 
-  //   if(nextState != this.state){
-  //     return true
-  //   }
-  // }
+    if(nextState != this.state){
+      return true
+    }
+  }
 
   render() {
     // this.state != null && 

@@ -88,7 +88,7 @@ class searchLayout extends Component {
 
  	render() {
 		this.state.refresh = !this.state.refresh;
-
+		
 		return (
 			<React.Fragment>
 				<div className="searchMainContent">
@@ -102,7 +102,7 @@ class searchLayout extends Component {
 						{this.props.searched && this.props.ideas.length == 0 ?
 							<NoResultsFound />
 							:  
-							this.props.searched && this.props.ideas.length > 0 ?
+							this.props.searched && this.props.ideas.length > 0?
 								<React.Fragment>
 									<div id="searchCardAndList">
 										<div className="searchIdeasList">
@@ -110,7 +110,7 @@ class searchLayout extends Component {
 											onIdeaSelected={this.ideaSelected} onSelectedIndexChange={this.onSelectedIndexChange} />
 										</div>
 										<div id="searchIdeaCard"> 
-											<IdeaCard idea={this.props.idea} ideas={this.props.ideas} 
+											<IdeaCard idea={this.props.ideas[0]} ideas={this.props.ideas} 
 												onSelectedIndexChange={this.onSelectedIndexChange}
 												enabled={true} showNextPreviousButtons={true} />
 										</div>

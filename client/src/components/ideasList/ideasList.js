@@ -7,6 +7,14 @@ import {SET_USER_CURRENT_PREVIEWED_IDEA, SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT
 import { connect } from 'react-redux';
 
 class IdeasList extends Component {
+  constructor(props){
+    super(props)
+
+    if(props.ideas.length > 0){
+      this.userIdeaClicked(this.props.ideas[0]._id) 
+    }
+  }
+
   renderItem = (index, key) => {  //key is running number
     var random = Math.random();
     let className = "listRow"
