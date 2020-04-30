@@ -87,9 +87,6 @@ class ShareButton extends Component {
 							<WhatsappShareButton url={url}> <WhatsappIcon size={32} round={true} /> </WhatsappShareButton> 
 							<EmailShareButton url={url}> <EmailIcon size={32} round={true} /> </EmailShareButton> 
 						</div>
-						{/* <button id="shareDialogClose" >
-							
-						</button> */}
 					</div>
 				</Modal>
 			</React.Fragment>

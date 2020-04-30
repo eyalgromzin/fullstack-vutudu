@@ -39,14 +39,13 @@ export default class TimePicker extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div id="timePickerField" className="inlineBlock searchBarComboBox">
-					<div className="fieldHeader">Time</div>
+				<div id="timePickerField" className={this.props.cssClass} >
+					<div className={this.props.headerCssClass}>Time</div>
 					<select
 						id="timePicker"
 						value={this.state.time}
 						onChange={this.onChangeEvent}
 						onKeyDown={this.placeFieldKeyUp}
-						className={this.props.cssClass}
 					>
 						<option value="5" className="timeChooserOption">5 min</option>
 						<option value="10" className="timeChooserOption">10 min</option>

@@ -9,6 +9,7 @@ import {addLikedIdeaToUser} from 'actions/userActions'
 import {addUserIDToIdeaLikes} from 'actions/ideaActions'
 import { bindActionCreators } from 'redux';
 import Popover from 'react-tiny-popover'
+import 'cssAnimations.css'
 import { 
   ADD_LIKED_IDEA_TO_USER, 
   ADD_USER_ID_TO_IDEA_LIKES,
@@ -122,16 +123,6 @@ class LikeDislike extends Component {
   }
 
   togglePopover = () => {
-    // if(this.isLiked()){
-    //   this.removeLike()
-    // } else if(this.isDisliked){
-    //   this.removeDislike()
-    // }else{
-    //   var newState = !this.state.isPopoverOpen
-    //   this.setState({ isPopoverOpen: newState });
-    //   var s = this.state.isPopoverOpen;
-    // }
-
     var newState = !this.state.isPopoverOpen
     this.setState({ isPopoverOpen: newState });
     var s = this.state.isPopoverOpen;
@@ -166,12 +157,12 @@ class LikeDislike extends Component {
             position={'top'} // preferred position
             content={(
               <div id="likeDislikeContainer" onMouseLeave={this.togglePopover}>
-                <img onClick={this.handleLikeClick} src={require("images/likeFull.png")} className="inlineBlock smallIconSize marginRight10px" />
-                <img onClick={this.handleDislikeClick} src={require("images/dislike.png")} className="inlineBlock smallIconSize" />
+                <img onClick={this.handleLikeClick} src={require("images/likeFull.png")} className="inlineBlock smallIconSize marginRight10px tilt" />
+                <img onClick={this.handleDislikeClick} src={require("images/dislike.png")} className="inlineBlock smallIconSize tilt" />
               </div>
             )}
           >
-            <div><img src={heartImagePath} onClick={this.handleHeartClick} className={"bottomButton"} /></div>
+            <div><img src={heartImagePath} onClick={this.handleHeartClick} className="bottomButton tilt" /></div>
           </ Popover>
           
           {percentageText}

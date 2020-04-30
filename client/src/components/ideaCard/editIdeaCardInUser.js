@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import EditableIdeaCard from 'components/ideaCard/editableIdeaCard'
 import UserSaveIdeaButton from './save_idea_button';
 import { connect } from 'react-redux';
-import EditIdeaBar from 'components/searchBar/editIdeaBar'
+import VerticalEditIdeaBar from 'components/searchBar/verticalEditIdeaBar'
 import { stat } from 'fs';
 
-class EditCardInUser extends Component {
+class EditIdeaCardInUser extends Component {
   render() {
     return (
-      <div>
-        <EditIdeaBar place={this.props.place} 
+      <React.Fragment>
+        <VerticalEditIdeaBar place={this.props.place} 
           time={this.props.time}
           minNumOfPeople={this.props.minNumOfPeople}
           maxNumOfPeople={this.props.maxNumOfPeople} 
         />
-        <EditableIdeaCard  existingTitle={this.props.title} existingContent={this.props.content} /> 
+        <EditableIdeaCard  existingTitle={this.props.title} content={this.props.content} /> 
         <UserSaveIdeaButton />
-      </div>
+      </React.Fragment>
     )
   }
 }
@@ -32,4 +32,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(EditCardInUser)
+export default connect(mapStateToProps)(EditIdeaCardInUser)

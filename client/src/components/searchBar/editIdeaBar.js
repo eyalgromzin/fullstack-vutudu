@@ -23,14 +23,17 @@ class EditIdeaBar extends Component {
 
   render() {
     return (
-      <div id="createBar">
+      <div id="editIdeaBar">
         <div id="editBarButtons">
-          <PlaceField tagID="ideaBarPlaceSelector" cssClass="createBarTextBox" 
+          <PlaceField tagID="ideaBarPlaceSelector" fieldClass="createBarTextBox" headerCssClass="fieldHeader"
             placeOnChangeEvent={this.placeOnChangeEvent} 
-            place={this.props.place} placeFieldLocation="search" />
-          <TimePicker onChangeEvent={this.timeOnChangeEvent} cssClass="createBarDropDown" minTime={this.props.minTime} 
-            maxTime={this.props.maxTime} />
-          <NumOfPeopleCreator cssClass="createBarDropDown" 
+            place={this.props.place} cssClass="inlineBlock searchBarTextField" />
+          <TimePicker 
+            cssClass="inlineBlock searchBarComboBox" 
+            minTime={this.props.minTime} 
+            onChangeEvent={this.timeOnChangeEvent} 
+            maxTime={this.props.maxTime} headerCssClass="fieldHeader" />
+          <NumOfPeopleCreator cssClass="createBarDropDown" headerCssClass="fieldHeader"
             minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
         </div>
       </div> 

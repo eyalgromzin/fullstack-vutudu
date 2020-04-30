@@ -14,6 +14,7 @@ import { addIdeaToDB } from 'actions/ideaActions';
 import store from 'store'
 import { bindActionCreators } from 'redux';
 import './ideaCard.css'
+import {convertJsonContentToHtml} from 'commonUtils'
 import Popup from 'reactjs-popup'
 import JoditEditor from "jodit-react";
 
@@ -23,10 +24,10 @@ class EditableIdeaCard extends Component {
   // readonly: false, // all options from https://xdsoft.net/jodit/doc/
 	config = {
     buttons: [ "strikethrough",'underline', 'italic', 'ul', 'ol', 'left', 'center', 'right', 
-                'undo', 'redo', 'image', 'video', 'link', 'fullsize' ]
-              }
-              // iframeStyle: 'html{margin: 20px; background-color: slategrey;} body{margin: 20px; background-color: red;} ' + 
-              //             'jodit_statusbar{visibility: hidden;}'
+                'undo', 'redo', 'image', 'video', 'link', 'fullsize' ],
+    iframeStyle: 'html{margin: 20px; background-color: slategrey;} body{margin: 20px; background-color: red;} ' + 
+                'jodit_statusbar{visibility: hidden;}'
+  }
   
   content = ''
 
@@ -140,18 +141,17 @@ class EditableIdeaCard extends Component {
   setContent = (newContent) => {
     this.setState({ contentText: newContent}) 
     store.dispatch({ type: EDITABLE_IDEA_SET_CONTENT, payload: newContent});
-    // this.editor.setEditorValue(newContent + ' some value ')
   }
 
-  editorValue = "<div> some value </div>"
+  
 
   render() {
     var isShowTitleError = ((this.props.isClickedButton && !this.calculateIsTitleValid()) || 
-      this.state.isShowTitleErrorOnBlur) || this.props.isDuplicateTitle
-    var TitleErrorMessage = this.props.isDuplicateTitle? "Title already exists" : "5-50 letters"
+      this.state.isShowTitleErrorOnBlur) 
+    var TitleErrorMessage = "5-50 letters"
     var isShowContentError = ((this.props.isClickedButton && !this.calculateIsContentValid()) || this.state.isShowContentErrorOnBlur)
 
-    var data = ""
+    var editorValue = this.props.idea.content
 
     return (
       <React.Fragment>
@@ -181,19 +181,19 @@ class EditableIdeaCard extends Component {
             </Popup>
           </div>
           {isShowTitleError? <div id="createIdeaTitle" className="fieldError"> {TitleErrorMessage} </div> : "" }
-          {/* <div id="contentTextAreaWithAttach"> */}
+          <div id="contentTextAreaWithAttach">
             <div id="contentEditor">
             <JoditEditor
               ref={this.editor}
-              value={this.editorValue}
-              config={this.config}
-              tabIndex={1} // tabIndex of textarea
+              value={ editorValue }
+              config={ this.config }
+              tabIndex={ 1 } // tabIndex of textarea
               onBlur={newContent => this.setContent(newContent)} // preferred to use only this option to update the content for performance reasons
               onChange={newContent => this.setContent(newContent)}
             />
               
             </div>
-          {/* </div> */}
+          </div>
           {/* <div onClick={this.handleSave}> save </div> */}
           {isShowContentError? <div className="fieldError"> 10-1000 letters</div> : '' }
         </div>
@@ -211,8 +211,8 @@ function mapStateToProps(state) {
     time: state.editableIdeaReducer.time,
     minNumOfPeople: state.editableIdeaReducer.minNumOfPeople,
     maxNumOfPeople: state.editableIdeaReducer.maxNumOfPeople,
-    isDuplicateTitle: state.editableIdeaReducer.isDuplicateTitle,
     userID: state.userPageReducer.loggedInUserID,
+    idea: state.editableIdeaReducer.idea,
   };
 }
 

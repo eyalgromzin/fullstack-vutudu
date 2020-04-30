@@ -11,13 +11,13 @@ class createIdeaLayout extends Component {
     return (
       <div id="createIdeaLayout">
         <div id="createIdeaBar">
-          {/* <div id="createIdeaBarButtons"> */}
+          <div id="createIdeaBarButtons" >
             <CreateIdeaBar isClickedButton={this.props.isClickedButton} />
             <CreateIdeaButton />
-          {/* </div> */}
+          </div>
         </div>
         <div className="createMainContent">
-          <EditableIdeaCard existingTitle="" existingContent="" existingID="" isClickedButton={this.props.isClickedButton} />
+          <EditableIdeaCard existingTitle="" content="" existingID="" isClickedButton={this.props.isClickedButton} />
         </div>
       </div>
     )

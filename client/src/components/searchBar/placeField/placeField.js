@@ -110,8 +110,8 @@ class PlaceField extends Component {
     //<img src={require("images/placeIcon.png")} className="searchBarIcon" alt="" />
     return (
       <React.Fragment >
-        <div id="placeField" className={this.state.placeFieldLocation == "search" ? "inlineBlock searchBarTextField" : "inlineBlock createBarTextField"}>
-          <div className="fieldHeader">Place</div>
+        <div id="placeField" className={this.props.fieldClass}>
+          <div className={this.props.headerCssClass}>Place</div>
           <Autosuggest
             id="placeSelector"
             suggestions={this.state.placeSuggestions}

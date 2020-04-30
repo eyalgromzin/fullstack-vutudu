@@ -102,8 +102,8 @@ class MoreChooser extends Component {
 
     return (
       <React.Fragment>
-        <div id="moreField" className="inlineBlock searchBarTextField">
-          <div className="fieldHeader"><img src={require("images/more.png")} alt="" className="searchBarIcon" /></div>
+        <div id="moreField" className={this.props.cssClass}>
+          <div className={this.props.headerCssClass}><img src={require("images/more.png")} alt="" className="searchBarIcon" /></div>
             <Autosuggest
               id="tagSelector"
               suggestions={this.state.tagSuggestions}

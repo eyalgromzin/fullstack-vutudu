@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './editIdeaCard.css';
 import {toastr} from 'react-redux-toastr'
+import 'cssAnimations.css'
 
 class DeleteIdeaButton extends Component {
 	deleteIdea = () => {
@@ -24,7 +25,7 @@ class DeleteIdeaButton extends Component {
 			<React.Fragment>
 				<img
 					src={require('images/garbage.png')}
-					className="userPageIdeaButton"
+					className="userPageIdeaButton tilt"
 					id="deleteIdeaButton"
 					onClick={() => this.deleteAndShowNextIdea()}
 					/>

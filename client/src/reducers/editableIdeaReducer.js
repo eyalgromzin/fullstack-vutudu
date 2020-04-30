@@ -17,6 +17,7 @@ import {
   CREATE_IDEA_SET_MIN_PEOPLE,
   ON_CREATE_SET_IS_DUPLICATE_TITLE,
   EDITABLE_IDEA_SET_MAX_TIME,
+  SET_USER_EDITED_IDEA,
 } from 'reducers/types'
 
 const initialState = {
@@ -33,7 +34,7 @@ const initialState = {
     isTitleValid: false,
     isPlaceValid: false,
     isClickedButton: false,   //refers to create / update
-    isDuplicateTitle: false,
+    idea: {},
 };
 
 function reducer(state = initialState, action) {
@@ -47,6 +48,11 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         maxNumOfPeople: action.payload
+      };
+    case SET_USER_EDITED_IDEA:
+      return {
+        ...state,
+        idea: action.payload
       };
     case EDITABLE_IDEA_SET_PLACE:
       return {
@@ -140,11 +146,6 @@ function reducer(state = initialState, action) {
         ...state,
         isClickedButton: action.payload,
         isButtonEnabled: state.content.length > 0 && state.title.length > 0 && state.place.length > 2,
-      };
-    case ON_CREATE_SET_IS_DUPLICATE_TITLE:
-      return {
-        ...state,
-        isDuplicateTitle: action.payload,
       };
     default:
       return state;

@@ -20,11 +20,11 @@ class NumOfPeopleCreator extends Component {
   render() {
     return (
       <React.Fragment>
-        <div id="numOfPeopleCreator"> 
-          <div className="fieldHeader">People</div>
+        <div id="numOfPeopleCreator" className={this.props.fieldClass}> 
+          <div className={this.headerCssClass}>People</div>
           <div id="createBarNumOfPeopleCreator">
             <select id="minNumOfPeopleCreator" value={this.props.minNumOfPeople} 
-              className="numOfPeopleCreatorDropDown createBarCommon" onChange={this.minNumOfPeopleChange}>
+              className={this.props.selctorClass} onChange={this.minNumOfPeopleChange}>
               <option value="10" className="timeChooserOption">1</option>
               <option value="20" className="timeChooserOption">2</option>
               <option value="2" className="timeChooserOption">Couple</option>

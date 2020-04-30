@@ -163,7 +163,7 @@ export const convertLinksToContent = (text) => {
     return output
 }
 
-export const convertJsonContentToHtml = (ideaContentJson, callBack) => {
+export const convertJsonContentToJsx = (ideaContentJson, callBack) => {
   if(ideaContentJson === undefined) {
     return <div></div>
   }
@@ -197,3 +197,38 @@ export const convertJsonContentToHtml = (ideaContentJson, callBack) => {
 
   return contentJsx  
 }
+
+// export const convertJsonContentToHtml = (ideaContentJson, callBack) => {
+//   if(ideaContentJson === undefined) {
+//     return <div></div>
+//   }
+  
+//   var htmlContent = ""
+  
+//   var ideaContentItemsList = JSON.parse(ideaContentJson);
+//   ideaContentItemsList.forEach(contentItem => {
+//     if(contentItem.first == "TEXT"){
+//       htmlContent = "<div>" + contentItem.third + "</div>"
+//     }else if(contentItem.first == "LINK"){
+//       htmlContent = "<div class='centerHorizontally'><a href={contentItem.fourth}>" + contentItem.third + "</a></div>"
+//     }
+//     else if(contentItem.first == "IMAGE"){
+//       htmlContent = "<div><FirebaseImage firebasePath={contentItem.third} /></div>"
+//     }
+//     // else if(contentItem.first == "IMAGE_URL"){
+//     //   htmlContent += "<div class='centerHorizontally'><img src='" + contentItem.third + "'</div>"
+//     // }else if(contentItem.first == "LINKED_IMAGE"){
+//     //   htmlContent += "<div class='centerHorizontally'><a href='" + contentItem.fourth + "'><img src=" + require("images/logo.png") + "' /></a></div>"
+//     // }else if(contentItem.first == "YOUTUBE"){
+//     //   htmlContent += "<div class='centerHorizontally'>" + 
+//     //     "<iframe width='420' height='315' src='" + contentItem.third + "' />" +
+//     //   "</div>"
+//     // }else if(contentItem.first == "LOCATION"){
+//     //   htmlContent += "<div class='centerHorizontally'>" + 
+//     //     "LOCATION!!!" +
+//     //   "</div>"
+//     // }
+//   })
+// 
+//   return htmlContent  
+// }

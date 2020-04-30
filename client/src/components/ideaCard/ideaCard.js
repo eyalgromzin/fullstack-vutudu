@@ -12,7 +12,7 @@ import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from
 import IdeaCardContent from 'components/ideaCard/ideaCardContent'
 import EditIdeaButton from 'components/ideaCard/editIdeaButton' 
 import DeleteIdeaButton from './deleteIdeaButton';
-
+import ReactTooltip from "react-tooltip";
 
 class IdeaCard extends Component {
   constructor(props){
@@ -24,6 +24,7 @@ class IdeaCard extends Component {
       currentIdeaIndex: currentIdeaIndex,
       ideas: props.ideas,
       idea: props.idea,
+      isPopoverOpen: false,
     }
   }
 
@@ -75,7 +76,11 @@ class IdeaCard extends Component {
     if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)  
   }
 
-  
+  togglePopover = () => {
+    var newState = !this.state.isPopoverOpen
+    this.setState({ isPopoverOpen: newState });
+    var s = this.state.isPopoverOpen;
+  }
 
   shouldComponentUpdate(nextProps, nextState){
     if(nextProps != this.props){
@@ -128,7 +133,16 @@ class IdeaCard extends Component {
                 <div id="shareAndLikeContainer">
                   {this.props.deleteable ? <DeleteIdeaButton loggedInUserID={this.props.userID} 
                                                   idea={this.state.idea} /> : ""}
-                  {this.props.editable ? <EditIdeaButton /> : ""}
+                  {this.props.editable && this.props.idea.createdIn == "web" ? <EditIdeaButton /> : ""}
+                  {this.props.editable && this.props.idea.createdIn != "web" ? 
+                    <React.Fragment>
+                      <img data-tip="Created in mobile,<br /> Editable Only in mobile" 
+                        src={require("images/writeBlackWithoutBorderGrey.png")} alt="" className="userPageIdeaButton tilt"  /> 
+                      <ReactTooltip multiline={true} />
+                    </React.Fragment>
+                    : 
+                    ""
+                  }
                   <LikeDislike idea={this.state.idea} enabled={this.props.enabled} />
                   <div id="shareButtonContainer">
                   <ShareButton />

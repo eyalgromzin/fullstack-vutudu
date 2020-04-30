@@ -1,2 +1,3 @@
-- user -> created -> not showing edit button - should be like it ????
-- check mobile with html
+- user page -> created ideas -> ideas that were created in mobile -> the edit button will be disabled, and with tooltip 
+        "created in mobile, editable in mobile"
+- check mobile for ideas created in web

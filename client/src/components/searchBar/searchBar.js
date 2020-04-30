@@ -58,27 +58,32 @@ class SearchBar extends Component {
 				<div id="searchBarButtons">
 					<div id="searchPlaceFieldContainer">
 						<PlaceField
+							fieldClass="inlineBlock searchBarTextField"
 							tagID="searchBarPlaceSelector"
 							isClickedButton={this.props.isClickedSearch}
 							placeOnChangeEvent={this.placeOnChangeEvent}
 							place={this.props.place}
 							placeSuggestions={[]}
-							placeFieldLocation="search"
+							headerCssClass="fieldHeader"
 						/>
 					</div>
 						{/* validationMethod={this.isNotEmpty} */}
 					<TimePicker
+						cssClass="inlineBlock searchBarComboBox"
+						headerCssClass="fieldHeader"
 						onChangeEvent={this.timeOnChangeEvent}
 						time={this.props.time}
-						cssClass="searchBarDropDownSquare"
 					/>
-					<NumOfPeopleSelector cssClass="searchBarDropDownSquare" numOfPeople={this.props.numOfPeople} />
-					<MoreChooser
-						isClickedButton={this.props.isClickedSearch}
-						onChangeEvent={this.moreOnChangeEvent}
-						more={this.props.more}
-						/>
-					{/* validationMethod={this.isNotEmpty} */}
+					<NumOfPeopleSelector cssClass="searchBarDropDownSquare" headerCssClass="fieldHeader" numOfPeople={this.props.numOfPeople} />
+					<div id="searchPlaceFieldContainer">
+						<MoreChooser
+							cssClass="inlineBlock searchBarTextField"
+							headerCssClass="fieldHeader"
+							isClickedButton={this.props.isClickedSearch}
+							onChangeEvent={this.moreOnChangeEvent}
+							more={this.props.more}
+							/>
+					</div>
 					<SearchButton />
 				</div>
 			</div>

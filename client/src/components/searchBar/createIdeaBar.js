@@ -41,14 +41,21 @@ class CreateIdeaBar extends Component {
       <React.Fragment>
         <div id="createBar" className="inlineBlock">
             <div id="createBarPlaceFieldContainer">
-              <PlaceField tagID="createBarPlaceSelector" isClickedButton={this.props.isClickedButton}
+              <PlaceField 
+                tagID="createBarPlaceSelector" 
+                isClickedButton={this.props.isClickedButton}
                 placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
                 validationMethod={this.isNotEmpty} placeSuggestions={[]}
-                placeFieldLocation="create" />
+                placeFieldLocation="create" cssClass="inlineBlock createBarTextField" headerCssClass="fieldHeader" />
             </div>
-            <TimeCreator onMinTimeChangeEvent={this.onMinTimeChangeEvent} onMaxTimeChangeEvent={this.onMaxTimeChangeEvent} 
-              minTime={this.props.minTime} maxTime={this.props.maxTime} /> 
-            <NumOfPeopleCreator cssClass="createBarDropDown" 
+            <TimeCreator 
+              fieldClass="inlineBlock createBarComboBox createBarTimeField"
+              headerCssClass="fieldHeader"
+              selctorClass="timeCreatorCommon"
+              onMinTimeChangeEvent={this.onMinTimeChangeEvent} 
+              onMaxTimeChangeEvent={this.onMaxTimeChangeEvent} 
+              minTime={this.props.minTime} maxTime={this.props.maxTime}  /> 
+            <NumOfPeopleCreator cssClass="createBarDropDown" headerCssClass="fieldHeader"
               minNumOfPeople={this.props.minNumOfPeople} maxNumOfPeople={this.props.maxNumOfPeople} />        
         </div> 
       </React.Fragment>
