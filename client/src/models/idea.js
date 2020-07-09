@@ -9,9 +9,5 @@ export const idea = {
     minNumOfPeople: 0,
     maxNumOfPeople: 0,
     liked: [],
-    disliked: [],
-    addedEasy: [],
-    addedHard: [],
-    addedShort: [],
-    addedLong: [],
+    disliked: []    
 }

@@ -97,7 +97,7 @@ class ShareButton extends Component {
 function mapStateToProps(state) {
   return {
     currentIdeaIndex: state.searchPageReducer.currentIdeaIndex,
-		currentIdea: state.searchPageReducer.currentIdea,
+		currentIdea: state.ideaCardReducer.currentIdea,
 		place: state.searchBarReducer.place,
 		time: state.searchBarReducer.time,
 		numOfPeople: state.searchBarReducer.numOfPeople,

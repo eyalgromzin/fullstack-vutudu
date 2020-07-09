@@ -3,10 +3,11 @@ import Linkify from 'react-linkify';
 import './ideaCard.css'
 import IdeaNextButtonsPreviousButtons from './cardButtons/nextPreviousButtons/nextPreviousButtons'
 import { connect } from 'react-redux';
+import {
+  SET_CURRENT_IDEA
+} from 'reducers/types'
 import 'commonCss.css'
 import ShareButton from 'components/ideaCard/cardButtons/shareButton'
-import CardIndicators from 'components/ideaCard/cardIndicators'
-import { findIdeaIndex } from 'commonUtils'
 import LikeDislike from './statsButtons/likesIndicator/likeDislike'
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import IdeaCardContent from 'components/ideaCard/ideaCardContent'
@@ -18,62 +19,70 @@ class IdeaCard extends Component {
   constructor(props){
     super(props)
 
-    let currentIdeaIndex = findIdeaIndex(props.idea, props.ideas)
+    let ideaIndex = 0
 
     this.state = {
-      currentIdeaIndex: currentIdeaIndex,
-      ideas: props.ideas,
-      idea: props.idea,
+      ideaIndex: ideaIndex,            
       isPopoverOpen: false,
     }
   }
 
   rightArrowClick = () => {
+    if(this.props.ideas === undefined){
+      return
+    }
+    
     var ideasCount = this.props.ideas.length;
+    let ideaIndex = 0;
+
+    if(this.props.ideas !== undefined && this.props.idea !== undefined){
+      ideaIndex = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)
+    }
 
     if(ideasCount <= 1){
       return 
     }
     
-    let currentIdeaIndex = this.state.currentIdeaIndex
-
-    currentIdeaIndex += 1
+    ideaIndex += 1
     
-    if(currentIdeaIndex == ideasCount){
-      currentIdeaIndex = 0
+    if(ideaIndex == ideasCount){
+      ideaIndex = 0
     }
 
-    this.setState({currentIdeaIndex: currentIdeaIndex})
-    
-    var currentIdea = this.props.ideas[currentIdeaIndex];
-    this.setState({idea: currentIdea}) 
+    var idea = this.props.ideas[ideaIndex];
+    this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
 
-    if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(currentIdeaIndex)  //legacy
-    if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)
+    if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(ideaIndex)  //legacy
+    if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(idea, ideaIndex)
   }
 
   leftArrowClick = () => {
+    if(this.props.ideas === undefined){
+      return
+    }
+    
     var ideasCount = this.props.ideas.length;
+    let ideaIndex = 0;
+
+    if(this.props.ideas !== undefined && this.props.idea !== undefined){
+      ideaIndex = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)
+    }
 
     if(ideasCount <= 1){
       return 
     }
-
-    let currentIdeaIndex = this.state.currentIdeaIndex
-
-    currentIdeaIndex--;
-
-    if(currentIdeaIndex == -1){
-      currentIdeaIndex = this.props.ideas.length - 1;
+    
+    ideaIndex -= 1
+    
+    if(ideaIndex == -1){
+      ideaIndex = ideasCount - 1
     }
-    
-    this.setState({currentIdeaIndex: currentIdeaIndex })
-    
-    var currentIdea = this.props.ideas[currentIdeaIndex];
-    this.setState({idea: currentIdea}) 
-    
-    if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(currentIdeaIndex)  //legacy
-    if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(currentIdea, currentIdeaIndex)  
+
+    var idea = this.props.ideas[ideaIndex];
+    this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
+
+    if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(ideaIndex)  //legacy
+    if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(idea, ideaIndex)
   }
 
   togglePopover = () => {
@@ -85,11 +94,11 @@ class IdeaCard extends Component {
   shouldComponentUpdate(nextProps, nextState){
     if(nextProps != this.props){
       if(nextProps != null && nextProps.idea !== undefined){
-        if(nextProps.idea._id != this.props.idea._id){
-          let index = findIdeaIndex(nextProps.idea, nextProps.ideas)
+        if(nextProps.idea._id != this.props.idea._id && nextProps.ideas !== undefined){
+          let index = nextProps.ideas.findIndex(ideaI => nextProps.idea.id == ideaI.id)          
           this.setState({
             idea: nextProps.idea,
-            currentIdeaIndex: index,
+            ideaIndex: index,
           })
         }
       }
@@ -103,13 +112,9 @@ class IdeaCard extends Component {
   }
 
   render() {
-    // this.state != null && 
-    if(this.state.idea!== undefined && this.state.idea.content !== undefined){
+    if(this.props.idea!== undefined && this.props.idea.content !== undefined){
       return (
-        <React.Fragment>
-          {/* <div id="ideaCardIdeaArrows">
-            {this.props.showNextPreviousButtons? <IdeaNextButtonsPreviousButtons ideas={this.props.ideas} /> : null}
-          </div> */}
+        <React.Fragment>          
           <div className="IdeaContent">
             <div id="ideaCardWithButtons">
               <div id="ideaCardWithShare" >
@@ -121,18 +126,17 @@ class IdeaCard extends Component {
                     <img id="ideaCardRightArrow" src={require("images/rightArrow.png")} />
                   </div>
                   <div className="ideaTitle"> 
-                    {this.state.idea.title}
+                    {this.props.idea.title}
                   </div>
                   <div id="ideaContentText"> 
-                    <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>
-                      {/* {ReactHtmlParser(convertedContent)} */}
-                      <IdeaCardContent content={this.state.idea.content} createdIn={this.state.idea.createdIn} />
+                    <Linkify properties={{target: '_blank', rel: "nofollow   noopener"}}>                      
+                      <IdeaCardContent content={this.props.idea.content} createdIn={this.props.idea.createdIn} />
                     </Linkify>
                   </div>
                 </div>
                 <div id="shareAndLikeContainer">
                   {this.props.deleteable ? <DeleteIdeaButton loggedInUserID={this.props.userID} 
-                                                  idea={this.state.idea} /> : ""}
+                                                  idea={this.props.idea} /> : ""}
                   {this.props.editable && this.props.idea.createdIn == "web" ? <EditIdeaButton /> : ""}
                   {this.props.editable && this.props.idea.createdIn != "web" ? 
                     <React.Fragment>
@@ -143,7 +147,7 @@ class IdeaCard extends Component {
                     : 
                     ""
                   }
-                  <LikeDislike idea={this.state.idea} enabled={this.props.enabled} />
+                  <LikeDislike enabled={this.props.enabled} />
                   <div id="shareButtonContainer">
                   <ShareButton />
                   </div>
@@ -162,12 +166,7 @@ class IdeaCard extends Component {
 
 function mapStateToProps(state) {
   return {
-    title: state.searchPageReducer.currentIdea.title,
-    content: state.searchPageReducer.currentIdea.content,
-    place: state.searchPageReducer.currentIdea.place,
-    time: state.searchPageReducer.currentIdea.time,
-    minNumOfPeople: state.searchPageReducer.currentIdea.minNumOfPeople,
-    maxNumOfPeople: state.searchPageReducer.currentIdea.maxNumOfPeople,
+    idea: state.ideaCardReducer.currentIdea,
     userID: state.userPageReducer.loggedInUserID,
   };
 }

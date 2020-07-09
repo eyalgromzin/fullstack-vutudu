@@ -217,7 +217,7 @@ router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {
 	let $and = []
 	
 	if(req.params.place !== undefined && req.params.place != "" && req.params.place != "_"){
-		$and.push({place: req.params.place})
+		$and.push({places: req.params.place})
 	}
 	if(req.params.time !== undefined && req.params.time != "" && req.params.time != "_"){
 		$and.push({ minTime: { $lte: req.params.time } }, { maxTime: { $gte: req.params.time } })
@@ -226,7 +226,7 @@ router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {
 		$and.push({ minNumOfPeople: { $lte: req.params.numOfPeople } }, { maxNumOfPeople: { $gte: req.params.numOfPeople } })
 	}
 	if(req.params.more !== undefined && req.params.more != "" && req.params.more != "_"){
-		$and.push({ tags: req.params.more })
+		$and.push({ subjects: req.params.more })
 	}
 
 	var query = {$and}
@@ -245,7 +245,9 @@ router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {
 	// 	]
 	// }
 
-	Item.find(query).then((items) => res.json(items));
+	Item.find(query).then((items) => { 
+		res.json(items)
+	});
 });
 
 // // @route   GET api/search/:place/:time/:numOfPeople/

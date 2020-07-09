@@ -108,16 +108,16 @@ router.post('/userAddedHard', (req, res) => {   //works
   console.log("added user id to the liked idea in the created user: " + req.body.userID);
 });
 
-// @route   POST api/user/userDisliked/
-// @desc    search for anything
-// @access  Public
-router.post('/userDisliked', (req, res) => {   //works
-  //update the created idea of the  user that created the idea - add to dislike array the user id that disliked it.
-  User.findOneAndUpdate({ id: req.body.idea.createdBy, "created._id": req.body.idea._id},
-    { "$push": { "created.$.disliked": req.body.userID }})
-  .then(users => res.json(users));
-  console.log("added user id to the liked idea in the created user: " + req.body.userID);
-});
+// // @route   POST api/user/userDisliked/
+// // @desc    search for anything
+// // @access  Public
+// router.post('/userDisliked', (req, res) => {   //works
+//   //update the created idea of the  user that created the idea - add to dislike array the user id that disliked it.
+//   User.findOneAndUpdate({ id: req.body.idea.createdBy, "created._id": req.body.idea._id},
+//     { "$push": { "created.$.disliked": req.body.userID }})
+//   .then(users => res.json(users));
+//   console.log("added user id to the liked idea in the created user: " + req.body.userID);
+// });
 
 // @route   POST api/user/removeUserDisliked/
 // @desc    search for anything

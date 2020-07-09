@@ -59,10 +59,10 @@ export const moveUnlikedIdeasToBack = (ideas, userID) => {
   return regularIdeas
 }
 
-export const findIdeaIndex = (idea, ideas) => {
-  let index = ideas.findIndex(ideaI => idea._id == ideaI._id)
-  return index < 0? 0 : index
-}
+// export const findIdeaIndex = (idea, ideas) => {
+//   let index = ideas.findIndex(ideaI => idea._id == ideaI._id)
+//   return index < 0? 0 : index
+// }
 
 export const getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
   var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
@@ -175,7 +175,7 @@ export const convertJsonContentToJsx = (ideaContentJson, callBack) => {
     if(contentItem.first == "TEXT"){
       contentJsx = <div>{contentItem.third}</div>
     }else if(contentItem.first == "LINK"){
-      contentJsx = <div class='centerHorizontally'><a href={contentItem.fourth}>" + contentItem.third + "</a></div>
+      contentJsx = <div class='centerHorizontally'><a href={contentItem.fourth}>{contentItem.third}</a></div>
     }
     else if(contentItem.first == "IMAGE"){
       contentJsx = <div><FirebaseImage firebasePath={contentItem.third} /></div>

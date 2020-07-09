@@ -67,14 +67,10 @@ export const updateIdeaIndicator = (
 				payload: loggedInUserID
 			});
 		});
-	}
-
-	//update the idea in the user to show immidiately results.
-	// console.log('updating idea in user created ideas, so the stats will be updated.');
-	// store.dispatch({type: updateIdeaInUserReduxName, payload: {loggedInUserID, ideaID: idea._id} })
+	}	
 };
 
-export const addUserIDToIdeaLikes = (userID, ideaID) => (dispatch) => {
+export const addUserIDToIdeaLikes = (userID, ideaID, callback) => (dispatch) => {
 	//update user - V
 	console.log('addUserIDToIdeaLikes... ');
 	var postObject = { ideaID: ideaID, userID: userID };

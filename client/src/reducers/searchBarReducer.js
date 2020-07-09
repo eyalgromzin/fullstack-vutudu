@@ -11,9 +11,9 @@ import {
 
 //default values
 const initialState = {
-    place: 'place',
+    place: 'home',
     time: 5,
-    numOfPeople: 30,
+    numOfPeople: 10,
     more: '',
     isMoreValid: true,
     isPlaceValid: true,

@@ -30,7 +30,7 @@ export default class IdeaCardContent extends Component {
             if(contentItem.first == "TEXT"){
                 contentJsx = <React.Fragment>{contentJsx}<div>{contentItem.third}</div></React.Fragment>
             }else if(contentItem.first == "LINK"){
-                contentJsx = <div className='centerHorizontally'><a href={contentItem.fourth}>" + contentItem.third + "</a></div>
+                contentJsx = <div className='centerHorizontally'><a href={contentItem.fourth}>{contentItem.third}</a></div>
             }
             else if(contentItem.first == "IMAGE"){
                 contentJsx = 
@@ -38,8 +38,7 @@ export default class IdeaCardContent extends Component {
                     {contentJsx}
                     <div><FirebaseImage firebasePath={contentItem.third} /></div>
                 </React.Fragment>
-            }else if(contentItem.first == "LOCATION"){
-                //q='" + contentItem.third + "','" + contentItem.third + "
+            }else if(contentItem.first == "LOCATION"){                
                 var mapSrc="https://maps.google.com/maps?q=" + contentItem.third + "," + contentItem.fourth + "&t=&z=15&ie=UTF8&iwloc=&output=embed" 
 
                 contentJsx = 
@@ -63,11 +62,14 @@ export default class IdeaCardContent extends Component {
     }
 
     render() {
-        var ideaCardContent = ""
+        var ideaCardContent = ""   
+        if(this.props.content != this.state.content){
+            this.setState({content: this.props.content})
+        }
+        
         if(this.props.createdIn == "web" || this.props.content.includes("</div>" || this.props.content.includes("</ div>"))){
             ideaCardContent = <div className={"className"} 
-                    dangerouslySetInnerHTML={{ __html: this.props.content.replace(/\n/g, '<br />')}} />
-            // <div>{this.props.content}</div>
+                    dangerouslySetInnerHTML={{ __html: this.props.content.replace(/\n/g, '<br />')}} />            
         }else if(this.props.content == "To find ideas of what to do"){
             ideaCardContent = this.props.content
         }else{

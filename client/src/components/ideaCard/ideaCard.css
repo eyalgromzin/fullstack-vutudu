@@ -138,18 +138,6 @@
     display: inline-block;
 }
 
-#cardIndicators{
-    display: inline-block;
-}
-
-#cardIndicationButtons{
-    /* margin-top: 10px; */
-    display: inline-block;
-    padding-bottom: 5px;
-    margin: 10px;
-    height: 25px;
-}
-
 #shareContainer{
     display: table-cell;
     height: 100%;

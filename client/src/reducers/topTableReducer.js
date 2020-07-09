@@ -5,7 +5,6 @@ import { SET_TOP_LIKED_IDEAS,
 	SET_TOP_NEWEST_IDEAS,
 	SET_TOP_POPULAR_IDEAS,
  } from './types';
-var dcopy = require('deep-copy');
 
 const initialState = {
 	topHardIdeas: [],

@@ -15,8 +15,8 @@ import {
   ADD_USER_ID_TO_IDEA_LIKES,
   ADD_USER_TO_IDEA_DISLIKES,
   REMOVE_USER_FROM_IDEA_LIKES,
+  SET_CURRENT_IDEA,
   REMOVE_USER_FROM_IDEA_DISLIKES,
-  SET_USER_LIKED_IDEAS,
   // ADD_USER_TO_LIKED_OF_CREATED_IDEA
  } from 'reducers/types'
  import Modal from 'react-modal';
@@ -27,49 +27,61 @@ class LikeDislike extends Component {
     super(props);
 
     this.state = {
-      isPopoverOpen: false,
+      isPopoverOpen: false,      
+      updateHeart: false,
     };
+  }
+
+  toggleUpdateHeart = () => {
+    this.setState({
+      updateHeart: !this.state.updateHeart,
+    })
   }
 
   addLike = () => {
     //add current User  id to the idea likes
     //then add the idea to user liked ideas
-    this.props.idea.liked.push(this.props.userID)
+    this.props.currentIdea.liked.push(this.props.userID)
     
-    this.props.addLikedIdeaToUser(this.props.userID, this.props.idea)
+    this.props.addLikedIdeaToUser(this.props.userID, this.props.currentIdea)
     
     // '/api/items/ideaLiked/',ADD_USER_TO_CURRENT_IDEA_LIKES
-    this.props.addUserIDToIdeaLikes(this.props.userID, this.props.idea._id)
+    this.props.addUserIDToIdeaLikes(this.props.userID, this.props.currentIdea._id, () => {
+        //update current idea
+        this.props.currentIdea.liked.push(this.props.userID)
+        this.props.dispatch({type: SET_CURRENT_IDEA, value: this.props.currentIdea})        
+      }
+    )
 
-    //pop the user id from the liked idea. to remove the duplicate
-    this.props.idea.liked.pop(this.props.userID)
-      this.setState({clickedLike: true});
-  }
-
-  removeLike = () => {
-    this.props.updateIdeaIndicator(this.props.userID, this.props.idea,
-      null, null,       
-      '/api/items/removeIdeaLiked/',REMOVE_USER_FROM_IDEA_LIKES);  
-    
-    this.props.removeUserLikedIdea(this.props.userID, this.props.idea)
-
-    this.setState({clickedLike: false});
+    this.toggleUpdateHeart();
   }
 
   addDislike = () => {
-    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      '/api/user/userDisliked/', null,       
-      '/api/items/ideaDisliked/',ADD_USER_TO_IDEA_DISLIKES);
+    this.props.updateIdeaIndicator(this.props.userID,this.props.currentIdea,
+      null, null,       
+      '/api/items/ideaDisliked/',ADD_USER_TO_IDEA_DISLIKES,
+      () => this.props.currentIdea.disliked.push(this.props.userID));
 
-      this.setState({clickedDislike: true});
+      this.toggleUpdateHeart();
   }
 
   removeDislike = () => {
-    this.props.updateIdeaIndicator(this.props.userID,this.props.idea,
-      '/api/user/removeUserDisliked/', null,       
-      '/api/items/removeIdeaDisliked/',REMOVE_USER_FROM_IDEA_DISLIKES);  
+    this.props.updateIdeaIndicator(this.props.userID,this.props.currentIdea,
+      null, null,       
+      '/api/items/removeIdeaDisliked/',REMOVE_USER_FROM_IDEA_DISLIKES);
 
-      this.setState({clickedDislike: false});
+      this.toggleUpdateHeart();
+  }
+
+  removeLike = () => {
+    this.props.updateIdeaIndicator(this.props.userID, this.props.currentIdea,
+      null, null,       
+      '/api/items/removeIdeaLiked/',REMOVE_USER_FROM_IDEA_LIKES,
+      ); 
+    
+    this.props.removeUserLikedIdea(this.props.userID, this.props.currentIdea)    
+
+    this.toggleUpdateHeart();
   }
 
   handleDislikeClick = () => {
@@ -81,20 +93,10 @@ class LikeDislike extends Component {
     this.togglePopover();
     this.addLike();
   }
-  // if(this.props.enabled) {
-  //   if(this.isClickedDislike()){
-  //     this.removeDislike();
-  //     this.addLike();
-  //   }else if(this.isLiked()){
-  //     this.removeLike();
-  //   }else{
-  //     this.addLike();
-  //   }
-  // }
-
+  
   isLiked = () => {
-    if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.liked === undefined)){
-      return this.props.idea.liked.includes(this.props.userID);
+    if(!(this.props.currentIdea === undefined || this.props.currentIdea == null || this.props.currentIdea.liked === undefined)){
+      return this.props.currentIdea.liked.includes(this.props.userID);
     }
 
     return false;
@@ -115,8 +117,8 @@ class LikeDislike extends Component {
   }
 
   isDisliked = () => {
-    if(!(this.props.idea === undefined || this.props.idea == null || this.props.idea.disliked === undefined)){
-      return this.props.idea.disliked.includes(this.props.userID);
+    if(!(this.props.currentIdea === undefined || this.props.currentIdea == null || this.props.currentIdea.disliked === undefined)){
+      return this.props.currentIdea.disliked.includes(this.props.userID);
     }
 
     return false;
@@ -131,12 +133,12 @@ class LikeDislike extends Component {
 
   render() {
     let percentageText = "(0%)"
-    if(this.props.idea.liked === undefined || this.props.idea.disliked === undefined){
+    if(this.props.currentIdea.liked === undefined || this.props.currentIdea.disliked === undefined){
       percentageText = "(0%)"
-    }else if(this.props.idea.liked.length + this.props.idea.disliked.length == 0){
+    }else if(this.props.currentIdea.liked.length + this.props.currentIdea.disliked.length == 0){
       percentageText = "(0%)"
     }else{
-      let percentage = Math.round((this.props.idea.liked.length / (this.props.idea.liked.length + this.props.idea.disliked.length)) * 100)
+      let percentage = Math.round((this.props.currentIdea.liked.length / (this.props.currentIdea.liked.length + this.props.currentIdea.disliked.length)) * 100)
       percentageText = "(" + percentage + "%)"
     }
 
@@ -181,12 +183,14 @@ const mapDispatchToProps = dispatch => {
     dispatch,
   }
 }
+// removeLikeFromSearchIdea: bindActionCreators (removeLikeFromSearchIdea, dispatch),    
 
 function mapStateToProps(state) {
   return {
     userID: state.userPageReducer.loggedInUserID,
     showLogin: state.commonReducer.showLogin,
     loggedIn: state.commonReducer.loggedIn,
+    currentIdea: state.ideaCardReducer.currentIdea
   };
 }
 

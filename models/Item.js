@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// _id: {
+//   type: Number,
+//   default: 0
+// },
+
 // Create Schema
 const ItemSchema = new Schema({
   date: {
@@ -27,15 +32,20 @@ const ItemSchema = new Schema({
     required: true,
     default: undefined
   },
-  tags: {
+  createdOn: {
+    type: Number,
+    required: true,
+    default: 0
+  },
+  subjects: {
     type: [String],
-    required: false,
+    required: true,
     default: [],
   },
-  place: {
-    type: String,
-    required: false,
-    default: 'place',
+  places: {
+    type: [String],
+    required: true,
+    default: [],
   },
   minTime: {
     type: Number,

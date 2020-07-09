@@ -111,8 +111,7 @@ class searchLayout extends Component {
 											onIdeaSelected={this.ideaSelected} onSelectedIndexChange={this.onSelectedIndexChange} />
 										</div>
 										<div id="searchIdeaCard"> 
-											<IdeaCard idea={this.props.ideas[0]} ideas={this.props.ideas} 
-												onSelectedIndexChange={this.onSelectedIndexChange}
+											<IdeaCard ideas={this.props.ideas} 												
 												enabled={true} showNextPreviousButtons={true} 
 												cardLeftArrowContainerClassName="searchCardLeftArrowContainer" 
 												cardRightArrowContainerClassName="searchCardRightArrowContainer"/>
@@ -136,7 +135,6 @@ function mapStateToProps(state) {
 	return {
 		userID: state.userPageReducer.loggedInUserID,
 		searched: state.commonReducer.searched,
-		idea: state.searchPageReducer.currentIdea,
 		ideas: unlikedIdeasLast,
 		place: state.searchBarReducer.place,
 		time: state.searchBarReducer.time,

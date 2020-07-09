@@ -5,8 +5,10 @@ import store from 'store'
 import { connect } from 'react-redux';
 import IdeaCard from 'components/ideaCard/ideaCard'
 import 'components/ideasList/ideasList.css';
-import { IS_TOP_TABLE_SHOULD_BE_CLEAN } from '../../reducers/types';
-import { findIdeaIndex } from 'commonUtils'
+import { 
+  SET_CURRENT_IDEA,
+  SET_SEARCH_IDEAS
+} from 'reducers/types';
 
 //on click, open the idea in the middle like in search
 //remove table on search
@@ -14,27 +16,30 @@ class topTable extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      ideas: [],
+    
+
+    this.state = {      
       isIdeaClicked: false,
-      idea: {},
-      selectedIndex: 0,
+      selectedIndex: 0,      
     }
   }
 
-  ideasCount = 5
-
   showIdea = (idea) => {
-    this.props.dispatch({ type: IS_TOP_TABLE_SHOULD_BE_CLEAN, payload: false })
-
-    let ideas = [...this.props.topNewestIdeas,...this.props.topPopularIdeas, ...this.props.topLikedIdeas]
-    this.setState({ ideas: ideas })
-    this.setState({ idea: idea })
     this.setState({ isIdeaClicked: true })
 
-    let selectredIdeaIndex = findIdeaIndex(idea, ideas)
+    //update current idea in search page reducer
+    this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea })    
+    
+    let selectredIdeaIndex = this.state.ideas.indexOf(ideaI => ideaI.id == idea.id)
     this.setState({ selectedIndex: selectredIdeaIndex })
+  }
 
+  //happens on like click
+  ideaUpdated = (idea) => {
+    let ideaIndex = this.state.ideas.indexOf(ideaI => ideaI.id == idea.id)
+    let ideas = this.state.ideas
+    ideas[ideaIndex] = idea
+    this.setState({ideas: ideas})
   }
 
   renderCombinedItems = (index, key) => {  //key is running number
@@ -47,14 +52,21 @@ class topTable extends Component {
       title = this.props.topLikedIdeas[index - 13].title
     }
 
-    if(index == 0) return <div className="combinedListHeader">Newest</div>
-    if(index == 6) return <div className="combinedListHeader">popular</div>
-    if(index == 12) return <div className="combinedListHeader">Liked</div>
+    if(index == 0) return <div className="combinedListHeader" key="1">Newest</div>
+    if(index == 6) return <div className="combinedListHeader" key="2">popular</div>
+    if(index == 12) return <div className="combinedListHeader" key="3">Liked</div>
 
     let actualIndex = 0
-    if(this.state.selectedIndex >= 0) actualIndex = this.state.selectedIndex + 1
-    if(this.state.selectedIndex >= 5) actualIndex = this.state.selectedIndex + 2
-    if(this.state.selectedIndex >= 10) actualIndex = this.state.selectedIndex + 3
+    if(this.state.selectedIndex >= 0){
+      actualIndex = this.state.selectedIndex + 1
+    }
+    if(this.state.selectedIndex >= 5){
+      actualIndex = this.state.selectedIndex + 2
+    } 
+    if(this.state.selectedIndex >= 10){ 
+      actualIndex = this.state.selectedIndex + 3
+    }
+
 
     if(index == actualIndex){
       return <div onClick={ () => { this.showCombinedIdea(index) } }
@@ -145,7 +157,7 @@ class topTable extends Component {
   onSelectedIdeaChange = (newIdea, newIndex) => {
     this.setState({idea: newIdea})
     this.setState({selectedIndex: newIndex})
-	}
+  }
 
   createSelectedTopTable = () => {
     let type = "simple"
@@ -160,7 +172,7 @@ class topTable extends Component {
           />
         </div>
         <div id="topTableIdea">
-          <IdeaCard idea={this.state.idea} ideas={this.state.ideas} 
+          <IdeaCard ideas={this.state.ideas} 
               onSelectedIdeaChange={this.onSelectedIdeaChange} enabled={true} showNextPreviousButtons={true} 
               cardLeftArrowContainerClassName="topTableCardLeftArrowContainer" 
               cardRightArrowContainerClassName="topTableCardRightArrowContainer"/>
@@ -170,15 +182,18 @@ class topTable extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if(nextProps != this.props){
+    if(nextProps !== undefined &&  nextProps != this.props){
+      if(nextProps.topNewestIdeas !== undefined && nextProps.topPopularIdeas !== undefined && 
+            nextProps.topLikedIdeas !== undefined){
+        let ideas = [...nextProps.topNewestIdeas,...nextProps.topPopularIdeas, ...nextProps.topLikedIdeas]
+        this.setState({ ideas: ideas })
+      }
       return true
     }
-
+    
     if(nextState != this.state){
       return true
     }
-
-    this.setState({ shouldBeClean: this.props.shouldBeClean })
   }
 
   render() {
@@ -200,7 +215,6 @@ function mapStateToProps(state) {
     topLikedIdeas: state.topTableReducer.topLikedIdeas,
     topPopularIdeas: state.topTableReducer.topPopularIdeas,
     topNewestIdeas: state.topTableReducer.topNewestIdeas,
-    shouldBeClean: state.searchPageReducer.isTopTableShouldBeClean
   };
 }
 
