@@ -3,13 +3,13 @@ import { SET_TOP_LIKED_IDEAS,
     SET_TOP_TABLE_IS_IDEA_CLICKED,
 	SET_TOP_TABLE_IDEA,
 	SET_TOP_NEWEST_IDEAS,
-	SET_TOP_POPULAR_IDEAS,
+	SET_TOP_LIKED_PERCENTAGE_IDEAS,
  } from './types';
 
 const initialState = {
 	topHardIdeas: [],
 	topLikedIdeas: [],
-	topPopularIdeas: [],
+	topLikedPercantageIdeas: [],
 	topNewestIdeas: [],
     isClickedTopIdea: false,
     idea: {}
@@ -27,10 +27,10 @@ function topTableReducer(state = initialState, action) {
 				...state,
 				topLikedIdeas: action.payload
 			};
-		case SET_TOP_POPULAR_IDEAS:
+		case SET_TOP_LIKED_PERCENTAGE_IDEAS:
 			return {
 				...state,
-				topPopularIdeas: action.payload
+				topLikedPercantageIdeas: action.payload
 			};
 		case SET_TOP_NEWEST_IDEAS:
 			return {

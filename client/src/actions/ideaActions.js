@@ -8,7 +8,7 @@ import {
 	REMOVE_CREATED_IDEA_FROM_USER,
 	SET_TOP_HARD_IDEAS,
 	SET_TOP_LIKED_IDEAS,
-	SET_TOP_POPULAR_IDEAS,
+	SET_TOP_LIKED_PERCENTAGE_IDEAS,
 	SET_TOP_NEWEST_IDEAS,
 	SET_IS_SEARCHING,
 	USER_PAGE_SHOW_NEXT_CREATED_IDEA,
@@ -169,21 +169,7 @@ const addTagToLettersBucketIfNotExists = (firstLetters, tag) => {
 	});
 };
 
-export const updateTopIdeas = () => (dispatch) => {
-	axios.post('/api/items/getTopHardIdeas').then((res) => {
-		console.log('got top hard ideas');
-
-		dispatch({
-			type: SET_TOP_HARD_IDEAS,
-			payload: res.data
-		});
-
-		dispatch({
-			type: SET_IS_MAIN_LOADING,
-			payload: false
-		});
-	});
-
+export const updateTopLikedIdeas = () => (dispatch) => {
 	axios.post('/api/items/getTopLikedIdeas').then((res) => {
 		console.log('got top liked ideas');
 
@@ -193,11 +179,11 @@ export const updateTopIdeas = () => (dispatch) => {
 		});
 	});
 
-	axios.post('/api/items/getTopPopularIdeas').then((res) => {
+	axios.post('/api/items/getTopLikedPercentageIdeas').then((res) => {
 		console.log('got top popular ideas');
 
 		dispatch({
-			type: SET_TOP_POPULAR_IDEAS,
+			type: SET_TOP_LIKED_PERCENTAGE_IDEAS,
 			payload: res.data
 		});
 	});

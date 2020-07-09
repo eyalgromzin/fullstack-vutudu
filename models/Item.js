@@ -47,22 +47,6 @@ const ItemSchema = new Schema({
     required: true,
     default: [],
   },
-  minTime: {
-    type: Number,
-    required: false,
-  },
-  maxTime: {
-    type: Number,
-    required: false,
-  },
-  minNumOfPeople: {
-    type: Number,
-    required: false,
-  },
-  maxNumOfPeople: {
-    type: Number,
-    required: false,
-  },
   liked: {
     type: [String],
     required: false,

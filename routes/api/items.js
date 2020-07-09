@@ -47,8 +47,6 @@ router.post('/ideaLiked/', (req, res) => {
 		{ _id: req.body.ideaID },
 		{
 			$push: { liked: req.body.userID },
-			$inc: { likeCount: 1 },
-			$inc: { likeAndDislikeCount: 1 }
 		},
 		{ new: true }
 	).then((items) => res.json(items));
@@ -64,9 +62,7 @@ router.post('/removeIdeaLiked/', (req, res) => {
 	Item.findOneAndUpdate(
 		{ _id: ideaID }, //{'_id': ObjectID(ideaID)}
 		{
-			$pull: { liked: req.body.userID },
-			$inc: { likeCount: -1 },
-			$inc: { likeAndDislikeCount: -1 }
+			$pull: { liked: req.body.userID }
 		},
 		{ new: true }
 	).then((items) => res.json(items));
@@ -84,7 +80,6 @@ router.post('/ideaDisliked/', (req, res) => {
 		{ _id: ideaID }, //{'_id': ObjectID(ideaID)}
 		{ 	
 			$push: { disliked: req.body.userID },
-			$inc: { likeAndDislikeCount: 1 } 
 		},	
 		{ new: true }
 	).then((items) => res.json(items));
@@ -102,7 +97,6 @@ router.post('/removeIdeaDisliked/', (req, res) => {
 		{ _id: ideaID }, //{'_id': ObjectID(ideaID)}
 		{ 
 			$pull: { disliked: req.body.userID },
-			$inc: { likeAndDislikeCount: -1 },
 		},
 		{ new: true }
 	).then((items) => res.json(items));
@@ -322,24 +316,36 @@ router.post('/updateIdeaContentAndTitle/', (req, res) => {
 	});
 });
 
-// @route   POST api/items/getTopHardIdeas/
-// @desc    update idea
+
+// @route   POST api/items/getTopLikedIdeas/
+// @desc    gets the ideas with most likes
 // @access  Public
-router.post('/getTopHardIdeas/', (req, res) => {
-	console.log('getting top ideas');
-	Item.find().sort({ hardCount: -1 }).limit(5).then((items) => {
-		console.log('got top hard ideas');
+router.post('/getTopLikedIdeas/', (req, res) => {
+	console.log('getting top liked ideas');
+	Item.aggregate([
+		{$addFields: { likedCount: { $size: "$liked" }}},	//{ $size: $liked }
+		{$sort: { likedCount: -1 }},
+	]).limit(5).then((items) => {
+		console.log('got top liked ideas');
 		return res.json(items);
 	});
 });
 
-// @route   POST api/items/getTopPopularIdeas/
+// @route   POST api/items/getTopLikedPercentageIdeas/
 // @desc    gets the ideas with most likes + dislikes
 // @access  Public
-router.post('/getTopPopularIdeas/', (req, res) => {
-	console.log('getting top popular');
-	Item.find().sort({ likeAndDislikeCount: -1 }).limit(5).then((items) => {
-		console.log('got top popular ideas');
+router.post('/getTopLikedPercentageIdeas/', (req, res) => {
+	console.log('getting top newest ideas');
+	Item.aggregate([
+		{$addFields: { likedCount: { $size: "$liked" }}},			//doesnt work :/
+		{$addFields: { dislikedCount: { $size: "$disliked" }}},
+		{$addFields: { likeAndDislikeCount: { $add: ["$likedCount", "$dislikedCount"] }}},
+		{$match: { likeAndDislikeCount: { $ne: 0 }}},
+		{$addFields: { likedPercentage: { $divide: ["$likedCount", "$likeAndDislikeCount"] }}},
+		{$sort: {likedPercentage: -1}},
+	])	
+	.limit(5).then((items) => {
+		console.log('got top newest ideas');
 		return res.json(items);
 	});
 });
@@ -349,19 +355,10 @@ router.post('/getTopPopularIdeas/', (req, res) => {
 // @access  Public
 router.post('/getTopNewestIdeas/', (req, res) => {
 	console.log('getting top newest ideas');
-	Item.find().sort({ 'date' : -1 }).limit(5).then((items) => {
+	Item.find().sort({ 'date' : -1 })
+	.limit(5)
+	.then((items) => {
 		console.log('got top newest ideas');
-		return res.json(items);
-	});
-});
-
-// @route   POST api/items/getTopLikedIdeas/
-// @desc    update idea
-// @access  Public
-router.post('/getTopLikedIdeas/', (req, res) => {
-	console.log('getting top ideas');
-	Item.find().sort({ likeCount: -1 }).limit(5).then((items) => {
-		console.log('got top liked ideas');
 		return res.json(items);
 	});
 });

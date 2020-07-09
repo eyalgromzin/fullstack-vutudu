@@ -8,7 +8,7 @@ import createIdeaLayout from '../components/createCopmonent/createIdeaLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userPageLayout from 'components/layouts/userPageLayout/userPageLayout';
 import TopBar from 'components/topBar'
-import { updateTopIdeas } from 'actions/ideaActions';
+import { updateTopLikedIdeas } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import MobileLayout from '../components/mobileLayout/mobileLayout';
 import {
@@ -19,7 +19,7 @@ class Layout extends Component {
   componentWillMount(){
     //get top table results
     this.props.dispatch({type: SET_IS_MAIN_LOADING, payload: true})
-    this.props.updateTopIdeas();
+    this.props.updateTopLikedIdeas();
   }
 
   isClientMobile() {
@@ -72,7 +72,7 @@ class Layout extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateTopIdeas: bindActionCreators (updateTopIdeas, dispatch),
+    updateTopLikedIdeas: bindActionCreators (updateTopLikedIdeas, dispatch),
     dispatch,
   }
 }
