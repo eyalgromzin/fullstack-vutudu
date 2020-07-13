@@ -3,7 +3,7 @@ export const idea = {
     content: "",
     date: {},
     createdBy: "",
-    tags: [],
+    subjects: [],
     place: "",
     time: 0,
     minNumOfPeople: 0,

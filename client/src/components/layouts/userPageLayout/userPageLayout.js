@@ -12,6 +12,7 @@ import {
   CHANGE_LOGGED_IN_STATE,
   SET_USER_CURRENT_PREVIEWED_IDEA,
   SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
+  SET_CURRENT_IDEA,
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
 import IdeaCard from 'components/ideaCard/ideaCard'
@@ -71,7 +72,7 @@ class userPageLayout extends Component {
           this.props.currentPreviewedIdeas.length > 0 ? 
             <div id="ideaCardWithButtonsInUser">
               <div id="userIdeaCard">
-                <IdeaCard idea={this.props.currentPreviewedIdea} enabled={true} showNextPreviousButtons={true} 
+                <IdeaCard enabled={true} showNextPreviousButtons={true} 
                   editable={true} deleteable={true} ideas={this.props.currentPreviewedIdeas}
                   onSelectedIndexChange={this.onSelectedIndexChange} cardLeftArrowContainerClassName="userCardLeftArrowContainer" 
                   cardRightArrowContainerClassName="userCardRightArrowContainer" />
@@ -92,7 +93,7 @@ class userPageLayout extends Component {
 
   onSelectedIndexChange = (newIndex) => {
     this.setState({selectedIdeaIndex: newIndex})
-    this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA, payload: this.props.currentPreviewedIdeas[newIndex]});
+    this.props.dispatch({type: SET_CURRENT_IDEA, payload: this.props.currentPreviewedIdeas[newIndex]});
 	}
 
   createUserIdeasList = () => {

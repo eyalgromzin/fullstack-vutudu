@@ -49,20 +49,15 @@
 }
 
 #searchPlaceFieldContainer{
-    width:33%;
+    width:50%;
     display: inline-block;
-    margin-right: 1%;
+    margin-right: 2%;
 }
 
 .numOfPeopleCreatorDropDown{
     width: 47%;
     height: 30px;
-    /* margin-right: 10px; */
-    /* padding: 10px 10px; */
-    /* font-family: Helvetica, sans-serif; */
-    /* font-weight: 300; */
-    /* font-size: 20px; */
-    border: 1px solid #aaa;
+    border: 0px solid #aaa;
     border-radius: 4px;
 }
 
@@ -71,15 +66,11 @@
 }
 
  #numOfPeopleCreator{
-    display: inline-block;
-    width: 31%;
-    margin-right: 1%;
 } 
 
 #searchBar{
     margin-bottom: 25px; 
     background-color: #c7ceeab3;
-    padding-top: 10px;
     /* padding-bottom: 5px; */
     text-align: center;
     border-radius: 20px;
@@ -99,14 +90,7 @@
     width: 50%;
 }
 
-.timeCreatorCommon{
-
-}
-
 .createBarTimeField{
-    display: inline-block;
-    width: 30%;
-    margin-right: 1%;
 }
 
 .verticalSearchBarTextField{
@@ -115,8 +99,8 @@
 }
 
 .searchBarComboBox{
-    width: 11%;
-    margin-right: 1%;
+    width: 16%;
+    margin-right: 2%;
 }
 
 #createBarPlaceFieldContainer{

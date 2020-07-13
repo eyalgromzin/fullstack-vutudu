@@ -49,9 +49,10 @@ class NumOfPeopleSelector extends Component {
     return (
       <React.Fragment>
         <div id="numOfPeopleSelector" className="inlineBlock searchBarComboBox">
-          <div className={this.props.headerCssClass}>People</div>
+          {/* <div className={this.props.headerCssClass}>People</div> */}
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
             onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
+            <option value="10" className="timeChooserOption">People</option>
             <option value="10" className="timeChooserOption">1</option>
             <option value="20" className="timeChooserOption">2</option>
             <option value="2" className="timeChooserOption">Couple</option>

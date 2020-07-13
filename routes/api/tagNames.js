@@ -4,58 +4,58 @@ const router = express.Router();
 // Item Model
 const hashTags = require('../../models/hashTagName');
 
-// @route   GET api/tagNames/:tagName
-// @desc    search for elements with tag name
+// @route   GET api/subjectNames/:subjectName
+// @desc    search for elements with subject name
 // @access  Public
-router.get('/:tagName', (req, res) => {   //
+router.get('/:subjectName', (req, res) => {   //
     try{
-      console.log('get tag names starting with: ' + req.params.tagName)
+      console.log('get subject names starting with: ' + req.params.subjectName)
 
-      var regexp = new RegExp("^"+ req.params.tagName); //this doesnt work if you just put it as string
+      var regexp = new RegExp("^"+ req.params.subjectName); //this doesnt work if you just put it as string
       hashTags.find({
         name: regexp
       })
-      .then(tag => {
-        console.log('got tag');
-          res.json(tag);
+      .then(subject => {
+        console.log('got subject');
+          res.json(subject);
       })
     }catch(error){
       console.log('error while getting names');
     }
   });
 
-// @route   POST api/tagNames/create
-// @desc    create tag name
+// @route   POST api/subjectNames/create
+// @desc    create subject name
 // @access  Public
 router.post('/create', (req, res) => {
 
-    req.body.tagNames.forEach(function(tagName) {
-        var query = {name: tagName},
-        update = { name: tagName },
+    req.body.subjectNames.forEach(function(subjectName) {
+        var query = {name: subjectName},
+        update = { name: subjectName },
         options = { upsert: true, new: true, setDefaultsOnInsert: true };
         
         hashTags.findOneAndUpdate(query, update, options)
-        .then(tagName => {
-            console.log('added hashtag: ' + tagName + ', to db')
-            return res.json(tagName)
+        .then(subjectName => {
+            console.log('added hashsubject: ' + subjectName + ', to db')
+            return res.json(subjectName)
             })
         .catch(error => {
-            console.error('error while creating tag name: ' + tagName, error);
+            console.error('error while creating subject name: ' + subjectName, error);
         })
     })
     
 });
 
-// @route   POST api/tagNames/get
-// @desc    get all place names starting with 'tagName'
+// @route   POST api/subjectNames/get
+// @desc    get all place names starting with 'subjectName'
 // @access  Public
 router.post('/get', (req, res) => {
-  var regexp = new RegExp("^"+ req.body.tagName);
+  var regexp = new RegExp("^"+ req.body.subjectName);
 
   hashTags.find({ name: regexp})
   .then(
-    tagNames => 
-    res.json(tagNames)
+    subjectNames => 
+    res.json(subjectNames)
     )
   .catch(error => {
       console.error('error while creating place name: ', error);

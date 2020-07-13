@@ -3,14 +3,14 @@
 }
 
 #timeCreatorField{
-    
+    display: block;
 }
 
 .timeCreatorCommon{
     height: 30px;
     border-radius: 4px;
-    border: 1px solid #aaa;
-    width: 44%;
+    border: 0px solid #aaa;
+    width: 47%;
 }
 
 #minTimeCreator{
@@ -26,5 +26,4 @@
 }
 
 #timeCreatorSelectors{
-    text-align: center;
 }

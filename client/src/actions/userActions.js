@@ -237,20 +237,20 @@ export const updateIdea = (userID, ideaID, title, content, place, time, minNumOf
       });
   }
 
-  //upsert tags to db
-  var tagNames = getTagsFromContent(content)
-  axios.post(`/api/tagNames/create`, {tagNames} )
+  //upsert subjects to db
+  var subjectNames = getTagsFromContent(content)
+  axios.post(`/api/subjectNames/create`, {subjectNames} )
     .then(res =>
       {
-        console.log('tag added to db')
+        console.log('subject added to db')
       }
     );
 
-  //set idea tags
-  axios.post(`/api/items/updateIdeaTags`, {ideaID: ideaID, tags: tagNames} )
+  //set idea subjects
+  axios.post(`/api/items/updateIdeaTags`, {ideaID: ideaID, subjects: subjectNames} )
     .then(res =>
       {
-        console.log('idea tag were updated')
+        console.log('idea subject were updated')
       }
     );
   

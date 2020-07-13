@@ -63,7 +63,7 @@ function mapStateToProps(state) {
     // currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
     newTitle: state.editableIdeaReducer.title,
     newContent: state.editableIdeaReducer.content,
-    newTags: state.editableIdeaReducer.tags,
+    newTags: state.editableIdeaReducer.subjects,
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdeas
                           .filter (idea => {return state.editableIdeaReducer.id == idea._id})[0],
     isIdeaEdited: state.userPageReducer.isIdeaEdited,

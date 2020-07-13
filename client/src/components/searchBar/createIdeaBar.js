@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PlaceField from './placeField/placeField'
-import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
+import NumOfPeopleCreator from 'components/searchBar/numOfPeopleCreator/numOfPeopleCreator'
 import TimeCreator from './timeCreator/timeCreator'
 import {
   EDITABLE_IDEA_SET_MIN_TIME,
-  EDITABLE_IDEA_SET_PLACE,
+  EDITABLE_IDEA_SET_PLACES,
   EDITABLE_IDEA_SET_IS_PLACE_VALID,
   EDITABLE_IDEA_SET_MAX_TIME
 } from 'reducers/types'
@@ -28,7 +28,7 @@ class CreateIdeaBar extends Component {
   placeOnChangeEvent = (placeText) => {
     var isPlaceValid = this.isPlaceValid(placeText)
 
-    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: placeText});
+    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACES, payload: placeText});
     this.props.dispatch({type: EDITABLE_IDEA_SET_IS_PLACE_VALID, payload: isPlaceValid});
   }
 
@@ -42,14 +42,14 @@ class CreateIdeaBar extends Component {
         <div id="createBar" className="inlineBlock">
             <div id="createBarPlaceFieldContainer">
               <PlaceField 
-                tagID="createBarPlaceSelector" 
+                subjectID="createBarPlaceSelector" 
                 isClickedButton={this.props.isClickedButton}
                 placeOnChangeEvent={this.placeOnChangeEvent} place={this.props.place} 
                 validationMethod={this.isNotEmpty} placeSuggestions={[]}
                 placeFieldLocation="create" cssClass="inlineBlock createBarTextField" headerCssClass="fieldHeader" />
             </div>
             <TimeCreator 
-              fieldClass="inlineBlock createBarComboBox createBarTimeField"
+              fieldClass="inlineBlock createComboBox createBarTimeField"
               headerCssClass="fieldHeader"
               selctorClass="timeCreatorCommon"
               onMinTimeChangeEvent={this.onMinTimeChangeEvent} 

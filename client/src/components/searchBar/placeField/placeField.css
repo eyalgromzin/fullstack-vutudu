@@ -12,3 +12,7 @@
 #placeField{
     /* width: 100%; */
 }
+
+#placeSelector{
+    border: none;
+}

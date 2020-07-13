@@ -5,7 +5,7 @@ import {
   EDITABLE_IDEA_SET_TITLE,
   EDITABLE_IDEA_SET_CONTENT ,
   CLEAR_EDITABLE_IDEA,
-  EDITABLE_IDEA_SET_PLACE,
+  EDITABLE_IDEA_SET_PLACES,
   EDITABLE_IDEA_SET_ID,
   EDITABLE_IDEA_SET_TAGS,
   UPDATE_EDITABLE_IDEA,
@@ -13,10 +13,10 @@ import {
   EDITABLE_IDEA_SET_IS_TITLE_VALID,
   EDITABLE_IDEA_SET_IS_CONTENT_VALID,
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
-  CREATE_IDEA_SET_MAX_PEOPLE,
-  CREATE_IDEA_SET_MIN_PEOPLE,
   ON_CREATE_SET_IS_DUPLICATE_TITLE,
   EDITABLE_IDEA_SET_MAX_TIME,
+  EDITABLE_IDEA_SET_IMAGE_NAME,
+  EDITABLE_IDEA_SET_IMAGE_BASE64,
   SET_USER_EDITED_IDEA,
 } from 'reducers/types'
 
@@ -34,6 +34,8 @@ const initialState = {
     isTitleValid: false,
     isPlaceValid: false,
     isClickedButton: false,   //refers to create / update
+    imageName: "",
+    imageBase64: [],
     idea: {},
 };
 
@@ -54,7 +56,7 @@ function reducer(state = initialState, action) {
         ...state,
         idea: action.payload
       };
-    case EDITABLE_IDEA_SET_PLACE:
+    case EDITABLE_IDEA_SET_PLACES:
       return {
         ...state,
         place: action.payload,
@@ -84,17 +86,7 @@ function reducer(state = initialState, action) {
         content: action.payload,
         isButtonEnabled: action.payload.length > 0 && state.title.length > 0 && state.place.length > 2,
         isContentValid: action.payload.length > 0
-      };
-    case CREATE_IDEA_SET_MIN_PEOPLE:
-      return {
-        ...state,
-        minNumOfPeople: action.payload,
-      };
-    case CREATE_IDEA_SET_MAX_PEOPLE:
-      return {
-        ...state,
-        maxNumOfPeople: action.payload,
-      };
+      };    
     case EDITABLE_IDEA_SET_TAGS:
     return {
       ...state,
@@ -147,9 +139,22 @@ function reducer(state = initialState, action) {
         isClickedButton: action.payload,
         isButtonEnabled: state.content.length > 0 && state.title.length > 0 && state.place.length > 2,
       };
+    case EDITABLE_IDEA_SET_IMAGE_NAME:
+      return {
+        ...state,
+        imageName: action.payload,
+      };
+    case EDITABLE_IDEA_SET_IMAGE_BASE64:
+        return {
+          ...state,
+          imageBase64: action.payload,
+        };
     default:
       return state;
   }
+
+  var x = 4;
+  x += 1;
 }
 
 export default reducer;

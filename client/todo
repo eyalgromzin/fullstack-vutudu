@@ -1,9 +1,51 @@
-- search page , should look like pinterest - top bar , and at the bottom all newest ideas - even if there arent that many
+- create a local images map , save it locally
+- create idea - image path is not saved to idea  - create a json similar to an idea card with text and image , and fill it 
+- user page - on load - load the first item in the list if exists.
+- user page - on delete - add a question dialog if to delete
+- user page - on delete success - load next idea
+- user page - remove delete button from liked ideas
 
-- search results will be like pinterest. will just show the right squares below the search bar
 
-- make create page super simple - jsut like pinterest. 
-    left side - text + with an image / youtube link / linked image
-    right side - all the details 
 
-- make the dtop down at the top bar. and show like in search all the ideas
+- user page - enable edit idea -  load image and all the fields 
+
+- remove top table - just on start load 100 newest images and show them under the search bar
+
+========== search for a job!!! ===================
+
+- check place field also searches title and subjects and content
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------- NTH -----------------------------------
+
+- search results will be like pinterest. will just show the right squares below the search bar - maybe...

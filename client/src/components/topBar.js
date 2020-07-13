@@ -69,40 +69,40 @@ class TopBar extends Component {
 
     return (
     <React.Fragment>
-    <div id="topBar">
-      <Route render={({history}) => (
-        <React.Fragment>
-          <div id="mainLogo" className=""> 
-            <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />     
-            <span id="mainLogoText">VUTUDU</span>
-          </div> 
-          <div id="rightSideButtons">
-            <img id="searchIdeasButton" src={require("images/search.png")} 
-            className={this.state.currentPage == "search"? 
+      <div id="topBar">
+        <Route render={({history}) => (
+          <React.Fragment>
+            <div id="mainLogo" className=""> 
+              <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />     
+              <span id="mainLogoText">VUTUDU</span>
+            </div> 
+            <div id="rightSideButtons">
+              <img id="searchIdeasButton" src={require("images/search.png")} 
+              className={this.state.currentPage == "search"? 
+                "topBarIconSelected tilt clickAnimation" : 
+                "topBarIcon tilt clickAnimation" } alt="" 
+                onClick={() => this.searchClick(history)} />
+
+              <img id="newIdeaButton" src={require("images/plus.png")} 
+              className={this.state.currentPage == "create"? 
               "topBarIconSelected tilt clickAnimation" : 
               "topBarIcon tilt clickAnimation" } alt="" 
-              onClick={() => this.searchClick(history)} />
+                onClick={() => this.showCreateIdeaScreen(history) } />
 
-            <img id="newIdeaButton" src={require("images/plus.png")} 
-            className={this.state.currentPage == "create"? 
-            "topBarIconSelected tilt clickAnimation" : 
-            "topBarIcon tilt clickAnimation" } alt="" 
-              onClick={() => this.showCreateIdeaScreen(history) } />
+              <img id="userButton" src={require("images/user.png")} 
+              className={this.state.currentPage == "user"? 
+              "topBarIconSelected tilt clickAnimation" : 
+              "topBarIcon tilt clickAnimation" } alt="" 
+              onClick={() => this.openUserPage(history) 
+                } />
+            </div>
+            
+            
+            
 
-            <img id="userButton" src={require("images/user.png")} 
-            className={this.state.currentPage == "user"? 
-            "topBarIconSelected tilt clickAnimation" : 
-            "topBarIcon tilt clickAnimation" } alt="" 
-            onClick={() => this.openUserPage(history) 
-              } />
-          </div>
-          
-          
-          
-
-        </React.Fragment> 
-      )} />
-    </div>
+          </React.Fragment> 
+        )} />
+      </div>
     </React.Fragment>
     )
   }

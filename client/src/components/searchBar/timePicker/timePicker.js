@@ -40,13 +40,14 @@ export default class TimePicker extends Component {
 		return (
 			<React.Fragment>
 				<div id="timePickerField" className={this.props.cssClass} >
-					<div className={this.props.headerCssClass}>Time</div>
+					{/* <div className={this.props.headerCssClass}>Time</div> */}
 					<select
 						id="timePicker"
 						value={this.state.time}
 						onChange={this.onChangeEvent}
 						onKeyDown={this.placeFieldKeyUp}
 					>
+						<option value="5" className="timeChooserOption">Time</option>
 						<option value="5" className="timeChooserOption">5 min</option>
 						<option value="10" className="timeChooserOption">10 min</option>
 						<option value="15" className="timeChooserOption">15 min</option>

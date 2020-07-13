@@ -1,11 +1,11 @@
 import axios from 'axios';
 
-export const addHashTagsToDB = tagNames => dispatch => {
-    var tagObject = { tagNames: tagNames}
-    axios.post(`/api/tagNames/create`,tagObject)
+export const addHashTagsToDB = subjectNames => dispatch => {
+    var subjectObject = { subjectNames: subjectNames}
+    axios.post(`/api/subjectNames/create`,subjectObject)
     .then(res =>
       {
-        console.log('tag added to db')
+        console.log('subject added to db')
       }
     );
   }

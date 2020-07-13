@@ -15,41 +15,58 @@ export default class TimeCreator extends Component {
 
 		this.state = {
 			minTime: Number(minTime),
-			maxTime: Number(maxTime)
+			maxTime: Number(maxTime),
+			isValid: true
 		};
 	}
 
-	// getSnapshotBeforeUpdate(prevProps, prevState){
-	// 	var time = this.props.time === undefined ? 10 : this.props.time;
-	// 	if(this.state.time != time){
-	// 		this.setState({ time: Number(time) });
-	// 	}
-
-	// 	return null
-	// }
+	clearSelection = () => {
+		this.setState({
+			minTime: 10,
+			maxTime: 10
+		})
+	}
 
 	onMinTimeChangeEvent = (e) => {
 		this.setState({minTime: e.target.value})
+		this.validate();
 		this.props.onMinTimeChangeEvent(e.target.value)
 	}
-	  
+		
 	onMaxTimeChangeEvent = (e) => {
 		this.setState({maxTime: e.target.value})
+		this.validate();
 		this.props.onMaxTimeChangeEvent(e.target.value)
 	}
+
+	validate = () => {
+		if(this.state.minTime > this.state.maxTime){
+			this.setState({isValid: false})
+			return false
+		}
+
+		this.setState({isValid: true})
+		return true
+	}
+
+	clear = () => {
+		this.setState({minTime: 10,
+						maxTime: 10
+					}) 
+    }
 
 	render() {
 		return (
 			<React.Fragment>
 				<div id="timeCreatorField" className={this.props.fieldClass}>
-					<div className={this.props.headerCssClass}>Time</div>
 					<div id="timeCreatorSelectors" >
 						<select
 						id="minTimeCreator"
 						value={this.state.minTime}
 						onChange={this.onMinTimeChangeEvent}
-						className={this.props.selctorClass}
+						className={this.state.isValid? this.props.selctorClass : this.props.selctorClass + " errorBackground"}
 						>
+							<option value="5" className="timeChooserOption">Min Time</option>
 							<option value="5" className="timeChooserOption">5 min</option>
 							<option value="10" className="timeChooserOption">10 min</option>
 							<option value="15" className="timeChooserOption">15 min</option>
@@ -64,8 +81,9 @@ export default class TimeCreator extends Component {
 						id="maxTimeCreator"
 						value={this.state.maxTime}
 						onChange={this.onMaxTimeChangeEvent}
-						className={this.props.selctorClass}
+						className={this.state.isValid? this.props.selctorClass : this.props.selctorClass + " errorBackground"}
 						>
+							<option value="5" className="timeChooserOption">Max Time</option>
 							<option value="5" className="timeChooserOption">5 min</option>
 							<option value="10" className="timeChooserOption">10 min</option>
 							<option value="15" className="timeChooserOption">15 min</option>
@@ -76,7 +94,6 @@ export default class TimeCreator extends Component {
 							<option value="480" className="timeChooserOption">full day+ (8h+)</option>
 						</select>
 					</div>
-					<div className="invisible">error</div>
 				</div>
 			</React.Fragment>
 		);

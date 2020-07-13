@@ -102,7 +102,7 @@ class PlaceField extends Component {
     var isShowError = false   //(this.props.isClickedButton && !this.isPlaceValid()) || !this.state.isPlaceValid
 
     const inputProps = {
-      placeholder: 'bar / home / kitchen / beach / park / bus Station / ...',
+      placeholder: 'place / subject / text ...',
       value: this.state.placeText,
       onChange: this.handlePlaceChange,
     };
@@ -111,7 +111,8 @@ class PlaceField extends Component {
     return (
       <React.Fragment >
         <div id="placeField" className={this.props.fieldClass}>
-          <div className={this.props.headerCssClass}>Place</div>
+          {/* <div className={this.props.headerCssClass}>Place</div>  */}
+          
           <Autosuggest
             id="placeSelector"
             suggestions={this.state.placeSuggestions}

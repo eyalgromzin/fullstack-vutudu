@@ -50,7 +50,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [Configuring the Proxy Manually](#configuring-the-proxy-manually)
   - [Configuring a WebSocket Proxy](#configuring-a-websocket-proxy)
 - [Using HTTPS in Development](#using-https-in-development)
-- [Generating Dynamic `<meta>` Tags on the Server](#generating-dynamic-meta-tags-on-the-server)
+- [Generating Dynamic `<meta>` Tags on the Server](#generating-dynamic-meta-subjects-on-the-server)
 - [Pre-Rendering into Static HTML Files](#pre-rendering-into-static-html-files)
 - [Injecting Data from the Server into the Page](#injecting-data-from-the-server-into-the-page)
 - [Running Tests](#running-tests)
@@ -211,12 +211,12 @@ In addition to [ES6](https://github.com/lukehoban/es6features) syntax features, 
 
 * [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) (ES2016).
 * [Async/await](https://github.com/tc39/ecmascript-asyncawait) (ES2017).
-* [Object Rest/Spread Properties](https://github.com/sebmarkbage/ecmascript-rest-spread) (stage 3 proposal).
-* [Dynamic import()](https://github.com/tc39/proposal-dynamic-import) (stage 3 proposal)
-* [Class Fields and Static Properties](https://github.com/tc39/proposal-class-public-fields) (part of stage 3 proposal).
+* [Object Rest/Spread Properties](https://github.com/sebmarkbage/ecmascript-rest-spread) (ssubjecte 3 proposal).
+* [Dynamic import()](https://github.com/tc39/proposal-dynamic-import) (ssubjecte 3 proposal)
+* [Class Fields and Static Properties](https://github.com/tc39/proposal-class-public-fields) (part of ssubjecte 3 proposal).
 * [JSX](https://facebook.github.io/react/docs/introducing-jsx.html) and [Flow](https://flowtype.org/) syntax.
 
-Learn more about [different proposal stages](https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-).
+Learn more about [different proposal ssubjectes](https://babeljs.io/docs/plugins/#presets-ssubjecte-x-experimental-presets-).
 
 While we recommend using experimental proposals with some caution, Facebook heavily uses these features in the product code, so we intend to provide [codemods](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) if any of these proposals change in the future.
 
@@ -309,17 +309,17 @@ Prettier is an opinionated code formatter with support for JavaScript, CSS and J
 To format our code whenever we make a commit in git, we need to install the following dependencies:
 
 ```sh
-npm install --save husky lint-staged prettier
+npm install --save husky lint-ssubjected prettier
 ```
 
 Alternatively you may use `yarn`:
 
 ```sh
-yarn add husky lint-staged prettier
+yarn add husky lint-ssubjected prettier
 ```
 
 * `husky` makes it easy to use githooks as if they are npm scripts.
-* `lint-staged` allows us to run scripts on staged files in git. See this [blog post about lint-staged to learn more about it](https://medium.com/@okonetchnikov/make-linting-great-again-f3890e1ad6b8).
+* `lint-ssubjected` allows us to run scripts on ssubjected files in git. See this [blog post about lint-ssubjected to learn more about it](https://medium.com/@okonetchnikov/make-linting-great-again-f3890e1ad6b8).
 * `prettier` is the JavaScript formatter we will run before commits.
 
 Now we can make sure every file is formatted correctly by adding a few lines to the `package.json` in the project root.
@@ -328,18 +328,18 @@ Add the following line to `scripts` section:
 
 ```diff
   "scripts": {
-+   "precommit": "lint-staged",
++   "precommit": "lint-ssubjected",
     "start": "react-scripts start",
     "build": "react-scripts build",
 ```
 
-Next we add a 'lint-staged' field to the `package.json`, for example:
+Next we add a 'lint-ssubjected' field to the `package.json`, for example:
 
 ```diff
   "dependencies": {
     // ...
   },
-+ "lint-staged": {
++ "lint-ssubjected": {
 +   "src/**/*.{js,jsx,json,css}": [
 +     "prettier --single-quote --write",
 +     "git add"
@@ -354,13 +354,13 @@ Next you might want to integrate Prettier in your favorite editor. Read the sect
 
 ## Changing the Page `<title>`
 
-You can find the source HTML file in the `public` folder of the generated project. You may edit the `<title>` tag in it to change the title from “React App” to anything else.
+You can find the source HTML file in the `public` folder of the generated project. You may edit the `<title>` subject in it to change the title from “React App” to anything else.
 
 Note that normally you wouldn’t edit files in the `public` folder very often. For example, [adding a stylesheet](#adding-a-stylesheet) is done without touching the HTML.
 
 If you need to dynamically update the page title based on the content, you can use the browser [`document.title`](https://developer.mozilla.org/en-US/docs/Web/API/Document/title) API. For more complex scenarios when you want to change the title from React components, you can use [React Helmet](https://github.com/nfl/react-helmet), a third party library.
 
-If you use a custom server for your app in production and want to modify the title before it gets sent to the browser, you can follow advice in [this section](#generating-dynamic-meta-tags-on-the-server). Alternatively, you can pre-build each page as a static HTML file which then loads the JavaScript bundle, which is covered [here](#pre-rendering-into-static-html-files).
+If you use a custom server for your app in production and want to modify the title before it gets sent to the browser, you can follow advice in [this section](#generating-dynamic-meta-subjects-on-the-server). Alternatively, you can pre-build each page as a static HTML file which then loads the JavaScript bundle, which is covered [here](#pre-rendering-into-static-html-files).
 
 ## Installing a Dependency
 
@@ -431,7 +431,7 @@ Learn more about ES6 modules:
 
 Instead of downloading the entire app before users can use it, code splitting allows you to split your code into small chunks which you can then load on demand.
 
-This project setup supports code splitting via [dynamic `import()`](http://2ality.com/2017/01/import-operator.html#loading-code-on-demand). Its [proposal](https://github.com/tc39/proposal-dynamic-import) is in stage 3. The `import()` function-like form takes the module name as an argument and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which always resolves to the namespace object of the module.
+This project setup supports code splitting via [dynamic `import()`](http://2ality.com/2017/01/import-operator.html#loading-code-on-demand). Its [proposal](https://github.com/tc39/proposal-dynamic-import) is in ssubjecte 3. The `import()` function-like form takes the module name as an argument and returns a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which always resolves to the namespace object of the module.
 
 Here is an example:
 
@@ -687,7 +687,7 @@ An alternative way of handling static assets is described in the next section.
 ### Changing the HTML
 
 The `public` folder contains the HTML file so you can tweak it, for example, to [set the page title](#changing-the-page-title).
-The `<script>` tag with the compiled code will be added to it automatically during the build process.
+The `<script>` subject with the compiled code will be added to it automatically during the build process.
 
 ### Adding Assets Outside of the Module System
 
@@ -740,7 +740,7 @@ The `public` folder is useful as a workaround for a number of less common cases:
 * You need a file with a specific name in the build output, such as [`manifest.webmanifest`](https://developer.mozilla.org/en-US/docs/Web/Manifest).
 * You have thousands of images and need to dynamically reference their paths.
 * You want to include a small script like [`pace.js`](http://github.hubspot.com/pace/docs/welcome/) outside of the bundled code.
-* Some library may be incompatible with Webpack and you have no other option but to include it as a `<script>` tag.
+* Some library may be incompatible with Webpack and you have no other option but to include it as a `<script>` subject.
 
 Note that if you add a `<script>` that declares global variables, you also need to read the next section on using them.
 
@@ -917,7 +917,7 @@ You can also access the environment variables starting with `REACT_APP_` in the 
 Note that the caveats from the above section apply:
 
 * Apart from a few built-in variables (`NODE_ENV` and `PUBLIC_URL`), variable names must start with `REACT_APP_` to work.
-* The environment variables are injected at build time. If you need to inject them at runtime, [follow this approach instead](#generating-dynamic-meta-tags-on-the-server).
+* The environment variables are injected at build time. If you need to inject them at runtime, [follow this approach instead](#generating-dynamic-meta-subjects-on-the-server).
 
 ### Adding Temporary Environment Variables In Your Shell
 
@@ -1015,7 +1015,7 @@ Please refer to these two threads for reference:
 * [#214](https://github.com/facebookincubator/create-react-app/issues/214)
 * [#411](https://github.com/facebookincubator/create-react-app/issues/411)
 
-Create React App will add decorator support when the specification advances to a stable stage.
+Create React App will add decorator support when the specification advances to a stable ssubjecte.
 
 ## Fetching Data with AJAX Requests
 
@@ -1225,7 +1225,7 @@ Note that the server will use a self-signed certificate, so your web browser wil
 
 ## Generating Dynamic `<meta>` Tags on the Server
 
-Since Create React App doesn’t support server rendering, you might be wondering how to make `<meta>` tags dynamic and reflect the current URL. To solve this, we recommend to add placeholders into the HTML, like this:
+Since Create React App doesn’t support server rendering, you might be wondering how to make `<meta>` subjects dynamic and reflect the current URL. To solve this, we recommend to add placeholders into the HTML, like this:
 
 ```html
 <!doctype html>

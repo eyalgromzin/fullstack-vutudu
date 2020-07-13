@@ -39,6 +39,23 @@ export const removeIdeaFromArray = (ideasArr, ideaID) => {
     return arrayWithoutIdea;
 }
 
+export const createUUID = () => {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+     return v.toString(16);
+  });
+}
+
+export const uploadBase64ImageToStorage = (base64Image, cloudPath, callBack) => {  
+  if(base64Image === undefined){
+    return
+  }
+  var imageRef = storageRef.child(cloudPath);
+  imageRef.putString(base64Image, 'data_url', {contentType:'image/jpg'}).then(function(snapshot) {
+    callBack()
+  });
+}
+
 export const moveUnlikedIdeasToBack = (ideas, userID) => {
   if(ideas === undefined || ideas.length == 0 || userID === undefined || userID == ""){
     return ideas
@@ -64,7 +81,7 @@ export const moveUnlikedIdeasToBack = (ideas, userID) => {
 //   return index < 0? 0 : index
 // }
 
-export const getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashtags-from-text/
+export const getTagsFromContent = (inputText) => {  //http://geekcoder.org/js-extract-hashsubjects-from-text/
   var regex = /(?:^|\s)(?:#)([a-zA-Z\d]+)/gm;
   var matches = [];
   var match;

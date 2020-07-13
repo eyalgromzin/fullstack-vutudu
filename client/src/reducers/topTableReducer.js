@@ -9,7 +9,7 @@ import { SET_TOP_LIKED_IDEAS,
 const initialState = {
 	topHardIdeas: [],
 	topLikedIdeas: [],
-	topLikedPercantageIdeas: [],
+	topLikedPercansubjecteIdeas: [],
 	topNewestIdeas: [],
     isClickedTopIdea: false,
     idea: {}
@@ -30,7 +30,7 @@ function topTableReducer(state = initialState, action) {
 		case SET_TOP_LIKED_PERCENTAGE_IDEAS:
 			return {
 				...state,
-				topLikedPercantageIdeas: action.payload
+				topLikedPercansubjecteIdeas: action.payload
 			};
 		case SET_TOP_NEWEST_IDEAS:
 			return {

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PlaceField from './placeField/placeField'
 import NumOfPeopleCreator from './numOfPeopleCreator/numOfPeopleCreator'
 import TimePicker from './timePicker/timePicker'
-import { EDITABLE_IDEA_SET_PLACE } from 'reducers/types'
+import { EDITABLE_IDEA_SET_PLACES } from 'reducers/types'
 import { EDITABLE_IDEA_SET_MIN_TIME } from 'reducers/types'
 import { connect } from 'react-redux';
 import './searchBarCommonStyles.css'
@@ -14,7 +14,7 @@ class VerticalEditIdeaBar extends Component {
   }
 
   placeOnChangeEvent = (value) => {
-    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACE, payload: value});
+    this.props.dispatch({type: EDITABLE_IDEA_SET_PLACES, payload: value});
   }
 
   timeOnChangeEvent = (value) => {
@@ -29,7 +29,7 @@ class VerticalEditIdeaBar extends Component {
           <PlaceField 
             fieldClass="verticalSearchBarTextField"
             headerCssClass="verticalFieldHeader"
-            tagID="ideaBarPlaceSelector" 
+            subjectID="ideaBarPlaceSelector" 
             placeOnChangeEvent={this.placeOnChangeEvent} 
             place={this.props.place} />
           <TimeCreator 

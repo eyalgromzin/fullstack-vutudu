@@ -124,14 +124,13 @@ new Promise(function(resolve, reject) {
 	//   })
 });
 
-export const searchItems = (place, time, numOfPeople, more) => (dispatch) => {
-	if (place === undefined || place == "") place = "_"
+export const searchItems = (text, time, numOfPeople) => (dispatch) => {
+	if (text === undefined || text == "") text = "_"
 	if (time === undefined || time == "") time = "_"
-	if (numOfPeople === undefined || numOfPeople == "") place = "_"
-	if (more === undefined || more == "") more = "_"
+	if (numOfPeople === undefined || numOfPeople == "") numOfPeople = "_"
 
 	dispatch({ type: SET_IS_SEARCHING, payload: true });
-	axios.get(`/api/items/search/${place}/${time}/${numOfPeople}/${more}`).then((res) => {
+	axios.get(`/api/items/search/${text}/${time}/${numOfPeople}`).then((res) => {
 		dispatch({ type: SET_IS_SEARCHING, payload: false });
 		dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
 		if (res.data.length > 0) {
@@ -148,24 +147,24 @@ export const searchItems = (place, time, numOfPeople, more) => (dispatch) => {
 
 export const showIdeaInSearch = (ideaID) => (dispatch) => {};
 
-export const updateTags = (tags) => (dispatch) => {
-	tags.forEach((tag) => {
+export const updateTags = (subjects) => (dispatch) => {
+	subjects.forEach((subject) => {
 		//update the 1 letter
-		var firstLetters = tag.substring(0, 1);
-		addTagToLettersBucketIfNotExists(firstLetters, tag);
+		var firstLetters = subject.substring(0, 1);
+		addTagToLettersBucketIfNotExists(firstLetters, subject);
 		//updating 2 letters
-		firstLetters = tag.substring(0, 2);
-		addTagToLettersBucketIfNotExists(firstLetters, tag);
+		firstLetters = subject.substring(0, 2);
+		addTagToLettersBucketIfNotExists(firstLetters, subject);
 
 		//updating 3 letters
-		firstLetters = tag.substring(0, 3);
-		addTagToLettersBucketIfNotExists(firstLetters, tag);
+		firstLetters = subject.substring(0, 3);
+		addTagToLettersBucketIfNotExists(firstLetters, subject);
 	});
 };
 
-const addTagToLettersBucketIfNotExists = (firstLetters, tag) => {
-	axios.post('/api/tags/update_bucket', { firstLetters, tag }).then((res) => {
-		console.log('tags added to their bucket');
+const addTagToLettersBucketIfNotExists = (firstLetters, subject) => {
+	axios.post('/api/subjects/update_bucket', { firstLetters, subject }).then((res) => {
+		console.log('subjects added to their bucket');
 	});
 };
 
@@ -179,7 +178,7 @@ export const updateTopLikedIdeas = () => (dispatch) => {
 		});
 	});
 
-	axios.post('/api/items/getTopLikedPercentageIdeas').then((res) => {
+	axios.post('/api/items/getTopLikedPercensubjecteIdeas').then((res) => {
 		console.log('got top popular ideas');
 
 		dispatch({

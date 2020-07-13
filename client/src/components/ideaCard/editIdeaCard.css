@@ -44,9 +44,9 @@ input:focus {
 }
 
 #createIdeaButtonContainer{
-    width: 18%;
+    width: 200px;
     text-align: center;
-    margin-right: 2%;
+    margin-right: 10px;
 }
 
 .userPageIdeaButton{

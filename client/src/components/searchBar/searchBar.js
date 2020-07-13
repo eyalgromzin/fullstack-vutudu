@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PlaceField from './placeField/placeField';
 import NumOfPeopleSelector from './numOfPeopleSelector/numOfPeopleSelector';
 import TimePicker from './timePicker/timePicker';
-import MoreChooser from './moreChooser/moreChooser';
+// import MoreChooser from './moreChooser/moreChooser';
 import SearchButton from './searchButton/searchButton';
 import { connect } from 'react-redux';
 import {
@@ -59,7 +59,7 @@ class SearchBar extends Component {
 					<div id="searchPlaceFieldContainer">
 						<PlaceField
 							fieldClass="inlineBlock searchBarTextField"
-							tagID="searchBarPlaceSelector"
+							subjectID="searchBarPlaceSelector"
 							isClickedButton={this.props.isClickedSearch}
 							placeOnChangeEvent={this.placeOnChangeEvent}
 							place={this.props.place}
@@ -74,16 +74,7 @@ class SearchBar extends Component {
 						onChangeEvent={this.timeOnChangeEvent}
 						time={this.props.time}
 					/>
-					<NumOfPeopleSelector cssClass="searchBarDropDownSquare" headerCssClass="fieldHeader" numOfPeople={this.props.numOfPeople} />
-					<div id="searchPlaceFieldContainer">
-						<MoreChooser
-							cssClass="inlineBlock searchBarTextField"
-							headerCssClass="fieldHeader"
-							isClickedButton={this.props.isClickedSearch}
-							onChangeEvent={this.moreOnChangeEvent}
-							more={this.props.more}
-							/>
-					</div>
+					<NumOfPeopleSelector cssClass="searchBarDropDownSquare" headerCssClass="fieldHeader" numOfPeople={this.props.numOfPeople} />					
 					<SearchButton />
 				</div>
 			</div>

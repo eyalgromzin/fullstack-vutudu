@@ -13,7 +13,7 @@ export const addPlaceToDBIfNotExists = placeName => dispatch => {
 
     axios.post('/api/placeNames/create',placeNameObject)
     .then(res => {
-        console.log('tags added to their bucket');
+        console.log('subjects added to their bucket');
     })
   }
 
@@ -30,12 +30,12 @@ export const getPlacesStartingWith = placeName => dispatch => {
 }
 
 //works till the return
-export const getTagsStartingWith = tagName => dispatch => {
+export const getTagsStartingWith = subjectName => dispatch => {
   console.log('in getTagsStartingWith')
 
-  var tagNameObject = {tagName: tagName}
+  var subjectNameObject = {subjectName: subjectName}
 
-  axios.post('/api/tagNames/get',tagNameObject)
+  axios.post('/api/subjectNames/get',subjectNameObject)
   .then(res => 
     store.dispatch({type: SET_TAG_SUGGESTIONS, payload: res.data.map(arr => arr.name)})
     )

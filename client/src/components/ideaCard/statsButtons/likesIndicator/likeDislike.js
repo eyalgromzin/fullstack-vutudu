@@ -132,14 +132,14 @@ class LikeDislike extends Component {
 
 
   render() {
-    let percentageText = "(0%)"
+    let percensubjecteText = "(0%)"
     if(this.props.currentIdea.liked === undefined || this.props.currentIdea.disliked === undefined){
-      percentageText = "(0%)"
+      percensubjecteText = "(0%)"
     }else if(this.props.currentIdea.liked.length + this.props.currentIdea.disliked.length == 0){
-      percentageText = "(0%)"
+      percensubjecteText = "(0%)"
     }else{
-      let percentage = Math.round((this.props.currentIdea.liked.length / (this.props.currentIdea.liked.length + this.props.currentIdea.disliked.length)) * 100)
-      percentageText = "(" + percentage + "%)"
+      let percensubjecte = Math.round((this.props.currentIdea.liked.length / (this.props.currentIdea.liked.length + this.props.currentIdea.disliked.length)) * 100)
+      percensubjecteText = "(" + percensubjecte + "%)"
     }
 
     var heartImagePath = ""
@@ -167,7 +167,7 @@ class LikeDislike extends Component {
             <div><img src={heartImagePath} onClick={this.handleHeartClick} className="bottomButton tilt" /></div>
           </ Popover>
           
-          {percentageText}
+          {percensubjecteText}
         </div>    
       </React.Fragment>
     )

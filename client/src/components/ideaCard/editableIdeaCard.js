@@ -155,7 +155,7 @@ class EditableIdeaCard extends Component {
 
     return (
       <React.Fragment>
-        <input type="file" id="file" ref="fileUploader" onChange={this.onChangeFile} style={{display: "none"}}/>
+        <input type="file" id="file" ref="fileUploader" onChange={this.onChangeFile} multiple="false" style={{display: "none"}}/>
         <div id="createIdeaCardContent">
           <div id="createIdeaTitleContainer">
             <input type="text" 

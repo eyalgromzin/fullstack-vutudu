@@ -50,7 +50,7 @@ class searchLayout extends Component {
 					this.props.dispatch({ type: SEARCH_SET_PLACE, payload: this.props.match.params.place });
 					//there is no num of people in idea, there is min # ppl, and max # ppl
 					this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: this.props.match.params.numOfPeople });
-					// same things, there are multiple tag for each idea
+					// same things, there are multiple subject for each idea
 					if (this.props.match.params.more !== undefined) {
 						this.props.dispatch({ type: SEARCH_SET_MORE, payload: this.props.match.params.more });
 			}
@@ -94,6 +94,7 @@ class searchLayout extends Component {
 			<React.Fragment>
 				<div className="searchMainContent">
 					<div className="mainContent">
+						
 						<SearchBar
 							place={this.props.place}
 							numOfPeople={this.props.numOfPeople}

@@ -34,7 +34,7 @@ router.post('/createIdea/', (req, res) => {
 		maxTime: req.body.idea.maxTime,
 		minNumOfPeople: req.body.idea.minNumOfPeople,
 		maxNumOfPeople: req.body.idea.maxNumOfPeople,
-		tags: req.body.idea.tags
+		subjects: req.body.idea.subjects
 	});
 
 	newItem.save().then((item) => res.json(item));
@@ -205,22 +205,26 @@ router.post('/removeShortFromIDea/', (req, res) => {
 
 // @route   GET api/search/:place/:time/:numOfPeople/:more
 // @desc    search with more
-router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {
+router.get('/search/:text/:time/:numOfPeople', (req, res) => {
 	console.log('searching ideas with more');
 	
 	let $and = []
 	
-	if(req.params.place !== undefined && req.params.place != "" && req.params.place != "_"){
-		$and.push({places: req.params.place})
+	if(req.params.text !== undefined && req.params.text != "" && req.params.text != "_"){
+		$and.push({$or: [
+			{places: req.params.text},
+			{subjects: req.params.text},
+			{title: {$regex : ".*" + req.params.text + ".*"}},
+			{content: {$regex : ".*" + req.params.text + ".*"}}
+		]})
+
+		$and.push($or)
 	}
 	if(req.params.time !== undefined && req.params.time != "" && req.params.time != "_"){
 		$and.push({ minTime: { $lte: req.params.time } }, { maxTime: { $gte: req.params.time } })
 	}
 	if(req.params.numOfPeople !== undefined && req.params.numOfPeople != "" && req.params.numOfPeople != "_"){
 		$and.push({ minNumOfPeople: { $lte: req.params.numOfPeople } }, { maxNumOfPeople: { $gte: req.params.numOfPeople } })
-	}
-	if(req.params.more !== undefined && req.params.more != "" && req.params.more != "_"){
-		$and.push({ subjects: req.params.more })
 	}
 
 	var query = {$and}
@@ -235,7 +239,7 @@ router.get('/search/:place/:time/:numOfPeople/:more', (req, res) => {
 	// 				{ maxNumOfPeople: { $gte: req.params.numOfPeople } }
 	// 			]
 	// 		},
-	// 		{ tags: req.params.more }
+	// 		{ subjects: req.params.more }
 	// 	]
 	// }
 
@@ -331,18 +335,18 @@ router.post('/getTopLikedIdeas/', (req, res) => {
 	});
 });
 
-// @route   POST api/items/getTopLikedPercentageIdeas/
+// @route   POST api/items/getTopLikedPercensubjecteIdeas/
 // @desc    gets the ideas with most likes + dislikes
 // @access  Public
-router.post('/getTopLikedPercentageIdeas/', (req, res) => {
+router.post('/getTopLikedPercensubjecteIdeas/', (req, res) => {
 	console.log('getting top newest ideas');
 	Item.aggregate([
 		{$addFields: { likedCount: { $size: "$liked" }}},			//doesnt work :/
 		{$addFields: { dislikedCount: { $size: "$disliked" }}},
 		{$addFields: { likeAndDislikeCount: { $add: ["$likedCount", "$dislikedCount"] }}},
 		{$match: { likeAndDislikeCount: { $ne: 0 }}},
-		{$addFields: { likedPercentage: { $divide: ["$likedCount", "$likeAndDislikeCount"] }}},
-		{$sort: {likedPercentage: -1}},
+		{$addFields: { likedPercensubjecte: { $divide: ["$likedCount", "$likeAndDislikeCount"] }}},
+		{$sort: {likedPercensubjecte: -1}},
 	])	
 	.limit(5).then((items) => {
 		console.log('got top newest ideas');
@@ -371,12 +375,12 @@ router.post('/updateIdeaTags/', (req, res) => {
 		{ _id: req.body.ideaID },
 		{
 			$set: {
-				tags: req.body.tags
+				subjects: req.body.subjects
 			}
 		},
 		{ new: true }
 	).then((items) => {
-		console.log('updated idea tags');
+		console.log('updated idea subjects');
 		return res.json(items);
 	});
 });
@@ -398,7 +402,7 @@ router.post('/updateIdeaAllFields/', (req, res) => {
 			$set: {
 				title: req.body.title,
 				content: req.body.content,
-				tags: req.body.tags,
+				subjects: req.body.subjects,
 				place: req.body.place,
 				time: req.body.time,
 				minNumOfPeople: req.body.minNumOfPeople,

@@ -1,0 +1,95 @@
+#createBottomRow {
+    width: 100%;
+    text-align: center;
+}
+
+.createIdeaContentTextArea {
+    width: 90%;
+    border-radius: 5px;
+}
+
+#createCreateButtonContainer{
+    text-align: center;
+}
+
+.hidden2{
+    visibility: hidden;
+    background-color: lightgray;
+}
+
+.createCriteriaContainer{
+    margin-bottom: 5px;
+}
+
+#createCreateButton{
+    display: inline-block;
+    width: 35%;
+    padding: 10px;
+    background-color: #e5e5e5;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-size: 25px;
+}
+
+#createIdeaImagePickerImage{
+
+    margin-left: 10%;
+    width: 80%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#createIdeaImageSide{
+    display: inline-block;
+    vertical-align: top;
+    width: 42%;
+}
+
+#createTopRow{
+    margin-bottom: 15px;
+}
+
+.createComboBox{
+    margin-right: -3px;
+}
+
+#createCriteriasSide{
+    margin-left: 25px;
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    margin-top: 5px;
+}
+
+.createTextInputField{
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+}
+
+#createIdeaImageContainer{
+    border: dashed 4px #000;
+    border-radius: 12px;
+    margin-left: 10%;
+}
+
+.criteriasTextField{
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+}
+
+.createIdeaTitle{
+    border-radius: 10px;
+    width: 90%;
+    margin-bottom: 10px;
+    font-size: 30px;
+    border: none;
+    text-align: center;    
+}
+
+#createTitleContainer{
+    text-align: center;
+}

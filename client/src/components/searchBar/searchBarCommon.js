@@ -4,10 +4,10 @@ import { searchItems } from 'actions/ideaActions'
 
 export const search = () => {
     console.log('searching ideas...');
-    var place = store.getState().searchBarReducer.place
+    var text = store.getState().searchBarReducer.place
     var time = store.getState().searchBarReducer.time
     var numOfPeople = store.getState().searchBarReducer.numOfPeople
-    var more = store.getState().searchBarReducer.more
+    // var more = store.getState().searchBarReducer.more
 
-    store.dispatch(searchItems(place, time, numOfPeople, more));
+    store.dispatch(searchItems(text, time, numOfPeople));
 }

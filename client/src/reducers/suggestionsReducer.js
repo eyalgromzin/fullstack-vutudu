@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   placeSuggestions: [],
-  tagSuggestions: [],
+  subjectSuggestions: [],
 };
 
 function suggestionsReducer(state = initialState, action) {
@@ -18,7 +18,7 @@ function suggestionsReducer(state = initialState, action) {
     case SET_TAG_SUGGESTIONS:
       return {
         ...state,
-        tagSuggestions: action.payload,          
+        subjectSuggestions: action.payload,          
       };
     default:
       return state;

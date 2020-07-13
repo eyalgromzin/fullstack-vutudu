@@ -47,7 +47,7 @@ class topTable extends Component {
     if(index >= 1 && index <= 5){
       title = this.props.topNewestIdeas[index - 1].title
     }else if(index >= 7 && index <= 11){
-      title = this.props.topLikedPercantageIdeas[index - 7].title
+      title = this.props.topLikedPercansubjecteIdeas[index - 7].title
     }else if(index >= 13 && index <= 17){
       title = this.props.topLikedIdeas[index - 13].title
     }
@@ -87,7 +87,7 @@ class topTable extends Component {
     if(index >= 1 && index <= 5){
       this.showIdea(this.props.topNewestIdeas[index - 1], this.props.topNewestIdeas)
     }else if(index >= 7 && index <= 11){
-      this.showIdea(this.props.topLikedPercantageIdeas[index - 7], this.props.topNewestIdeas)
+      this.showIdea(this.props.topLikedPercansubjecteIdeas[index - 7], this.props.topNewestIdeas)
     }else if(index >= 13 && index <= 17){
       this.showIdea(this.props.topLikedIdeas[index - 13], this.props.topNewestIdeas)
     }
@@ -102,10 +102,10 @@ class topTable extends Component {
   }
 
   renderPopularItem = (index, key) => {  //key is running number
-    return <div onClick={ () => { this.showIdea(this.props.topLikedPercantageIdeas[index], this.props.topLikedPercantageIdeas) } } 
+    return <div onClick={ () => { this.showIdea(this.props.topLikedPercansubjecteIdeas[index], this.props.topLikedPercansubjecteIdeas) } } 
     key={Math.random()}
     className="listRow">   
-      { this.props.topLikedPercantageIdeas[index].title }
+      { this.props.topLikedPercansubjecteIdeas[index].title }
     </div>
   }
 
@@ -137,7 +137,7 @@ class topTable extends Component {
               <span className="topTableHeader">Popular</span>
                 <ReactList
                   itemRenderer={this.renderPopularItem}
-                  length={this.props == null || this.props.topLikedPercantageIdeas == null? 0 : this.props.topLikedPercantageIdeas.length }
+                  length={this.props == null || this.props.topLikedPercansubjecteIdeas == null? 0 : this.props.topLikedPercansubjecteIdeas.length }
                   type='uniform'
                 />
             </div>
@@ -183,9 +183,9 @@ class topTable extends Component {
 
   shouldComponentUpdate(nextProps, nextState){
     if(nextProps !== undefined &&  nextProps != this.props){
-      if(nextProps.topNewestIdeas !== undefined && nextProps.topLikedPercantageIdeas !== undefined && 
+      if(nextProps.topNewestIdeas !== undefined && nextProps.topLikedPercansubjecteIdeas !== undefined && 
             nextProps.topLikedIdeas !== undefined){
-        let ideas = [...nextProps.topNewestIdeas,...nextProps.topLikedPercantageIdeas, ...nextProps.topLikedIdeas]
+        let ideas = [...nextProps.topNewestIdeas,...nextProps.topLikedPercansubjecteIdeas, ...nextProps.topLikedIdeas]
         this.setState({ ideas: ideas })
       }
       return true
@@ -213,7 +213,7 @@ class topTable extends Component {
 function mapStateToProps(state) {
   return {
     topLikedIdeas: state.topTableReducer.topLikedIdeas,
-    topLikedPercantageIdeas: state.topTableReducer.topLikedPercantageIdeas,
+    topLikedPercansubjecteIdeas: state.topTableReducer.topLikedPercansubjecteIdeas,
     topNewestIdeas: state.topTableReducer.topNewestIdeas,
   };
 }
