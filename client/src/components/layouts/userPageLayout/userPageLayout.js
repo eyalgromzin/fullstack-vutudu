@@ -24,7 +24,7 @@ class userPageLayout extends Component {
     // this.onLoginSuccess();
 
     this.state = {
-      selectedIdeaIndex: 0
+      selectedIdeaIndex: 0,
     }
   }
 
@@ -70,6 +70,8 @@ class userPageLayout extends Component {
     let isCurrentPreviewedIdeaExists = typeof this.props.currentPreviewedIdea !== 'undefined' &&
                                       (Object.keys(this.props.currentPreviewedIdea).length != 0)
 
+    let isEditable = this.props.selectedDropDownType.toLowerCase() == 'created';
+
     if(this.props.currentPreviewedIdeas.length == 0 || !isCurrentPreviewedIdeaExists){
       return  <div id="userIdeaCardDummy" > 
                 <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
@@ -83,7 +85,7 @@ class userPageLayout extends Component {
             <div id="ideaCardWithButtonsInUser">
               <div id="userIdeaCard">
                 <IdeaCard enabled={true} showNextPreviousButtons={true} 
-                  editable={true} deleteable={true} ideas={this.props.currentPreviewedIdeas}
+                  editable={isEditable} deleteable={true} ideas={this.props.currentPreviewedIdeas}
                   onSelectedIndexChange={this.onSelectedIndexChange} cardLeftArrowContainerClassName="userCardLeftArrowContainer" 
                   cardRightArrowContainerClassName="userCardRightArrowContainer" />
               </div>
@@ -99,11 +101,11 @@ class userPageLayout extends Component {
   ideaSelected = (idea) => {
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA, payload: idea});
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});  //to update ideas list 
+    this.props.dispatch({type: SET_CURRENT_IDEA, payload: idea});
   }
 
   onSelectedIndexChange = (newIndex) => {
-    this.setState({selectedIdeaIndex: newIndex})
-    this.props.dispatch({type: SET_CURRENT_IDEA, payload: this.props.currentPreviewedIdeas[newIndex]});
+    this.setState({selectedIdeaIndex: newIndex})    
 	}
 
   createUserIdeasList = () => {
@@ -164,6 +166,7 @@ function mapStateToProps(state) {
     currentPreviewedIdea: state.userPageReducer.currentPreviewedIdea,
     updateToggle: state.userPageReducer.updateToggle,
     loggedIn: state.commonReducer.loggedIn,
+    selectedDropDownType: state.userPageReducer.selectedDropDownType,
     loggedInWith: state.userPageReducer.loggedInWith
   };
 }

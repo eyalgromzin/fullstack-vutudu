@@ -27,6 +27,26 @@
     background-color: pink;
 }
 
+.modalDialogButton{
+    text-align: center;
+    border: solid;  
+    border-width: 1px;
+    display: inline-block;
+    width: 100px;
+    margin-right: 15px;
+    cursor: pointer;
+    height: 30px;
+    border-radius: 10px;
+    background-color: lightcyan;
+}
+
+.modalDialog{
+}
+
+.modalDialogHeader{
+    font-size: 20px;
+    margin-bottom: 25px;
+}
 .invisible{
     opacity: 0;
     font-size: 7px;

@@ -19,10 +19,8 @@ class IdeaCard extends Component {
   constructor(props){
     super(props)
 
-    let ideaIndex = 0
-
     this.state = {
-      ideaIndex: ideaIndex,            
+      ideaIndex: 0,            
       isPopoverOpen: false,
     }
   }
@@ -48,6 +46,8 @@ class IdeaCard extends Component {
     if(ideaIndex == ideasCount){
       ideaIndex = 0
     }
+
+    this.setState({ideaIndex: ideaIndex})
 
     var idea = this.props.ideas[ideaIndex];
     this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
@@ -78,6 +78,8 @@ class IdeaCard extends Component {
       ideaIndex = ideasCount - 1
     }
 
+    this.setState({ideaIndex: ideaIndex})
+
     var idea = this.props.ideas[ideaIndex];
     this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
 
@@ -92,23 +94,42 @@ class IdeaCard extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
+    let isToUpdate = false
+
     if(nextProps != this.props){
-      if(nextProps != null && nextProps.idea !== undefined){
-        if(nextProps.idea._id != this.props.idea._id && nextProps.ideas !== undefined){
-          let index = nextProps.ideas.findIndex(ideaI => nextProps.idea.id == ideaI.id)          
-          this.setState({
-            idea: nextProps.idea,
-            ideaIndex: index,
-          })
-        }
-      }
-      
-      return true
+      isToUpdate = true
     }
+
+    if(nextProps.idea != null && nextProps.idea._id != this.props.idea._id){
+      isToUpdate = true
+
+      let index = nextProps.ideas.findIndex(ideaI => nextProps.idea._id == ideaI._id)          
+      this.setState({
+        idea: nextProps.idea,
+        ideaIndex: index,
+      })
+    }
+
+    return isToUpdate
 
     if(nextState != this.state){
       return true
     }
+  }
+
+  onIdeaDeleted = () => {
+    // this.rightArrowClick();
+    let nextIdeaIndex = this.state.ideaIndex
+
+    if(this.state.ideaIndex >= this.props.ideas.length - 1){
+      nextIdeaIndex = 0
+      this.setState({ideaIndex: 0})
+      this.props.onSelectedIndexChange(0) 
+      this.props.dispatch({ type: SET_CURRENT_IDEA, payload: this.props.ideas[0] });     
+    }else{
+      this.props.onSelectedIndexChange(nextIdeaIndex)
+      this.props.dispatch({ type: SET_CURRENT_IDEA, payload: this.props.ideas[nextIdeaIndex + 1] });
+    }    
   }
 
   render() {
@@ -135,8 +156,8 @@ class IdeaCard extends Component {
                   </div>
                 </div>
                 <div id="shareAndLikeContainer">
-                  {this.props.deleteable ? <DeleteIdeaButton loggedInUserID={this.props.userID} 
-                                                  idea={this.props.idea} /> : ""}
+                  {this.props.editable ? <DeleteIdeaButton loggedInUserID={this.props.userID} 
+                                                  idea={this.props.idea} onIdeaDeleted={this.onIdeaDeleted} /> : ""}
                   {this.props.editable && this.props.idea.createdIn == "web" ? <EditIdeaButton /> : ""}
                   {this.props.editable && this.props.idea.createdIn != "web" ? 
                     <React.Fragment>

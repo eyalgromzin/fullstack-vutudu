@@ -99,7 +99,7 @@ class createIdeaButton extends Component {
         // }
         this.props.addPlaceToDBIfNotExists(this.props.place)
 
-        this.clearFields()
+        // this.clearFields()
         this.closeAlert()
       }
     )
