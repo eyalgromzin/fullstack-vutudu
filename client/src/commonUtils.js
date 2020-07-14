@@ -39,6 +39,20 @@ export const removeIdeaFromArray = (ideasArr, ideaID) => {
     return arrayWithoutIdea;
 }
 
+
+export const loggedInWith = { loggedInWith: "None" }
+
+export const  getBase64 = (file, callBack) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+        callBack(reader.result)
+    };
+    reader.onerror = function (error) {
+        console.log('Error: ', error);
+    };
+}
+
 export const createUUID = () => {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);

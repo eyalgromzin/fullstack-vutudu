@@ -38,6 +38,7 @@ class createIdeaLayout extends Component {
     this.subjectsRef = createRef()
     this.titleRef = createRef()
     this.imagePickerRef = createRef()
+    this.contentRef = createRef()
 
 
     this.state = {
@@ -138,9 +139,9 @@ class createIdeaLayout extends Component {
                 </div>
               </div>
               <div id="createBottomRow">
-                <CreateTextArea 
+                <CreateTextArea id="createContentTextArea"
                   ref={input => {
-                    this.contentText = input}
+                    this.contentRef = input}
                   }
                   placeholder="Idea Content"
                   updateTextTypeName={ EDITABLE_IDEA_SET_CONTENT }

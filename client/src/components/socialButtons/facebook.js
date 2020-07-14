@@ -12,7 +12,7 @@ import {
   SET_USER_PREVIEWED_IDEA_FROM_LIKED,
 } from 'reducers/types'
 import store from 'store'
-import {loggedInWith} from 'common'
+import {loggedInWith} from 'commonUtils'
 // import { useHistory } from "react-router-dom";
 // import { withRouter } from 'react-router-dom';
 import { Redirect } from 'react-router-dom'

@@ -10,7 +10,7 @@ import {
     USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,    
     SET_USER_PREVIEWED_IDEA_FROM_LIKED,
 } from 'reducers/types'
-import {loggedInWith} from 'common'
+import {loggedInWith} from 'commonUtils'
 import store from 'store'
 import { useHistory } from "react-router-dom";
 

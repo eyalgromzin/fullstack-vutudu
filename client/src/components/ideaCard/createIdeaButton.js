@@ -18,6 +18,8 @@ import Button from 'react-bootstrap/Button'
 import {toastr} from 'react-redux-toastr'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { uploadBase64ImageToStorage } from 'commonUtils'
+var ls = require('local-storage');
+
 
 class createIdeaButton extends Component {
   constructor(props){
@@ -64,6 +66,7 @@ class createIdeaButton extends Component {
     this.props.imagePickerRef.clear() 
     this.props.titleRef.clear()
   }
+
   uuidv4 = () => {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
       (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
@@ -71,38 +74,56 @@ class createIdeaButton extends Component {
   }
 
   createIdea = () => {
-    let cloudImagePath = "images/" + this.uuidv4() + this.props.imageName
+    var uniqueIdentifier = this.props.imagePickerRef.state.uniqueIdentifier
+
+    let cloudImagePath = ""
+
+    if(ls.get(uniqueIdentifier) != null){
+      cloudImagePath = ls.get(uniqueIdentifier)
+    }else{
+      cloudImagePath = "images/" + this.uuidv4() + this.props.imageName
+    }
     
-    let content = '[{"first":"TEXT","fourth":"","second":0,"third":"' + this.props.content + '"}, ' + 
+    let content = '[{"first":"TEXT","fourth":"","second":0,"third":"' + this.props.contentRef.state.text + '"}, ' + 
                     '{"first":"IMAGE","fourth":"","second":1,"third":"' + cloudImagePath + '"}]'
+    let places = this.props.placesRef.state.text.split(",")
+    let subjects = this.props.subjectsRef.state.text.split(",")
 
     const newItem = {
-      title: this.props.title,
+      title: this.props.titleRef.state.text,
       content: content,
       createdBy: this.props.userID,
       createdIn: "web",
-      place: this.props.place,
-      minTime: this.props.minTime,
-      maxTime: this.props.maxTime,
-      minNumOfPeople: this.props.minNumOfPeople,
-      maxNumOfPeople: this.props.maxNumOfPeople,
-      subjects: [],
+      places: places,
+      minTime: this.props.timeRef.minTime,
+      maxTime: this.props.timeRef.maxTime,
+      minNumOfPeople: this.props.numOfPeopleRef.minNumOfPeople,
+      maxNumOfPeople: this.props.numOfPeopleRef.maxNumOfPeople,
+      subjects: subjects,
     };
 
+    var imageFileBase64 = this.props.imagePickerRef.state.imageBase64
     
-    uploadBase64ImageToStorage(this.props.imagePickerRef.state.imageBase64, cloudImagePath, 
-      () => {
-        // Add item via createItem action
-        this.props.addIdeaToDB(newItem, this.props.userID)
-        // if(subjects.length > 0){
-        //   this.props.addHashTagsToDB(subjects)
-        // }
-        this.props.addPlaceToDBIfNotExists(this.props.place)
 
-        // this.clearFields()
-        this.closeAlert()
-      }
-    )
+    if(ls.get(uniqueIdentifier) != null){
+      this.props.addIdeaToDB(newItem, this.props.userID)
+
+      this.props.addPlaceToDBIfNotExists(this.props.place)
+
+      this.closeAlert()
+    }else{
+      uploadBase64ImageToStorage(imageFileBase64, cloudImagePath, 
+        () => {
+          this.props.addIdeaToDB(newItem, this.props.userID)
+
+          this.props.addPlaceToDBIfNotExists(this.props.place)
+
+          this.closeAlert()
+
+          ls.set(uniqueIdentifier, cloudImagePath) 
+        }
+      )
+    }
   }
 
   isTitleExistsCallback = (isTitleExists) => {
