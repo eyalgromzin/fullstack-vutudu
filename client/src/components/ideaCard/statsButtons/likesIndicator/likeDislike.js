@@ -49,7 +49,7 @@ class LikeDislike extends Component {
     this.props.addUserIDToIdeaLikes(this.props.userID, this.props.currentIdea._id, () => {
         //update current idea
         this.props.currentIdea.liked.push(this.props.userID)
-        this.props.dispatch({type: SET_CURRENT_IDEA, value: this.props.currentIdea})        
+        this.props.dispatch({type: SET_CURRENT_IDEA, payload: this.props.currentIdea})        
       }
     )
 

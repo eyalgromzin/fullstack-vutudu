@@ -25,7 +25,7 @@ class TopBar extends Component {
     if(!this.props.loggedIn){
       showLogInScreen('create', history);
     }else{  
-      this.props.dispatch({type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, value: false})
+      this.props.dispatch({type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, payload: false})
       this.setState({currentPage: "create"})
       history.push('/create')
     }
@@ -56,15 +56,15 @@ class TopBar extends Component {
 
     if(this.props.currentPage == "search" && this.state.currentPage != "search") {
       this.setState({currentPage: "search" })
-      this.props.dispatch({type: SET_CURRENT_PAGE, value: ""})
+      this.props.dispatch({type: SET_CURRENT_PAGE, payload: ""})
     }
     if(this.props.currentPage == "create" && this.state.currentPage != "create") {
       this.setState({currentPage: "create" })
-      this.props.dispatch({type: SET_CURRENT_PAGE, value: ""})
+      this.props.dispatch({type: SET_CURRENT_PAGE, payload: ""})
     }
     if(this.props.currentPage == "user" && this.state.currentPage != "user"){
       this.setState({currentPage: "user" })
-      this.props.dispatch({type: SET_CURRENT_PAGE, value: ""})
+      this.props.dispatch({type: SET_CURRENT_PAGE, payload: ""})
     } 
 
     return (

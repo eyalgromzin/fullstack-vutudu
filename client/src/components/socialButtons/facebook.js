@@ -6,7 +6,10 @@ import { bindActionCreators } from 'redux';
 import './socialButtons.css'
 import {
   CHANGE_LOGGED_IN_TYPE,
-  SET_CURRENT_PAGE
+  SET_CURRENT_PAGE,
+  USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
+  USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
+  SET_USER_PREVIEWED_IDEA_FROM_LIKED,
 } from 'reducers/types'
 import store from 'store'
 import {loggedInWith} from 'common'
@@ -38,8 +41,13 @@ class facebook extends Component {
         return
       }
 
+      if (this.props.logInSuccessCallback !== undefined)
+        this.props.logInSuccessCallback()
+
       store.dispatch({type: CHANGE_LOGGED_IN_TYPE, payload: "Facebook"});
       loggedInWith.loggedInWith = 'Facebook'
+
+      
 
       var user = {
         firstName: firstName,

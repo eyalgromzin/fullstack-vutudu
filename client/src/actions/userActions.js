@@ -16,9 +16,13 @@ import {
   REMOVE_LIKED_IDEA_FROM_USER, 
   ADD_LIKED_IDEA_TO_USER,
   CHANGE_LOGGED_IN_TYPE,
+  USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
+  USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
+  SET_USER_PREVIEWED_IDEA_FROM_LIKED,
 } from 'reducers/types'
 import store from 'store'
 import { getTagsFromContent } from 'commonUtils'
+import { SET_CURRENT_IDEA } from '../reducers/types';
 
 export const emptyUserPreviewedIdea = () => {
   store.dispatch({type: EMPTY_USER_PREVIEWED_IDEA})
@@ -57,9 +61,6 @@ export const loadOrCreateUserIfNotExists = user => dispatch => {
             payload: res.data.lastName
           })
           dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: true });
-
-          updateUser(user.id);
-          
         });
       // };
     }else{
@@ -78,7 +79,7 @@ export const loadOrCreateUserIfNotExists = user => dispatch => {
           })
           dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: true });
 
-          updateUser(user.id);
+          dispatch(getUserFromDB(user.id))
     }
   }).then(res => {
 
@@ -111,11 +112,6 @@ export const copyUserIdeas = (reduxActionName) => dispatch => {
         });
 }
 
-
-export const updateUser = (userID) => {
-  store.dispatch(getUserFromDB(userID));
-}
-
 // //'Liked' / 'Created' 
 export const getUserFromDB = userID => dispatch => {
   console.log('sending post:  api/user/getUser/, userID: ' + userID)
@@ -131,6 +127,10 @@ export const getUserFromDB = userID => dispatch => {
         type: SET_USER_CREATED_IDEAS,
         payload: res.data[0].created
       })
+
+      store.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS});
+      store.dispatch({type: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS});
+      store.dispatch({type: SET_CURRENT_IDEA, payload: res.data[0].liked[0]});
     }
   );
 }

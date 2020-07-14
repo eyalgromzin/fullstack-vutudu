@@ -25,10 +25,10 @@ const initialState = {
     title: '',
     content: '',
     place: '',
-    minTime: 5,
-    maxTime: 5,
-    minNumOfPeople: 2,
-    maxNumOfPeople: 4,
+    minTime: 10,
+    maxTime: 10,
+    minNumOfPeople: 10,
+    maxNumOfPeople: 10,
     isButtonEnabled: false,   //refers to create / update
     isContentValid: false,
     isTitleValid: false,
@@ -84,8 +84,6 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         content: action.payload,
-        isButtonEnabled: action.payload.length > 0 && state.title.length > 0 && state.place.length > 2,
-        isContentValid: action.payload.length > 0
       };    
     case EDITABLE_IDEA_SET_TAGS:
     return {
@@ -114,25 +112,7 @@ function reducer(state = initialState, action) {
         ...state,
         title: "",
         content: ""
-      };
-    case EDITABLE_IDEA_SET_IS_PLACE_VALID:
-      return {
-        ...state,
-        isPlaceValid: action.payload,
-        isButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
-      };
-    case EDITABLE_IDEA_SET_IS_TITLE_VALID:
-      return {
-        ...state,
-        isTitleValid: action.payload,
-        isButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
-      };
-    case EDITABLE_IDEA_SET_IS_CONTENT_VALID:
-      return {
-        ...state,
-        isContentValid: action.payload,
-        isButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2
-      };
+      };    
     case EDITABLE_SET_IS_BUTTON_CLICKED_VALUE:
       return {
         ...state,

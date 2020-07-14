@@ -103,7 +103,7 @@ class PlaceField extends Component {
 
     const inputProps = {
       placeholder: 'place / subject / text ...',
-      value: this.state.placeText,
+      payload: this.state.placeText,
       onChange: this.handlePlaceChange,
     };
 

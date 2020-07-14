@@ -20,6 +20,7 @@ import {
 	UPDATE_LIKED_IDEAS_IDEA,
 	CHANGE_UPDATE_TOGGLE,
 	SET_USER_LIKED_IDEAS,
+	SET_USER_PREVIEWED_IDEA_FROM_LIKED,
 	UPDATE_USER_CREATED_IDEA,
 	REMOVE_CREATED_IDEA_FROM_USER,
 	CLEAR_USER_PAGE_IDEA,
@@ -211,8 +212,12 @@ function reducer(state = initialState, action) {
 			return {
 				...state,
 				currentPreviewedIdea: action.payload,
+			};		
+		case SET_USER_PREVIEWED_IDEA_FROM_LIKED:
+			return {
+				...state,
+				currentPreviewedIdea: state.likedIdeas[0],
 			};
-		// currentPreviewedIdeaIndex: currentIdeaIndex
 		case UPDATE_CURRENT_PREVIEWED_USER_IDEA:
 			let currentPreviewedIdea = dcopy(state.currentPreviewedIdea);
 

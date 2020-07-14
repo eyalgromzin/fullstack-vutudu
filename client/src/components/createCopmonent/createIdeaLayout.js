@@ -60,14 +60,6 @@ class createIdeaLayout extends Component {
     this.numOfPeopleRef.clearSelection();
   }
 
-  onMinTimeChangeEvent = (value) => {
-    this.props.dispatch({type: EDITABLE_IDEA_SET_MIN_TIME, payload: value});
-  }
-
-  onMaxTimeChangeEvent = (value) => {
-    this.props.dispatch({type: EDITABLE_IDEA_SET_MAX_TIME, payload: value});
-  }
-
   render() {
     let isShowError = false
 
@@ -118,8 +110,6 @@ class createIdeaLayout extends Component {
                       }
                       fieldClass="inlineBlock createComboBox createBarTimeField"                
                       selctorClass="timeCreatorCommon"
-                      onMinTimeChangeEvent={this.onMinTimeChangeEvent} 
-                      onMaxTimeChangeEvent={this.onMaxTimeChangeEvent} 
                       minTime={this.props.minTime} maxTime={this.props.maxTime}  /> 
                   </div>
                   <div class="createCriteriaContainer">

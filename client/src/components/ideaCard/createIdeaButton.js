@@ -71,12 +71,14 @@ class createIdeaButton extends Component {
   }
 
   createIdea = () => {
-    //upload image to firebase 
+    let cloudImagePath = "images/" + this.uuidv4() + this.props.imageName
     
+    let content = '[{"first":"TEXT","fourth":"","second":0,"third":"' + this.props.content + '"}, ' + 
+                    '{"first":"IMAGE","fourth":"","second":1,"third":"' + cloudImagePath + '"}]'
 
     const newItem = {
       title: this.props.title,
-      content: this.props.content,
+      content: content,
       createdBy: this.props.userID,
       createdIn: "web",
       place: this.props.place,
@@ -87,7 +89,7 @@ class createIdeaButton extends Component {
       subjects: [],
     };
 
-    let cloudImagePath = "images/" + this.uuidv4() + this.props.imageName
+    
     uploadBase64ImageToStorage(this.props.imagePickerRef.state.imageBase64, cloudImagePath, 
       () => {
         // Add item via createItem action
@@ -170,6 +172,7 @@ const mapDispatchToProps = dispatch => {
       userID: state.userPageReducer.loggedInUserID,
       subjects: state.editableIdeaReducer.subjects,
       base64Image: state.editableIdeaReducer.base64Image,
+      imageName: state.editableIdeaReducer.imageName,
       isCreateButtonEnabled: state.editableIdeaReducer.isButtonEnabled,      
       loggedIn: state.commonReducer.loggedIn,
     };

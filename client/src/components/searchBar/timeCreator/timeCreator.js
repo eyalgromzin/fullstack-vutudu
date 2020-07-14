@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './timeCreator.css';
 import '../searchBarCommonStyles.css';
+import {
+	EDITABLE_IDEA_SET_MIN_TIME,
+	EDITABLE_IDEA_SET_MAX_TIME
+} from 'reducers/types'
 import { search } from '../searchBarCommon';
 import store from 'store';
 import 'commonCss.css';
@@ -28,12 +32,14 @@ export default class TimeCreator extends Component {
 	}
 
 	onMinTimeChangeEvent = (e) => {
+		this.props.dispatch({type: EDITABLE_IDEA_SET_MIN_TIME, payload: e.target.value});
 		this.setState({minTime: e.target.value})
 		this.validate();
 		this.props.onMinTimeChangeEvent(e.target.value)
 	}
 		
 	onMaxTimeChangeEvent = (e) => {
+		this.props.dispatch({type: EDITABLE_IDEA_SET_MAX_TIME, payload: e.target.value});
 		this.setState({maxTime: e.target.value})
 		this.validate();
 		this.props.onMaxTimeChangeEvent(e.target.value)

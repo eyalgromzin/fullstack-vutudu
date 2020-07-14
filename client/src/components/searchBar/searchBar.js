@@ -42,10 +42,12 @@ class SearchBar extends Component {
 		return place.length >= 2;
 	};
 
-	placeOnChangeEvent = (placeValue) => {
-		var isPlaceValid = true // this.isPlaceValid(placeValue);
+	placeOnChangeEvent = (e) => {
+		var isPlaceValid = true
+		if(e.target.value.length > 0)
+			isPlaceValid = true // this.isPlaceValid(placeValue);
 
-		this.props.dispatch({ type: SEARCH_SET_PLACE, payload: placeValue });
+		this.props.dispatch({ type: SEARCH_SET_PLACE, payload: e.target.value });
 		this.props.dispatch({ type: SEARCH_SET_IS_PLACE_VALID, payload: isPlaceValid });
 		this.props.dispatch({ type: SEARCH_SET_IS_CLICKED_SEARCH, payload: false });
 	};
@@ -56,18 +58,17 @@ class SearchBar extends Component {
 		return (
 			<div id="searchBar">
 				<div id="searchBarButtons">
-					<div id="searchPlaceFieldContainer">
-						<PlaceField
-							fieldClass="inlineBlock searchBarTextField"
-							subjectID="searchBarPlaceSelector"
-							isClickedButton={this.props.isClickedSearch}
-							placeOnChangeEvent={this.placeOnChangeEvent}
-							place={this.props.place}
-							placeSuggestions={[]}
-							headerCssClass="fieldHeader"
-						/>
-					</div>
-						{/* validationMethod={this.isNotEmpty} */}
+					<input id="searchBarPlaceField" type="text" placeholder="place / subject / text"
+						onChange={this.placeOnChangeEvent} />
+					{/* <PlaceField
+						fieldClass="inlineBlock searchBarTextField"
+						subjectID="searchBarPlaceSelector"
+						isClickedButton={this.props.isClickedSearch}
+						placeOnChangeEvent={this.placeOnChangeEvent}
+						place={this.props.place}
+						placeSuggestions={[]}
+						headerCssClass="fieldHeader"
+					/> */}
 					<TimePicker
 						cssClass="inlineBlock searchBarComboBox"
 						headerCssClass="fieldHeader"

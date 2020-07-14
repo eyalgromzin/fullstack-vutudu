@@ -48,11 +48,11 @@ class LoginScreen extends Component {
                         <div >  
                             <div className="LoginButtonContainer"> 
                                 <FacebookButton onLoginScreenFocus={this.onLoginScreenFocus} onLoginBlur={this.onLoginBlur} 
-                                    pageAfterLogin={this.props.pageAfterLogin} />
+                                    pageAfterLogin={this.props.pageAfterLogin} logInSuccessCallback={this.props.logInSuccessCallback} />
                             </div>
                             <div className="LoginButtonContainer"> 
                                 <GoogleButton onLoginScreenFocus={this.onLoginScreenFocus} onLoginBlur={this.onLoginBlur} 
-                                    pageAfterLogin={this.props.pageAfterLogin} />
+                                    pageAfterLogin={this.props.pageAfterLogin} logInSuccessCallback={this.props.logInSuccessCallback} />
                             </div>
                         </div>
                     </div>

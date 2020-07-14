@@ -21,8 +21,7 @@ class userPageLayout extends Component {
   constructor(props){
     super(props);
 
-    this.props.dispatch({type: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS});
-    this.props.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS});
+    // this.onLoginSuccess();
 
     this.state = {
       selectedIdeaIndex: 0
@@ -35,10 +34,21 @@ class userPageLayout extends Component {
     }
   }
 
+  onLoginSuccess = () => {
+    this.props.dispatch({type: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS});
+    this.props.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS});
+    this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA, payload: this.props.currentPreviewedIdeas[0]});
+  }
+
   facebookLogout = () =>{
     this.props.history.push('/search')
     window.FB.logout()
     this.props.dispatch({ type: CHANGE_LOGGED_IN_STATE, payload: false });
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    if(nextProps.currentPreviewedIdeas.length > 0 )
+      return true
   }
 
   googleLogoutSuccess = () => {
@@ -113,6 +123,11 @@ class userPageLayout extends Component {
     let userIdeaCard = this.createUserIdeaCard()
 
     let logoutButton = this.createLogourButton()
+
+    if(this.props.currentPreviewedIdeas.length > 0){
+      var s = 4;
+      s++;
+    }
 
     return (
       <React.Fragment>

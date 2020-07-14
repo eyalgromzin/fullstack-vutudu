@@ -1,9 +1,10 @@
-- create a local images map , save it locally
-- create idea - image path is not saved to idea  - create a json similar to an idea card with text and image , and fill it 
-- user page - on load - load the first item in the list if exists.
 - user page - on delete - add a question dialog if to delete
 - user page - on delete success - load next idea
+
+
 - user page - remove delete button from liked ideas
+- create idea - minimize image size before saving to firebase
+- create a local images map , save it locally
 
 
 
@@ -11,10 +12,12 @@
 
 - remove top table - just on start load 100 newest images and show them under the search bar
 
+
 ========== search for a job!!! ===================
 
 - check place field also searches title and subjects and content
 
+- in the app - check if on edit - user created idea is also updated 
 
 
 

@@ -6,6 +6,9 @@ import {
     CHANGE_LOGGED_IN_STATE,
     SET_CURRENT_PAGE,
     CHANGE_LOGGED_IN_TYPE,
+    USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
+    USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,    
+    SET_USER_PREVIEWED_IDEA_FROM_LIKED,
 } from 'reducers/types'
 import {loggedInWith} from 'common'
 import store from 'store'
@@ -28,6 +31,13 @@ class GoogleButton extends Component {
             this.context.history.push('/some/path')
             store.dispatch({type: SET_CURRENT_PAGE, payload: this.props.pageAfterLogin});
         }
+
+        store.dispatch({type: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS});
+        store.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS});
+        store.dispatch({type: SET_USER_PREVIEWED_IDEA_FROM_LIKED });
+
+        if (this.props.logInSuccessCallback !== undefined)
+            this.props.logInSuccessCallback()
     }
 
     onFailGoogleLogin = (response) => {
