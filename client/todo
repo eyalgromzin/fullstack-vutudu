@@ -1,19 +1,19 @@
-- user page - on delete - add a question dialog if to delete
-- user page - on delete success - load next idea
-
-
-- user page - remove delete button from liked ideas
 - create idea - minimize image size before saving to firebase
 - create a local images map , save it locally
 
 
 
-- user page - enable edit idea -  load image and all the fields 
+
+- user page - enable edit idea - will open create idea page , but with save button - load image and all the fields 
+
+
+
 
 - remove top table - just on start load 100 newest images and show them under the search bar
 
 
 ========== search for a job!!! ===================
+
 
 - check place field also searches title and subjects and content
 
