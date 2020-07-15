@@ -1,9 +1,14 @@
-- user page - enable edit idea - will open create idea page , but with save button - load image and all the fields 
+- user page - enable edit idea - will open same as create layout, but with save button - load image and all the fields 
 
 
 
 
 - remove top table - just on start load 100 newest images and show them under the search bar
+
+
+
+
+- on delete idea , delete image from storage
 
 
 ========== search for a job!!! ===================

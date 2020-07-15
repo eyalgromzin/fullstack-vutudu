@@ -16,6 +16,7 @@ import {
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
 import IdeaCard from 'components/ideaCard/ideaCard'
+import EditableIdeaAndButton from 'components/createComponent/editableIdeaAndButton'
 
 class userPageLayout extends Component {
   constructor(props){
@@ -72,13 +73,15 @@ class userPageLayout extends Component {
 
     let isEditable = this.props.selectedDropDownType.toLowerCase() == 'created';
 
+    let idea = this.props.currentPreviewedIdeas[this.state.selectedIdeaIndex]
+
     if(this.props.currentPreviewedIdeas.length == 0 || !isCurrentPreviewedIdeaExists){
       return  <div id="userIdeaCardDummy" > 
                 <div id="emptyIdeaText" className="middleVerticalAlign">No Idea Selected </div>
               </div> 
     }else{
       if(this.props.isIdeaEdited && isCurrentPreviewedIdeaExists){
-        return <EditIdeaCardInUser />
+        return <EditableIdeaAndButton idea={idea} />
       }else{
         return isCurrentPreviewedIdeaExists && !this.props.isIdeaEdited ? 
           this.props.currentPreviewedIdeas.length > 0 ? 
@@ -158,6 +161,7 @@ class userPageLayout extends Component {
 
 function mapStateToProps(state) {
   return {
+    currentIdea: state.ideaCardReducer.currentIdea,
     firstName: state.userPageReducer.loggedInUserFirstName,
     lastName: state.userPageReducer.loggedInUserLastName,
     userID: state.userPageReducer.loggedInUserID,

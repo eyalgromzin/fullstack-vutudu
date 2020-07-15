@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { storageRef } from 'commonUtils'
 import 'commonCss.css'
-import './createCopmonent/createIdeaLayout.css'
+import './createComponent/createIdeaLayout.css'
 import store from 'store'
 import {getBase64} from 'commonUtils'
 import {

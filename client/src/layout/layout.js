@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import LoginScreen from '../components/loginScreen/loginScreen'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Link, Redirect, DefaultRoute } from "react-router";
-import createIdeaLayout from '../components/createCopmonent/createIdeaLayout';
+import createIdeaLayout from '../components/createComponent/createIdeaLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userPageLayout from 'components/layouts/userPageLayout/userPageLayout';
 import TopBar from 'components/topBar'

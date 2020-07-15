@@ -17,8 +17,6 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch(action.type) {
     case SET_CURRENT_IDEA:
-      var x = 5;
-      x += 1;
       return {
         ...state,
         currentIdea: action.payload,

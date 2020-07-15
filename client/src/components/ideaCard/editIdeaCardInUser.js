@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import EditableIdeaCard from 'components/ideaCard/editableIdeaCard'
+import EditableIdeaCard from 'components/ideaCard/editableIdeaCardOld'
 import UserSaveIdeaButton from './save_idea_button';
 import { connect } from 'react-redux';
 import VerticalEditIdeaBar from 'components/searchBar/verticalEditIdeaBar'
