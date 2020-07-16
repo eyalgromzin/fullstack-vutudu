@@ -9,30 +9,26 @@ import {
   EDITABLE_IDEA_SET_ID,
   EDITABLE_IDEA_SET_TAGS,
   UPDATE_EDITABLE_IDEA,
-  EDITABLE_IDEA_SET_IS_PLACE_VALID,
-  EDITABLE_IDEA_SET_IS_TITLE_VALID,
-  EDITABLE_IDEA_SET_IS_CONTENT_VALID,
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
-  ON_CREATE_SET_IS_DUPLICATE_TITLE,
+  EDITABLE_IDEA_SET_SUBJECTS,
   EDITABLE_IDEA_SET_MAX_TIME,
   EDITABLE_IDEA_SET_IMAGE_NAME,
   EDITABLE_IDEA_SET_IMAGE_BASE64,
+  EDITABLE_IDEA_SET_IMAGE_LINK,
   SET_USER_EDITED_IDEA,
 } from 'reducers/types'
 
 const initialState = {
     id: '',   //always empty
     title: '',
-    content: '',
-    place: '',
+    contentText: '',
+    placesText: '',
+    subjectsText: '',
     minTime: 10,
     maxTime: 10,
     minNumOfPeople: 10,
     maxNumOfPeople: 10,
     isButtonEnabled: false,   //refers to create / update
-    isContentValid: false,
-    isTitleValid: false,
-    isPlaceValid: false,
     isClickedButton: false,   //refers to create / update
     imageName: "",
     imageBase64: [],
@@ -45,7 +41,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         minNumOfPeople: action.payload
-      };
+      };   
     case EDITABLE_IDEA_SET_MAX_PEOPLE:
       return {
         ...state,
@@ -59,9 +55,12 @@ function reducer(state = initialState, action) {
     case EDITABLE_IDEA_SET_PLACES:
       return {
         ...state,
-        place: action.payload,
-        isButtonEnabled: state.content.length > 0 && state.title.length > 0 && action.payload > 2,
-        isPlaceValid: action.payload.length > 2
+        placesText: action.payload,
+      };
+    case EDITABLE_IDEA_SET_SUBJECTS:
+      return {
+        ...state,
+        subjectsText: action.payload,
       };
     case EDITABLE_IDEA_SET_MIN_TIME:
       return {
@@ -77,19 +76,12 @@ function reducer(state = initialState, action) {
     return {
       ...state,
       title: action.payload,
-      isButtonEnabled: state.content.length > 0 && action.payload.length > 0 && state.place.length > 2,
-      isTitleValid: action.payload > 2
     };
     case EDITABLE_IDEA_SET_CONTENT:
       return {
         ...state,
-        content: action.payload,
+        contentText: action.payload,
       };    
-    case EDITABLE_IDEA_SET_TAGS:
-    return {
-      ...state,
-      content: action.payload,
-    };
     case EDITABLE_IDEA_SET_ID:
     return {
       ...state,
@@ -102,7 +94,8 @@ function reducer(state = initialState, action) {
       id: action.payload._id,
       title: action.payload.title,
       content: action.payload.content,
-      place: action.payload.place,
+      placesText: action.payload.placesText,
+      subjectsText: action.payload.subjectsText,
       time: action.payload.time,
       minNumOfPeople: action.payload.minNumOfPeople,
       maxNumOfPeople: action.payload.maxNumOfPeople,
@@ -117,7 +110,6 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         isClickedButton: action.payload,
-        isButtonEnabled: state.content.length > 0 && state.title.length > 0 && state.place.length > 2,
       };
     case EDITABLE_IDEA_SET_IMAGE_NAME:
       return {

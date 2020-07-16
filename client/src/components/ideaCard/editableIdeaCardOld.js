@@ -10,7 +10,6 @@ import { EDITABLE_IDEA_SET_TITLE,
   EDITABLE_IDEA_SET_TAGS,
 } from 'reducers/types'
 import 'commonCss.css'
-import { addIdeaToDB } from 'actions/ideaActions';
 import store from 'store'
 import { bindActionCreators } from 'redux';
 import './ideaCard.css'
@@ -216,11 +215,4 @@ function mapStateToProps(state) {
   };
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addIdeaToDB: bindActionCreators (addIdeaToDB, dispatch),
-    dispatch
-  }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(EditableIdeaCard);  
+export default connect(mapStateToProps)(EditableIdeaCard);  

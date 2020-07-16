@@ -19,7 +19,9 @@ import {
 	USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
 	ON_CREATE_SET_IS_DUPLICATE_TITLE,
 	EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
-	REMOVE_LIKED_IDEA_FROM_USER
+	REMOVE_LIKED_IDEA_FROM_USER,
+	UPDATE_CURRENT_PREVIEWED_USER_IDEA,
+	UPDATE_IDEA_IN_LIST
 } from 'reducers/types';
 import { emptyUserPreviewedIdea } from 'actions/userActions';
 import store from 'store';
@@ -83,17 +85,17 @@ export const addUserIDToIdeaLikes = (userID, ideaID, callback) => (dispatch) => 
 	});
 };
 
-export const addIdeaToUserCreatedIdeas = (userID, idea) => (dispatch) => {
+export const addIdeaToUserCreatedIdeas = (userID, idea, onSuccess, onFail) => (dispatch) => {
 	//update user - V
 	console.log('ideaActions: adding idea to user: ' + idea._id);
 	var postObject = { userID: userID, idea: idea };
-	axios.post('', postObject).then((res) => {
-		console.log(`user was updated`);
-		dispatch({
-			type: ADD_CREATED_IDEA_TO_USER,
-			payload: res.data
-		});
-	});
+	axios.post('/api/user/addIdeaToUserCreatedIdeas', postObject).then((res) => {
+		console.log('addIdeaToUserCreatedIdeas fail!!!')
+		onSuccess()
+	}).catch(error => {
+		onFail(error);
+		console.log("ERROR!!! " + error)
+	}) ;
 };
 
 export const getIdeaByID = (ideaID) => (dispatch) => 
@@ -217,36 +219,46 @@ export const isIdeaTitleExists = (title, callBack) => (dispatch) => {
 	});
 }
 
-export const addIdeaToDB = (idea, userID) => (dispatch) => {
+export const addIdeaToDB = (idea, userID, onSuccess, onFail) => (dispatch) => {
 	console.log('adding item to mongo: ' + idea.title);
-	axios.post('/api/items/createIdea', { idea, userID }).then((res) => {
+	axios.post('/api/items/createIdea', { idea, userID })
+	.then((res) => {
 		toastr.success('Success', 'Idea Created!')
 
-		dispatch({
-			type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
-			payload: false
-		});
-
+		let createdIdea = res.data
+		onSuccess(createdIdea)
 
 		console.log('added item to mongo: ' + res.data.title);
 
-		var idea = res.data;
-		var axiosObj = { userID, idea };
+		// var idea = res.data;
+		// var axiosObj = { userID, idea };
 
-		axios.post('/api/user/addIdeaToUserCreatedIdeas', axiosObj).then((res) => {
-			dispatch({
-				type: ADD_CREATED_IDEA_TO_USER,
-				payload: idea
-			});
+		// axios.post('/api/user/addIdeaToUserCreatedIdeas', axiosObj).then((res) => {
+		// 	dispatch({
+		// 		type: ADD_CREATED_IDEA_TO_USER,
+		// 		payload: idea
+		// 	});
 
-			dispatch({
-				type: CLEAR_EDITABLE_IDEA
-			});
+		// 	dispatch({
+		// 		type: CLEAR_EDITABLE_IDEA
+		// 	});
 
-			console.log('added ideaID to user created array');
-		});
+		// 	console.log('added ideaID to user created array');
+		// });
+	})
+	.catch(error => {
+		onFail(error);
 	});
 };
+
+export const updateIdea = (ideaID, title, content, places, subjects, 
+					minTime, maxTime, minNumOfPeople, maxNumOfPeople, callBack) => dispatch => {
+	axios.post(`/api/items/updateIdeaAllFields`,{ideaID, title, content, places, subjects, minTime, maxTime, minNumOfPeople, maxNumOfPeople})
+    .then(res =>
+    {
+		callBack(res);
+    });
+}
 
 //if the idea doesnt exist in the db, just delete it from the user. 
 export const deleteIdea = (userID, ideaID, onSuccess) => (dispatch) => {

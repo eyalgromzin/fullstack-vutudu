@@ -210,15 +210,16 @@ export const convertJsonContentToJsx = (ideaContentJson, callBack) => {
     }
     else if(contentItem.first == "IMAGE"){
       contentJsx = <div><FirebaseImage firebasePath={contentItem.third} /></div>
-    }
+    }else if(contentItem.first == "YOUTUBE"){
+      contentJsx = 
+        <div class='centerHorizontally'>  
+          <iframe width='420' height='315' src={contentItem.third} />
+        </div>
+      }
     // else if(contentItem.first == "IMAGE_URL"){
     //   htmlContent += "<div class='centerHorizontally'><img src='" + contentItem.third + "'</div>"
     // }else if(contentItem.first == "LINKED_IMAGE"){
     //   htmlContent += "<div class='centerHorizontally'><a href='" + contentItem.fourth + "'><img src=" + require("images/logo.png") + "' /></a></div>"
-    // }else if(contentItem.first == "YOUTUBE"){
-    //   htmlContent += "<div class='centerHorizontally'>" + 
-    //     "<iframe width='420' height='315' src='" + contentItem.third + "' />" +
-    //   "</div>"
     // }else if(contentItem.first == "LOCATION"){
     //   htmlContent += "<div class='centerHorizontally'>" + 
     //     "LOCATION!!!" +
@@ -227,6 +228,38 @@ export const convertJsonContentToJsx = (ideaContentJson, callBack) => {
   })
 
   return contentJsx  
+}
+
+export const getImageLinkFromIdeaContent = (ideaContent) => {
+  let imageCloudLink = ""
+  let ideaContentItemsList = JSON.parse(ideaContent);
+  ideaContentItemsList.forEach(contentItem => {
+    if(contentItem.first == "IMAGE"){
+      imageCloudLink = contentItem.third
+    }
+  })
+
+  return imageCloudLink
+}
+
+export const text = () => {
+
+}
+
+
+
+export const getImageUrlFromFirebaseImagePath = async (cloudImagePath, callBack) => {
+  var imageref = storageRef.child(cloudImagePath);
+  await imageref.getDownloadURL().then(function(url) {
+    callBack(url)
+  })
+}
+
+
+export const uuidv4 = () => {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  );
 }
 
 // export const convertJsonContentToHtml = (ideaContentJson, callBack) => {

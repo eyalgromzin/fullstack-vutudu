@@ -28,8 +28,8 @@ router.post('/createIdea/', (req, res) => {
 		title: req.body.idea.title,
 		content: req.body.idea.content,
 		createdBy: req.body.idea.createdBy,
-		createdIn: req.body.idea.createdIn,
-		place: req.body.idea.place,
+		createdIn: "web",
+		places: req.body.idea.places,
 		minTime: req.body.idea.minTime,
 		maxTime: req.body.idea.maxTime,
 		minNumOfPeople: req.body.idea.minNumOfPeople,
@@ -392,8 +392,10 @@ router.post('/updateIdeaAllFields/', (req, res) => {
 	console.log('updating idea: ' + req.body.ideaID);
 	console.log('new title: ' + req.body.title);
 	console.log('new content: ' + req.body.content);
-	console.log('new place: ' + req.body.place);
-	console.log('new time: ' + req.body.time);
+	console.log('new places: ' + req.body.places);
+	console.log('new subjects: ' + req.body.subjects);
+	console.log('new minTime: ' + req.body.time);
+	console.log('new maxTime: ' + req.body.time);
 	console.log('new minNumOfPeople: ' + req.body.minNumOfPeople);
 	console.log('new maxNumOfPeople: ' + req.body.maxNumOfPeople);
 	Item.findOneAndUpdate(
@@ -403,15 +405,26 @@ router.post('/updateIdeaAllFields/', (req, res) => {
 				title: req.body.title,
 				content: req.body.content,
 				subjects: req.body.subjects,
-				place: req.body.place,
-				time: req.body.time,
+				places: req.body.places,
+				createdIn: "web",
+				subjects: req.body.subjects,
+				minTime: req.body.minTIme,
+				maxTime: req.body.maxTime,
 				minNumOfPeople: req.body.minNumOfPeople,
 				maxNumOfPeople: req.body.maxNumOfPeople,
 			}
 		},
 		{ new: true }
-	).then((items) => {
+	, (error, doc, res) => {
+		if(error != null){
+			console.log('failed to update document')
+			return 
+		}
+
 		console.log('updated idea: ' + req.body.ideaID);
+	})
+	.then((items) => {
+		console.log('updated idea');
 		return res.json(items);
 	});
 });

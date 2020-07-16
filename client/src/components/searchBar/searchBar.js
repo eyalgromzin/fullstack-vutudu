@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PlaceField from './placeField/placeField';
 import NumOfPeopleSelector from './numOfPeopleSelector/numOfPeopleSelector';
 import TimePicker from './timePicker/timePicker';
 // import MoreChooser from './moreChooser/moreChooser';
@@ -60,15 +59,6 @@ class SearchBar extends Component {
 				<div id="searchBarButtons">
 					<input id="searchBarPlaceField" type="text" placeholder="place / subject / text"
 						onChange={this.placeOnChangeEvent} />
-					{/* <PlaceField
-						fieldClass="inlineBlock searchBarTextField"
-						subjectID="searchBarPlaceSelector"
-						isClickedButton={this.props.isClickedSearch}
-						placeOnChangeEvent={this.placeOnChangeEvent}
-						place={this.props.place}
-						placeSuggestions={[]}
-						headerCssClass="fieldHeader"
-					/> */}
 					<TimePicker
 						cssClass="inlineBlock searchBarComboBox"
 						headerCssClass="fieldHeader"

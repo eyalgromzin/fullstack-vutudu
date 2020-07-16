@@ -28,7 +28,7 @@ class GoogleButton extends Component {
         if(this.props.pageAfterLogin !== undefined && this.props.pageAfterLogin != ''){
             // const history = useHistory();
             // history.push("/" + this.props.pageAfterLogin);
-            this.context.history.push('/some/path')
+            this.context.history.push("/" + this.props.pageAfterLogin)            
             store.dispatch({type: SET_CURRENT_PAGE, payload: this.props.pageAfterLogin});
         }
 

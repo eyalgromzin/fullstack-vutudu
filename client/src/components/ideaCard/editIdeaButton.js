@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { 
   SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
   UPDATE_EDITABLE_IDEA,
-  CHANGE_UPDATE_TOGGLE,
+  CHANGE_USER_UPDATE_TOGGLE,
   SET_USER_EDITED_IDEA
 } from 'reducers/types'
 import 'cssAnimations.css'
@@ -15,7 +15,7 @@ class EditIdeaButton extends Component {
       this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: true});
       this.props.dispatch({type: UPDATE_EDITABLE_IDEA, payload: this.props.currentPreviewedIdea});
       this.props.dispatch({type: SET_USER_EDITED_IDEA, payload: this.props.currentPreviewedIdea});
-      this.props.dispatch({type: CHANGE_UPDATE_TOGGLE});
+      this.props.dispatch({type: CHANGE_USER_UPDATE_TOGGLE});
     }
 
   render() {

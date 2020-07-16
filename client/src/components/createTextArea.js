@@ -26,6 +26,10 @@ export default class CreateTextField extends Component {
         return true
     }
 
+    setText = (text) => {
+        this.setState({text: text})
+    }
+
     clear = () => {
         this.setState({text: ""}) 
     }
@@ -39,7 +43,8 @@ export default class CreateTextField extends Component {
         return (
             <React.Fragment>
                 <textarea 
-                    className={this.state.isValid? this.props.class : this.props.class + " errorBackground"}
+                    value={this.state.text}
+                    className={this.state.isValid? this.props.className : this.props.className + " errorBackground"}
                     rows="4" cols="50" id="createIdeaContentText" 
                     placeholder={this.props.placeholder}
                     onChange={this.onTextChange}

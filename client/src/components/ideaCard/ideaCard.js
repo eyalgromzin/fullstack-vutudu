@@ -14,6 +14,7 @@ import IdeaCardContent from 'components/ideaCard/ideaCardContent'
 import EditIdeaButton from 'components/ideaCard/editIdeaButton' 
 import DeleteIdeaButton from './deleteIdeaButton';
 import ReactTooltip from "react-tooltip";
+import dcopy from 'deep-copy';
 
 class IdeaCard extends Component {
   constructor(props){
@@ -128,7 +129,9 @@ class IdeaCard extends Component {
       this.props.dispatch({ type: SET_CURRENT_IDEA, payload: this.props.ideas[0] });     
     }else{
       this.props.onSelectedIndexChange(nextIdeaIndex)
-      this.props.dispatch({ type: SET_CURRENT_IDEA, payload: this.props.ideas[nextIdeaIndex + 1] });
+      var ideas = dcopy(this.props.ideas)      
+      ideas.splice(nextIdeaIndex, 1);
+      this.props.dispatch({ type: SET_CURRENT_IDEA, payload: ideas[nextIdeaIndex] });
     }    
   }
 

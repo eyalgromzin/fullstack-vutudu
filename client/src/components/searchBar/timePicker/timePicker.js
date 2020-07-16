@@ -45,7 +45,6 @@ export default class TimePicker extends Component {
 						id="timePicker"
 						value={this.state.time}
 						onChange={this.onChangeEvent}
-						onKeyDown={this.placeFieldKeyUp}
 					>
 						<option value="5" className="timeChooserOption">Time</option>
 						<option value="5" className="timeChooserOption">5 min</option>

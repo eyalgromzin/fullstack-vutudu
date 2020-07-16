@@ -10,26 +10,28 @@ import {
 } from 'reducers/types';
 import imageCompression from 'browser-image-compression';
 
-export default class CreateTextField extends Component {
+ // this.inputRef = createRef()
+    
+// this.onChangeFile = this.onChangeFile.bind(this)
+
+export default class CreateImagePicker extends Component {
     constructor(props){
         super(props)
 
-        this.inputRef = createRef()
-    
-        this.onChangeFile = this.onChangeFile.bind(this)
-        this.compressAndSaveImageFile = this.compressAndSaveImageFile.bind(this)
-
+        let imageIconPath = require("images/imageIcon.png")
         this.state = {
           imageBase64: "",
           isValid: true,
           isImageSelected: false,
-          imageSrc: require("images/imageIcon.png"),
-          uniqueIdentifier: ""
+          imageSrc: imageIconPath,
+          uniqueIdentifier: "",
+          imageName: "",
         }
     }
 
     validate = () => {
-        if(!this.state.isImageSelected){
+        let imageIconSrc = require("images/imageIcon.png")
+        if(this.state.imageSrc == imageIconSrc){
             this.setState({isValid: false})
             return false
         }
@@ -46,9 +48,9 @@ export default class CreateTextField extends Component {
         }
     };
 
-    compressAndSaveImageFile = (imageFile, compressedImage) => {
+    // compressAndSaveImageFile = (imageFile, compressedImage) => {
         
-    }
+    // }
 
     async onChangeFile(event){
         this.setState({
@@ -61,6 +63,9 @@ export default class CreateTextField extends Component {
         var imageFile = event.target.files[0];
         this.setState({imageFile: imageFile}); /// if you want to upload latter
         console.log(imageFile)
+
+        let imageName = imageFile.name
+        this.setState({imageName: imageName})
 
         const options = {
             maxSizeMB: 0.1,
@@ -105,11 +110,15 @@ export default class CreateTextField extends Component {
         })
     }
 
+    setImage = (imageSrc) => {
+        this.setState({imageSrc: imageSrc})
+    }
+
     render () {
         return (
             <React.Fragment>
                 <input type="file" accept="image/*" onChange={this.onChangeFile} 
-                    multiple = "false" style={{display: "none"}} ref={input => this.inputRef = input} 
+                    multiple={false} style={{display: "none"}} ref={input => this.inputRef = input} 
                 />
                 <img  id="createIdeaImagePickerImage" src={this.state.imageSrc} alt="" 
                       onClick={this.loadImage} 

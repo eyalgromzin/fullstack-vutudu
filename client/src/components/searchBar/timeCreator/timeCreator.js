@@ -14,12 +14,9 @@ export default class TimeCreator extends Component {
 	constructor(props) {
 		super(props);
 
-		var minTime = this.props.minTime === undefined ? 10 : this.props.minTime;
-		var maxTime = this.props.maxTime === undefined ? 10 : this.props.maxTime;
-
 		this.state = {
-			minTime: Number(minTime),
-			maxTime: Number(maxTime),
+			minTime: 10,
+			maxTime: 10,
 			isValid: true
 		};
 	}
@@ -32,17 +29,25 @@ export default class TimeCreator extends Component {
 	}
 
 	onMinTimeChangeEvent = (e) => {
-		this.props.dispatch({type: EDITABLE_IDEA_SET_MIN_TIME, payload: e.target.value});
-		this.setState({minTime: e.target.value})
-		this.validate();
-		this.props.onMinTimeChangeEvent(e.target.value)
+		let value = parseInt(e.target.value)
+		store.dispatch({type: EDITABLE_IDEA_SET_MIN_TIME, payload: value});
+		this.setState({minTime: value})
 	}
 		
 	onMaxTimeChangeEvent = (e) => {
-		this.props.dispatch({type: EDITABLE_IDEA_SET_MAX_TIME, payload: e.target.value});
-		this.setState({maxTime: e.target.value})
-		this.validate();
-		this.props.onMaxTimeChangeEvent(e.target.value)
+		let value = parseInt(e.target.value)
+		store.dispatch({type: EDITABLE_IDEA_SET_MAX_TIME, payload: value});
+		this.setState({maxTime: value})
+	}
+
+	setMinTime = (time) => {
+		this.setState({minTime: time})
+		store.dispatch({type: EDITABLE_IDEA_SET_MIN_TIME, payload: time});
+	}
+
+	setMaxTime = (time) => {
+		this.setState({maxTime: time})
+		store.dispatch({type: EDITABLE_IDEA_SET_MAX_TIME, payload: time});
 	}
 
 	validate = () => {
@@ -72,7 +77,7 @@ export default class TimeCreator extends Component {
 						onChange={this.onMinTimeChangeEvent}
 						className={this.state.isValid? this.props.selctorClass : this.props.selctorClass + " errorBackground"}
 						>
-							<option value="5" className="timeChooserOption">Min Time</option>
+							<option value="0" className="timeChooserOption">Min Time</option>
 							<option value="5" className="timeChooserOption">5 min</option>
 							<option value="10" className="timeChooserOption">10 min</option>
 							<option value="15" className="timeChooserOption">15 min</option>
@@ -89,7 +94,7 @@ export default class TimeCreator extends Component {
 						onChange={this.onMaxTimeChangeEvent}
 						className={this.state.isValid? this.props.selctorClass : this.props.selctorClass + " errorBackground"}
 						>
-							<option value="5" className="timeChooserOption">Max Time</option>
+							<option value="0" className="timeChooserOption">Max Time</option>
 							<option value="5" className="timeChooserOption">5 min</option>
 							<option value="10" className="timeChooserOption">10 min</option>
 							<option value="15" className="timeChooserOption">15 min</option>

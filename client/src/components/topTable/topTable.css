@@ -4,7 +4,8 @@
 }
 
 #topTableColumnContainer{
-    display: flex;
+    display: inherit;
+    padding-right: 30px;
 }
 
 #topLikedTable{

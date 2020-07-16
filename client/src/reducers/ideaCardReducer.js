@@ -4,6 +4,7 @@ import {
   ADD_USER_TO_IDEA_DISLIKES,
   ADD_USER_ID_TO_IDEA_LIKES,
   REMOVE_USER_FROM_IDEA_DISLIKES,
+  UPDATE_CURRENT_IDEA,
  } from 'reducers/types'
 import { actions } from 'react-redux-toastr';
 
@@ -30,6 +31,14 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           currentIdea
+        };
+    case UPDATE_CURRENT_IDEA:
+        // var currentIdea = dcopy(state.currentIdea)
+        var newCurrentIdea = action.payload
+
+        return {
+          ...state,
+          currentIdea: newCurrentIdea
         };
     case ADD_USER_TO_IDEA_DISLIKES:
       var currentIdea = dcopy(state.currentIdea)

@@ -2,6 +2,8 @@
     font-weight: bolder;
     margin-bottom: 7px;
     margin-left: 5px;
+    background-color: bisque;
+    border-radius: 10px;
     margin-right: 6px;
     padding-left: 3px;
 }

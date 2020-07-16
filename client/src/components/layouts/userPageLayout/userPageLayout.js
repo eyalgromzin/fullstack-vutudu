@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
 import IdeasList from 'components/ideasList/ideasList'
-import IdeaCardInUser from 'components/ideaCard/ideaCardInUser'
-import EditIdeaCardInUser from 'components/ideaCard/editIdeaCardInUser';
 import { 
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
@@ -109,6 +107,7 @@ class userPageLayout extends Component {
 
   onSelectedIndexChange = (newIndex) => {
     this.setState({selectedIdeaIndex: newIndex})    
+
 	}
 
   createUserIdeasList = () => {
@@ -138,7 +137,7 @@ class userPageLayout extends Component {
       <React.Fragment>
         <div id="userLayout">
           <div id="userNameAndLogourBar">
-            <div id="userFullName">Full name {this.props.userFullName}</div>
+            <div id="userFullName">{this.props.firstName + " " + this.props.lastName + " " + this.props.email} </div>
             {logoutButton}
           </div>
 
@@ -164,6 +163,7 @@ function mapStateToProps(state) {
     currentIdea: state.ideaCardReducer.currentIdea,
     firstName: state.userPageReducer.loggedInUserFirstName,
     lastName: state.userPageReducer.loggedInUserLastName,
+    email: state.userPageReducer.email,
     userID: state.userPageReducer.loggedInUserID,
     isIdeaEdited: state.userPageReducer.isIdeaEdited,
     currentPreviewedIdeas: state.userPageReducer.currentPreviewedIdeas,

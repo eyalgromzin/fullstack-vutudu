@@ -21,12 +21,11 @@ ideasTypeDictionary["Liked"] = "liked";
 ideasTypeDictionary["Created"] = "createdBy";
 
 class UserIdeasTypeDropDown extends Component {
+ 
   options = [
     { value: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS, type: 'liked', label: 'Liked'},
     { value: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS, type: 'created', label: 'Created'},
   ]
-
-  defaultOption = this.options[0]
 
   componentDidMount() {
     //for initial state to show 
@@ -34,21 +33,28 @@ class UserIdeasTypeDropDown extends Component {
   }
 
   onChange = (e) => {
+    if(e.label == "Created"){
+      store.dispatch({type: USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS })
+    }else if(e.label == "Liked"){
+      store.dispatch({type: USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS })
+    }
 
-    var reduxActionName = e.value;
-
-    //change current previewed ideas to null first.
-    store.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEAS, payload: {}});
-
-    this.props.copyUserIdeas(reduxActionName);
-    
     store.dispatch({type: USER_SET_SELECTED_DROPDOWN_TYPE, payload: e.label })
+
+    // var reduxActionName = e.value;
+
+    // //change current previewed ideas to null first.    
+    // store.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEAS, payload: {}});
+
+    // this.props.copyUserIdeas(reduxActionName);
+    
+    // store.dispatch({type: USER_SET_SELECTED_DROPDOWN_TYPE, payload: e.label })
   }
 
   render() {
     return (
       <div className="uderIdeasTypeDropDownContainer">
-        <Dropdown className='UserIdeasTypeDropDown' options={this.options} onChange={this.onChange} value={this.defaultOption} placeholder="Select an option" />
+        <Dropdown className='UserIdeasTypeDropDown' options={this.options} onChange={this.onChange} value={this.options[0]} placeholder="Select an option" />
       </div>
     )
   }

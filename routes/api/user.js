@@ -240,8 +240,10 @@ router.post('/updateUserCreatedIdeaAllFields', (req, res) => {   //works
     { "$set": { 
       "created.$.title": req.body.title, 
       "created.$.content": req.body.content,
-      "created.$.place": req.body.place,
-      "created.$.time": req.body.time,
+      "created.$.places": req.body.places,
+      "created.$.subjets": req.body.subjects,
+      "created.$.minTime": req.body.minTime,
+      "created.$.maxTime": req.body.maxTime,
       "created.$.minNumOfPeople": req.body.minNumOfPeople,
       "created.$.maxNumOfPeople": req.body.maxNumOfPeople,
     }})
@@ -276,7 +278,7 @@ router.post('/addUserToUserLikedIdea', (req, res) => {   //works
 //   console.log("updated " + req.body.userID);
 // });
 
-// @route   POST api/user/userCreated/
+// @route   POST api/user/addIdeaToUserCreatedIdeas/
 // @desc    addIdeaToUserCreatedIdeas
 // @access  Public
 router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
@@ -287,16 +289,16 @@ router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
   console.log("updated: " + req.body.userID);
 });
 
-// @route   POST api/user/userCreated/
-// @desc    add Idea To User Created Ideas
-// @access  Public
-router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
-  console.log("updating: " + req.body.userID);
-  User.findOneAndUpdate({ id: req.body.userID },
-    { "$push": { "created._id": { "_id": req.body.idea.id } } })
-  .then(users => res.json(users));
-  console.log("updated: " + req.body.userID);
-});
+// // @route   POST api/user/userCreated/
+// // @desc    add Idea To User Created Ideas
+// // @access  Public
+// router.post('/addIdeaToUserCreatedIdeas', (req, res) => {   //works
+//   console.log("updating: " + req.body.userID);
+//   User.findOneAndUpdate({ id: req.body.userID },
+//     { "$push": { "created._id": { "_id": req.body.idea.id } } })
+//   .then(users => res.json(users));
+//   console.log("updated: " + req.body.userID);
+// });
 
 // @route   POST api/user/getUser/
 // @desc    search for anything

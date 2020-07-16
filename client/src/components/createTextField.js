@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import { storageRef } from 'commonUtils'
 import 'commonCss.css'
 import store from 'store'
-import {
-    EDITABLE_IDEA_SET_PLACESS
-} from 'reducers/types';
 import { createRef } from 'react';
 
 export default class CreateTextField extends Component {
@@ -29,6 +26,10 @@ export default class CreateTextField extends Component {
         return true
     }
 
+    setText = (text) => {
+        this.setState({text: text})
+    }
+
     onTextChange = (e) => {
         this.setState({text: e.target.value}) 
         store.dispatch({type: this.props.updateTextTypeName, payload: e.target.value});  
@@ -44,11 +45,12 @@ export default class CreateTextField extends Component {
             <React.Fragment>
                 <input id="createPlacesField"  
                 type="text" 
+                value={this.state.text}
                 ref={input => this.inputRef = input} 
                 placeholder={ this.props.placeholder }                 
                 onChange={this.onTextChange}
-                className={this.state.isValid? this.props.class :
-                    this.props.class + " errorBackground"}
+                className={this.state.isValid? this.props.className :
+                    this.props.className + " errorBackground"}
                 />        
             </React.Fragment>
         )

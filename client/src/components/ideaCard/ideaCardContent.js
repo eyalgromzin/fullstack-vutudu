@@ -12,13 +12,15 @@ export default class IdeaCardContent extends Component {
     }
 
     componentDidMount() {
-        var content = this.convertContentJsonToJsx(this.props.contentJson)
+        var jsxAndText = this.convertContentJsonToJsx(this.props.contentJson)
         this.setState({
-            content: content
+            content: jsxAndText[0]
         })
     }
 
     convertContentJsonToJsx = (contentJson) => {
+        
+
         if(contentJson === undefined) {
             return <div></div>
         }
@@ -26,57 +28,79 @@ export default class IdeaCardContent extends Component {
         var contentJsx = ""
         
         var ideaContentItemsList = JSON.parse(contentJson);
+
+        let contentText = "<React.Fragment>"
+
         ideaContentItemsList.forEach(contentItem => {
             if(contentItem.first == "TEXT"){
-                contentJsx = <React.Fragment>{contentJsx}<div>{contentItem.third}</div></React.Fragment>
+                contentJsx = 
+                <div id="ideaContent">
+                    {contentJsx}
+                    <div>{contentItem.third}</div>
+                </div>
+                contentText += "<div>" + contentItem.third + " </div>"
             }else if(contentItem.first == "LINK"){
-                contentJsx = <div className='centerHorizontally'><a href={contentItem.fourth}>{contentItem.third}</a></div>
+                contentJsx = 
+                <div id="ideaContent">
+                    {contentJsx}
+                    <div className='centerHorizontally'>
+                        <a href={contentItem.fourth}>{contentItem.third}</a>
+                    </div>
+                </div>
             }
             else if(contentItem.first == "IMAGE"){
                 contentJsx = 
-                <React.Fragment>
-                    {contentJsx}
-                    <div><FirebaseImage firebasePath={contentItem.third} /></div>
-                </React.Fragment>
+                    <div id="ideaContent">
+                        {contentJsx}
+                        <div className='centerHorizontally'>
+                            <FirebaseImage firebasePath={contentItem.third} />
+                        </div>
+                    </div>
+                contentText += "<div className='centerHorizontally'><FirebaseImage firebasePath='" + contentItem.third + "' /></div>"
             }else if(contentItem.first == "LOCATION"){                
                 var mapSrc="https://maps.google.com/maps?q=" + contentItem.third + "," + contentItem.fourth + "&t=&z=15&ie=UTF8&iwloc=&output=embed" 
 
                 contentJsx = 
-                <React.Fragment>
-                    {contentJsx}
-                    <div className="mapouter">
-                        <div className="gmap_container">
-                            <iframe width="90%" height="50%" id="gmap_canvas"  
-                                src={mapSrc}
-                                frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
-                                />
+                    <div id="ideaContent">
+                        {contentJsx}
+                        <div className="mapouter">
+                            <div className="gmap_container">
+                                <iframe width="90%" height="50%" id="gmap_canvas"  
+                                    src={mapSrc}
+                                    frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"
+                                    />
+                            </div>
                         </div>
                     </div>
-                </React.Fragment>
+                contentText += '' + '<div className="mapouter">' + 
+                    '<div className="gmap_container">' + 
+                        '<iframe width="90%" height="50%" id="gmap_canvas"  ' + 
+                            'src={mapSrc} ' +
+                            'frameBorder="0" scrolling="no" marginHeight="0" marginWidth="0"' +
+                            '/>' +
+                    '</div>' + 
+                '</div>'
             }else{
-                contentJsx = <div>111</div>
+                contentJsx = <div>failed parse</div>
             }
         })
 
-        return contentJsx
+        contentText += "</React.Fragment>"
+
+        return [contentJsx, contentText]
     }
 
     render() {
-        var ideaCardContent = ""   
         if(this.props.content != this.state.content){
             this.setState({content: this.props.content})
         }
         
-        if(this.props.createdIn == "web" || this.props.content.includes("</div>" || this.props.content.includes("</ div>"))){
-            ideaCardContent = <div className={"className"} 
-                    dangerouslySetInnerHTML={{ __html: this.props.content.replace(/\n/g, '<br />')}} />            
-        }else if(this.props.content == "To find ideas of what to do"){
-            ideaCardContent = this.props.content
-        }else{
-            ideaCardContent = this.convertContentJsonToJsx(this.props.content)            
-        }
+        let contentAndText = this.convertContentJsonToJsx(this.props.content)            
+        let ideaContentText = contentAndText[1]
+        console.log(ideaContentText)
+
       return (
-        <div>{ideaCardContent}</div>
+        <div>{contentAndText[0]}</div>
       )
     }
 }

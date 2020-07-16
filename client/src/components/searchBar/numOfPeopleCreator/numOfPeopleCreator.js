@@ -7,41 +7,20 @@ import {
   EDITABLE_IDEA_SET_MIN_PEOPLE, 
   EDITABLE_IDEA_SET_MAX_PEOPLE 
 } from 'reducers/types'
+import store from 'store';
 
-class NumOfPeopleCreator extends Component {
+export default class NumOfPeopleCreator extends Component {
   constructor(props){
     super(props)
+
+    this.validate = this.validate.bind(this)
+    this.setMinNumOfPeople = this.setMinNumOfPeople.bind(this)
 
     this.state = {
       minNumOfPeople: 10,
       maxNumOfPeople: 10,
-      isValid: true
+      isValid: true,      
     }
-  }
-
-  clearSelection = () => {
-    this.setState({
-      minNumOfPeople: 10,
-      maxNumOfPeople: 10
-    })
-  }
-
-  minNumOfPeopleChange = (event) => {
-    this.props.dispatch({ type: EDITABLE_IDEA_SET_MIN_PEOPLE, payload: Number(event.target.value) }); 
-    this.setState({minNumOfPeople: event.target.value})
-    this.validate();
-
-    if(this.props.onMinNumOfPeopleChange !== undefined)
-      this.props.onMinNumOfPeopleChange();
-  }
-
-  maxNumOfPeopleChange = (event) => {
-    this.props.dispatch({ type: EDITABLE_IDEA_SET_MAX_PEOPLE, payload: Number(event.target.value) });
-    this.setState({maxNumOfPeople: event.target.value})  
-    this.validate();
-    
-    if(this.props.onMaxNumOfPeopleChange !== undefined)
-      this.props.onMaxNumOfPeopleChange();
   }
 
   validate = () => {
@@ -53,6 +32,47 @@ class NumOfPeopleCreator extends Component {
     this.setState({isValid: true})
     return true
   }
+
+  clearSelection = () => {
+    this.setState({
+      minNumOfPeople: 10,
+      maxNumOfPeople: 10
+    })
+  }
+
+  minNumOfPeopleChange = (e) => {
+    let value = parseInt(e.target.value)
+    store.dispatch({ type: EDITABLE_IDEA_SET_MIN_PEOPLE, payload: value }); 
+    this.setState({minNumOfPeople: value})
+
+    if(this.props.onMinNumOfPeopleChange !== undefined)
+      this.props.onMinNumOfPeopleChange();
+  }
+
+  maxNumOfPeopleChange = (e) => {
+    let value = parseInt(e.target.value)
+    store.dispatch({ type: EDITABLE_IDEA_SET_MAX_PEOPLE, payload: value });
+    this.setState({maxNumOfPeople: value})  
+    
+    if(value < this.state.minNumOfPeople){
+      this.setState({isValid: false})  
+    }
+    
+    if(this.props.onMaxNumOfPeopleChange !== undefined)
+      this.props.onMaxNumOfPeopleChange();
+  }
+  
+  setMinNumOfPeople = (numOfPeople) => {
+    this.setState({minNumOfPeople: numOfPeople})
+    store.dispatch({ type: EDITABLE_IDEA_SET_MIN_PEOPLE, payload: numOfPeople });
+  }
+
+  setMaxNumOfPeople = (numOfPeople) => {
+    this.setState({maxNumOfPeople: numOfPeople})
+    store.dispatch({ type: EDITABLE_IDEA_SET_MAX_PEOPLE, payload: numOfPeople });
+  }
+
+  
   
   clear = () => {
 		this.setState({minNumOfPeople: 10,
@@ -109,4 +129,5 @@ class NumOfPeopleCreator extends Component {
   }
 }
 
-export default connect(null, null, null, { withRef: true })(NumOfPeopleCreator); //mapStateToProps
+// export default connect(null, null, null, { withRef: true })(NumOfPeopleCreator); //mapStateToProps
+// export default connect()(NumOfPeopleCreator);

@@ -23,7 +23,7 @@ class NumOfPeopleSelector extends Component {
     this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: e.target.value });
   }
 
-  placeFieldKeyUp = (event) => {
+  onKeyUp = (event) => {
     if (event.keyCode === 13) {
       // Trigger the button element with a click
       console.log("enter clicked on place input")
@@ -51,7 +51,7 @@ class NumOfPeopleSelector extends Component {
         <div id="numOfPeopleSelector" className="inlineBlock searchBarComboBox">
           {/* <div className={this.props.headerCssClass}>People</div> */}
           <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
-            onKeyUp={this.placeFieldKeyUp} onChange={this.handleChange}>
+            onKeyUp={this.onKeyUp} onChange={this.handleChange}>
             <option value="10" className="timeChooserOption">People</option>
             <option value="10" className="timeChooserOption">1</option>
             <option value="20" className="timeChooserOption">2</option>

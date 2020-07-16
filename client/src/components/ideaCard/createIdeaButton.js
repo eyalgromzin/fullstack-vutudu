@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { addIdeaToDB, updateTags, isIdeaTitleExists } from 'actions/ideaActions';
+import { addIdeaToDB, updateTags, isIdeaTitleExists, addIdeaToUserCreatedIdeas } from 'actions/ideaActions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import 'commonCss.css'
@@ -8,7 +8,8 @@ import {notify} from 'react-notify-toast';
 // import { addHashTagsToDB } from 'actions/subjectsActions'
 import { addPlaceToDBIfNotExists } from 'actions/autoSuggestActions'
 import { 
-  EDITABLE_SET_IS_BUTTON_CLICKED_VALUE
+  EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
+  ADD_CREATED_IDEA_TO_USER
 } from 'reducers/types'
 import { showLogInScreen } from 'actions/commonActions'
 import { getTagsFromContent } from 'commonUtils'
@@ -67,11 +68,7 @@ class createIdeaButton extends Component {
     this.props.titleRef.clear()
   }
 
-  uuidv4 = () => {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-  }
+  
 
   createIdea = () => {
     var uniqueIdentifier = this.props.imagePickerRef.state.uniqueIdentifier
@@ -81,7 +78,7 @@ class createIdeaButton extends Component {
     if(ls.get(uniqueIdentifier) != null){
       cloudImagePath = ls.get(uniqueIdentifier)
     }else{
-      cloudImagePath = "images/" + this.uuidv4() + this.props.imageName
+      cloudImagePath = "images/" + this.uuidv4() + this.props.imagePickerRef.state.imageName
     }
     
     let content = '[{"first":"TEXT","fourth":"","second":0,"third":"' + this.props.contentRef.state.text + '"}, ' + 
@@ -89,27 +86,49 @@ class createIdeaButton extends Component {
     let places = this.props.placesRef.state.text.split(",")
     let subjects = this.props.subjectsRef.state.text.split(",")
 
+    
     const newItem = {
       title: this.props.titleRef.state.text,
       content: content,
       createdBy: this.props.userID,
       createdIn: "web",
       places: places,
-      minTime: this.props.timeRef.minTime,
-      maxTime: this.props.timeRef.maxTime,
-      minNumOfPeople: this.props.numOfPeopleRef.minNumOfPeople,
-      maxNumOfPeople: this.props.numOfPeopleRef.maxNumOfPeople,
+      createdOn: Date.now(),
+      minTime: this.props.timeRef.state.minTime,
+      maxTime: this.props.timeRef.state.maxTime,
+      minNumOfPeople: this.props.numOfPeopleRef.state.minNumOfPeople,
+      maxNumOfPeople: this.props.numOfPeopleRef.state.maxNumOfPeople,
       subjects: subjects,
     };
 
     var imageFileBase64 = this.props.imagePickerRef.state.imageBase64
-    
 
     if(ls.get(uniqueIdentifier) != null){
-      this.props.addIdeaToDB(newItem, this.props.userID)
+      this.props.addIdeaToDB(newItem, this.props.userID,
+      (createdIdea) => {        
+        //dont know what is this for
+        newItem._id = createdIdea._id
+
+        this.props.dispatch({
+        	type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
+        	payload: false
+        });
+
+        this.props.addIdeaToUserCreatedIdeas(this.props.userID, newItem, 
+          () => {
+            this.props.dispatch({type: ADD_CREATED_IDEA_TO_USER, payload: newItem})
+          }, 
+          (error) => {
+            console.log("failed addIdeaToUserCreatedIdeas " + error)
+          })
+        
+        
+      }, (error) => {
+        console.log(error);
+      })
 
       this.props.addPlaceToDBIfNotExists(this.props.place)
-
+      
       this.closeAlert()
     }else{
       uploadBase64ImageToStorage(imageFileBase64, cloudImagePath, 
@@ -121,6 +140,7 @@ class createIdeaButton extends Component {
           this.closeAlert()
 
           ls.set(uniqueIdentifier, cloudImagePath) 
+          ls.set(cloudImagePath, cloudImagePath) 
         }
       )
     }
@@ -177,6 +197,7 @@ const mapDispatchToProps = dispatch => {
       // addHashTagsToDB: bindActionCreators (addHashTagsToDB, dispatch),
       addPlaceToDBIfNotExists: bindActionCreators (addPlaceToDBIfNotExists, dispatch),
       isIdeaTitleExists: bindActionCreators (isIdeaTitleExists, dispatch),
+      addIdeaToUserCreatedIdeas: bindActionCreators (addIdeaToUserCreatedIdeas, dispatch),
       dispatch,
     }
   }
@@ -185,7 +206,7 @@ const mapDispatchToProps = dispatch => {
     return {
       title: state.editableIdeaReducer.title,
       content: state.editableIdeaReducer.content,
-      place: state.editableIdeaReducer.place,
+      places: state.editableIdeaReducer.places,
       minTime: state.editableIdeaReducer.minTime,
       maxTime: state.editableIdeaReducer.maxTime,
       minNumOfPeople: state.editableIdeaReducer.minNumOfPeople,

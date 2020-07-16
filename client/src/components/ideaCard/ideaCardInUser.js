@@ -11,7 +11,6 @@ import EditIdeaButton from './editIdeaButton'
 import DeleteIdeaButton from './deleteIdeaButton' 
 import { convertLinksToContent }  from 'commonUtils'
 import IdeaCard from './ideaCard'
-import { idea } from 'models/idea';
 import dcopy from 'deep-copy'
 
 class IdeaCardInUser extends Component {

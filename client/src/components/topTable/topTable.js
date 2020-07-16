@@ -36,8 +36,8 @@ class topTable extends Component {
 
   //happens on like click
   ideaUpdated = (idea) => {
-    let ideaIndex = this.state.ideas.indexOf(ideaI => ideaI.id == idea.id)
-    let ideas = this.state.ideas
+    let ideas = [...this.props.topNewestIdeas,...this.props.topLikedPercansubjecteIdeas, ...this.props.topLikedIdeas]
+    let ideaIndex = ideas.indexOf(ideaI => ideaI.id == idea.id)
     ideas[ideaIndex] = idea
     this.setState({ideas: ideas})
   }
