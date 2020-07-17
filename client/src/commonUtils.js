@@ -209,7 +209,7 @@ export const convertJsonContentToJsx = (ideaContentJson, callBack) => {
       contentJsx = <div class='centerHorizontally'><a href={contentItem.fourth}>{contentItem.third}</a></div>
     }
     else if(contentItem.first == "IMAGE"){
-      contentJsx = <div><FirebaseImage firebasePath={contentItem.third} /></div>
+      contentJsx = <div><FirebaseImage firebasePath={contentItem.third} imageClassName="contentImage" /></div>
     }else if(contentItem.first == "YOUTUBE"){
       contentJsx = 
         <div class='centerHorizontally'>  

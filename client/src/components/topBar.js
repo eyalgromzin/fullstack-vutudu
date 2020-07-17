@@ -74,7 +74,7 @@ class TopBar extends Component {
           <React.Fragment>
             <div id="mainLogo" className=""> 
               <img src={require("images/logo.png")} id="mainLogoImage" alt="VUTUDU" />     
-              <span id="mainLogoText">VUTUDU</span>
+              <span id="mainLogoText" onClick={() => this.searchClick(history)}>VUTUDU</span>
             </div> 
             <div id="rightSideButtons">
               <img id="searchIdeasButton" src={require("images/search.png")} 

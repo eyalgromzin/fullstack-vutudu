@@ -73,9 +73,13 @@
     padding-left: 10px;
     padding-right: 10px;
     height: 450px;
-    overflow-y: auto;
+    overflow-y: hidden;
     
     white-space: pre-line; /* to enable line breaks in content text */
+}
+
+#ideaContentText:hover{
+    overflow-y: auto;
 }
 
 #shareButtonContainer{
@@ -94,9 +98,13 @@
 #ideaCard{
     box-shadow: 0px 0px 3px 1px;
     margin-bottom: 5px;
-    background-color: #f0fffc;
+    /* background-color: #f0fffc; */
     border-radius: 20px;
-    
+    overflow: hidden;
+}
+
+#ideaCard:hover{
+    overflow: auto;
 }
 
 #ideaCardInUser{

@@ -49,14 +49,13 @@ class IdeasList extends Component {
 
     return (
       <React.Fragment>
-        
-          <div style={{overflow: 'auto', height: listHeight}}>
-            <ReactList
-              itemRenderer={this.renderItem}
-              length={this.props == null || this.props.ideas == null? 0 : this.props.ideas.length}
-              type='uniform'
-            />
-          </div>
+        <div style={{overflow: 'auto', height: listHeight}}>
+          <ReactList
+            itemRenderer={this.renderItem}
+            length={this.props == null || this.props.ideas == null? 0 : this.props.ideas.length}
+            type='uniform'
+          />
+        </div>
       </React.Fragment>
     )
   }

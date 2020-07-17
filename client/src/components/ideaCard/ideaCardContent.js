@@ -19,8 +19,6 @@ export default class IdeaCardContent extends Component {
     }
 
     convertContentJsonToJsx = (contentJson) => {
-        
-
         if(contentJson === undefined) {
             return <div></div>
         }
@@ -53,7 +51,7 @@ export default class IdeaCardContent extends Component {
                     <div id="ideaContent">
                         {contentJsx}
                         <div className='centerHorizontally'>
-                            <FirebaseImage firebasePath={contentItem.third} />
+                            <FirebaseImage firebasePath={contentItem.third} imageClassName="contentImage" />
                         </div>
                     </div>
                 contentText += "<div className='centerHorizontally'><FirebaseImage firebasePath='" + contentItem.third + "' /></div>"

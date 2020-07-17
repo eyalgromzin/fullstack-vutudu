@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { storageRef } from 'commonUtils'
 import 'commonCss.css'
 
-class FirebaseImage extends Component {
+export default class FirebaseImage extends Component {
   constructor(props){
     super(props)
 
@@ -26,28 +26,29 @@ class FirebaseImage extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if((nextProps.firebasePath !== undefined && this.state.imageSrc == "" && !this.updating) ||
-        (this.state.firebasePath != nextProps.firebasePath)){
+    if((this.props.firebasePath != "" && this.state.imageSrc == ""  && !this.updating) ||
+        (this.state.firebasePath != this.props.firebasePath)){
       this.updating = true
       this.updateImage(this.props.firebasePath)
       this.setState({firebasePath: this.props.firebasePath})
-    }
-    
+    }      
 
     return true
   }
 
   render() {
+    let firebaseImage = <div></div>
+    
+    if(this.state.imageSrc == ""){
+      firebaseImage = <img src={require("images/loading2.gif")} className={this.props.imageClassName} id="ideaCardImageLoader" alt="" />
+    }else{
+      firebaseImage = <img src={this.state.imageSrc} className={this.props.imageClassName} onClick={() => this.props.onClick()} />
+    }
+
     return (
       <div>
-        {this.state.imageSrc == ""? 
-          <img src={require("images/loading2.gif")} id="ideaCardImageLoader" alt="" />
-          :
-          <img src={this.state.imageSrc} className="contentImage" />
-        }        
+        {firebaseImage}
       </div>
     );
   }
 }
-  
-export default FirebaseImage;

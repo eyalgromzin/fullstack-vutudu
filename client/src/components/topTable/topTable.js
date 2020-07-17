@@ -5,10 +5,13 @@ import store from 'store'
 import { connect } from 'react-redux';
 import IdeaCard from 'components/ideaCard/ideaCard'
 import 'components/ideasList/ideasList.css';
-import { 
+import { getImageLinkFromIdeaContent } from 'commonUtils'  
+import {
   SET_CURRENT_IDEA,
   SET_SEARCH_IDEAS
 } from 'reducers/types';
+import FirebaseImage from 'components/firebaseImage'
+import IdeasList from 'components/ideasList'
 
 //on click, open the idea in the middle like in search
 //remove table on search
@@ -36,7 +39,7 @@ class topTable extends Component {
 
   //happens on like click
   ideaUpdated = (idea) => {
-    let ideas = [...this.props.topNewestIdeas,...this.props.topLikedPercansubjecteIdeas, ...this.props.topLikedIdeas]
+    let ideas = [...this.props.topNewestIdeas,...this.props.topLikedPercentageIdeas, ...this.props.topLikedIdeas]
     let ideaIndex = ideas.indexOf(ideaI => ideaI.id == idea.id)
     ideas[ideaIndex] = idea
     this.setState({ideas: ideas})
@@ -47,7 +50,7 @@ class topTable extends Component {
     if(index >= 1 && index <= 5){
       title = this.props.topNewestIdeas[index - 1].title
     }else if(index >= 7 && index <= 11){
-      title = this.props.topLikedPercansubjecteIdeas[index - 7].title
+      title = this.props.topLikedPercentageIdeas[index - 7].title
     }else if(index >= 13 && index <= 17){
       title = this.props.topLikedIdeas[index - 13].title
     }
@@ -85,36 +88,32 @@ class topTable extends Component {
 
   showCombinedIdea = (index) => {
     if(index >= 1 && index <= 5){
-      this.showIdea(this.props.topNewestIdeas[index - 1], this.props.topNewestIdeas)
+      this.showIdea(this.props.topNewestIdeas[index - 1])
     }else if(index >= 7 && index <= 11){
-      this.showIdea(this.props.topLikedPercansubjecteIdeas[index - 7], this.props.topNewestIdeas)
+      this.showIdea(this.props.topLikedPercentageIdeas[index - 7])
     }else if(index >= 13 && index <= 17){
-      this.showIdea(this.props.topLikedIdeas[index - 13], this.props.topNewestIdeas)
+      this.showIdea(this.props.topLikedIdeas[index - 13])
     }
   }
 
-  renderLikedItem = (index, key) => {  //key is running number
-    return <div onClick={ () => { this.showIdea(this.props.topLikedIdeas[index], this.props.topLikedIdeas) } } 
-    key={Math.random()}
-    className="listRow">   
-      {this.props.topLikedIdeas[index].title}
-    </div>;
-  }
-
   renderPopularItem = (index, key) => {  //key is running number
-    return <div onClick={ () => { this.showIdea(this.props.topLikedPercansubjecteIdeas[index], this.props.topLikedPercansubjecteIdeas) } } 
+    return <div onClick={ () => { this.showIdea(this.props.topLikedPercentageIdeas[index]) } } 
     key={Math.random()}
     className="listRow">   
-      { this.props.topLikedPercansubjecteIdeas[index].title }
+      <div class="topTableItemTitle">{ this.props.topLikedPercentageIdeas[index].title }</div>
     </div>
   }
 
   renderNewItem = (index, key) => {  //key is running number
-    return <div onClick={ () => { this.showIdea(this.props.topNewestIdeas[index], this.props.topNewestIdeas) } } 
+    return <div onClick={ () => { this.showIdea(this.props.topNewestIdeas[index]) } } 
     key={Math.random()}
     className="listRow">   
-      {this.props.topNewestIdeas[index].title}
+      <div class="topTableItemTitle">{this.props.topNewestIdeas[index].title}</div>
     </div>
+  }
+
+  onIdeaClicked = (idea) => {
+    this.showIdea(idea)
   }
 
   createUnselectedTopTable = () => {
@@ -122,32 +121,26 @@ class topTable extends Component {
         {/* <span >unselected </span> */}
         <div id="topTable">
           <div id="topTableHeader"> 
-            Top 5 Ideas
+            Top 5
           </div>
           <div id="topTableColumnContainer">
-            <div id="topLikedTable">
-              <span className="topTableHeader">Liked</span>
-                <ReactList
-                        itemRenderer={this.renderLikedItem}
-                        length={this.props == null || this.props.topLikedIdeas == null? 0 : this.props.topLikedIdeas.length }
-                        type='uniform'
-                      />
+            <div id="topLikedTable" className="topTableColumn">
+              <span className="topTableHeader">Liked</span>                
+                <IdeasList ideas={this.props.topLikedIdeas} imageClassName="topTableItemImage"
+                  titleClassName="topTableItemTitle"                   
+                  onClick={(idea) => this.onIdeaClicked(idea)} />
             </div>
-            <div id="topPopularTable">
+            <div id="topPopularTable" className="topTableColumn">
               <span className="topTableHeader">Popular</span>
-                <ReactList
-                  itemRenderer={this.renderPopularItem}
-                  length={this.props == null || this.props.topLikedPercansubjecteIdeas == null? 0 : this.props.topLikedPercansubjecteIdeas.length }
-                  type='uniform'
-                />
+                <IdeasList ideas={this.props.topLikedPercentageIdeas} imageClassName="topTableItemImage"
+                  titleClassName="topTableItemTitle"                   
+                  onClick={(idea) => this.onIdeaClicked(idea)} />
             </div>
-            <div id="topNewestTable">
+            <div id="topNewestTable" className="topTableColumn">
               <span className="topTableHeader">Newest</span>
-                <ReactList
-                  itemRenderer={this.renderNewItem}
-                  length={this.props == null || this.props.topNewestIdeas == null? 0 : this.props.topNewestIdeas.length }
-                  type='uniform' 
-                />
+                <IdeasList ideas={this.props.topNewestIdeas} imageClassName="topTableItemImage"
+                  titleClassName="topTableItemTitle"                   
+                  onClick={(idea) => this.onIdeaClicked(idea)} />
             </div>
           </div>
         </div>
@@ -183,9 +176,9 @@ class topTable extends Component {
 
   shouldComponentUpdate(nextProps, nextState){
     if(nextProps !== undefined &&  nextProps != this.props){
-      if(nextProps.topNewestIdeas !== undefined && nextProps.topLikedPercansubjecteIdeas !== undefined && 
+      if(nextProps.topNewestIdeas !== undefined && nextProps.topLikedPercentageIdeas !== undefined && 
             nextProps.topLikedIdeas !== undefined){
-        let ideas = [...nextProps.topNewestIdeas,...nextProps.topLikedPercansubjecteIdeas, ...nextProps.topLikedIdeas]
+        let ideas = [...nextProps.topNewestIdeas,...nextProps.topLikedPercentageIdeas, ...nextProps.topLikedIdeas]
         this.setState({ ideas: ideas })
       }
       return true
@@ -213,7 +206,7 @@ class topTable extends Component {
 function mapStateToProps(state) {
   return {
     topLikedIdeas: state.topTableReducer.topLikedIdeas,
-    topLikedPercansubjecteIdeas: state.topTableReducer.topLikedPercansubjecteIdeas,
+    topLikedPercentageIdeas: state.topTableReducer.topLikedPercansubjecteIdeas,
     topNewestIdeas: state.topTableReducer.topNewestIdeas,
   };
 }

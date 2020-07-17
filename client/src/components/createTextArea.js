@@ -6,7 +6,7 @@ import {
     EDITABLE_IDEA_SET_PLACESS
 } from 'reducers/types';
 
-export default class CreateTextField extends Component {
+export default class CreateTextArea extends Component {
     constructor(props){
         super(props)
     

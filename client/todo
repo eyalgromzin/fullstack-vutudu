@@ -1,52 +1,54 @@
-- remove top table - just on start load 100 newest images and show them under the search bar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- android app - add idea id to user created and liked idea!!!
-
 - make search work
-
+- top table - after search click, images are not loaded again.
 - on delete idea , delete image from storage
+- android app - add idea id to user created and liked idea!!!
+- make admin permissions , for my user to delete anything!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

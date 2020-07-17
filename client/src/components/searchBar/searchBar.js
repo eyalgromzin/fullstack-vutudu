@@ -57,7 +57,7 @@ class SearchBar extends Component {
 		return (
 			<div id="searchBar">
 				<div id="searchBarButtons">
-					<input id="searchBarPlaceField" type="text" placeholder="place / subject / text"
+					<input id="searchBarPlaceField" type="text" placeholder="place / subject / text..."
 						onChange={this.placeOnChangeEvent} />
 					<TimePicker
 						cssClass="inlineBlock searchBarComboBox"
