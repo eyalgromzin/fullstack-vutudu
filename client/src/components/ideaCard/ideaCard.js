@@ -54,7 +54,7 @@ class IdeaCard extends Component {
     this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
 
     if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(ideaIndex)  //legacy
-    if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(idea, ideaIndex)
+    // if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(idea, ideaIndex)
   }
 
   leftArrowClick = () => {
@@ -85,7 +85,7 @@ class IdeaCard extends Component {
     this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
 
     if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(ideaIndex)  //legacy
-    if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(idea, ideaIndex)
+    // if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(idea, ideaIndex)
   }
 
   togglePopover = () => {

@@ -3,7 +3,7 @@ import './userPageLayout.css'
 import { connect } from 'react-redux';
 import 'commonCss.css'
 import UserIdeasTypeDropDown from 'components/userIdeasTypeDropDown/userIdeasTypeDropDown'
-import IdeasList from 'components/ideasList/ideasList'
+import IdeasList from 'components/ideasList'
 import { 
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
@@ -108,13 +108,27 @@ class userPageLayout extends Component {
   onSelectedIndexChange = (newIndex) => {
     this.setState({selectedIdeaIndex: newIndex})    
 
+    let ideas = this.props.currentPreviewedIdeas
+    let idea = ideas[newIndex]
+
+    this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA, payload: idea});
+    this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});  //to update ideas list 
+    this.props.dispatch({type: SET_CURRENT_IDEA, payload: idea});
 	}
 
   createUserIdeasList = () => {
     if (this.props.currentPreviewedIdeas.length > 0){
       return <div id="ideasList">
-        <IdeasList ideas={this.props.currentPreviewedIdeas} onIdeaSelected={this.ideaSelected} 
-          onSelectedIndexChange={this.onSelectedIndexChange} selectedIndex={this.state.selectedIdeaIndex}  />
+        <IdeasList ideas={this.props.currentPreviewedIdeas} 
+          imageClassName="topTableItemImage"
+          titleClassName="topTableItemTitle" 
+          listItemClassName="ideaCardListItem" 
+          selectedTitleClassName="selectedItemsListItem"
+          isToShowImage={false}  
+          onClick={this.ideaSelected} 
+          // onIdeaSelected={this.ideaSelected} 
+          onSelectedIndexChange={this.onSelectedIndexChange} 
+          selectedIndex={this.state.selectedIdeaIndex}  />
       </div>
     }else{
       return <span id="emptyIdeasList">Empty Ideas List...</span>

@@ -23,15 +23,17 @@ html, body {
 }
 
 .searchIdeasList{
+  vertical-align: top;
   display: inline-block;
   width: 19%;
   height: 510px;
-  margin-right: 1%;
+  margin-right: 2%;
+  overflow-y: auto;
 }
 
 #searchIdeaCard{
   display: inline-block;
-  width: 80%;
+  width: 79%;
 }
 
 .contentImage{

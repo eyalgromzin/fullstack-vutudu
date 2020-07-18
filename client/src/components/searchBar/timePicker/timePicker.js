@@ -10,21 +10,21 @@ export default class TimePicker extends Component {
 	constructor(props) {
 		super(props);
 
-		var time = this.props.time === undefined ? 10 : this.props.time;
+		var time = this.props.time === undefined ? 0 : this.props.time;
 
 		this.state = {
 			time: Number(time)
 		};
 	}
 
-	getSnapshotBeforeUpdate(prevProps, prevState){
-		var time = this.props.time === undefined ? 10 : this.props.time;
-		if(this.state.time != time){
-			this.setState({ time: Number(time) });
-		}
+	// getSnapshotBeforeUpdate(prevProps, prevState){
+		// var time = this.props.time === undefined ? 10 : this.props.time;
+		// if(this.state.time != time){
+		// 	this.setState({ time: Number(time) });
+		// }
 
-		return null
-	}
+		// return null
+	// }
 
 	componentDidUpdate(){
 
@@ -46,7 +46,7 @@ export default class TimePicker extends Component {
 						value={this.state.time}
 						onChange={this.onChangeEvent}
 					>
-						<option value="5" className="timeChooserOption">Time</option>
+						<option value="0" className="timeChooserOption">Time</option>
 						<option value="5" className="timeChooserOption">5 min</option>
 						<option value="10" className="timeChooserOption">10 min</option>
 						<option value="15" className="timeChooserOption">15 min</option>

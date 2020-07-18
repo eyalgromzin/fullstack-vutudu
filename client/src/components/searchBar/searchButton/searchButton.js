@@ -4,6 +4,13 @@ import '../searchBarCommonStyles.css'
 import 'cssAnimations.css'
 import { searchItems } from 'actions/ideaActions'
 import { connect } from 'react-redux'
+import {
+  SET_SEARCH_IDEAS,
+  SET_CURRENT_IDEA,
+  SET_IS_SEARCHING
+} from 'reducers/types'
+import store from 'store'
+
 // import { CHANGE_SEARCHED_STATE, } from 'reducers/types'
 // import store from 'store'
 import { search } from '../searchBarCommon'
@@ -25,15 +32,38 @@ class SearchButton extends Component {
   }
 
   handleSearchClick = () => {
-    if (this.props.isSearchEnabled){
-      search();
-    }else{
-      //make search button red animation!!!
-    }
-
-    this.props.dispatch({type: SEARCH_SET_IS_PLACE_DIRTY, payload: false});
-    this.props.dispatch({type: SEARCH_SET_IS_MORE_DIRTY, payload: false});
     this.props.dispatch({type: SEARCH_SET_IS_CLICKED_SEARCH, payload: true});
+
+    this.search();
+  }
+
+  search = () => {
+    console.log('searching ideas...');
+    var text = this.props.textRef.value
+    var time = this.props.timeRef.state.time
+    var numOfPeople = this.props.numOfPeopleRef.state.numOfPeople
+
+    store.dispatch({ type: SET_IS_SEARCHING, payload: true });
+	  
+
+    store.dispatch(searchItems(text, time, numOfPeople, (ideas) => {
+      console.log('found ' + ideas.length + ' ideas!!')
+      store.dispatch({ type: SET_SEARCH_IDEAS, payload: ideas });
+      store.dispatch({ type: SET_IS_SEARCHING, payload: false });
+      store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });	//throws cross origin error
+      if (ideas.length > 0) {
+        console.log('got ' + ideas.length + ' ideas from db');
+        store.dispatch({ type: SET_CURRENT_IDEA, payload: ideas[0] });
+        
+      } else {
+        console.log('got 0 items from db');
+        store.dispatch({ type: SET_SEARCH_IDEAS, payload: [] });
+      }
+    },
+    (error) => {
+      console.log('failed to search ideas: ' + error)
+    }
+    ));
   }
 
   render() {
@@ -41,8 +71,7 @@ class SearchButton extends Component {
       <React.Fragment>
         <div id="searchButtonContainer">
           {this.props.isSearching? 
-            <span>
-              {/* <img src={require("images/search.png")} className="tilt clickAnimation" id="searchButton"  alt="" onClick={this.handleSearchClick} />  */}
+            <span>              
               <img src={require("images/loading2.gif")} id="loadingSearchButton" alt="" />
             </span>
             : 

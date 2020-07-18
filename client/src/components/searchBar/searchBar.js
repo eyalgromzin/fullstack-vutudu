@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import NumOfPeopleSelector from './numOfPeopleSelector/numOfPeopleSelector';
 import TimePicker from './timePicker/timePicker';
-// import MoreChooser from './moreChooser/moreChooser';
 import SearchButton from './searchButton/searchButton';
 import { connect } from 'react-redux';
 import {
@@ -13,12 +12,16 @@ import {
 } from 'reducers/types';
 import './searchBarCommonStyles.css';
 import 'commonCss.css';
+import CreateTextField from 'components/createTextField'
+
 
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
 
-		// console.log('testing redux: in constructor')
+		this.state = {
+			textRef: undefined
+		}
 	}
 
 	timeOnChangeEvent = (value) => {
@@ -57,16 +60,52 @@ class SearchBar extends Component {
 		return (
 			<div id="searchBar">
 				<div id="searchBarButtons">
-					<input id="searchBarPlaceField" type="text" placeholder="place / subject / text..."
-						onChange={this.placeOnChangeEvent} />
+					{/* <CreateTextField 
+						id="searchBarPlaceField"
+						
+						placeholder="plae / subject / anything"
+						className=""
+					/> */}
+					<input id="searchBarPlaceField" 
+						type="text" 
+						placeholder="place / subject / text..."
+						onChange={this.placeOnChangeEvent} 
+						ref={ref6 => {
+							if(this.state.textRef === undefined) {
+								this.setState({textRef: ref6})                            
+								this.textRef = ref6
+							}
+						}}
+						/>
 					<TimePicker
 						cssClass="inlineBlock searchBarComboBox"
 						headerCssClass="fieldHeader"
 						onChangeEvent={this.timeOnChangeEvent}
-						time={this.props.time}
-					/>
-					<NumOfPeopleSelector cssClass="searchBarDropDownSquare" headerCssClass="fieldHeader" numOfPeople={this.props.numOfPeople} />					
-					<SearchButton />
+						ref={ref1 => {
+							if(this.state.timeRef === undefined) {
+								this.setState({timeRef: ref1})                            
+								this.timeRef = ref1
+                            }
+						}}
+						/>
+						{/* time={this.props.time}	 */}		{/* for loading last search */}
+
+					<NumOfPeopleSelector 
+						cssClass="searchBarDropDownSquare" 
+						headerCssClass="fieldHeader" 
+						ref={ref => {
+							if(this.state.numOfPeopleRef === undefined) {
+								this.setState({numOfPeopleRef: ref})                            
+								this.numOfPeopleRef = ref
+                            }
+						}}
+						/>					
+						{/* numOfPeople={this.props.numOfPeople}  */}
+					<SearchButton 
+						textRef={this.state.textRef} 	
+						timeRef={this.state.timeRef}  
+						numOfPeopleRef={this.state.numOfPeopleRef}
+						/>
 				</div>
 			</div>
 		);

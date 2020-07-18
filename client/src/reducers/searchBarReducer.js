@@ -12,7 +12,7 @@ import {
 //default values
 const initialState = {
     place: 'home',
-    time: 5,
+    time: 0,
     numOfPeople: 10,
     more: '',
     isMoreValid: true,

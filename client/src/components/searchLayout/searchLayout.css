@@ -1,11 +1,12 @@
 .searchCardRightArrowContainer{
     width: 7%;
     position: absolute;
-    margin-left: 28.5%;
+    margin-left: 24%;
     text-align: center;
     height: 56%;
     background-color: tan;
     opacity: 0;
+    border-radius: 20px;
 }
 
 .searchCardRightArrowContainer:hover {
@@ -19,6 +20,22 @@
     background-color: tan;
     opacity: 0;
     text-align: center;
+    border-radius: 20px;
+}
+
+.ideaCardListItem{
+    background-color: bisque;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.selectedItemsListItem{
+    background-color: aquamarine;
+    border-radius: 10px;
+}
+
+.ideaCardListItem:hover{
+    background-color: cyan;
 }
 
 .searchCardLeftArrowContainer:hover{

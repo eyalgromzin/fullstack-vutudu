@@ -18,7 +18,7 @@ import {
   SEARCH_SET_MORE,
   SET_CURRENT_IDEA,
 } from 'reducers/types';
-import IdeasList from '../ideasList/ideasList';
+import IdeasList from 'components/ideasList';
 
 class searchLayout extends Component {
 	fillSearchBar = (idea) => {
@@ -33,6 +33,8 @@ class searchLayout extends Component {
 			place: this.props.place,
 			more: this.props.more,
 			index: 0,
+			showSelectedTopTable: false,
+			selectedIdeaIndex: 0
 		};
 
 		if(this.props.match.params.ideaID !== undefined &&
@@ -80,18 +82,18 @@ class searchLayout extends Component {
 	}
 
 	onSelectedIndexChange = (newIndex) => {
-		this.setState({index: newIndex})
+		this.setState({selectedIdeaIndex: newIndex})
 	}
 
-	ideaSelected = (idea, newIndex) => {
-		this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });
+	ideaSelected = (idea, index) => {
+		this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea });		
+		this.setState({selectedIdeaIndex: index})
 	}
 
  	render() {
 		this.state.refresh = !this.state.refresh;
 		
-		return (
-			<React.Fragment>
+		let searchJsx = <React.Fragment>
 				<div className="searchMainContent">
 					<div className="mainContent">
 						
@@ -101,32 +103,41 @@ class searchLayout extends Component {
 							time={this.props.time}
 							more={this.props.more}
 						/>						
-						{this.props.searched && this.props.ideas.length == 0 ?
-							<NoResultsFound />
-							:  
-							this.props.searched && this.props.ideas.length > 0?
+						{this.props.searched ?							
+							this.props.ideas.length == 0 ? 	
+								<NoResultsFound />							
+								:
 								<React.Fragment>
 									<div id="searchCardAndList">
 										<div className="searchIdeasList">
-											<IdeasList ideas={this.props.ideas} height={510} selectedIndex={this.state.index} 
-											onIdeaSelected={this.ideaSelected} onSelectedIndexChange={this.onSelectedIndexChange} />
+											<IdeasList ideas={this.props.ideas} 
+												imageClassName="topTableItemImage"
+												titleClassName="topTableItemTitle" 
+												listItemClassName="ideaCardListItem" 
+												selectedTitleClassName="selectedItemsListItem"
+												isToShowImage={false}  
+												selectedIndex={this.state.selectedIdeaIndex}                 
+												onClick={this.ideaSelected} 
+												/>
 										</div>
 										<div id="searchIdeaCard"> 
 											<IdeaCard ideas={this.props.ideas} 												
 												enabled={true} showNextPreviousButtons={true} 
 												cardLeftArrowContainerClassName="searchCardLeftArrowContainer" 
-												cardRightArrowContainerClassName="searchCardRightArrowContainer"/>
+												cardRightArrowContainerClassName="searchCardRightArrowContainer"
+												onSelectedIndexChange={this.onSelectedIndexChange}
+												/>
 										</div>
 									</div>
 								</React.Fragment>
-								: 
-								<TopTable />
-	 
+							:
+							<TopTable shouldBeClean={!this.state.showSelectedTopTable} />
 	 					}
 					</div>					 
 				</div>
 			</React.Fragment>
-		);
+
+		return searchJsx
 	}
 }
 

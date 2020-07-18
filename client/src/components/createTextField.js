@@ -43,7 +43,7 @@ export default class CreateTextField extends Component {
     render () {
         return (
             <React.Fragment>
-                <input id="createPlacesField"  
+                <input id={this.props.id}  
                 type="text" 
                 value={this.state.text}
                 ref={input => this.inputRef = input} 

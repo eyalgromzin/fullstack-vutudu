@@ -232,6 +232,7 @@ export const convertJsonContentToJsx = (ideaContentJson, callBack) => {
 
 export const getImageLinkFromIdeaContent = (ideaContent) => {
   let imageCloudLink = ""
+  try{
   let ideaContentItemsList = JSON.parse(ideaContent);
   ideaContentItemsList.forEach(contentItem => {
     if(contentItem.first == "IMAGE"){
@@ -240,6 +241,9 @@ export const getImageLinkFromIdeaContent = (ideaContent) => {
   })
 
   return imageCloudLink
+  }catch(e){
+    return ""
+  }
 }
 
 export const text = () => {

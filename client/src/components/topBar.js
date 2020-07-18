@@ -45,6 +45,7 @@ class TopBar extends Component {
     this.setState({currentPage: "search"})
     this.props.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: false});
     this.props.dispatch({type: CHANGE_SEARCHED_STATE, payload: false});
+    this.props.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: false})    
     return history.push('/search')
   }
     

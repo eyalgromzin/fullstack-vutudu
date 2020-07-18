@@ -7,11 +7,11 @@ import { search } from '../searchBarCommon'
 import store from 'store'
 import 'commonCss.css'
 
-class NumOfPeopleSelector extends Component {
+export default class NumOfPeopleSelector extends Component {
   constructor(props){
     super(props);
 
-    var numOfPeople = this.props.numOfPeople === undefined? 2 : this.props.numOfPeople
+    var numOfPeople = this.props.numOfPeople === undefined? 0 : this.props.numOfPeople
     
     this.state = {
       numOfPeople: Number(numOfPeople)
@@ -19,26 +19,26 @@ class NumOfPeopleSelector extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({numOfPeople: e.target.value})
-    this.props.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: e.target.value });
+    this.setState({numOfPeople: Number(e.target.value)})
+    store.dispatch({ type: SEARCH_SET_NUM_OF_PEOPLE, payload: e.target.value });
   }
 
   onKeyUp = (event) => {
     if (event.keyCode === 13) {
       // Trigger the button element with a click
       console.log("enter clicked on place input")
-      search(store);
+      // search(store);
     }
   }
 
-  getSnapshotBeforeUpdate(){
-		var numOfPeople = this.props.numOfPeople === undefined ? 2 : this.props.numOfPeople;
-		if(this.state.numOfPeople != numOfPeople){
-			this.setState({ numOfPeople: Number(numOfPeople) });
-    }
+  // getSnapshotBeforeUpdate(){
+	// 	var numOfPeople = this.props.numOfPeople === undefined ? 2 : this.props.numOfPeople;
+	// 	if(this.state.numOfPeople != numOfPeople){
+	// 		this.setState({ numOfPeople: Number(numOfPeople) });
+  //   }
     
-    return null
-  }
+  //   return null
+  // }
   
   componentDidUpdate(){
 
@@ -49,8 +49,9 @@ class NumOfPeopleSelector extends Component {
     return (
       <React.Fragment>
         <div id="numOfPeopleSelector" className="inlineBlock searchBarComboBox">
-          {/* <div className={this.props.headerCssClass}>People</div> */}
-          <select id="numOfPeopleChooser" className={this.props.cssClass} value={this.state.numOfPeople}
+          <select id="numOfPeopleChooser" 
+            className={this.props.cssClass} 
+            value={this.state.numOfPeople}
             onKeyUp={this.onKeyUp} onChange={this.handleChange}>
             <option value="10" className="timeChooserOption">People</option>
             <option value="10" className="timeChooserOption">1</option>
@@ -71,9 +72,3 @@ class NumOfPeopleSelector extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-  };
-}
-
-export default connect()(NumOfPeopleSelector);

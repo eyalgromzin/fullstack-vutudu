@@ -11,7 +11,7 @@ const initialState = {
 	topLikedIdeas: [],
 	topLikedPercansubjecteIdeas: [],
 	topNewestIdeas: [],
-    isClickedTopIdea: false,
+    wasIdeaClicked: false,
     idea: {}
 };
 
@@ -40,7 +40,7 @@ function topTableReducer(state = initialState, action) {
 		case SET_TOP_TABLE_IS_IDEA_CLICKED:
 			return {
 				...state,
-				isClickedTopIdea: action.payload
+				wasIdeaClicked: action.payload
             };
         case SET_TOP_TABLE_IDEA:
             return {

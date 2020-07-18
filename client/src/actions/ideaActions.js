@@ -104,8 +104,8 @@ new Promise(function(resolve, reject) {
 	var postObject = { ideaID: ideaID };
 	axios.post('/api/items/getIdeaByID', postObject).then((res) => {
 		console.log(`idea retrieved`);
-		dispatch({ type: SET_CURRENT_IDEA, payload: res.data });
 		dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
+		dispatch({ type: SET_CURRENT_IDEA, payload: res.data });
 
 		dispatch({ type: SEARCH_SET_TIME, payload: res.data.time });
 		dispatch({ type: SEARCH_SET_PLACE, payload: res.data.place });
@@ -126,25 +126,18 @@ new Promise(function(resolve, reject) {
 	//   })
 });
 
-export const searchItems = (text, time, numOfPeople) => (dispatch) => {
+export const searchItems = (text, time, numOfPeople, onSuccess, onFail) => (dispatch) => {
 	if (text === undefined || text == "") text = "_"
-	if (time === undefined || time == "") time = "_"
-	if (numOfPeople === undefined || numOfPeople == "") numOfPeople = "_"
-
-	dispatch({ type: SET_IS_SEARCHING, payload: true });
+	if (time === undefined || time == "" || time == 0) time = "_"
+	if (numOfPeople === undefined || numOfPeople == "" || numOfPeople == 0) numOfPeople = "_"	
+	
 	axios.get(`/api/items/search/${text}/${time}/${numOfPeople}`).then((res) => {
-		dispatch({ type: SET_IS_SEARCHING, payload: false });
-		dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
-		if (res.data.length > 0) {
-			console.log('got ideas from db');
-			dispatch({ type: SET_CURRENT_IDEA, payload: res.data[0] });
-			dispatch({ type: SET_SEARCH_IDEAS, payload: res.data });
-			dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });
-		} else {
-			console.log('got 0 items from db');
-			dispatch({ type: SET_SEARCH_IDEAS, payload: [] });
-		}
-	});
+		onSuccess(res.data);
+		
+	}).catch(error => {
+		onFail(error);
+		console.log("ERROR!!! " + error)
+	}) ;
 };
 
 export const showIdeaInSearch = (ideaID) => (dispatch) => {};
@@ -170,7 +163,7 @@ const addTagToLettersBucketIfNotExists = (firstLetters, subject) => {
 	});
 };
 
-export const updateTopLikedIdeas = () => (dispatch) => {
+export const updateTopIdeas = () => (dispatch) => {
 	axios.post('/api/items/getTopLikedIdeas').then((res) => {
 		console.log('got top liked ideas');
 

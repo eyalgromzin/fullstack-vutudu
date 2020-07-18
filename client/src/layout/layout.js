@@ -8,19 +8,15 @@ import createIdeaLayout from '../components/createComponent/createIdeaLayout';
 import searchLayout from '../components/searchLayout/searchLayout';
 import userPageLayout from 'components/layouts/userPageLayout/userPageLayout';
 import TopBar from 'components/topBar'
-import { updateTopLikedIdeas } from 'actions/ideaActions';
-import { bindActionCreators } from 'redux';
+
+
 import MobileLayout from '../components/mobileLayout/mobileLayout';
 import {
   SET_IS_MAIN_LOADING
 } from 'reducers/types'
 
 class Layout extends Component {
-  componentWillMount(){
-    //get top table results
-    this.props.dispatch({type: SET_IS_MAIN_LOADING, payload: true})
-    this.props.updateTopLikedIdeas();
-  }
+  
 
   isClientMobile() {
     let mql = window.matchMedia('(max-width: 750px)');
@@ -70,13 +66,6 @@ class Layout extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updateTopLikedIdeas: bindActionCreators (updateTopLikedIdeas, dispatch),
-    dispatch,
-  }
-}
- 
 function mapStateToProps(state) {
   return {
     loggedIn: state.commonReducer.loggedIn,
@@ -85,4 +74,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Layout);    
+export default connect(mapStateToProps)(Layout);    

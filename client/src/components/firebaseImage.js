@@ -25,6 +25,14 @@ export default class FirebaseImage extends Component {
     })
   }
 
+  componentDidMount(){
+    if(this.props.firebasePath != "" && this.state.imageSrc == ""){
+      this.setState({
+        firebasePath: this.props.firebasePath
+      })
+    }
+  }
+
   shouldComponentUpdate(nextProps, nextState){
     if((this.props.firebasePath != "" && this.state.imageSrc == ""  && !this.updating) ||
         (this.state.firebasePath != this.props.firebasePath)){
@@ -39,7 +47,7 @@ export default class FirebaseImage extends Component {
   render() {
     let firebaseImage = <div></div>
     
-    if(this.state.imageSrc == ""){
+    if(this.state.imageSrc == "" || this.props.firebasePath == ""){
       firebaseImage = <img src={require("images/loading2.gif")} className={this.props.imageClassName} id="ideaCardImageLoader" alt="" />
     }else{
       firebaseImage = <img src={this.state.imageSrc} className={this.props.imageClassName} onClick={() => this.props.onClick()} />

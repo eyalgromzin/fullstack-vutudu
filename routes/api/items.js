@@ -217,8 +217,8 @@ router.get('/search/:text/:time/:numOfPeople', (req, res) => {
 			{title: {$regex : ".*" + req.params.text + ".*"}},
 			{content: {$regex : ".*" + req.params.text + ".*"}}
 		]})
-
-		$and.push($or)
+	}else{
+		$and.push({places: {$exists: true}})
 	}
 	if(req.params.time !== undefined && req.params.time != "" && req.params.time != "_"){
 		$and.push({ minTime: { $lte: req.params.time } }, { maxTime: { $gte: req.params.time } })

@@ -18,6 +18,12 @@
     width: 100%;
     /* max-width: 150px; */
     border-radius: 10px;
+    border: solid;
+    border-color: bisque;
+}
+
+.topTableListItem{
+    margin-bottom: 10px;    
 }
 
 .topTableItemTitle{
@@ -97,7 +103,8 @@ outline: 1px solid slategrey;
 }
 
 .topTableHeader{
-    font-size: 20px;
+    font-size: 25px;
+    margin-bottom: 5px;
     font-family: "Arial Black";
 }
 
@@ -121,7 +128,7 @@ outline: 1px solid slategrey;
 }
 
 #topTable:hover{
-    overflow-y: scroll;
+    overflow-y: scroll;    
 }
 
 .topTableCardLeftArrowContainer{

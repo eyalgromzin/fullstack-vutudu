@@ -24,17 +24,7 @@ var _ = require('lodash');
 
 const initialState = {
   currentIdeaIndex: 0,  
-  ideas: [{
-    _id: '000',
-    title: 'click Search',
-    content: 'To find ideas of what to do',
-    place: 'fill place',
-    time: 0,
-    minNumOfPeople: 0,
-    maxNumOfPeople: 0,
-    liked: [],
-    disliked: [],
-  }], 
+  ideas: [], 
   itemsFound: false,
   isSearching: false,
 };

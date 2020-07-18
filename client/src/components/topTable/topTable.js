@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import ReactList from 'react-list';
+import { bindActionCreators } from 'redux';
 import './topTable.css'
 import store from 'store'
 import { connect } from 'react-redux';
 import IdeaCard from 'components/ideaCard/ideaCard'
-import 'components/ideasList/ideasList.css';
+import 'components/ideasList.css';
 import { getImageLinkFromIdeaContent } from 'commonUtils'  
 import {
   SET_CURRENT_IDEA,
-  SET_SEARCH_IDEAS
+  SET_SEARCH_IDEAS,
+  SET_TOP_TABLE_IS_IDEA_CLICKED,
+  SET_IS_MAIN_LOADING
 } from 'reducers/types';
 import FirebaseImage from 'components/firebaseImage'
 import IdeasList from 'components/ideasList'
+import { updateTopIdeas } from 'actions/ideaActions';
 
 //on click, open the idea in the middle like in search
 //remove table on search
@@ -19,21 +23,29 @@ class topTable extends Component {
   constructor(props) {
     super(props)
 
-    
-
     this.state = {      
-      isIdeaClicked: false,
       selectedIndex: 0,      
     }
   }
 
+  componentWillMount(){
+    //get top table results
+    if(this.props.topLikedIdeas === undefined || this.props.topLikedIdeas.length == 0){
+      this.props.dispatch({type: SET_IS_MAIN_LOADING, payload: true})
+      console.log("getting top ideas")
+      this.props.updateTopIdeas();
+    }
+  }
+
   showIdea = (idea) => {
-    this.setState({ isIdeaClicked: true })
+    this.props.dispatch({type: SET_TOP_TABLE_IS_IDEA_CLICKED, payload: true})
 
     //update current idea in search page reducer
     this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea })    
     
-    let selectredIdeaIndex = this.state.ideas.indexOf(ideaI => ideaI.id == idea.id)
+    let ideas = [...this.props.topNewestIdeas,...this.props.topLikedPercentageIdeas, ...this.props.topLikedIdeas]
+    let selectredIdeaIndex = ideas.indexOf(ideaI => ideaI.id == idea.id)
+    // let selectredIdeaIndex = this.state.ideas.indexOf(ideaI => ideaI.id == idea.id)
     this.setState({ selectedIndex: selectredIdeaIndex })
   }
 
@@ -112,7 +124,15 @@ class topTable extends Component {
     </div>
   }
 
-  onIdeaClicked = (idea) => {
+  onLikedIdeaClicked = (idea) => {
+    this.showIdea(idea)
+  }
+
+  onLikePercentageIdeaClicked = (idea) => {
+    this.showIdea(idea)
+  }
+
+  onNewestIdeaClicked = (idea) => {
     this.showIdea(idea)
   }
 
@@ -125,22 +145,22 @@ class topTable extends Component {
           </div>
           <div id="topTableColumnContainer">
             <div id="topLikedTable" className="topTableColumn">
-              <span className="topTableHeader">Liked</span>                
-                <IdeasList ideas={this.props.topLikedIdeas} imageClassName="topTableItemImage"
-                  titleClassName="topTableItemTitle"                   
-                  onClick={(idea) => this.onIdeaClicked(idea)} />
+              <div className="topTableHeader">Liked</div>                
+                <IdeasList ideas={this.props.topLikedIdeas}  imageClassName="topTableItemImage" 
+                  titleClassName="topTableListItemTitle" isToShowImage={true}  listItemClassName="topTableListItem"               
+                  onClick={(idea) => this.onLikedIdeaClicked(idea)} />
             </div>
             <div id="topPopularTable" className="topTableColumn">
-              <span className="topTableHeader">Popular</span>
+              <div className="topTableHeader">Popular</div>
                 <IdeasList ideas={this.props.topLikedPercentageIdeas} imageClassName="topTableItemImage"
-                  titleClassName="topTableItemTitle"                   
-                  onClick={(idea) => this.onIdeaClicked(idea)} />
+                  titleClassName="topTableListItemTitle" isToShowImage={true}  listItemClassName="topTableListItem"                    
+                  onClick={(idea) => this.onLikePercentageIdeaClicked(idea)} />
             </div>
             <div id="topNewestTable" className="topTableColumn">
-              <span className="topTableHeader">Newest</span>
+              <div className="topTableHeader">Newest</div>
                 <IdeasList ideas={this.props.topNewestIdeas} imageClassName="topTableItemImage"
-                  titleClassName="topTableItemTitle"                   
-                  onClick={(idea) => this.onIdeaClicked(idea)} />
+                  titleClassName="topTableListItemTitle"  isToShowImage={true} listItemClassName="topTableListItem"                
+                  onClick={(idea) => this.onNewestIdeaClicked(idea)} />
             </div>
           </div>
         </div>
@@ -193,13 +213,18 @@ class topTable extends Component {
     var selectedTopTable = this.createSelectedTopTable()
     var unselectedTopTable = this.createUnselectedTopTable()
 
-    if(this.props.shouldBeClean){
-      return unselectedTopTable 
-    }else if(this.state.isIdeaClicked){
+    if(this.props.wasIdeaClicked){
       return selectedTopTable
     }else{
       return unselectedTopTable 
     }
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateTopIdeas: bindActionCreators (updateTopIdeas, dispatch),
+    dispatch,
   }
 }
 
@@ -208,7 +233,8 @@ function mapStateToProps(state) {
     topLikedIdeas: state.topTableReducer.topLikedIdeas,
     topLikedPercentageIdeas: state.topTableReducer.topLikedPercansubjecteIdeas,
     topNewestIdeas: state.topTableReducer.topNewestIdeas,
+    wasIdeaClicked: state.topTableReducer.wasIdeaClicked,
   };
 }
 
-export default connect(mapStateToProps)(topTable); 
+export default connect(mapStateToProps, mapDispatchToProps)(topTable); 
