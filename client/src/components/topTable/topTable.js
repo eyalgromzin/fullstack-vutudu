@@ -157,8 +157,7 @@ class topTable extends Component {
                   imageClassName="topTableItemImage" 
                   titleClassName="topTableListItemTitle" 
                   isToShowImage={true}  
-                  listItemClassName="topTableListItem"               
-                  
+                  listItemClassName="topTableListItem"                                 
                   onClick={(idea) => this.onLikedIdeaClicked(idea)}  />
             </div>
             <div id="topPopularTable" className="topTableColumn">
@@ -186,7 +185,7 @@ class topTable extends Component {
 
   onSelectedIndexChange = (index) => {
     // this.setState({})
-    if(index >= 1 && index <= 5){
+    if(index >= 0 && index <= 4){
       this.setState({selectedLikedIndex: index})
     }else if(index >= 7 && index <= 11){
       this.setState({selectedLikedRatioIndex: index - 5})
@@ -203,7 +202,7 @@ class topTable extends Component {
         <div id="topTableListsClicked">
           <IdeasList ideas={this.state.ideas}  imageClassName="topTableItemImage" 
                   titleClassName="topTableListItemTitle" isToShowImage={false}  listItemClassName="topTableListItem"               
-                  selectedTitleClassName="topTableSelectedTitleClassName" selectedIndex={this.state.selectedLikedIndex}
+                  selectedListItemClassName="topTableSelectedTitleClassName" selectedIndex={this.state.selectedLikedIndex}
                   onClick={(idea) => this.onLikedIdeaClicked(idea)} />          
         </div>
         <div id="topTableIdea">

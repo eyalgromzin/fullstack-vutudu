@@ -27,6 +27,18 @@
     background-color: bisque;
     border-radius: 10px;
     margin-bottom: 5px;
+    padding: 5px 0;
+    padding-left: 5px;
+    cursor: pointer;
+}
+
+.ideaCardListItem:hover{
+    background-color: cyan;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 5px 0;
+    padding-left: 5px;
+    cursor: pointer;
 }
 
 .selectedItemsListItem{
@@ -34,9 +46,6 @@
     border-radius: 10px;
 }
 
-.ideaCardListItem:hover{
-    background-color: cyan;
-}
 
 .searchCardLeftArrowContainer:hover{
     opacity: 0.2;

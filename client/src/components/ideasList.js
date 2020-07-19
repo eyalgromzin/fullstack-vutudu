@@ -24,12 +24,8 @@ export default class IdeasList extends Component {
                         {this.props.ideas.map((idea, index, array) => {
                             let firebaseImageUrl = getImageLinkFromIdeaContent(idea.content)
                             
-                            return <div className={this.props.listItemClassName} >
-                                {index == this.props.selectedIndex? 
-                                <div className={this.props.selectedTitleClassName} onClick={() => this.props.onClick(idea, index)}>{idea.title}</div>
-                                :
+                            return <div className={index == this.props.selectedIndex? this.props.selectedListItemClassName : this.props.listItemClassName } >
                                 <div className={this.props.titleClassName} onClick={() => this.props.onClick(idea, index)}>{idea.title}</div>
-                                }
                                 {this.props.isToShowImage && firebaseImageUrl != ""?
                                     <FirebaseImage imageClassName={this.props.imageClassName} 
                                         onClick={() => this.props.onClick(idea, index)} firebasePath={firebaseImageUrl} />

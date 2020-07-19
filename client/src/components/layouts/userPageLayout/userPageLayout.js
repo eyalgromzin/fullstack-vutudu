@@ -103,6 +103,14 @@ class userPageLayout extends Component {
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA, payload: idea});
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});  //to update ideas list 
     this.props.dispatch({type: SET_CURRENT_IDEA, payload: idea});
+
+    let selectedIndex = -1
+    for (let i = 0; i < this.props.currentPreviewedIdeas.length; i++){
+      if(this.props.currentPreviewedIdeas[i]._id == idea._id){
+        selectedIndex = i;
+      }
+    }
+    this.setState({selectedIdeaIndex: selectedIndex});
   }
 
   onSelectedIndexChange = (newIndex) => {
@@ -123,12 +131,13 @@ class userPageLayout extends Component {
           imageClassName="topTableItemImage"
           titleClassName="topTableItemTitle" 
           listItemClassName="ideaCardListItem" 
-          selectedTitleClassName="selectedItemsListItem"
+          selectedListItemClassName="selectedItemsListItem"
           isToShowImage={false}  
           onClick={this.ideaSelected} 
-          // onIdeaSelected={this.ideaSelected} 
           onSelectedIndexChange={this.onSelectedIndexChange} 
-          selectedIndex={this.state.selectedIdeaIndex}  />
+          selectedIndex={this.state.selectedIdeaIndex}  
+
+          />
       </div>
     }else{
       return <span id="emptyIdeasList">Empty Ideas List...</span>

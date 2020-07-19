@@ -114,7 +114,7 @@ class searchLayout extends Component {
 												imageClassName="topTableItemImage"
 												titleClassName="topTableItemTitle" 
 												listItemClassName="ideaCardListItem" 
-												selectedTitleClassName="selectedItemsListItem"
+												selectedListItemClassName="selectedItemsListItem"
 												isToShowImage={false}  
 												selectedIndex={this.state.selectedIdeaIndex}                 
 												onClick={this.ideaSelected} 
