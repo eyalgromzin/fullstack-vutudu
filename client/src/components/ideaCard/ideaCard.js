@@ -15,13 +15,14 @@ import EditIdeaButton from 'components/ideaCard/editIdeaButton'
 import DeleteIdeaButton from './deleteIdeaButton';
 import ReactTooltip from "react-tooltip";
 import dcopy from 'deep-copy';
+import { indexOf } from 'lodash';
 
 class IdeaCard extends Component {
   constructor(props){
     super(props)
 
     this.state = {
-      ideaIndex: 0,            
+      ideaIndex: undefined,            
       isPopoverOpen: false,
     }
   }
@@ -31,12 +32,14 @@ class IdeaCard extends Component {
       return
     }
     
-    var ideasCount = this.props.ideas.length;
-    let ideaIndex = 0;
-
-    if(this.props.ideas !== undefined && this.props.idea !== undefined){
-      ideaIndex = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)
+    let ideaIndex = this.state.ideaIndex;
+    if(ideaIndex === undefined){
+      if(this.props.ideas !== undefined && this.props.idea !== undefined){
+        ideaIndex = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)
+      }
     }
+
+    var ideasCount = this.props.ideas.length;
 
     if(ideasCount <= 1){
       return 
@@ -87,6 +90,12 @@ class IdeaCard extends Component {
     if(this.props.onSelectedIndexChange !== undefined) this.props.onSelectedIndexChange(ideaIndex)  //legacy
     // if(this.props.onSelectedIdeaChange !== undefined) this.props.onSelectedIdeaChange(idea, ideaIndex)
   }
+
+  setIdeaIndex = (index) => {
+    this.setState({ideaIndex: index})
+  }
+
+  
 
   togglePopover = () => {
     var newState = !this.state.isPopoverOpen
@@ -195,4 +204,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(IdeaCard);
+export default connect(mapStateToProps, null, null, {forwardRef: true})(IdeaCard);

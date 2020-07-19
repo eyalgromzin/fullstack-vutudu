@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import {
   SET_SEARCH_IDEAS,
   SET_CURRENT_IDEA,
-  SET_IS_SEARCHING
 } from 'reducers/types'
 import store from 'store'
 
@@ -21,18 +20,19 @@ import {
   CHANGE_SEARCHED_STATE
 } from 'reducers/types'
 
-class SearchButton extends Component {
+export default class SearchButton extends Component {
   constructor(props){
     super(props);
   
     //run those validation methods on click
     this.state={
-      searchControlsValidationMethods:props.searchControlsValidationMethods,      
+      searchControlsValidationMethods:props.searchControlsValidationMethods,   
+      isSearching: false   
     }
   }
 
   handleSearchClick = () => {
-    this.props.dispatch({type: SEARCH_SET_IS_CLICKED_SEARCH, payload: true});
+    store.dispatch({type: SEARCH_SET_IS_CLICKED_SEARCH, payload: true});
 
     this.search();
   }
@@ -43,13 +43,12 @@ class SearchButton extends Component {
     var time = this.props.timeRef.state.time
     var numOfPeople = this.props.numOfPeopleRef.state.numOfPeople
 
-    store.dispatch({ type: SET_IS_SEARCHING, payload: true });
-	  
+    this.setState({isSearching: true})
 
     store.dispatch(searchItems(text, time, numOfPeople, (ideas) => {
       console.log('found ' + ideas.length + ' ideas!!')
       store.dispatch({ type: SET_SEARCH_IDEAS, payload: ideas });
-      store.dispatch({ type: SET_IS_SEARCHING, payload: false });
+      this.setState({isSearching: false})
       store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });	//throws cross origin error
       if (ideas.length > 0) {
         console.log('got ' + ideas.length + ' ideas from db');
@@ -70,7 +69,7 @@ class SearchButton extends Component {
     return (
       <React.Fragment>
         <div id="searchButtonContainer">
-          {this.props.isSearching? 
+          {this.state.isSearching? 
             <span>              
               <img src={require("images/loading2.gif")} id="loadingSearchButton" alt="" />
             </span>
@@ -84,11 +83,10 @@ class SearchButton extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    isSearchEnabled: state.searchBarReducer.isSearchEnabled,
-    isSearching: state.searchPageReducer.isSearching,
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     isSearching: state.searchPageReducer.isSearching,
+//   };
+// }
 
-export default connect(mapStateToProps)(SearchButton);
+// export default connect(mapStateToProps)(SearchButton);

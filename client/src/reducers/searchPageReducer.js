@@ -12,7 +12,6 @@ import { SET_SEARCH_IDEAS,
   REMOVE_USER_FROM_IDEA_ADDED_EASY,
   REMOVE_USER_FROM_IDEA_ADDED_SHORT,
   REMOVE_USER_FROM_IDEA_ADDED_LONG,
-  SET_IS_SEARCHING,
   SEARCH_SET_CURRENT_IDEA_BY_ID,
   SET_CURRENT_IDEA 
 } from './types'
@@ -50,11 +49,11 @@ function reducer(state = initialState, action) {
           ideas: action.payload,
         };
     
-    case SET_IS_SEARCHING:
-      return {
-        ...state,
-        isSearching: action.payload,
-      };    
+    // case SET_IS_SEARCHING:
+    //   return {
+    //     ...state,
+    //     isSearching: action.payload,
+    //   };    
     default:
       return state;
   }

@@ -1,7 +1,5 @@
-- top table -> click - the selected idea in list is not in different color
-- user page - liked ideas are crushing
+- top table - on arrows click - the first item is not getting selected
 - user page - created ideas - not all are showing images
-- idea card - parse youtube link - add an iframe
 
 
 
@@ -36,8 +34,8 @@
 
 
 - on delete idea , delete image from storage
-- android app - add idea id to user created and liked idea!!!
 - make admin permissions , for my user to delete anything!!
+- android app - add idea id to user created and liked idea!!!
 
 
 

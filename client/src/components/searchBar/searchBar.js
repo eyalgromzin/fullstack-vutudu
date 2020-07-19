@@ -54,6 +54,16 @@ class SearchBar extends Component {
 		this.props.dispatch({ type: SEARCH_SET_IS_CLICKED_SEARCH, payload: false });
 	};
 
+	onPlaceKeyDown = (e) => {		
+		if (e.key === 'Enter') {
+			this.state.searchButtonRef.search();
+		}
+	}
+
+	onPlaceChange = (e) => {
+		this.setState({placeText: e.target.value})
+	}
+
 	render() {
 		// console.log('testing redux: in render')
 
@@ -75,7 +85,10 @@ class SearchBar extends Component {
 								this.setState({textRef: ref6})                            
 								this.textRef = ref6
 							}
-						}}
+						}}	
+						value={this.state.placeText}
+						onChange={this.onPlaceChange}					
+						onKeyDown={this.onPlaceKeyDown}
 						/>
 					<TimePicker
 						cssClass="inlineBlock searchBarComboBox"
@@ -105,6 +118,12 @@ class SearchBar extends Component {
 						textRef={this.state.textRef} 	
 						timeRef={this.state.timeRef}  
 						numOfPeopleRef={this.state.numOfPeopleRef}
+						ref={ref7 => {
+							if(this.state.textRef === undefined) {
+								this.setState({searchButtonRef: ref7})                            
+								this.textRef = ref7
+							}
+						}}
 						/>
 				</div>
 			</div>

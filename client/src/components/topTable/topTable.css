@@ -26,6 +26,14 @@
     margin-bottom: 10px;    
 }
 
+.topTableSelectedTitleClassName{
+    background-color: lawngreen;
+}
+
+.topTableListItem:hover{
+    background-color: lavender;
+}
+
 .topTableItemTitle{
     font-family: cursive;
 }
@@ -142,6 +150,12 @@ outline: 1px solid slategrey;
 
 .topTableCardLeftArrowContainer:hover{
     opacity: 0.2;
+}
+
+.selectedTopTableListHeader{
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: antiquewhite;
 }
 
 .topTableCardRightArrowContainer{

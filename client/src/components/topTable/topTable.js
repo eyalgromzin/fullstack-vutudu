@@ -24,7 +24,11 @@ class topTable extends Component {
     super(props)
 
     this.state = {      
-      selectedIndex: 0,      
+      selectedLikedIndex: 0,      
+      selectedLikedRatioIndex: 0,      
+      selectedNewestIndex: 0,
+      ideas: [],
+      ideaCardRef: undefined     //React.createRef()
     }
   }
 
@@ -42,61 +46,15 @@ class topTable extends Component {
 
     //update current idea in search page reducer
     this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea })    
-    
-    let ideas = [...this.props.topNewestIdeas,...this.props.topLikedPercentageIdeas, ...this.props.topLikedIdeas]
-    let selectredIdeaIndex = ideas.indexOf(ideaI => ideaI.id == idea.id)
-    // let selectredIdeaIndex = this.state.ideas.indexOf(ideaI => ideaI.id == idea.id)
-    this.setState({ selectedIndex: selectredIdeaIndex })
   }
 
   //happens on like click
-  ideaUpdated = (idea) => {
-    let ideas = [...this.props.topNewestIdeas,...this.props.topLikedPercentageIdeas, ...this.props.topLikedIdeas]
-    let ideaIndex = ideas.indexOf(ideaI => ideaI.id == idea.id)
-    ideas[ideaIndex] = idea
-    this.setState({ideas: ideas})
-  }
-
-  renderCombinedItems = (index, key) => {  //key is running number
-    let title = ""
-    if(index >= 1 && index <= 5){
-      title = this.props.topNewestIdeas[index - 1].title
-    }else if(index >= 7 && index <= 11){
-      title = this.props.topLikedPercentageIdeas[index - 7].title
-    }else if(index >= 13 && index <= 17){
-      title = this.props.topLikedIdeas[index - 13].title
-    }
-
-    if(index == 0) return <div className="combinedListHeader" key="1">Newest</div>
-    if(index == 6) return <div className="combinedListHeader" key="2">popular</div>
-    if(index == 12) return <div className="combinedListHeader" key="3">Liked</div>
-
-    let actualIndex = 0
-    if(this.state.selectedIndex >= 0){
-      actualIndex = this.state.selectedIndex + 1
-    }
-    if(this.state.selectedIndex >= 5){
-      actualIndex = this.state.selectedIndex + 2
-    } 
-    if(this.state.selectedIndex >= 10){ 
-      actualIndex = this.state.selectedIndex + 3
-    }
-
-
-    if(index == actualIndex){
-      return <div onClick={ () => { this.showCombinedIdea(index) } }
-                key={Math.random()}
-                className="selectedListRow" >  
-                {title}
-              </ div>
-    }else{
-      return <div onClick={ () => { this.showCombinedIdea(index) } }
-                key={Math.random()}
-                className="listRow" >  
-                {title}
-              </ div>
-    }
-  }
+  // ideaUpdated = (idea) => {
+    //  let ideas = [...this.props.topNewestIdeas,...this.props.topLikedPercentageIdeas, ...this.props.topLikedIdeas]
+  //   let ideaIndex = ideas.indexOf(ideaI => ideaI.id == idea.id)
+  //   ideas[ideaIndex] = idea
+  //   this.setState({ideas: ideas})
+  // }
 
   showCombinedIdea = (index) => {
     if(index >= 1 && index <= 5){
@@ -125,14 +83,63 @@ class topTable extends Component {
   }
 
   onLikedIdeaClicked = (idea) => {
+    let selectedIndex = -1
+    for (let i = 0; i < this.props.topLikedIdeas.length; i++){
+      if(this.props.topLikedIdeas[i]._id == idea._id){
+        selectedIndex = i;
+      }
+    }
+
+    this.setState({ selectedLikedIndex: selectedIndex })
+    this.setState({ selectedLikedRatioIndex: -1 })
+    this.setState({ selectedNewestIndex: -1 })
+    this.setState({ totalIdeaIndex: selectedIndex })
+    this.setState({ ideas: this.props.topLikedIdeas })
+
+    if(this.state.ideaCardRef !== undefined){
+      this.state.ideaCardRef.setIdeaIndex(selectedIndex)
+    }
+
     this.showIdea(idea)
   }
 
-  onLikePercentageIdeaClicked = (idea) => {
+  onLikedRatioIdeaClicked = (idea) => {
+    let selectedIndex = -1
+    for (let i = 0; i < this.props.topLikedPercentageIdeas.length; i++){
+      if(this.props.topLikedPercentageIdeas[i]._id == idea._id){
+        selectedIndex = i;
+      }
+    }
+
+    if(this.state.ideaCardRef !== undefined){
+      this.state.ideaCardRef.setIdeaIndex(selectedIndex + 5)
+    }
+
+    this.setState({ selectedLikedIndex: -1 })
+    this.setState({ selectedLikedRatioIndex: selectedIndex })
+    this.setState({ selectedNewestIndex: -1 })
+    this.setState({ ideas: this.props.topLikedPercentageIdeas })
+
     this.showIdea(idea)
   }
 
   onNewestIdeaClicked = (idea) => {
+    let selectedIndex = -1
+    for (let i = 0; i < this.props.topNewestIdeas.length; i++){
+      if(this.props.topNewestIdeas[i]._id == idea._id){
+        selectedIndex = i;
+      }
+    }
+
+    if(this.state.ideaCardRef !== undefined){
+      this.state.ideaCardRef.setIdeaIndex(selectedIndex + 10)
+    }
+
+    this.setState({ selectedLikedIndex: -1 })
+    this.setState({ selectedLikedRatioIndex: -1 })
+    this.setState({ selectedNewestIndex: selectedIndex })
+    this.setState({ ideas: this.props.topNewestIdeas })
+
     this.showIdea(idea)
   }
 
@@ -146,20 +153,25 @@ class topTable extends Component {
           <div id="topTableColumnContainer">
             <div id="topLikedTable" className="topTableColumn">
               <div className="topTableHeader">Liked</div>                
-                <IdeasList ideas={this.props.topLikedIdeas}  imageClassName="topTableItemImage" 
-                  titleClassName="topTableListItemTitle" isToShowImage={true}  listItemClassName="topTableListItem"               
-                  onClick={(idea) => this.onLikedIdeaClicked(idea)} />
+                <IdeasList ideas={this.props.topLikedIdeas}  
+                  imageClassName="topTableItemImage" 
+                  titleClassName="topTableListItemTitle" 
+                  isToShowImage={true}  
+                  listItemClassName="topTableListItem"               
+                  
+                  onClick={(idea) => this.onLikedIdeaClicked(idea)}  />
             </div>
             <div id="topPopularTable" className="topTableColumn">
               <div className="topTableHeader">Popular</div>
                 <IdeasList ideas={this.props.topLikedPercentageIdeas} imageClassName="topTableItemImage"
                   titleClassName="topTableListItemTitle" isToShowImage={true}  listItemClassName="topTableListItem"                    
-                  onClick={(idea) => this.onLikePercentageIdeaClicked(idea)} />
+                  onClick={(idea) => this.onLikedRatioIdeaClicked(idea)} 
+                   />
             </div>
             <div id="topNewestTable" className="topTableColumn">
               <div className="topTableHeader">Newest</div>
                 <IdeasList ideas={this.props.topNewestIdeas} imageClassName="topTableItemImage"
-                  titleClassName="topTableListItemTitle"  isToShowImage={true} listItemClassName="topTableListItem"                
+                  titleClassName="topTableListItemTitle"  isToShowImage={true} listItemClassName="topTableListItem"                          
                   onClick={(idea) => this.onNewestIdeaClicked(idea)} />
             </div>
           </div>
@@ -167,9 +179,20 @@ class topTable extends Component {
       </React.Fragment>
   }
 
-  onSelectedIdeaChange = (newIdea, newIndex) => {
-    this.setState({idea: newIdea})
-    this.setState({selectedIndex: newIndex})
+  // onSelectedIdeaChange = (newIdea, newIndex) => {
+  //   this.setState({idea: newIdea})
+  //   this.setState({selectedIndex: newIndex})
+  // }
+
+  onSelectedIndexChange = (index) => {
+    // this.setState({})
+    if(index >= 1 && index <= 5){
+      this.setState({selectedLikedIndex: index})
+    }else if(index >= 7 && index <= 11){
+      this.setState({selectedLikedRatioIndex: index - 5})
+    }else if(index >= 13 && index <= 17){
+      this.setState({selectedNewestIndex: index - 10})
+    }
   }
 
   createSelectedTopTable = () => {
@@ -178,15 +201,21 @@ class topTable extends Component {
     return <React.Fragment>
       <div id="topTableClicked">
         <div id="topTableListsClicked">
-          <ReactList
-            itemRenderer={this.renderCombinedItems}
-            length={ this.props == null || this.props.topLikedIdeas == null? 0 : 18 }
-            type='uniform' type={type}
-          />
+          <IdeasList ideas={this.state.ideas}  imageClassName="topTableItemImage" 
+                  titleClassName="topTableListItemTitle" isToShowImage={false}  listItemClassName="topTableListItem"               
+                  selectedTitleClassName="topTableSelectedTitleClassName" selectedIndex={this.state.selectedLikedIndex}
+                  onClick={(idea) => this.onLikedIdeaClicked(idea)} />          
         </div>
         <div id="topTableIdea">
           <IdeaCard ideas={this.state.ideas} 
-              onSelectedIdeaChange={this.onSelectedIdeaChange} enabled={true} showNextPreviousButtons={true} 
+              enabled={true} 
+              wrappedComponentRef={ref => {
+                if(this.state.ideaCardRef === undefined)
+                  this.setState({ideaCardRef: ref})
+              }}
+              ideaIndex={this.state.totalIdeaIndex}
+              showNextPreviousButtons={true} 
+              onSelectedIndexChange={this.onSelectedIndexChange}
               cardLeftArrowContainerClassName="topTableCardLeftArrowContainer" 
               cardRightArrowContainerClassName="topTableCardRightArrowContainer"/>
         </div>
@@ -194,20 +223,20 @@ class topTable extends Component {
     </React.Fragment>
   }
 
-  shouldComponentUpdate(nextProps, nextState){
-    if(nextProps !== undefined &&  nextProps != this.props){
-      if(nextProps.topNewestIdeas !== undefined && nextProps.topLikedPercentageIdeas !== undefined && 
-            nextProps.topLikedIdeas !== undefined){
-        let ideas = [...nextProps.topNewestIdeas,...nextProps.topLikedPercentageIdeas, ...nextProps.topLikedIdeas]
-        this.setState({ ideas: ideas })
-      }
-      return true
-    }
+  // shouldComponentUpdate(nextProps, nextState){
+  //   if(nextProps !== undefined &&  nextProps != this.props){
+  //     if(nextProps.topNewestIdeas !== undefined && nextProps.topLikedPercentageIdeas !== undefined && 
+  //           nextProps.topLikedIdeas !== undefined){
+  //       // let ideas = [...nextProps.topNewestIdeas,...nextProps.topLikedPercentageIdeas, ...nextProps.topLikedIdeas]
+  //       // this.setState({ ideas: ideas })
+  //     }
+  //     return true
+  //   }
     
-    if(nextState != this.state){
-      return true
-    }
-  }
+  //   if(nextState != this.state){
+  //     return true
+  //   }
+  // }
 
   render() {
     var selectedTopTable = this.createSelectedTopTable()
