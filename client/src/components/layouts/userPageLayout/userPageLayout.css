@@ -3,6 +3,11 @@
     margin-right: 4%;
     vertical-align: top;
     width: 22%;
+    overflow-y: none;
+}
+
+#userLayoutIdeasSelectSideBar:hover{
+    overflow-y: auto;
 }
 
 #UserIdeasTypeDropDown{
@@ -64,7 +69,7 @@
 }
 
 .selectedItemsListItem{
-    background-color: cyan;
+    background-color: lavender;
     border-radius: 10px;
     padding: 5px 0;
     padding-left: 5px;

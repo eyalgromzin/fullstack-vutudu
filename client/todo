@@ -1,136 +1,9 @@
-- enable 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- on delete idea , delete image from storage
-- make admin permissions , for my user to delete anything!!
-- android app - add idea id to user created and liked idea!!!
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- on delete idea , check if the user has other ideas with this image, if not - delete image from storage
 
 
 ========== search for a job!!! ===================
 
 
-- check place field also searches title and subjects and content
-
-- in the app - check if on edit - user created idea is also updated 
 
 
 
@@ -162,6 +35,6 @@
 
 
 
--------------------------- NTH -----------------------------------
 
-- search results will be like pinterest. will just show the right squares below the search bar - maybe...
+
+android app - on delete idea , check if the user has other ideas with this image, if not - delete image from storage

@@ -10,6 +10,7 @@ import {
   CHANGE_SEARCHED_STATE,
   EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
   SET_CURRENT_PAGE,
+  SET_CURRENT_IDEA,
 } from 'reducers/types'
 
 class TopBar extends Component {
@@ -35,7 +36,8 @@ class TopBar extends Component {
     if(!this.props.loggedIn){
       showLogInScreen('user', history);
     }else{  
-      this.setState({currentPage: "user"})
+      this.props.dispatch({type: SET_CURRENT_IDEA, payload: {}})
+      this.setState({currentPage: "user"})      
       history.push('/user')
     }
     

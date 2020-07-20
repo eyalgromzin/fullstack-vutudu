@@ -26,12 +26,25 @@
     margin-bottom: 10px;    
 }
 
+#topTableSelectedIdeasListTitle{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.topTableListItemTitle{
+    font-family: cursive;
+    font-size: 20px;
+    font-style: italic;
+}
+
 .topTableSelectedTitleClassName{
-    background-color: lawngreen;
+    background-color: lavender;
+    border-radius: 5px;
 }
 
 .topTableListItem:hover{
     background-color: lavender;
+    border-radius: 5px;
 }
 
 .topTableItemTitle{

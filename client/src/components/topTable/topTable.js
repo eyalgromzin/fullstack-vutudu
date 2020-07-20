@@ -21,13 +21,17 @@ import { updateTopIdeas } from 'actions/ideaActions';
 //remove table on search
 class topTable extends Component {
   constructor(props) {
-    super(props)
+    super(props)    
+
+    this.isLoadingTopIdeas = false
+    this.checkAndUpdateIdeas();
 
     this.state = {      
       selectedLikedIndex: 0,      
       selectedLikedRatioIndex: 0,      
       selectedNewestIndex: 0,
       ideas: [],
+      selectedIdeaType: "",
       ideaCardRef: undefined     //React.createRef()
     }
   }
@@ -37,7 +41,6 @@ class topTable extends Component {
     if(this.props.topLikedIdeas === undefined || this.props.topLikedIdeas.length == 0){
       this.props.dispatch({type: SET_IS_MAIN_LOADING, payload: true})
       console.log("getting top ideas")
-      this.props.updateTopIdeas();
     }
   }
 
@@ -48,6 +51,12 @@ class topTable extends Component {
     this.props.dispatch({ type: SET_CURRENT_IDEA, payload: idea })    
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    this.checkAndUpdateIdeas()
+
+    return true
+  }
+
   //happens on like click
   // ideaUpdated = (idea) => {
     //  let ideas = [...this.props.topNewestIdeas,...this.props.topLikedPercentageIdeas, ...this.props.topLikedIdeas]
@@ -55,6 +64,20 @@ class topTable extends Component {
   //   ideas[ideaIndex] = idea
   //   this.setState({ideas: ideas})
   // }
+
+  checkAndUpdateIdeas = () => {
+    let numOfIdeasInTopTable = 5
+    let returnValue = false
+    if((this.props.topLikedIdeas.length < numOfIdeasInTopTable || this.props.topNewestIdeas.length < numOfIdeasInTopTable || 
+        this.props.topLikedPercentageIdeas.length < numOfIdeasInTopTable ) && 
+        (this.isLoadingTopIdeas == false || this.isLoadingTopIdeas == undefined)){
+        this.isLoadingTopIdeas = true
+        this.props.updateTopIdeas(() => {
+          this.isLoadingTopIdeas = false
+          this.checkAndUpdateIdeas()
+        });
+    }
+  }
 
   showCombinedIdea = (index) => {
     if(index >= 1 && index <= 5){
@@ -83,6 +106,8 @@ class topTable extends Component {
   }
 
   onLikedIdeaClicked = (idea) => {
+    this.setState({selectedIdeaType: "Liked"})
+
     let selectedIndex = -1
     for (let i = 0; i < this.props.topLikedIdeas.length; i++){
       if(this.props.topLikedIdeas[i]._id == idea._id){
@@ -104,6 +129,8 @@ class topTable extends Component {
   }
 
   onLikedRatioIdeaClicked = (idea) => {
+    this.setState({selectedIdeaType: "Popular"})
+
     let selectedIndex = -1
     for (let i = 0; i < this.props.topLikedPercentageIdeas.length; i++){
       if(this.props.topLikedPercentageIdeas[i]._id == idea._id){
@@ -124,6 +151,8 @@ class topTable extends Component {
   }
 
   onNewestIdeaClicked = (idea) => {
+    this.setState({selectedIdeaType: "Newest"})
+
     let selectedIndex = -1
     for (let i = 0; i < this.props.topNewestIdeas.length; i++){
       if(this.props.topNewestIdeas[i]._id == idea._id){
@@ -178,11 +207,6 @@ class topTable extends Component {
       </React.Fragment>
   }
 
-  // onSelectedIdeaChange = (newIdea, newIndex) => {
-  //   this.setState({idea: newIdea})
-  //   this.setState({selectedIndex: newIndex})
-  // }
-
   onSelectedIndexChange = (index) => {
     // this.setState({})
     if(index >= 0 && index <= 4){
@@ -191,6 +215,8 @@ class topTable extends Component {
       this.setState({selectedLikedRatioIndex: index - 5})
     }else if(index >= 13 && index <= 17){
       this.setState({selectedNewestIndex: index - 10})
+    }else{
+      this.setState({selectedLikedIndex: 0})
     }
   }
 
@@ -200,6 +226,7 @@ class topTable extends Component {
     return <React.Fragment>
       <div id="topTableClicked">
         <div id="topTableListsClicked">
+          <div id="topTableSelectedIdeasListTitle">{this.state.selectedIdeaType}</div>
           <IdeasList ideas={this.state.ideas}  imageClassName="topTableItemImage" 
                   titleClassName="topTableListItemTitle" isToShowImage={false}  listItemClassName="topTableListItem"               
                   selectedListItemClassName="topTableSelectedTitleClassName" selectedIndex={this.state.selectedLikedIndex}
@@ -222,22 +249,7 @@ class topTable extends Component {
     </React.Fragment>
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   if(nextProps !== undefined &&  nextProps != this.props){
-  //     if(nextProps.topNewestIdeas !== undefined && nextProps.topLikedPercentageIdeas !== undefined && 
-  //           nextProps.topLikedIdeas !== undefined){
-  //       // let ideas = [...nextProps.topNewestIdeas,...nextProps.topLikedPercentageIdeas, ...nextProps.topLikedIdeas]
-  //       // this.setState({ ideas: ideas })
-  //     }
-  //     return true
-  //   }
-    
-  //   if(nextState != this.state){
-  //     return true
-  //   }
-  // }
-
-  render() {
+  render() {            
     var selectedTopTable = this.createSelectedTopTable()
     var unselectedTopTable = this.createUnselectedTopTable()
 
@@ -259,7 +271,7 @@ const mapDispatchToProps = dispatch => {
 function mapStateToProps(state) {
   return {
     topLikedIdeas: state.topTableReducer.topLikedIdeas,
-    topLikedPercentageIdeas: state.topTableReducer.topLikedPercansubjecteIdeas,
+    topLikedPercentageIdeas: state.topTableReducer.topLikedPercentageIdeas,
     topNewestIdeas: state.topTableReducer.topNewestIdeas,
     wasIdeaClicked: state.topTableReducer.wasIdeaClicked,
   };

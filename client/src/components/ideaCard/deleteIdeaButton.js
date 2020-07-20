@@ -29,13 +29,9 @@ class DeleteIdeaButton extends Component {
 	}
 
 	deleteIdea = () => {
+		this.setState({showModal: false})
 		this.props.deleteIdea(this.props.loggedInUserID, this.props.idea._id, this.ideaDeleted);
 	};
-
-	deleteAndShowNextIdea = () => {
-		this.setState({showModal: false})
-		this.deleteIdea();
-	}
 
 	ideaDeleted = () => {
 		toastr.success('Deleted!!', 'Idea Deleted!')
@@ -51,7 +47,7 @@ class DeleteIdeaButton extends Component {
 						<div className="modalDialogButton" onClick={() => this.setState({showModal: false})}>
 							Cancel
 						</div>
-						<div className="modalDialogButton" onClick={() => this.deleteAndShowNextIdea()}>
+						<div className="modalDialogButton" onClick={() => this.deleteIdea()}>
 							Delete
 						</div>
 					</div>

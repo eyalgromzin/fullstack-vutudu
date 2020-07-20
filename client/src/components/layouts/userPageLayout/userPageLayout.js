@@ -11,6 +11,7 @@ import {
   SET_USER_CURRENT_PREVIEWED_IDEA,
   SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT,
   SET_CURRENT_IDEA,
+  REMOVE_IDEA_FROM_TOP_TABLE,
   } from "reducers/types";
 import {showLogInScreen} from 'actions/commonActions'
 import IdeaCard from 'components/ideaCard/ideaCard'
@@ -20,10 +21,8 @@ class userPageLayout extends Component {
   constructor(props){
     super(props);
 
-    // this.onLoginSuccess();
-
     this.state = {
-      selectedIdeaIndex: 0,
+      selectedIdeaIndex: -1,
     }
   }
 
@@ -46,6 +45,12 @@ class userPageLayout extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
+    if(this.state.selectedIdeaIndex == -1 && (this.updating == false || this.updating === undefined)){
+      this.updating = true
+      let index = this.props.currentPreviewedIdeas.findIndex(ideaI => this.props.idea._id == ideaI._id)
+      this.setState({selectedIdeaIndex: index})
+    }
+
     if(nextProps.currentPreviewedIdeas.length > 0 )
       return true
   }
@@ -64,6 +69,12 @@ class userPageLayout extends Component {
             style={{cursor: 'pointer'}}>logout</div>
     }
   }
+
+  OnIdeaDeleted = (idea) => {
+
+  }
+
+
 
   createUserIdeaCard = () => {
     let isCurrentPreviewedIdeaExists = typeof this.props.currentPreviewedIdea !== 'undefined' &&
@@ -85,10 +96,16 @@ class userPageLayout extends Component {
           this.props.currentPreviewedIdeas.length > 0 ? 
             <div id="ideaCardWithButtonsInUser">
               <div id="userIdeaCard">
-                <IdeaCard enabled={true} showNextPreviousButtons={true} 
-                  editable={isEditable} deleteable={true} ideas={this.props.currentPreviewedIdeas}
-                  onSelectedIndexChange={this.onSelectedIndexChange} cardLeftArrowContainerClassName="userCardLeftArrowContainer" 
-                  cardRightArrowContainerClassName="userCardRightArrowContainer" />
+                <IdeaCard enabled={true} 
+                  showNextPreviousButtons={true} 
+                  editable={isEditable} 
+                  deleteable={true} 
+                  ideas={this.props.currentPreviewedIdeas}
+                  onSelectedIndexChange={this.onSelectedIndexChange} 
+                  cardLeftArrowContainerClassName="userCardLeftArrowContainer" 
+                  cardRightArrowContainerClassName="userCardRightArrowContainer" 
+                  onIdeaDeleted={idea => this.OnIdeaDeleted(idea)}
+                  />
               </div>
             </div>
             :
@@ -114,6 +131,10 @@ class userPageLayout extends Component {
   }
 
   onSelectedIndexChange = (newIndex) => {
+    if(newIndex === undefined){
+      return 
+    }
+
     this.setState({selectedIdeaIndex: newIndex})    
 
     let ideas = this.props.currentPreviewedIdeas
@@ -121,22 +142,20 @@ class userPageLayout extends Component {
 
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA, payload: idea});
     this.props.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEA_IS_EDIT, payload: false});  //to update ideas list 
-    this.props.dispatch({type: SET_CURRENT_IDEA, payload: idea});
 	}
 
   createUserIdeasList = () => {
     if (this.props.currentPreviewedIdeas.length > 0){
       return <div id="ideasList">
-        <IdeasList ideas={this.props.currentPreviewedIdeas} 
+        <IdeasList 
+          ideas={this.props.currentPreviewedIdeas} 
           imageClassName="topTableItemImage"
           titleClassName="topTableItemTitle" 
           listItemClassName="ideaCardListItem" 
           selectedListItemClassName="selectedItemsListItem"
           isToShowImage={false}  
-          onClick={this.ideaSelected} 
-          onSelectedIndexChange={this.onSelectedIndexChange} 
+          onClick={this.ideaSelected}           
           selectedIndex={this.state.selectedIdeaIndex}  
-
           />
       </div>
     }else{
@@ -160,7 +179,7 @@ class userPageLayout extends Component {
       <React.Fragment>
         <div id="userLayout">
           <div id="userNameAndLogourBar">
-            <div id="userFullName">{this.props.firstName + " " + this.props.lastName + " " + this.props.email} </div>
+            <div id="userFullName">{this.props.firstName + " " + this.props.lastName + " - " + this.props.email} </div>
             {logoutButton}
           </div>
 
@@ -186,6 +205,7 @@ function mapStateToProps(state) {
     currentIdea: state.ideaCardReducer.currentIdea,
     firstName: state.userPageReducer.loggedInUserFirstName,
     lastName: state.userPageReducer.loggedInUserLastName,
+    idea: state.ideaCardReducer.currentIdea,
     email: state.userPageReducer.email,
     userID: state.userPageReducer.loggedInUserID,
     isIdeaEdited: state.userPageReducer.isIdeaEdited,

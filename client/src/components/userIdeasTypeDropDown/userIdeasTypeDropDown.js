@@ -6,7 +6,6 @@ import {
   USER_SET_SELECTED_DROPDOWN_TYPE,
   USER_COPY_LIKED_IDEAS_TO_CURRENT_IDEAS,
   USER_COPY_CREATED_IDEAS_TO_CURRENT_IDEAS,
-  SET_USER_CURRENT_PREVIEWED_IDEAS,
   } from "reducers/types";
 import { copyUserIdeas } from 'actions/userActions'
 import store from 'store'
@@ -40,15 +39,6 @@ class UserIdeasTypeDropDown extends Component {
     }
 
     store.dispatch({type: USER_SET_SELECTED_DROPDOWN_TYPE, payload: e.label })
-
-    // var reduxActionName = e.value;
-
-    // //change current previewed ideas to null first.    
-    // store.dispatch({type: SET_USER_CURRENT_PREVIEWED_IDEAS, payload: {}});
-
-    // this.props.copyUserIdeas(reduxActionName);
-    
-    // store.dispatch({type: USER_SET_SELECTED_DROPDOWN_TYPE, payload: e.label })
   }
 
   render() {

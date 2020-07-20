@@ -162,9 +162,18 @@ const addTagToLettersBucketIfNotExists = (firstLetters, subject) => {
 	});
 };
 
-export const updateTopIdeas = () => (dispatch) => {
+export const updateTopIdeas = () => (dispatch, onFinished) => {
+	var likedIdeasUpdated = false
+	var topRatioIdeasUpdated = false
+	var newestIdeasUpdated = false
+
 	axios.post('/api/items/getTopLikedIdeas').then((res) => {
 		console.log('got top liked ideas');
+
+		likedIdeasUpdated = true
+		if(topRatioIdeasUpdated && likedIdeasUpdated && newestIdeasUpdated){
+			onFinished();
+		}
 
 		dispatch({
 			type: SET_TOP_LIKED_IDEAS,
@@ -175,6 +184,11 @@ export const updateTopIdeas = () => (dispatch) => {
 	axios.post('/api/items/getTopLikedPercensubjecteIdeas').then((res) => {
 		console.log('got top popular ideas');
 
+		topRatioIdeasUpdated = true
+		if(topRatioIdeasUpdated && likedIdeasUpdated && newestIdeasUpdated){
+			onFinished();
+		}
+
 		dispatch({
 			type: SET_TOP_LIKED_PERCENTAGE_IDEAS,
 			payload: res.data
@@ -183,6 +197,11 @@ export const updateTopIdeas = () => (dispatch) => {
 
 	axios.post('/api/items/getTopNewestIdeas').then((res) => {
 		console.log('got top newest ideas');
+
+		newestIdeasUpdated = true
+		if(topRatioIdeasUpdated && likedIdeasUpdated && newestIdeasUpdated){
+			onFinished();
+		}
 
 		dispatch({
 			type: SET_TOP_NEWEST_IDEAS,

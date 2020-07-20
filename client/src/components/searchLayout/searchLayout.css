@@ -33,7 +33,7 @@
 }
 
 .ideaCardListItem:hover{
-    background-color: cyan;
+    background-color: lavender;
     border-radius: 10px;
     margin-bottom: 5px;
     padding: 5px 0;
@@ -42,7 +42,7 @@
 }
 
 .selectedItemsListItem{
-    background-color: aquamarine;
+    background-color: lavender;
     border-radius: 10px;
 }
 

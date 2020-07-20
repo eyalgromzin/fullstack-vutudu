@@ -4,7 +4,8 @@ import './ideaCard.css'
 import IdeaNextButtonsPreviousButtons from './cardButtons/nextPreviousButtons/nextPreviousButtons'
 import { connect } from 'react-redux';
 import {
-  SET_CURRENT_IDEA
+  SET_CURRENT_IDEA,
+  REMOVE_IDEA_FROM_TOP_TABLE
 } from 'reducers/types'
 import 'commonCss.css'
 import ShareButton from 'components/ideaCard/cardButtons/shareButton'
@@ -22,7 +23,7 @@ class IdeaCard extends Component {
     super(props)
 
     this.state = {
-      ideaIndex: undefined,            
+      ideaIndex: -1,            
       isPopoverOpen: false,
     }
   }
@@ -33,7 +34,7 @@ class IdeaCard extends Component {
     }
     
     let ideaIndex = this.state.ideaIndex;
-    if(ideaIndex === undefined){
+    if(ideaIndex === -1){
       if(this.props.ideas !== undefined && this.props.idea !== undefined){
         ideaIndex = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)
       }
@@ -66,10 +67,12 @@ class IdeaCard extends Component {
     }
     
     var ideasCount = this.props.ideas.length;
-    let ideaIndex = 0;
 
-    if(this.props.ideas !== undefined && this.props.idea !== undefined){
-      ideaIndex = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)
+    let ideaIndex = this.state.ideaIndex;
+    if(ideaIndex === -1){
+      if(this.props.ideas !== undefined && this.props.idea !== undefined){
+        ideaIndex = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)
+      }
     }
 
     if(ideasCount <= 1){
@@ -110,41 +113,58 @@ class IdeaCard extends Component {
       isToUpdate = true
     }
 
+    if(nextProps.idea != null && this.props.idea === undefined){
+      isToUpdate = true
+
+      let index = nextProps.ideas.findIndex(ideaI => nextProps.idea._id == ideaI._id)          
+      this.setState({
+        ideaIndex: index,
+      })
+    }
+
     if(nextProps.idea != null && nextProps.idea._id != this.props.idea._id){
       isToUpdate = true
 
       let index = nextProps.ideas.findIndex(ideaI => nextProps.idea._id == ideaI._id)          
       this.setState({
-        idea: nextProps.idea,
         ideaIndex: index,
       })
     }
 
-    return isToUpdate
-
     if(nextState != this.state){
-      return true
+      isToUpdate = true
     }
+
+    return isToUpdate
   }
 
   onIdeaDeleted = () => {
-    // this.rightArrowClick();
-    let nextIdeaIndex = this.state.ideaIndex
+    this.props.dispatch({type: REMOVE_IDEA_FROM_TOP_TABLE, payload: this.props.idea._id});
 
     if(this.state.ideaIndex >= this.props.ideas.length - 1){
-      nextIdeaIndex = 0
+      let nextIdeaIndex = 0
       this.setState({ideaIndex: 0})
       this.props.onSelectedIndexChange(0) 
-      this.props.dispatch({ type: SET_CURRENT_IDEA, payload: this.props.ideas[0] });     
+      this.props.dispatch({ type: SET_CURRENT_IDEA, payload: this.props.ideas[0] });           
     }else{
-      this.props.onSelectedIndexChange(nextIdeaIndex)
+      let currentIdeaIndex = this.state.ideaIndex
       var ideas = dcopy(this.props.ideas)      
-      ideas.splice(nextIdeaIndex, 1);
-      this.props.dispatch({ type: SET_CURRENT_IDEA, payload: ideas[nextIdeaIndex] });
+      ideas.splice(currentIdeaIndex, 1);   //removes the unneeded idea
+      this.props.dispatch({ type: SET_CURRENT_IDEA, payload: ideas[currentIdeaIndex] });
+      this.props.onSelectedIndexChange(currentIdeaIndex)
     }    
   }
 
   render() {
+    
+    if(this.props.idea !== undefined && this.props.idea._id !== undefined && 
+      this.props.ideas !== undefined && this.state.ideaIndex == -1 ){
+      let index = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)          
+      this.setState({
+        ideaIndex: index,
+      })
+    }
+
     if(this.props.idea!== undefined && this.props.idea.content !== undefined){
       return (
         <React.Fragment>          
@@ -168,8 +188,10 @@ class IdeaCard extends Component {
                   </div>
                 </div>
                 <div id="shareAndLikeContainer">
-                  {this.props.editable ? <DeleteIdeaButton loggedInUserID={this.props.userID} 
-                                                  idea={this.props.idea} onIdeaDeleted={this.onIdeaDeleted} /> : ""}
+                  {this.props.editable || this.props.email == "eyalgromzin@gmail.com" || this.props.email == "ilyagromzy@hotmail.com" ? 
+                    <DeleteIdeaButton loggedInUserID={this.props.userID}  idea={this.props.idea} onIdeaDeleted={this.onIdeaDeleted} /> 
+                    : 
+                    ""}
                   {this.props.editable && this.props.idea.createdIn == "web" ? <EditIdeaButton /> : ""}
                   {this.props.editable && this.props.idea.createdIn != "web" ? 
                     <React.Fragment>
@@ -201,6 +223,7 @@ function mapStateToProps(state) {
   return {
     idea: state.ideaCardReducer.currentIdea,
     userID: state.userPageReducer.loggedInUserID,
+    email: state.userPageReducer.email,
   };
 }
 

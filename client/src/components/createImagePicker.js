@@ -52,7 +52,7 @@ export default class CreateImagePicker extends Component {
         
     // }
 
-    async onChangeFile(event){
+    onChangeFile = async (event) => {
         this.setState({
             isImageSelected: true,
             isValid: true
