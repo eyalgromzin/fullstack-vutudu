@@ -21,6 +21,7 @@ import {
  } from 'reducers/types'
  import Modal from 'react-modal';
 import {showLogInScreen} from 'actions/commonActions'
+import { SET_TOP_HARD_IDEAS } from '../../../../reducers/types';
 
 class LikeDislike extends Component {
   constructor(props){
@@ -50,6 +51,7 @@ class LikeDislike extends Component {
         //update current idea
         this.props.currentIdea.liked.push(this.props.userID)
         this.props.dispatch({type: SET_CURRENT_IDEA, payload: this.props.currentIdea})        
+        
       }
     )
 
@@ -130,6 +132,9 @@ class LikeDislike extends Component {
     var s = this.state.isPopoverOpen;
   }
 
+  hidePopup = () => {
+    this.setState({isPopoverOpen: false})
+  }
 
   render() {
     let percensubjecteText = "(0%)"
@@ -158,7 +163,7 @@ class LikeDislike extends Component {
             isOpen={this.state.isPopoverOpen}
             position={'top'} // preferred position
             content={(
-              <div id="likeDislikeContainer" onMouseLeave={this.togglePopover}>
+              <div id="likeDislikeContainer" onMouseLeave={this.hidePopup}>
                 <img onClick={this.handleLikeClick} src={require("images/likeFull.png")} className="inlineBlock smallIconSize marginRight10px tilt" />
                 <img onClick={this.handleDislikeClick} src={require("images/dislike.png")} className="inlineBlock smallIconSize tilt" />
               </div>

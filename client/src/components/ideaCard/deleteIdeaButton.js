@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import './editIdeaCard.css';
 import {toastr} from 'react-redux-toastr'
 import Modal from 'react-modal';
+import { getImageLinkFromIdeaContent, deleteImage } from 'commonUtils'
 import 'cssAnimations.css'
 
 const customStyles = {
@@ -33,8 +34,27 @@ class DeleteIdeaButton extends Component {
 		this.props.deleteIdea(this.props.loggedInUserID, this.props.idea._id, this.ideaDeleted);
 	};
 
+	numOfImageInstances = (ideaImageLink) => {
+		let instanceCount = 0
+		for (let i=0; i < this.props.createdIdeas.length; i++){
+			let idea = this.props.createdIdeas[i]
+			if(idea.content.includes(ideaImageLink)){
+				instanceCount++
+			}
+		}
+		
+		return instanceCount
+	}
+
 	ideaDeleted = () => {
 		toastr.success('Deleted!!', 'Idea Deleted!')
+		let deletedIdea = this.props.idea
+		let ideaImageLink = getImageLinkFromIdeaContent(deletedIdea.content)
+		if(this.numOfImageInstances(ideaImageLink) <= 1){
+			deleteImage(ideaImageLink, 
+				() => {console.log('deleted image')},
+				() => {console.error('failed delete !!!')})
+		}
 		this.props.onIdeaDeleted()
 	}
 
@@ -66,6 +86,7 @@ class DeleteIdeaButton extends Component {
 function mapStateToProps(state) {
 	return {
 		currentPreviewedIdeaType: state.userPageReducer.selectedDropDownType,
+		createdIdeas: state.userPageReducer.createdIdeas,
 		isIdeaEdited: state.userPageReducer.isIdeaEdited,
 		loggedInUserID: state.userPageReducer.loggedInUserID,
 		userCreatedIdeas: state.userPageReducer.createdIdeas

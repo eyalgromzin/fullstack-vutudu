@@ -237,7 +237,7 @@ export const addIdeaToDB = (idea, userID, onSuccess, onFail) => (dispatch) => {
 		toastr.success('Success', 'Idea Created!')
 
 		let createdIdea = res.data
-		onSuccess(createdIdea)
+		if(onSuccess !== undefined) onSuccess(createdIdea)
 
 		console.log('added item to mongo: ' + res.data.title);
 
@@ -258,7 +258,8 @@ export const addIdeaToDB = (idea, userID, onSuccess, onFail) => (dispatch) => {
 		// });
 	})
 	.catch(error => {
-		onFail(error);
+		console.log("failed addIdeaToDB()!!! ");
+		if(onFail !== undefined) onFail(error);
 	});
 };
 

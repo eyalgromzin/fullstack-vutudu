@@ -9,12 +9,14 @@ export default class FirebaseImage extends Component {
     this.updating = false;
 
     this.state = {
-      firebasePath: this.props.firebasePath,
-      imageSrc: "",   
+      firebasePath: "",
+      imageSrc: "",
+      isToShowLoader: false,   
     }
   }
 
   updateImage = async (firebasePath) => {
+    // this.setState({imageSrc: "" });
     var thisObject = this
     var imageref = storageRef.child(firebasePath);
     await imageref.getDownloadURL().then(url => {
@@ -34,11 +36,12 @@ export default class FirebaseImage extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if((this.props.firebasePath != "" && this.state.imageSrc == ""  && !this.updating) ||
-        (this.state.firebasePath != this.props.firebasePath)){
+    if(nextProps.firebasePath != this.state.firebasePath && !this.updating){
+    // if((this.props.firebasePath != "" && this.state.imageSrc == ""  && !this.updating) ||
+    //     (this.state.firebasePath != this.props.firebasePath)){
       this.updating = true
-      this.updateImage(this.props.firebasePath)
-      this.setState({firebasePath: this.props.firebasePath})
+      this.updateImage(nextProps.firebasePath)
+      this.setState({firebasePath: nextProps.firebasePath})
     }      
 
     return true
@@ -47,7 +50,7 @@ export default class FirebaseImage extends Component {
   render() {
     let firebaseImage = <div></div>
     
-    if(this.state.imageSrc == "" || this.props.firebasePath == ""){
+    if(this.state.imageSrc == "" || this.props.firebasePath == "" || this.updating){
       firebaseImage = <img src={require("images/loading2.gif")} className={this.props.imageClassName} id="ideaCardImageLoader" alt="" />
     }else{
       firebaseImage = <img src={this.state.imageSrc} className={this.props.imageClassName} onClick={() => this.props.onClick()} />

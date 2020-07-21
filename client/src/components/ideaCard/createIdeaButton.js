@@ -18,7 +18,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import {toastr} from 'react-redux-toastr'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { uploadBase64ImageToStorage } from 'commonUtils'
+import { uploadBase64ImageToStorage, uuidv4 } from 'commonUtils'
 var ls = require('local-storage');
 
 
@@ -68,7 +68,21 @@ class createIdeaButton extends Component {
     this.props.titleRef.clear()
   }
 
-  
+  ideaAddedToDB = (createdIdea) => {        
+    this.props.dispatch({
+      type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
+      payload: false
+    });
+
+    this.props.addIdeaToUserCreatedIdeas(this.props.userID, createdIdea, 
+      () => {
+        this.props.dispatch({type: ADD_CREATED_IDEA_TO_USER, payload: createdIdea})
+        this.clearFields();
+      }, 
+      (error) => {
+        console.log("failed addIdeaToUserCreatedIdeas " + error)
+      })
+  }
 
   createIdea = () => {
     var uniqueIdentifier = this.props.imagePickerRef.state.uniqueIdentifier
@@ -78,7 +92,7 @@ class createIdeaButton extends Component {
     if(ls.get(uniqueIdentifier) != null){
       cloudImagePath = ls.get(uniqueIdentifier)
     }else{
-      cloudImagePath = "images/" + this.uuidv4() + this.props.imagePickerRef.state.imageName
+      cloudImagePath = "images/" + uuidv4() + this.props.imagePickerRef.state.imageName
     }
     
     let content = '[{"first":"TEXT","fourth":"","second":0,"third":"' + this.props.contentRef.state.text + '"}, ' + 
@@ -86,7 +100,6 @@ class createIdeaButton extends Component {
     let places = this.props.placesRef.state.text.split(",")
     let subjects = this.props.subjectsRef.state.text.split(",")
 
-    
     const newItem = {
       title: this.props.titleRef.state.text,
       content: content,
@@ -105,25 +118,7 @@ class createIdeaButton extends Component {
 
     if(ls.get(uniqueIdentifier) != null){
       this.props.addIdeaToDB(newItem, this.props.userID,
-      (createdIdea) => {        
-        //dont know what is this for
-        newItem._id = createdIdea._id
-
-        this.props.dispatch({
-        	type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE,
-        	payload: false
-        });
-
-        this.props.addIdeaToUserCreatedIdeas(this.props.userID, newItem, 
-          () => {
-            this.props.dispatch({type: ADD_CREATED_IDEA_TO_USER, payload: newItem})
-          }, 
-          (error) => {
-            console.log("failed addIdeaToUserCreatedIdeas " + error)
-          })
-        
-        
-      }, (error) => {
+      this.ideaAddedToDB, (error) => {
         console.log(error);
       })
 
@@ -133,7 +128,10 @@ class createIdeaButton extends Component {
     }else{
       uploadBase64ImageToStorage(imageFileBase64, cloudImagePath, 
         () => {
-          this.props.addIdeaToDB(newItem, this.props.userID)
+          this.props.addIdeaToDB(newItem, this.props.userID, 
+            this.ideaAddedToDB, 
+            (error) => { console.log(error);}
+          )
 
           this.props.addPlaceToDBIfNotExists(this.props.place)
 

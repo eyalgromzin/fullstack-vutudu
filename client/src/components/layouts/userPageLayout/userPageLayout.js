@@ -71,7 +71,7 @@ class userPageLayout extends Component {
   }
 
   OnIdeaDeleted = (idea) => {
-
+    
   }
 
 

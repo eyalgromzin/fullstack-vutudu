@@ -44,8 +44,8 @@ class SaveIdeaButton extends Component {
         this.props.imagePickerRef.validate() && 
         this.props.titleRef.validate()){
 
-      // this.props.isIdeaTitleExists(this.props.titleRef.state.text, this.isTitleExistsCallback);
-      this.saveIdea()
+      this.props.isIdeaTitleExists(this.props.titleRef.state.text, this.isTitleExistsCallback);
+      // this.saveIdea()
     }
 
     store.dispatch({ type: EDITABLE_SET_IS_BUTTON_CLICKED_VALUE, payload: true });

@@ -29,7 +29,7 @@ firebase.auth().signInAnonymously().catch(function(error) {
   console.error(error.message);
 });
 
-export var storageRef = firebase.storage().ref()
+export var storageRef = firebase.storage().ref();
 
 export const removeIdeaFromArray = (ideasArr, ideaID) => {
     const arrayWithoutIdea = ideasArr.filter(
@@ -37,6 +37,20 @@ export const removeIdeaFromArray = (ideasArr, ideaID) => {
     );
 
     return arrayWithoutIdea;
+}
+
+export const deleteImage = (ideaImageLink, onSuccess, onFail) => {
+  var imageRef = storageRef.child(ideaImageLink);
+
+  imageRef.delete().then(function() {
+    if(onSuccess !== undefined){
+      onSuccess();
+    }
+  }).catch(function(error) {
+    if(onFail !== undefined){
+      onFail();
+    }
+  });
 }
 
 
