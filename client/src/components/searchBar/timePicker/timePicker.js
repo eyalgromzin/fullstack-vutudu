@@ -30,12 +30,15 @@ export default class TimePicker extends Component {
 
 	}
 
-  onChangeEvent = (e) => {
-    this.setState({time: e.target.value})
-    this.props.onChangeEvent(e.target.value)
-  }
+	clear = () => {
+		this.setState({time: 0})
+	}
 
-  //<img src={require("images/time.png")} className="searchBarIcon" alt="" />
+	onChangeEvent = (e) => {
+		this.setState({time: e.target.value})
+		this.props.onChangeEvent(e.target.value)
+	}
+
 	render() {
 		return (
 			<React.Fragment>

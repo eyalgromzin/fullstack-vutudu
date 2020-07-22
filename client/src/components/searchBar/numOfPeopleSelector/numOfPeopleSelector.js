@@ -44,6 +44,10 @@ export default class NumOfPeopleSelector extends Component {
 
   }
 
+  clear = () => {
+		this.setState({numOfPeople: 0})
+	}
+
   //<img src={require("images/heads_black.png")}  alt="" className="searchBarIcon" />
   render() {
     return (

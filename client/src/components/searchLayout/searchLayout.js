@@ -18,6 +18,7 @@ import {
   SEARCH_SET_MORE,
   SET_CURRENT_IDEA,
 } from 'reducers/types';
+import TopSearchIdeas from 'components/topSearchIdeas'
 import IdeasList from 'components/ideasList';
 
 class searchLayout extends Component {
@@ -34,7 +35,8 @@ class searchLayout extends Component {
 			more: this.props.more,
 			index: 0,
 			showSelectedTopTable: false,
-			selectedIdeaIndex: 0
+			selectedIdeaIndex: 0,
+			searchBarRef: undefined,
 		};
 
 		if(this.props.match.params.ideaID !== undefined &&
@@ -81,6 +83,10 @@ class searchLayout extends Component {
     	return null
 	}
 
+	searchWord = (word) => {
+		this.state.searchBarRef.searchWord(word)
+	}
+
 	onSelectedIndexChange = (newIndex) => {
 		this.setState({selectedIdeaIndex: newIndex})
 	}
@@ -98,6 +104,11 @@ class searchLayout extends Component {
 					<div className="mainContent">
 						
 						<SearchBar
+							ref={ref2 => {
+								if(this.state.searchBarRef === undefined)
+									this.setState({searchBarRef: ref2})
+								}
+							}
 							place={this.props.place}
 							numOfPeople={this.props.numOfPeople}
 							time={this.props.time}
@@ -131,10 +142,15 @@ class searchLayout extends Component {
 									</div>
 								</React.Fragment>
 							:
-							<TopTable shouldBeClean={!this.state.showSelectedTopTable} />
+							""
 	 					}
 					</div>					 
 				</div>
+				{!this.props.searched ?	
+					<TopSearchIdeas searchWord={this.searchWord} />
+					:
+					""
+				}
 			</React.Fragment>
 
 		return searchJsx

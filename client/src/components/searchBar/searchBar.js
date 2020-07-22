@@ -13,9 +13,10 @@ import {
 import './searchBarCommonStyles.css';
 import 'commonCss.css';
 import CreateTextField from 'components/createTextField'
+import store from 'store'
 
 
-class SearchBar extends Component {
+export default class SearchBar extends Component {
 	constructor(props) {
 		super(props);
 
@@ -47,10 +48,9 @@ class SearchBar extends Component {
 	placeOnChangeEvent = (e) => {
 		var isPlaceValid = true
 		if(e.target.value.length > 0)
-			isPlaceValid = true // this.isPlaceValid(placeValue);
+			isPlaceValid = true
 
 		this.props.dispatch({ type: SEARCH_SET_PLACE, payload: e.target.value });
-		this.props.dispatch({ type: SEARCH_SET_IS_PLACE_VALID, payload: isPlaceValid });
 		this.props.dispatch({ type: SEARCH_SET_IS_CLICKED_SEARCH, payload: false });
 	};
 
@@ -62,6 +62,13 @@ class SearchBar extends Component {
 
 	onPlaceChange = (e) => {
 		this.setState({placeText: e.target.value})
+	}
+
+	searchWord = (word) => {
+		this.setState({placeText: word})
+		this.state.timeRef.clear()
+		this.state.numOfPeopleRef.clear()
+		this.state.searchButtonRef.search();
 	}
 
 	render() {
@@ -130,15 +137,3 @@ class SearchBar extends Component {
 		);
 	}
 }
-
-function mapStateToProps(state) {
-	// console.log('testing redux: in mapStateToProps')
-
-	return {
-		isMoreValid: state.searchBarReducer.isMoreValid,
-		isPlaceValid: state.searchBarReducer.isPlaceValid,
-		isClickedSearch: state.searchBarReducer.isClickedSearch
-	};
-}
-
-export default connect(mapStateToProps)(SearchBar);
