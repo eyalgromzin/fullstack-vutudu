@@ -6,7 +6,7 @@ import {
     SET_CURRENT_IDEA
 } from 'reducers/types';
 import store from 'store'
-import { uuidv4 } from 'commonUtils'
+import { uuidv4 } from 'commonUtils' 
 
 
 export default class IdeasList extends Component {
