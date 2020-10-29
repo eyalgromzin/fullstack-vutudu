@@ -73,7 +73,7 @@ export default class TopSearchIdeas extends Component {
               <div className="topSubjectText"> #Sport </div>
             </div>
             <div id="topSearchIdeasProductive" className="topSearchIdeasSubject" 
-              onClick={() => this.props.searchWord("work")}>
+              onClick={() => this.props.searchWord("productive")}>
               <div className="topSubjectText"> #Productive </div>
             </div>
           </div>
