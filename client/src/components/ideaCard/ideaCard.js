@@ -135,6 +135,16 @@ class IdeaCard extends Component {
       isToUpdate = true
     }
 
+    if (isToUpdate == true){
+      if(this.props.idea !== undefined && this.props.idea._id !== undefined && 
+        this.props.ideas !== undefined && this.state.ideaIndex == -1 ){
+        let index = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)          
+        this.setState({
+          ideaIndex: index,
+        })
+      }
+    }
+
     return isToUpdate
   }
 
@@ -157,13 +167,7 @@ class IdeaCard extends Component {
 
   render() {
     
-    if(this.props.idea !== undefined && this.props.idea._id !== undefined && 
-      this.props.ideas !== undefined && this.state.ideaIndex == -1 ){
-      let index = this.props.ideas.findIndex(ideaI => this.props.idea._id == ideaI._id)          
-      this.setState({
-        ideaIndex: index,
-      })
-    }
+    
 
     if(this.props.idea!== undefined && this.props.idea.content !== undefined){
       return (

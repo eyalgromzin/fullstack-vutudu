@@ -65,6 +65,36 @@ export default class SearchButton extends Component {
     ));
   }
 
+  
+  searchWord = (word) => {
+    console.log('searching ideas...');
+    var text = word
+    var time = this.props.timeRef.state.time
+    var numOfPeople = this.props.numOfPeopleRef.state.numOfPeople
+
+    this.setState({isSearching: true})
+
+    store.dispatch(searchItems(text, time, numOfPeople, (ideas) => {
+      console.log('found ' + ideas.length + ' ideas!!')
+      store.dispatch({ type: SET_SEARCH_IDEAS, payload: ideas });
+      this.setState({isSearching: false})
+      store.dispatch({ type: CHANGE_SEARCHED_STATE, payload: true });	    //throws error here
+      if (ideas.length > 0) {
+        console.log('got ' + ideas.length + ' ideas from db');
+        store.dispatch({ type: SET_CURRENT_IDEA, payload: ideas[0] });
+        
+      } else {
+        console.log('got 0 items from db');
+        store.dispatch({ type: SET_SEARCH_IDEAS, payload: [] });
+      }
+    },
+    (error) => {
+      console.log('failed to search ideas: ' + error)
+    }
+    ));
+  }
+  
+
   render() {
     return (
       <React.Fragment>

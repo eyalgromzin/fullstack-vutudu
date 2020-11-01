@@ -68,7 +68,7 @@ export default class SearchBar extends Component {
 		this.setState({placeText: word})
 		this.state.timeRef.clear()
 		this.state.numOfPeopleRef.clear()
-		this.state.searchButtonRef.search();
+		this.state.searchButtonRef.searchWord(word);
 	}
 
 	render() {

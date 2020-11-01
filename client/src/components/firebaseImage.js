@@ -36,9 +36,7 @@ export default class FirebaseImage extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if(nextProps.firebasePath != this.state.firebasePath && !this.updating){
-    // if((this.props.firebasePath != "" && this.state.imageSrc == ""  && !this.updating) ||
-    //     (this.state.firebasePath != this.props.firebasePath)){
+    if(nextProps.firebasePath != this.state.firebasePath && !this.updating){    
       this.updating = true
       this.updateImage(nextProps.firebasePath)
       this.setState({firebasePath: nextProps.firebasePath})

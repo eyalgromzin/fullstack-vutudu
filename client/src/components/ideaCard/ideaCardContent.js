@@ -13,10 +13,12 @@ export default class IdeaCardContent extends Component {
     }
 
     componentDidMount() {
-        var jsxAndText = this.convertContentJsonToJsx(this.props.contentJson)
-        this.setState({
-            content: jsxAndText[0]
-        })
+        if (this.props.contentJson !== undefined){
+            var jsxAndText = this.convertContentJsonToJsx(this.props.contentJson)
+            this.setState({
+                content: jsxAndText[0]
+            })
+        }
     }
 
     extractYoutubeId = (youtubeLink) => {
@@ -129,8 +131,8 @@ export default class IdeaCardContent extends Component {
         let ideaContentText = contentAndText[1]
         console.log(ideaContentText)
 
-      return (
-        <div>{contentAndText[0]}</div>
-      )
+        return (
+            <div>{contentAndText[0]}</div>
+        )
     }
 }
